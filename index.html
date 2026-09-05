@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kavedi Operator — Your AI operator for WhatsApp</title>
+<link rel="icon" href="assets/mark.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+  :root{
+    --navy:#14323C;
+    --teal:#0A7F7A;
+    --teal-bright:#2AC9C2;
+    --teal-deep:#0C2A32;
+    --cream:#F5F1E9;
+    --white:#FFFFFF;
+    --border:#DED6C7;
+    --muted-teal-grey:#3D5B65;
+    --muted-warm-grey:#6B655A;
+    --muted-label-grey:#8A8478;
+    --light-teal:#E4F3F1;
+    --phone-bg:#EDE9E0;
+    --wa-green:#D9FDD3;
+    --muted-green:#4E7057;
+    --message-bar-bg:#E2DCD1;
+    --placeholder-grey:#8A9AA0;
+    --notif-bg:#FDF1DC;
+    --notif-border:#EFC479;
+    --notif-dot:#B4690E;
+    --notif-text:#7C4606;
+    --divider:#EFEBE2;
+    --doesnt-badge-bg:#F5CE8A;
+    --doesnt-badge-text:#5E3403;
+    --doesnt-icon:#9DB2BA;
+    --dark-body:#E4EEF0;
+    --dark-divider:#2C5A66;
+    --footer-secondary:#A9C2C8;
+    --footer-copyright:#7E9AA1;
+    --footer-badge-text:#7FD9CE;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--white);
+    font-family:'Nunito', sans-serif;
+    color:var(--navy);
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:var(--navy); text-decoration:none;}
+  a:hover{color:var(--teal);}
+  input::placeholder{color:var(--placeholder-grey);}
+  img{max-width:100%;}
+  .sr-only{
+    position:absolute; width:1px; height:1px; padding:0; margin:-1px;
+    overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;
+  }
+
+  /* ===== NAV ===== */
+  .site-header{background:var(--cream);}
+  .nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:24px 24px;
+  }
+  .brand{display:flex; align-items:center; gap:9px;}
+  .brand img{width:38px; height:38px; display:block;}
+  .brand-text{display:flex; align-items:center; gap:8px;}
+  .brand-name{font-family:'Nunito', sans-serif; font-size:23px; font-weight:800; letter-spacing:-.01em; color:var(--navy);}
+  .brand-badge{
+    font-family:'Public Sans', sans-serif; font-size:11px; font-weight:700;
+    letter-spacing:.04em; text-transform:uppercase; color:var(--teal);
+    background:var(--light-teal); padding:3px 9px; border-radius:20px;
+  }
+  .nav-links{display:none;}
+
+  /* ===== BUTTONS ===== */
+  .btn-primary{
+    height:60px; border:none; border-radius:999px; background:var(--teal);
+    color:#fff; font-family:'Nunito', sans-serif; font-size:17px; font-weight:800;
+    cursor:pointer; padding:0 26px;
+  }
+  .btn-primary:hover{background:var(--navy);}
+  .btn-primary:focus-visible{outline:none; box-shadow:0 0 0 2px var(--cream), 0 0 0 5px var(--teal);}
+  .btn-primary:disabled{background:var(--border); color:var(--muted-label-grey); cursor:not-allowed;}
+  .btn-primary.is-loading{opacity:.85; cursor:default; display:flex; align-items:center; justify-content:center; gap:10px;}
+  .spinner{
+    width:18px; height:18px; border-radius:50%;
+    border:2.5px solid rgba(255,255,255,.4); border-top-color:#fff;
+    display:inline-block; animation:spin .7s linear infinite;
+  }
+  @keyframes spin{to{transform:rotate(360deg);}}
+
+  /* ===== HERO ===== */
+  .hero{background:var(--cream);}
+  .hero-inner{
+    padding:0 24px 44px;
+    display:flex; flex-direction:column; gap:0;
+  }
+  .hero h1{
+    margin:0 0 16px; font-size:41px; line-height:1.05; font-weight:800;
+    letter-spacing:-.02em;
+  }
+  .hero p.lede{
+    margin:0 0 26px; font-size:17px; line-height:1.55; font-weight:400; color:var(--muted-teal-grey);
+  }
+  .free-setup{margin-top:12px; font-size:15px; font-weight:600; color:var(--muted-warm-grey); text-align:center;}
+
+  /* waitlist form */
+  .waitlist-form{display:flex; flex-direction:column; gap:10px;}
+  .field-row{display:flex; flex-direction:column; gap:8px;}
+  .waitlist-input{
+    width:100%; height:60px; box-sizing:border-box; padding:0 22px;
+    font-family:'Nunito', sans-serif; font-size:16px; font-weight:600; color:var(--navy);
+    background:#fff; border:2px solid var(--navy); border-radius:999px; outline:none;
+  }
+  .waitlist-input:focus{
+    border-color:var(--teal); box-shadow:0 0 0 4px rgba(10,127,122,.18);
+  }
+  .waitlist-input:disabled{
+    color:var(--muted-label-grey); background:var(--divider); border-color:var(--border);
+  }
+  .waitlist-input.has-error{background:var(--notif-bg); border-color:var(--notif-dot);}
+  .field-error{
+    display:flex; gap:7px; align-items:flex-start; padding:0 4px;
+    font-size:14px; font-weight:600; color:var(--notif-text); line-height:1.4;
+  }
+  .field-error[hidden]{display:none;}
+  .waitlist-success{
+    display:flex; flex-direction:column; align-items:center; text-align:center;
+    gap:12px; padding:14px 0;
+  }
+  .waitlist-success .check{
+    width:52px; height:52px; border-radius:999px; background:var(--teal-bright);
+    display:flex; align-items:center; justify-content:center; color:var(--teal-deep);
+    font-size:26px; font-weight:800;
+  }
+  .waitlist-success h3{margin:0; font-size:22px; font-weight:800;}
+  .waitlist-success p{margin:0; font-size:16px; font-weight:500; line-height:1.4; color:var(--muted-teal-grey);}
+
+  /* CTA-invert variant used on the final CTA section */
+  .cta-invert .btn-primary{background:var(--navy);}
+  .cta-invert .btn-primary:hover{background:var(--teal-deep);}
+  .cta-invert .waitlist-success .check{background:var(--navy); color:#fff;}
+
+  /* phone mockup */
+  .phone-wrap{display:flex; justify-content:center; margin-top:34px;}
+  .phone{
+    width:100%; max-width:340px; background:var(--navy); border-radius:32px;
+    padding:16px; position:relative;
+  }
+  .phone-screen{background:var(--phone-bg); border-radius:20px; overflow:visible;}
+  .phone-topbar{
+    background:var(--teal-bright); padding:16px 18px; border-radius:20px 20px 0 0;
+    display:flex; align-items:center; gap:10px;
+  }
+  .phone-topbar .chevron{font-size:30px; line-height:1; color:var(--teal-deep); margin-right:-2px;}
+  .phone-avatar{
+    width:36px; height:36px; border-radius:50%; background:var(--navy);
+    display:flex; align-items:center; justify-content:center; color:#fff;
+    font-size:15px; font-weight:800; flex:0 0 36px;
+  }
+  .phone-contact-name{color:var(--teal-deep); font-size:16px; font-weight:800;}
+  .phone-contact-status{color:var(--teal-deep); font-size:13px; font-weight:600;}
+  .phone-messages{padding:20px 14px 26px; display:flex; flex-direction:column; gap:12px;}
+  .bubble{max-width:86%; border-radius:20px; padding:13px 16px; font-size:16px; font-weight:600; line-height:1.4;}
+  .bubble.in{align-self:flex-start; max-width:80%; background:#fff; border-radius:20px 20px 20px 7px;}
+  .bubble.out{
+    align-self:flex-end; background:var(--wa-green); border-radius:20px 20px 7px 20px; line-height:1.45;
+  }
+  .bubble-meta{display:flex; justify-content:flex-end; align-items:center; gap:5px; margin-top:5px; font-size:12px; color:var(--muted-green);}
+  .phone-inputbar{
+    margin:16px -14px -26px; padding:11px 12px; background:var(--message-bar-bg);
+    border-radius:0 0 20px 20px; display:flex; align-items:center; gap:9px;
+  }
+  .phone-inputbar .field{
+    flex:1; height:40px; background:#fff; border-radius:999px; display:flex; align-items:center;
+    padding:0 15px; font-family:'Nunito', sans-serif; font-size:15px; color:var(--placeholder-grey);
+  }
+  .phone-inputbar .send{width:40px; height:40px; border-radius:50%; background:var(--teal); flex:0 0 40px;}
+  .notif-card{
+    position:absolute; left:-12px; right:-12px; bottom:-116px; background:#fff;
+    border-radius:24px; padding:15px; box-shadow:0 20px 44px rgba(20,50,60,.24);
+    display:flex; gap:12px; align-items:flex-start; z-index:5;
+  }
+  .notif-card img{width:36px; height:36px; flex:0 0 36px; display:block;}
+  .notif-body{flex:1; min-width:0;}
+  .notif-head{display:flex; justify-content:space-between; align-items:baseline; gap:10px; margin-bottom:7px;}
+  .notif-head .name{font-size:15px; font-weight:800; color:var(--navy);}
+  .notif-head .time{font-size:13px; color:var(--muted-label-grey);}
+  .notif-pill{
+    display:inline-flex; align-items:center; gap:7px; background:var(--notif-bg);
+    border:1px solid var(--notif-border); padding:4px 11px; border-radius:999px; margin-bottom:8px;
+  }
+  .notif-pill .dot{width:8px; height:8px; border-radius:50%; background:var(--notif-dot);}
+  .notif-pill span.label{
+    font-size:12px; font-weight:700; letter-spacing:.05em; text-transform:uppercase; color:var(--notif-text);
+  }
+  .notif-text{font-size:15px; font-weight:600; line-height:1.42; color:var(--navy);}
+
+  /* ===== PROBLEM ===== */
+  .problem{padding:40px 24px 44px;}
+  .problem h2{margin:0 0 8px; font-size:31px; line-height:1.1; font-weight:800;}
+  .problem p.sub{margin:0 0 24px; font-size:17px; line-height:1.5; font-weight:400; color:var(--muted-teal-grey);}
+  .problem-cards{display:flex; flex-direction:column; gap:12px;}
+  .problem-card{border-radius:24px; padding:22px; font-size:22px; font-weight:800; line-height:1.28;}
+  .problem-card.bright{background:var(--teal-bright); color:var(--teal-deep);}
+  .problem-card.plain{background:var(--cream); color:var(--navy);}
+
+  /* ===== WHO IT'S FOR ===== */
+  .who{padding:0 24px 44px;}
+  .who h2{margin:0 0 20px; font-size:31px; line-height:1.1; font-weight:800;}
+  .who-list{list-style:none; margin:0; padding:0; display:grid; grid-template-columns:1fr;}
+  .who-list li{font-size:17px; font-weight:600; line-height:1.35; padding:14px 0; border-bottom:2px solid var(--divider);}
+
+  /* ===== HOW IT WORKS ===== */
+  .how{background:var(--cream); padding:40px 24px; border-radius:34px 34px 0 0;}
+  .how h2{margin:0 0 26px; font-size:31px; line-height:1.1; font-weight:800;}
+  .steps{display:flex; flex-direction:column; gap:14px;}
+  .step{background:#fff; border-radius:24px; padding:22px; display:flex; gap:16px; align-items:center;}
+  .step-icon{
+    flex:0 0 52px; width:52px; height:52px; border-radius:999px; background:var(--teal-bright);
+    display:flex; align-items:center; justify-content:center;
+  }
+  .step-icon i{color:var(--teal-deep); display:block;}
+  .step-eyebrow{font-size:12px; font-weight:800; letter-spacing:.08em; text-transform:uppercase; color:var(--muted-label-grey); margin-bottom:3px;}
+  .step-title{font-size:19px; font-weight:800; line-height:1.2;}
+  .step-body{font-size:16px; font-weight:500; line-height:1.4; color:var(--muted-teal-grey);}
+
+  /* ===== DOES / DOESN'T ===== */
+  .does{padding:40px 24px;}
+  .does h2{margin:0 0 26px; font-size:31px; line-height:1.1; font-weight:800;}
+  .does-grid{display:flex; flex-direction:column; gap:14px;}
+  .does-card{border:2px solid var(--navy); border-radius:26px; padding:24px;}
+  .doesnt-card{background:var(--navy); border-radius:26px; padding:24px; color:var(--dark-body);}
+  .badge-does{
+    display:inline-block; background:var(--teal-bright); color:var(--teal-deep); padding:6px 14px;
+    border-radius:999px; font-size:15px; font-weight:800; margin-bottom:16px;
+  }
+  .badge-doesnt{
+    display:inline-block; background:var(--doesnt-badge-bg); color:var(--doesnt-badge-text); padding:6px 14px;
+    border-radius:999px; font-size:15px; font-weight:800; margin-bottom:16px;
+  }
+  .does-list{display:flex; flex-direction:column; gap:11px; font-size:17px; font-weight:600; line-height:1.4;}
+  .does-list .row{display:flex; gap:11px; align-items:flex-start;}
+  .does-list .row i{flex:0 0 20px; margin-top:2px;}
+  .does-card .row i{color:var(--teal-bright);}
+  .doesnt-card .row i{color:var(--doesnt-icon);}
+  .doesnt-note{margin-top:18px; padding-top:18px; border-top:2px solid var(--dark-divider); font-size:17px; font-weight:600; line-height:1.5; color:#fff;}
+
+  /* ===== FINAL CTA ===== */
+  .final-cta{background:var(--teal-bright); padding:44px 24px; text-align:center;}
+  .final-cta h2{margin:0 0 10px; font-size:34px; line-height:1.08; font-weight:800; color:var(--teal-deep);}
+  .final-cta p.sub{margin:0 auto 24px; max-width:540px; font-size:17px; font-weight:600; line-height:1.5; color:var(--teal-deep);}
+  .final-cta .waitlist-form{max-width:560px; margin:0 auto;}
+
+  /* ===== FOOTER ===== */
+  .site-footer{background:var(--navy); padding:34px 24px 36px; color:var(--dark-body);}
+  .footer-brand{display:flex; align-items:center; gap:8px; margin-bottom:22px;}
+  .footer-brand img{width:30px; height:30px; display:block;}
+  .footer-brand-name{font-size:20px; font-weight:800; color:#fff;}
+  .footer-brand-badge{
+    font-size:11px; font-weight:700; letter-spacing:.04em; text-transform:uppercase;
+    color:var(--footer-badge-text); background:rgba(255,255,255,.12); padding:3px 9px; border-radius:20px;
+  }
+  .footer-blurb{font-size:16px; font-weight:500; line-height:1.5; color:var(--footer-secondary); margin-bottom:24px; max-width:480px;}
+  .footer-links{display:grid; grid-template-columns:1fr 1fr; gap:14px 18px; font-size:16px; font-weight:600; margin-bottom:24px;}
+  .footer-links a{color:#fff;}
+  .footer-cols{display:none;}
+  .footer-disclaimer{font-size:14px; font-weight:400; line-height:1.5; color:var(--footer-secondary);}
+  .footer-copyright{margin-top:10px; font-size:14px; color:var(--footer-copyright);}
+  .footer-bottom{padding-top:28px; border-top:1px solid var(--dark-divider); display:flex; justify-content:space-between; gap:28px; flex-wrap:wrap;}
+
+  /* ===== DESKTOP (>=1280px) ===== */
+  @media (min-width:768px){
+    .nav{padding:24px 80px;}
+    .hero-inner{padding:0 80px 46px;}
+    .hero h1{font-size:48px;}
+    .hero p.lede{max-width:480px;}
+    .problem, .who, .does{padding-left:80px; padding-right:80px;}
+    .how{padding-left:80px; padding-right:80px;}
+    .final-cta{padding-left:80px; padding-right:80px;}
+    .site-footer{padding-left:80px; padding-right:80px;}
+  }
+
+  @media (min-width:1280px){
+    .nav{padding:24px 64px;}
+    .nav-links{display:flex; align-items:center; gap:32px; font-size:17px; font-weight:700;}
+    .brand-name{font-size:25px;}
+
+    .hero-inner{
+      padding:70px 64px 200px; display:grid; grid-template-columns:1.05fr .95fr; gap:64px; align-items:center;
+    }
+    .hero h1{font-size:72px; line-height:1.0; letter-spacing:-.03em;}
+    .hero p.lede{font-size:20px; max-width:520px;}
+    .hero .waitlist-form{flex-direction:row; gap:12px; max-width:540px;}
+    .hero .field-row{flex:1;}
+    .hero .waitlist-input{height:64px; font-size:17px; padding:0 26px;}
+    .hero .btn-primary{height:64px; padding:0 30px; font-size:18px; white-space:nowrap;}
+    .hero .free-setup{text-align:left; margin-top:14px; font-size:16px;}
+    .hero .waitlist-success{align-items:flex-start; text-align:left;}
+
+    .phone-wrap{margin-top:0;}
+    .phone{max-width:340px; box-shadow:0 26px 60px rgba(20,50,60,.18);}
+
+    .problem{padding:84px 64px;}
+    .problem-inner{max-width:760px; margin-bottom:40px;}
+    .problem h2{font-size:48px; line-height:1.06; letter-spacing:-.02em; margin-bottom:10px;}
+    .problem p.sub{font-size:20px; margin-bottom:0;}
+    .problem-cards{display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:20px;}
+    .problem-card{border-radius:28px; padding:34px; font-size:31px;}
+
+    .who{padding:0 64px 84px;}
+    .who h2{font-size:48px; line-height:1.06; letter-spacing:-.02em; max-width:900px; margin-bottom:34px;}
+    .who-list{grid-template-columns:repeat(3, minmax(0,1fr)); column-gap:48px;}
+    .who-list li{font-size:20px; padding:18px 0;}
+
+    .how{padding:84px 64px; border-radius:44px 44px 0 0;}
+    .how h2{font-size:48px; line-height:1.06; letter-spacing:-.02em; margin-bottom:44px;}
+    .steps{display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:24px;}
+    .step{flex-direction:column; align-items:flex-start; border-radius:30px; padding:34px;}
+    .step-icon{width:64px; height:64px; flex-basis:64px; margin-bottom:22px;}
+    .step-eyebrow{font-size:13px; margin-bottom:6px;}
+    .step-title{font-size:24px; margin-bottom:8px;}
+    .step-body{font-size:18px; line-height:1.45;}
+
+    .does{padding:84px 64px;}
+    .does h2{font-size:48px; line-height:1.06; letter-spacing:-.02em; margin-bottom:44px;}
+    .does-grid{display:grid; grid-template-columns:1fr 1fr; gap:24px;}
+    .does-card{border-radius:32px; padding:38px;}
+    .doesnt-card{border-radius:32px; padding:38px;}
+    .badge-does, .badge-doesnt{font-size:17px; padding:8px 18px; margin-bottom:22px;}
+    .does-list{font-size:19px; gap:14px;}
+    .doesnt-note{font-size:19px; margin-top:24px; padding-top:24px;}
+
+    .final-cta{padding:90px 64px;}
+    .final-cta h2{font-size:54px; line-height:1.04; letter-spacing:-.02em; margin-bottom:12px;}
+    .final-cta p.sub{font-size:20px; margin-bottom:30px;}
+    .final-cta .waitlist-form{flex-direction:row; gap:12px;}
+    .final-cta .field-row{flex:1;}
+    .final-cta .waitlist-input{height:64px; font-size:17px; padding:0 26px;}
+    .final-cta .btn-primary{height:64px; padding:0 30px; font-size:18px; white-space:nowrap;}
+    .final-cta .waitlist-success{align-items:center; text-align:center;}
+
+    .site-footer{padding:56px 64px;}
+    .footer-top{display:grid; grid-template-columns:1.4fr 1fr 1fr 1fr; gap:40px; margin-bottom:42px;}
+    .footer-brand-name{font-size:21px;}
+    .footer-blurb{font-size:16px;}
+    .footer-links{display:none;}
+    .footer-cols{display:flex; flex-direction:column; gap:12px; font-size:16px; font-weight:600;}
+    .footer-cols .col-head{font-weight:800; color:#fff;}
+    .footer-cols a{color:var(--dark-body);}
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <nav class="nav" aria-label="Primary">
+    <a href="#" class="brand" aria-label="Kavedi home">
+      <img src="assets/mark.png" alt="Kavedi">
+      <span class="brand-text">
+        <span class="brand-name">Kavedi</span>
+        <span class="brand-badge">Operator</span>
+      </span>
+    </a>
+    <div class="nav-links">
+      <a href="#how-it-works">How it works</a>
+      <a href="#what-it-does">What it does</a>
+      <button type="button" class="btn-primary" onclick="document.getElementById('hero-email').focus()">Join the waitlist</button>
+    </div>
+  </nav>
+</header>
+
+<main>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-copy">
+        <h1>Your AI operator for WhatsApp</h1>
+        <p class="lede">Tell Kavedi what it needs to know. It answers the messages you keep answering, and pings you when it can&rsquo;t. Same number you already use.</p>
+
+        <form class="waitlist-form" id="waitlist-form-hero" action="https://formspree.io/f/xzebadda" method="POST" novalidate>
+          <div class="field-row" data-field-row>
+            <label for="hero-email" class="sr-only">Your email address</label>
+            <input type="email" id="hero-email" name="email" class="waitlist-input" placeholder="Your email address" required autocomplete="email">
+            <div class="field-error" data-error hidden><span aria-hidden="true">&#9888;</span><span data-error-text></span></div>
+          </div>
+          <button type="submit" class="btn-primary" data-submit-btn>
+            <span data-btn-label>Join the waitlist</span>
+          </button>
+        </form>
+        <div class="free-setup">Free setup for the first 10 people who sign up.</div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="phone-wrap">
+          <div class="phone">
+            <div class="phone-screen">
+              <div class="phone-topbar">
+                <span class="chevron" aria-hidden="true">&#8249;</span>
+                <span class="phone-avatar">A</span>
+                <span>
+                  <span class="phone-contact-name" style="display:block;">Amaka O.</span>
+                  <span class="phone-contact-status" style="display:block;">online</span>
+                </span>
+              </div>
+              <div class="phone-messages">
+                <div class="bubble in">How much for the black one?</div>
+                <div class="bubble out">The black tote is &#8358;18,500. Four left. Lagos delivery is &#8358;2,000 &mdash; should I hold one for you?
+                  <div class="bubble-meta">11:42 <span aria-hidden="true">&#10003;&#10003;</span></div>
+                </div>
+                <div class="bubble in">Can you do &#8358;15,000 if I take three?</div>
+                <div class="phone-inputbar">
+                  <div class="field">Message</div>
+                  <div class="send" aria-hidden="true"></div>
+                </div>
+                <div class="notif-card">
+                  <img src="assets/mark.png" alt="">
+                  <div class="notif-body">
+                    <div class="notif-head">
+                      <span class="name">Kavedi</span>
+                      <span class="time">now</span>
+                    </div>
+                    <div class="notif-pill">
+                      <span class="dot" aria-hidden="true"></span>
+                      <span class="label">Needs your attention</span>
+                    </div>
+                    <div class="notif-text">Amaka is asking for &#8358;15,000 for three. I won&rsquo;t guess &mdash; tap to take over.</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PROBLEM ===== -->
+  <section class="problem">
+    <div class="problem-inner">
+      <h2>You didn&rsquo;t sign up to be a full-time replier.</h2>
+      <p class="sub">And what came in while you were asleep?</p>
+    </div>
+    <div class="problem-cards">
+      <div class="problem-card bright">The same five questions, every single day</div>
+      <div class="problem-card plain">Messages piling up while you sleep</div>
+      <div class="problem-card plain">The ones you meant to reply to, and forgot</div>
+    </div>
+  </section>
+
+  <!-- ===== WHO IT'S FOR ===== -->
+  <section class="who">
+    <h2>If people message you all day, Kavedi is for you.</h2>
+    <ul class="who-list">
+      <li>Shop owners and online sellers</li>
+      <li>Service providers and freelancers</li>
+      <li>Secretaries and personal assistants</li>
+      <li>School and church admins</li>
+      <li>Group and community admins</li>
+      <li>Event coordinators</li>
+      <li>Sales reps</li>
+    </ul>
+  </section>
+
+  <!-- ===== HOW IT WORKS ===== -->
+  <section class="how" id="how-it-works">
+    <h2>Three steps.</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="step-icon"><i data-lucide="smartphone" width="26" height="26" stroke-width="2.2"></i></div>
+        <div>
+          <div class="step-eyebrow">Step 1</div>
+          <div class="step-title">Connect your number</div>
+          <div class="step-body">One code. Same number, same chats.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-icon"><i data-lucide="book-open" width="26" height="26" stroke-width="2.2"></i></div>
+        <div>
+          <div class="step-eyebrow">Step 2</div>
+          <div class="step-title">Tell Kavedi what it needs to know</div>
+          <div class="step-body">Products, prices, hours, delivery.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-icon"><i data-lucide="message-circle" width="26" height="26" stroke-width="2.2"></i></div>
+        <div>
+          <div class="step-eyebrow">Step 3</div>
+          <div class="step-title">It handles the repetitive half</div>
+          <div class="step-body">You keep the ones that need a person.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== WHAT IT DOES / DOESN'T ===== -->
+  <section class="does" id="what-it-does">
+    <h2>What it does, and what it won&rsquo;t.</h2>
+    <div class="does-grid">
+      <div class="does-card">
+        <div class="badge-does">It does</div>
+        <div class="does-list">
+          <div class="row"><i data-lucide="check" width="20" height="20" stroke-width="2.6"></i><span>Answers the questions you get asked constantly</span></div>
+          <div class="row"><i data-lucide="check" width="20" height="20" stroke-width="2.6"></i><span>Quotes the prices, times or details you&rsquo;ve given it</span></div>
+          <div class="row"><i data-lucide="check" width="20" height="20" stroke-width="2.6"></i><span>Says when you&rsquo;re open, closed or away</span></div>
+          <div class="row"><i data-lucide="check" width="20" height="20" stroke-width="2.6"></i><span>Collects the information you need from people</span></div>
+        </div>
+      </div>
+      <div class="doesnt-card">
+        <div class="badge-doesnt">It doesn&rsquo;t</div>
+        <div class="does-list">
+          <div class="row"><i data-lucide="x" width="20" height="20" stroke-width="2.6"></i><span>Guess a price it wasn&rsquo;t given</span></div>
+          <div class="row"><i data-lucide="x" width="20" height="20" stroke-width="2.6"></i><span>Make promises you didn&rsquo;t authorise</span></div>
+          <div class="row"><i data-lucide="x" width="20" height="20" stroke-width="2.6"></i><span>Pretend to be you</span></div>
+          <div class="row"><i data-lucide="x" width="20" height="20" stroke-width="2.6"></i><span>Hide a conversation from you</span></div>
+        </div>
+        <div class="doesnt-note">Not sure? It flags the chat and you take over in one tap.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FINAL CTA ===== -->
+  <section class="final-cta cta-invert">
+    <h2>Join the waitlist</h2>
+    <p class="sub">We&rsquo;re setting up the first ten by hand.</p>
+    <form class="waitlist-form" id="waitlist-form-cta" action="https://formspree.io/f/xzebadda" method="POST" novalidate>
+      <div class="field-row" data-field-row>
+        <label for="cta-email" class="sr-only">Your email address</label>
+        <input type="email" id="cta-email" name="email" class="waitlist-input" placeholder="Your email address" required autocomplete="email">
+        <div class="field-error" data-error hidden><span aria-hidden="true">&#9888;</span><span data-error-text></span></div>
+      </div>
+      <button type="submit" class="btn-primary" data-submit-btn>
+        <span data-btn-label>Join the waitlist</span>
+      </button>
+    </form>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="footer-top">
+    <div>
+      <div class="footer-brand">
+        <img src="assets/mark.png" alt="Kavedi">
+        <span class="footer-brand-name">Kavedi</span>
+        <span class="footer-brand-badge">Operator</span>
+      </div>
+      <div class="footer-blurb">Built in Lagos by Kavedi, for people who run on WhatsApp.</div>
+    </div>
+    <div class="footer-cols">
+      <div class="col-head">Product</div>
+      <a href="#how-it-works">How it works</a>
+      <a href="#1b">Pricing</a>
+    </div>
+    <div class="footer-cols">
+      <div class="col-head">Company</div>
+      <a href="#1b">Privacy</a>
+      <a href="#1b">Terms</a>
+    </div>
+    <div class="footer-cols">
+      <div class="col-head">Contact</div>
+      <a href="mailto:hello@kavedi.com.ng">hello@kavedi.com.ng</a>
+      <a href="tel:+2348000000000">+234 800 000 0000</a>
+    </div>
+  </div>
+
+  <div class="footer-links">
+    <a href="#how-it-works">How it works</a>
+    <a href="#1b">Pricing</a>
+    <a href="#1b">Privacy</a>
+    <a href="#1b">Terms</a>
+    <a href="mailto:hello@kavedi.com.ng">hello@kavedi.com.ng</a>
+    <a href="tel:+2348000000000">+234 800 000 0000</a>
+  </div>
+
+  <div class="footer-bottom">
+    <div class="footer-disclaimer">Kavedi connects to your existing WhatsApp number, like WhatsApp Web. Not affiliated with WhatsApp or Meta.</div>
+    <div class="footer-copyright">&copy; 2026 Kavedi &middot; Lagos, Nigeria</div>
+  </div>
+</footer>
+
+<script>
+  if (window.lucide) lucide.createIcons();
+
+  var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  function setError(form, message) {
+    var input = form.querySelector('.waitlist-input');
+    var errorEl = form.querySelector('[data-error]');
+    var errorText = form.querySelector('[data-error-text]');
+    input.classList.add('has-error');
+    errorText.textContent = message;
+    errorEl.hidden = false;
+  }
+
+  function clearError(form) {
+    var input = form.querySelector('.waitlist-input');
+    var errorEl = form.querySelector('[data-error]');
+    input.classList.remove('has-error');
+    errorEl.hidden = true;
+  }
+
+  function setSubmitting(form, isSubmitting) {
+    var input = form.querySelector('.waitlist-input');
+    var btn = form.querySelector('[data-submit-btn]');
+    var label = form.querySelector('[data-btn-label]');
+    input.disabled = isSubmitting;
+    btn.disabled = isSubmitting;
+    if (isSubmitting) {
+      btn.classList.add('is-loading');
+      label.innerHTML = '<span class="spinner" aria-hidden="true"></span>Joining&hellip;';
+    } else {
+      btn.classList.remove('is-loading');
+    }
+  }
+
+  function showSuccess(form) {
+    var wrap = document.createElement('div');
+    wrap.className = 'waitlist-success';
+    wrap.innerHTML =
+      '<div class="check" aria-hidden="true">&#10003;</div>' +
+      '<h3>You&rsquo;re on the list</h3>' +
+      '<p>We&rsquo;ll email you when it&rsquo;s your turn &mdash; we&rsquo;re setting up the first ten by hand.</p>';
+    form.replaceWith(wrap);
+  }
+
+  function resetToRetry(form) {
+    var btn = form.querySelector('[data-submit-btn]');
+    var label = form.querySelector('[data-btn-label]');
+    btn.classList.remove('is-loading');
+    label.textContent = 'Retry';
+    setError(form, 'Something went wrong. Please try again.');
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    var form = e.target;
+    var input = form.querySelector('.waitlist-input');
+    var email = input.value.trim();
+
+    clearError(form);
+
+    if (!email) {
+      setError(form, 'Enter your email address.');
+      return;
+    }
+    if (!EMAIL_RE.test(email)) {
+      setError(form, 'That doesn’t look like a valid email.');
+      return;
+    }
+
+    setSubmitting(form, true);
+
+    fetch(form.action, {
+      method: 'POST',
+      body: new FormData(form),
+      headers: { Accept: 'application/json' }
+    }).then(function (response) {
+      setSubmitting(form, false);
+      if (response.ok) {
+        showSuccess(form);
+      } else {
+        resetToRetry(form);
+      }
+    }).catch(function () {
+      setSubmitting(form, false);
+      resetToRetry(form);
+    });
+  }
+
+  document.getElementById('waitlist-form-hero').addEventListener('submit', handleSubmit);
+  document.getElementById('waitlist-form-cta').addEventListener('submit', handleSubmit);
+</script>
+
+</body>
+</html>
