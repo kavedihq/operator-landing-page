@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Kavedi Operator — Your AI operator for WhatsApp</title>
+<title>Kavedi Operator — Your AI for WhatsApp</title>
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="assets/favicon.ico" sizes="any">
 
-<meta property="og:title" content="Your AI operator for WhatsApp">
+<meta property="og:title" content="Your AI for WhatsApp">
 <meta property="og:description" content="Tell Kavedi what it needs to know. It answers the messages you keep answering, and pings you when it can't. Same number you already use.">
 <meta property="og:image" content="https://kavedi.com.ng/assets/og.png">
 <meta property="og:image:width" content="1200">
@@ -17,7 +17,7 @@
 <meta property="og:site_name" content="Kavedi Operator">
 
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Your AI operator for WhatsApp">
+<meta name="twitter:title" content="Your AI for WhatsApp">
 <meta name="twitter:description" content="Tell Kavedi what it needs to know. It answers the messages you keep answering, and pings you when it can't. Same number you already use.">
 <meta name="twitter:image" content="https://kavedi.com.ng/assets/og.png">
 
@@ -55,17 +55,21 @@
     --dark-divider:#2C5A66;
     --footer-secondary:#A9C2C8;
     --footer-copyright:#7E9AA1;
+    --hover-tint:#FBFAF6;
     --footer-badge-text:#7FD9CE;
   }
   *{box-sizing:border-box;}
   html,body{margin:0;padding:0;}
+  @media (prefers-reduced-motion: no-preference){
+    html{scroll-behavior:smooth;}
+  }
   body{
     background:var(--white);
     font-family:'Nunito', sans-serif;
     color:var(--navy);
     -webkit-font-smoothing:antialiased;
   }
-  a{color:var(--navy); text-decoration:none;}
+  a{color:var(--navy); text-decoration:none; transition:color .15s ease;}
   a:hover{color:var(--teal);}
   input::placeholder{color:var(--placeholder-grey);}
   img{max-width:100%;}
@@ -75,27 +79,32 @@
   }
 
   /* ===== NAV ===== */
-  .site-header{background:var(--cream);}
+  .site-header{
+    background:var(--cream); position:sticky; top:0; z-index:100;
+    transition:box-shadow .2s ease;
+  }
+  .site-header.is-condensed{box-shadow:0 2px 12px rgba(20,50,60,.1);}
   .nav{
     display:flex; align-items:center; justify-content:space-between;
-    padding:24px 24px;
+    padding:24px 24px; transition:padding .2s ease;
   }
+  .site-header.is-condensed .nav{padding-top:14px; padding-bottom:14px;}
   .brand{display:flex; align-items:center; gap:9px;}
-  .brand img{width:38px; height:38px; display:block;}
+  .brand img{width:38px; height:38px; display:block; transition:width .2s ease, height .2s ease;}
+  .site-header.is-condensed .brand img{width:30px; height:30px;}
   .brand-text{display:flex; align-items:center; gap:8px;}
-  .brand-name{font-family:'Nunito', sans-serif; font-size:23px; font-weight:800; letter-spacing:-.01em; color:var(--navy);}
-  .brand-badge{
-    font-family:'Public Sans', sans-serif; font-size:11px; font-weight:700;
-    letter-spacing:.04em; text-transform:uppercase; color:var(--teal);
-    background:var(--light-teal); padding:3px 9px; border-radius:20px;
+  .brand-name{
+    font-family:'Nunito', sans-serif; font-size:23px; font-weight:800; letter-spacing:-.01em;
+    color:var(--navy); transition:font-size .2s ease;
   }
+  .site-header.is-condensed .brand-name{font-size:19px;}
   .nav-links{display:none;}
 
   /* ===== BUTTONS ===== */
   .btn-primary{
     height:60px; border:none; border-radius:999px; background:var(--teal);
     color:#fff; font-family:'Nunito', sans-serif; font-size:17px; font-weight:800;
-    cursor:pointer; padding:0 26px;
+    cursor:pointer; padding:0 26px; transition:background .18s ease;
   }
   .btn-primary:hover{background:var(--navy);}
   .btn-primary:focus-visible{outline:none; box-shadow:0 0 0 2px var(--cream), 0 0 0 5px var(--teal);}
@@ -118,6 +127,11 @@
   .reveal-group > .reveal:nth-child(3){transition-delay:.16s;}
   @media (prefers-reduced-motion: reduce){
     .reveal{opacity:1; transform:none; transition:none;}
+    .row-icon{opacity:1; transform:none; animation:none;}
+    .feature-card:hover .feature-illustration{transform:none;}
+    .feature-tag:hover{transform:none;}
+    .site-header, .nav, .brand img, .brand-name{transition:none;}
+    .bubble{opacity:1 !important; transform:none !important; transition:none !important;}
   }
 
   /* ===== HERO ===== */
@@ -159,18 +173,13 @@
     display:flex; flex-direction:column; align-items:center; text-align:center;
     gap:12px; padding:14px 0;
   }
-  .waitlist-success .check{
-    width:52px; height:52px; border-radius:999px; background:var(--teal-bright);
-    display:flex; align-items:center; justify-content:center; color:var(--teal-deep);
-    font-size:26px; font-weight:800;
-  }
+  .waitlist-success .success-illustration{width:120px; height:auto; margin-bottom:4px;}
   .waitlist-success h3{margin:0; font-size:22px; font-weight:800;}
   .waitlist-success p{margin:0; font-size:16px; font-weight:500; line-height:1.4; color:var(--muted-teal-grey);}
 
   /* CTA-invert variant used on the final CTA section */
   .cta-invert .btn-primary{background:var(--navy);}
   .cta-invert .btn-primary:hover{background:var(--teal-deep);}
-  .cta-invert .waitlist-success .check{background:var(--navy); color:#fff;}
 
   /* phone mockup */
   .phone-wrap{display:flex; justify-content:center; margin-top:34px; padding-bottom:140px;}
@@ -207,6 +216,8 @@
     display:flex; align-items:center; justify-content:center; flex:0 0 32px; color:var(--navy);
   }
   .phone-messages{background:var(--phone-bg); padding:20px 14px 26px; display:flex; flex-direction:column; gap:12px;}
+  .bubble, .notif-card{transition:opacity .35s ease, transform .35s ease;}
+  .bubble-hidden{opacity:0; transform:translateY(10px);}
   .bubble{max-width:86%; border-radius:20px; padding:13px 16px; font-size:16px; font-weight:600; line-height:1.4;}
   .bubble.in{align-self:flex-start; max-width:80%; background:#fff; border-radius:20px 20px 20px 7px;}
   .bubble.out{
@@ -242,6 +253,21 @@
   }
   .notif-text{font-size:15px; font-weight:600; line-height:1.42; color:var(--navy);}
 
+  /* ===== DASHBOARD ===== */
+  .dashboard{padding:8px 24px 40px;}
+  .dashboard-head h2{margin:0 0 8px; font-size:31px; line-height:1.1; font-weight:800;}
+  .dashboard-head p.sub{margin:0 0 24px; font-size:17px; line-height:1.5; font-weight:400; color:var(--muted-teal-grey);}
+  .dashboard-card{background:#fff; border:1px solid var(--border); border-radius:28px; padding:22px;}
+  .dashboard-stats{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:16px;}
+  .stat-tile{background:var(--cream); border-radius:18px; padding:16px;}
+  .stat-tile.attention{background:var(--notif-bg); border:1px solid var(--notif-border);}
+  .stat-number{font-size:28px; font-weight:800; color:var(--navy);}
+  .stat-tile.attention .stat-number{color:var(--notif-text);}
+  .stat-label{font-size:13px; font-weight:600; color:var(--muted-warm-grey); margin-top:4px;}
+  .stat-tile.attention .stat-label{color:var(--notif-text);}
+  .dashboard-activity{display:flex; flex-direction:column; gap:8px; padding-top:14px; border-top:2px solid var(--divider);}
+  .dashboard-activity div{font-size:15px; font-weight:600; color:var(--navy);}
+
   /* ===== PROBLEM ===== */
   .problem{padding:40px 24px 44px;}
   .problem h2{margin:0 0 8px; font-size:31px; line-height:1.1; font-weight:800;}
@@ -253,7 +279,9 @@
 
   /* ===== WHO IT'S FOR ===== */
   .who{padding:0 24px 44px;}
-  .who h2{margin:0 0 20px; font-size:31px; line-height:1.1; font-weight:800;}
+  .who-head{display:flex; align-items:flex-start; justify-content:space-between; gap:16px;}
+  .who h2{margin:0 0 20px; font-size:31px; line-height:1.1; font-weight:800; flex:1;}
+  .who-illustration{width:72px; height:auto; flex:0 0 auto; margin-top:2px; opacity:.92;}
   .who-list{list-style:none; margin:0; padding:0; display:grid; grid-template-columns:1fr;}
   .who-list li{font-size:17px; font-weight:600; line-height:1.35; padding:14px 0; border-bottom:2px solid var(--divider);}
 
@@ -290,19 +318,40 @@
   .does-list .row i{flex:0 0 20px; margin-top:2px;}
   .does-card .row i{color:var(--teal-bright);}
   .doesnt-card .row i{color:var(--doesnt-icon);}
+  .row-icon{opacity:0; transform:scale(.5);}
+  .row-icon.is-visible{animation:iconBounce .5s cubic-bezier(.34,1.56,.64,1) forwards;}
+  @keyframes iconBounce{
+    0%{opacity:0; transform:scale(.5);}
+    60%{opacity:1; transform:scale(1.15);}
+    100%{opacity:1; transform:scale(1);}
+  }
   .doesnt-note{margin-top:18px; padding-top:18px; border-top:2px solid var(--dark-divider); font-size:17px; font-weight:600; line-height:1.5; color:#fff;}
 
-  /* ===== ROADMAP ===== */
-  .roadmap{background:var(--cream); padding:40px 24px;}
-  .roadmap h2{margin:0 0 24px; font-size:31px; line-height:1.1; font-weight:800;}
-  .roadmap-grid{display:flex; flex-direction:column; gap:14px;}
-  .roadmap-card{background:#fff; border-radius:24px; padding:22px;}
-  .roadmap-index{
-    font-size:12px; font-weight:800; letter-spacing:.08em; text-transform:uppercase;
-    color:var(--muted-label-grey); margin-bottom:8px;
+  /* ===== FEATURES ===== */
+  .features{background:var(--cream); padding:40px 24px;}
+  .features h2{margin:0 0 24px; font-size:31px; line-height:1.1; font-weight:800;}
+  .features-grid{display:flex; flex-direction:column; gap:14px;}
+  .feature-card{
+    background:#fff; border:2px solid transparent; border-radius:24px; padding:22px;
+    transition:background .18s ease, border-color .18s ease;
   }
-  .roadmap-title{font-size:19px; font-weight:800; line-height:1.2; margin-bottom:6px;}
-  .roadmap-body{font-size:16px; font-weight:500; line-height:1.45; color:var(--muted-teal-grey);}
+  .feature-card:hover{border-color:var(--teal); background:var(--hover-tint);}
+  .feature-head{display:flex; align-items:flex-start; justify-content:space-between; gap:14px; margin-bottom:14px;}
+  .feature-index{
+    font-size:12px; font-weight:800; letter-spacing:.08em; text-transform:uppercase;
+    color:var(--muted-label-grey);
+  }
+  .feature-illustration{width:64px; height:auto; flex:0 0 auto; transition:transform .18s ease;}
+  .feature-card:hover .feature-illustration{transform:translateY(-4px) scale(1.06);}
+  .feature-title{font-size:19px; font-weight:800; line-height:1.2; margin-bottom:8px;}
+  .feature-body{font-size:16px; font-weight:500; line-height:1.5; color:var(--muted-teal-grey); margin-bottom:14px;}
+  .feature-tags{display:flex; flex-wrap:wrap; gap:8px;}
+  .feature-tag{
+    font-size:13px; font-weight:700; color:var(--teal); background:var(--light-teal);
+    padding:5px 12px; border-radius:999px; display:inline-block;
+    transition:transform .15s ease, background .15s ease;
+  }
+  .feature-tag:hover{transform:scale(1.05); background:var(--teal-bright); color:var(--teal-deep);}
 
   /* ===== FINAL CTA ===== */
   .final-cta{background:var(--teal-bright); padding:44px 24px; text-align:center;}
@@ -315,17 +364,15 @@
   .footer-brand{display:flex; align-items:center; gap:8px; margin-bottom:22px;}
   .footer-brand img{width:30px; height:30px; display:block;}
   .footer-brand-name{font-size:20px; font-weight:800; color:#fff;}
-  .footer-brand-badge{
-    font-size:11px; font-weight:700; letter-spacing:.04em; text-transform:uppercase;
-    color:var(--footer-badge-text); background:rgba(255,255,255,.12); padding:3px 9px; border-radius:20px;
-  }
   .footer-blurb{font-size:16px; font-weight:500; line-height:1.5; color:var(--footer-secondary); margin-bottom:24px; max-width:480px;}
   .footer-links{display:grid; grid-template-columns:1fr 1fr; gap:14px 18px; font-size:16px; font-weight:600; margin-bottom:24px;}
   .footer-links a{color:#fff;}
   .footer-cols{display:none;}
   .footer-disclaimer{font-size:14px; font-weight:400; line-height:1.5; color:var(--footer-secondary);}
   .footer-copyright{margin-top:10px; font-size:14px; color:var(--footer-copyright);}
-  .footer-bottom{padding-top:28px; border-top:1px solid var(--dark-divider); display:flex; justify-content:space-between; gap:28px; flex-wrap:wrap;}
+  .footer-bottom{padding-top:28px; border-top:1px solid var(--dark-divider); display:flex; justify-content:space-between; align-items:flex-end; gap:28px; flex-wrap:wrap;}
+  .footer-copyright-row{display:flex; align-items:flex-end; gap:20px;}
+  .footer-illustration{width:48px; height:auto; opacity:.16;}
 
   /* ===== DESKTOP (>=1280px) ===== */
   @media (min-width:768px){
@@ -359,6 +406,18 @@
     .phone-wrap{margin-top:0; padding-bottom:0;}
     .phone{max-width:340px; box-shadow:0 26px 60px rgba(20,50,60,.18);}
 
+    .dashboard{padding:84px 64px;}
+    .dashboard-head{max-width:760px; margin-bottom:40px;}
+    .dashboard-head h2{font-size:48px; line-height:1.06; letter-spacing:-.02em; margin-bottom:10px;}
+    .dashboard-head p.sub{font-size:20px; margin-bottom:0;}
+    .dashboard-card{padding:36px; max-width:900px;}
+    .dashboard-stats{grid-template-columns:repeat(4, minmax(0,1fr)); gap:16px; margin-bottom:24px;}
+    .stat-tile{border-radius:22px; padding:22px;}
+    .stat-number{font-size:36px;}
+    .stat-label{font-size:15px; margin-top:6px;}
+    .dashboard-activity{gap:10px; padding-top:20px;}
+    .dashboard-activity div{font-size:17px;}
+
     .problem{padding:84px 64px;}
     .problem-inner{max-width:760px; margin-bottom:40px;}
     .problem h2{font-size:48px; line-height:1.06; letter-spacing:-.02em; margin-bottom:10px;}
@@ -367,7 +426,9 @@
     .problem-card{border-radius:28px; padding:34px; font-size:31px;}
 
     .who{padding:0 64px 84px;}
+    .who-head{gap:40px;}
     .who h2{font-size:48px; line-height:1.06; letter-spacing:-.02em; max-width:900px; margin-bottom:34px;}
+    .who-illustration{width:150px;}
     .who-list{grid-template-columns:repeat(3, minmax(0,1fr)); column-gap:48px;}
     .who-list li{font-size:20px; padding:18px 0;}
 
@@ -389,13 +450,18 @@
     .does-list{font-size:19px; gap:14px;}
     .doesnt-note{font-size:19px; margin-top:24px; padding-top:24px;}
 
-    .roadmap{padding:84px 64px;}
-    .roadmap h2{font-size:48px; line-height:1.06; letter-spacing:-.02em; margin-bottom:40px;}
-    .roadmap-grid{display:grid; grid-template-columns:1fr 1fr; gap:24px;}
-    .roadmap-card{border-radius:30px; padding:34px;}
-    .roadmap-index{font-size:13px; margin-bottom:12px;}
-    .roadmap-title{font-size:24px; margin-bottom:8px;}
-    .roadmap-body{font-size:18px;}
+    .features{padding:84px 64px;}
+    .features h2{font-size:48px; line-height:1.06; letter-spacing:-.02em; margin-bottom:40px;}
+    .features-grid{display:grid; grid-template-columns:1fr 1fr; gap:24px;}
+    .feature-card{border-radius:30px; padding:34px;}
+    .feature-head{gap:18px; margin-bottom:16px;}
+    .feature-illustration{width:100px;}
+    .feature-card:hover .feature-illustration{transform:translateY(-5px) scale(1.06);}
+    .feature-index{font-size:13px;}
+    .feature-title{font-size:24px; margin-bottom:10px;}
+    .feature-body{font-size:18px; margin-bottom:16px;}
+    .feature-tags{gap:10px;}
+    .feature-tag{font-size:14px; padding:6px 14px;}
 
     .final-cta{padding:90px 64px;}
     .final-cta h2{font-size:54px; line-height:1.04; letter-spacing:-.02em; margin-bottom:12px;}
@@ -408,6 +474,7 @@
 
     .site-footer{padding:56px 64px;}
     .footer-top{display:grid; grid-template-columns:1.4fr 1fr 1fr 1fr; gap:40px; margin-bottom:42px;}
+    .footer-illustration{width:64px;}
     .footer-brand-name{font-size:21px;}
     .footer-blurb{font-size:16px;}
     .footer-links{display:none;}
@@ -425,7 +492,6 @@
       <img src="assets/mark.png" alt="Kavedi">
       <span class="brand-text">
         <span class="brand-name">Kavedi</span>
-        <span class="brand-badge">Operator</span>
       </span>
     </a>
     <div class="nav-links">
@@ -442,7 +508,7 @@
   <section class="hero">
     <div class="hero-inner">
       <div class="hero-copy">
-        <h1>Your AI operator for WhatsApp</h1>
+        <h1>Your AI for WhatsApp</h1>
         <p class="lede">Tell Kavedi what it needs to know. It answers the messages you keep answering, and pings you when it can&rsquo;t. Same number you already use.</p>
 
         <form class="waitlist-form" id="waitlist-form-hero" action="https://formspree.io/f/xzebadda" method="POST" novalidate>
@@ -512,6 +578,38 @@
     </div>
   </section>
 
+  <!-- ===== DASHBOARD ===== -->
+  <section class="dashboard">
+    <div class="dashboard-head reveal">
+      <h2>What has your AI been doing while you weren&rsquo;t looking?</h2>
+      <p class="sub">This is the dashboard, not another chat.</p>
+    </div>
+    <div class="dashboard-card reveal">
+      <div class="dashboard-stats">
+        <div class="stat-tile">
+          <div class="stat-number" data-count-to="18">0</div>
+          <div class="stat-label">Conversations handled today</div>
+        </div>
+        <div class="stat-tile attention">
+          <div class="stat-number" data-count-to="3">0</div>
+          <div class="stat-label">Needs your attention</div>
+        </div>
+        <div class="stat-tile">
+          <div class="stat-number" data-count-to="5">0</div>
+          <div class="stat-label">New leads</div>
+        </div>
+        <div class="stat-tile">
+          <div class="stat-number" data-count-to="7">0</div>
+          <div class="stat-label">Follow-ups sent</div>
+        </div>
+      </div>
+      <div class="dashboard-activity">
+        <div>Replied to 6 pricing questions</div>
+        <div>Flagged 1 conversation for you</div>
+      </div>
+    </div>
+  </section>
+
   <!-- ===== PROBLEM ===== -->
   <section class="problem">
     <div class="problem-inner reveal">
@@ -527,7 +625,10 @@
 
   <!-- ===== WHO IT'S FOR ===== -->
   <section class="who">
-    <h2 class="reveal">If people message you all day, Kavedi is for you.</h2>
+    <div class="who-head">
+      <h2 class="reveal">If people message you all day, Kavedi is for you.</h2>
+      <img src="assets/illustration-team-assignment.svg" alt="" class="who-illustration">
+    </div>
     <ul class="who-list reveal">
       <li>Shop owners and online sellers</li>
       <li>Service providers and freelancers</li>
@@ -577,43 +678,93 @@
       <div class="does-card reveal">
         <div class="badge-does">It does</div>
         <div class="does-list">
-          <div class="row"><i data-lucide="check" width="20" height="20" stroke-width="2.6"></i><span>Answers the questions you get asked constantly</span></div>
-          <div class="row"><i data-lucide="check" width="20" height="20" stroke-width="2.6"></i><span>Quotes the prices, times or details you&rsquo;ve given it</span></div>
-          <div class="row"><i data-lucide="check" width="20" height="20" stroke-width="2.6"></i><span>Says when you&rsquo;re open, closed or away</span></div>
-          <div class="row"><i data-lucide="check" width="20" height="20" stroke-width="2.6"></i><span>Collects the information you need from people</span></div>
+          <div class="row"><i class="row-icon" data-lucide="check" width="20" height="20" stroke-width="2.6"></i><span>Answers the questions you get asked constantly</span></div>
+          <div class="row"><i class="row-icon" data-lucide="check" width="20" height="20" stroke-width="2.6"></i><span>Quotes the prices, times or details you&rsquo;ve given it</span></div>
+          <div class="row"><i class="row-icon" data-lucide="check" width="20" height="20" stroke-width="2.6"></i><span>Says when you&rsquo;re open, closed or away</span></div>
+          <div class="row"><i class="row-icon" data-lucide="check" width="20" height="20" stroke-width="2.6"></i><span>Collects the information you need from people</span></div>
         </div>
       </div>
       <div class="doesnt-card reveal">
         <div class="badge-doesnt">It doesn&rsquo;t</div>
         <div class="does-list">
-          <div class="row"><i data-lucide="x" width="20" height="20" stroke-width="2.6"></i><span>Guess a price it wasn&rsquo;t given</span></div>
-          <div class="row"><i data-lucide="x" width="20" height="20" stroke-width="2.6"></i><span>Make promises you didn&rsquo;t authorise</span></div>
-          <div class="row"><i data-lucide="x" width="20" height="20" stroke-width="2.6"></i><span>Pretend to be you</span></div>
-          <div class="row"><i data-lucide="x" width="20" height="20" stroke-width="2.6"></i><span>Hide a conversation from you</span></div>
+          <div class="row"><i class="row-icon" data-lucide="x" width="20" height="20" stroke-width="2.6"></i><span>Guess a price it wasn&rsquo;t given</span></div>
+          <div class="row"><i class="row-icon" data-lucide="x" width="20" height="20" stroke-width="2.6"></i><span>Make promises you didn&rsquo;t authorise</span></div>
+          <div class="row"><i class="row-icon" data-lucide="x" width="20" height="20" stroke-width="2.6"></i><span>Pretend to be you</span></div>
+          <div class="row"><i class="row-icon" data-lucide="x" width="20" height="20" stroke-width="2.6"></i><span>Hide a conversation from you</span></div>
         </div>
         <div class="doesnt-note">Not sure? It flags the chat and you take over in one tap.</div>
       </div>
     </div>
   </section>
 
-  <!-- ===== ROADMAP ===== -->
-  <section class="roadmap">
-    <h2 class="reveal">Where Kavedi is headed.</h2>
-    <div class="roadmap-grid reveal-group">
-      <div class="roadmap-card reveal">
-        <div class="roadmap-index">01</div>
-        <div class="roadmap-title">Appointment booking</div>
-        <div class="roadmap-body">People book a time right in the chat. Kavedi checks what&rsquo;s open and confirms it.</div>
+  <!-- ===== FEATURES ===== -->
+  <section class="features">
+    <h2 class="reveal">What Kavedi does for you.</h2>
+    <div class="features-grid reveal-group">
+      <div class="feature-card reveal">
+        <div class="feature-head">
+          <div class="feature-index">01</div>
+          <img src="assets/illustration-chat-bot.svg" alt="" class="feature-illustration">
+        </div>
+        <div class="feature-title">AI auto-reply</div>
+        <div class="feature-body">It answers the questions you get asked constantly, in your tone, using what you&rsquo;ve told it &mdash; and flags anything it&rsquo;s not sure about for you to take over.</div>
+        <div class="feature-tags">
+          <span class="feature-tag">Instant replies</span>
+          <span class="feature-tag">Your knowledge</span>
+          <span class="feature-tag">Flags uncertainty</span>
+        </div>
       </div>
-      <div class="roadmap-card reveal">
-        <div class="roadmap-index">02</div>
-        <div class="roadmap-title">Scheduled follow-ups</div>
-        <div class="roadmap-body">Write it once, send it later. Payment nudges, check-ins, the message you&rsquo;d forget to send.</div>
+      <div class="feature-card reveal">
+        <div class="feature-head">
+          <div class="feature-index">02</div>
+          <img src="assets/illustration-booking.svg" alt="" class="feature-illustration">
+        </div>
+        <div class="feature-title">Appointment booking</div>
+        <div class="feature-body">It fits right into the conversation you&rsquo;re already having. Someone asks if you&rsquo;re free Thursday, Kavedi checks what&rsquo;s actually open and offers a real slot &mdash; no separate app, no link to click. They confirm right there in the chat, and it&rsquo;s on the calendar.</div>
+        <div class="feature-tags">
+          <span class="feature-tag">In-chat</span>
+          <span class="feature-tag">Calendar sync</span>
+          <span class="feature-tag">Confirmations</span>
+        </div>
       </div>
-      <div class="roadmap-card reveal">
-        <div class="roadmap-index">03</div>
-        <div class="roadmap-title">Reminders</div>
-        <div class="roadmap-body">A nudge before the appointment. Another on the day something&rsquo;s due.</div>
+      <div class="feature-card reveal">
+        <div class="feature-head">
+          <div class="feature-index">03</div>
+          <img src="assets/illustration-mailbox.svg" alt="" class="feature-illustration">
+        </div>
+        <div class="feature-title">Scheduled follow-ups</div>
+        <div class="feature-body">Write the message once, and it goes out when it&rsquo;s supposed to &mdash; a payment reminder, a check-in, the follow-up you meant to send and forgot. Every message still goes out one at a time, to the person it&rsquo;s meant for. It&rsquo;s not bulk sending, just the message you&rsquo;d have sent yourself, on time.</div>
+        <div class="feature-tags">
+          <span class="feature-tag">Payment nudges</span>
+          <span class="feature-tag">Check-ins</span>
+          <span class="feature-tag">Paced sending</span>
+        </div>
+      </div>
+      <div class="feature-card reveal">
+        <div class="feature-head">
+          <div class="feature-index">04</div>
+          <img src="assets/illustration-alarm-clock.svg" alt="" class="feature-illustration">
+        </div>
+        <div class="feature-title">Reminders</div>
+        <div class="feature-body">The nudge before an appointment. The nudge on the day something&rsquo;s due. Kavedi sends them automatically, so remembering isn&rsquo;t on you anymore.</div>
+        <div class="feature-tags">
+          <span class="feature-tag">Appointments</span>
+          <span class="feature-tag">Due dates</span>
+          <span class="feature-tag">Automatic</span>
+        </div>
+      </div>
+      <div class="feature-card reveal">
+        <div class="feature-head">
+          <div class="feature-index">05</div>
+          <img src="assets/illustration-team-collaboration.svg" alt="" class="feature-illustration">
+        </div>
+        <div class="feature-title">Your team, one number</div>
+        <div class="feature-body">More than one person can answer the same number, each from their own login. Kavedi keeps track of who&rsquo;s already replied, so nobody double-replies to the same person or steps on a conversation someone else is already handling.</div>
+        <div class="feature-tags">
+          <span class="feature-tag">Shared inbox</span>
+          <span class="feature-tag">No double-replies</span>
+          <span class="feature-tag">Handoff-aware</span>
+        </div>
       </div>
     </div>
   </section>
@@ -642,7 +793,6 @@
       <div class="footer-brand">
         <img src="assets/mark.png" alt="Kavedi">
         <span class="footer-brand-name">Kavedi</span>
-        <span class="footer-brand-badge">Operator</span>
       </div>
       <div class="footer-blurb">Built in Lagos by Kavedi, for people who run on WhatsApp.</div>
     </div>
@@ -674,7 +824,10 @@
 
   <div class="footer-bottom">
     <div class="footer-disclaimer">Kavedi connects to your existing WhatsApp number, like WhatsApp Web. Not affiliated with WhatsApp or Meta.</div>
-    <div class="footer-copyright">&copy; 2026 Kavedi &middot; Lagos, Nigeria</div>
+    <div class="footer-copyright-row">
+      <div class="footer-copyright">&copy; 2026 Kavedi &middot; Lagos, Nigeria</div>
+      <img src="assets/illustration-mail-sent.svg" alt="" class="footer-illustration">
+    </div>
   </div>
 </footer>
 
@@ -697,6 +850,84 @@
     document.querySelectorAll('.reveal').forEach(function (el) {
       el.classList.add('is-visible');
     });
+  }
+
+  var prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Does/doesn't icons: bounce in when scrolled into view
+  if ('IntersectionObserver' in window) {
+    var iconObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          iconObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.4 });
+    document.querySelectorAll('.row-icon').forEach(function (el) {
+      iconObserver.observe(el);
+    });
+  } else {
+    document.querySelectorAll('.row-icon').forEach(function (el) {
+      el.classList.add('is-visible');
+    });
+  }
+
+  // Hero phone: chat bubbles appear one at a time on load
+  if (!prefersReducedMotion) {
+    var heroItems = document.querySelectorAll('.phone-messages .bubble, .notif-card');
+    heroItems.forEach(function (el) { el.classList.add('bubble-hidden'); });
+    heroItems.forEach(function (el, i) {
+      setTimeout(function () {
+        el.classList.remove('bubble-hidden');
+      }, 350 + i * 450);
+    });
+  }
+
+  // Dashboard stat tiles: count up from 0 when scrolled into view
+  function animateCountUp(el) {
+    var target = parseInt(el.getAttribute('data-count-to'), 10) || 0;
+    if (prefersReducedMotion) { el.textContent = target; return; }
+    var duration = 900;
+    var start = null;
+    function step(ts) {
+      if (start === null) start = ts;
+      var progress = Math.min((ts - start) / duration, 1);
+      el.textContent = Math.round(progress * target);
+      if (progress < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+  var dashboardCard = document.querySelector('.dashboard-card');
+  if (dashboardCard) {
+    if ('IntersectionObserver' in window) {
+      var statObserver = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.querySelectorAll('[data-count-to]').forEach(animateCountUp);
+            statObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.3 });
+      statObserver.observe(dashboardCard);
+    } else {
+      dashboardCard.querySelectorAll('[data-count-to]').forEach(animateCountUp);
+    }
+  }
+
+  // Nav: condense after 100px of scroll
+  var siteHeader = document.querySelector('.site-header');
+  if (siteHeader) {
+    var lastCondensed = null;
+    function updateHeaderCondensed() {
+      var condensed = window.scrollY > 100;
+      if (condensed !== lastCondensed) {
+        siteHeader.classList.toggle('is-condensed', condensed);
+        lastCondensed = condensed;
+      }
+    }
+    document.addEventListener('scroll', updateHeaderCondensed, { passive: true });
+    updateHeaderCondensed();
   }
 
   var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -735,7 +966,7 @@
     var wrap = document.createElement('div');
     wrap.className = 'waitlist-success';
     wrap.innerHTML =
-      '<div class="check" aria-hidden="true">&#10003;</div>' +
+      '<img src="assets/illustration-message-sent.svg" alt="" class="success-illustration">' +
       '<h3>You&rsquo;re on the list</h3>' +
       '<p>We&rsquo;ll email you when it&rsquo;s your turn &mdash; we&rsquo;re setting up the first ten by hand.</p>';
     form.replaceWith(wrap);
