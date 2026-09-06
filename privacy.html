@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privacy Policy — Kavedi Operator</title>
+<link rel="icon" href="assets/mark.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#14323C;
+    --teal:#0A7F7A;
+    --cream:#F5F1E9;
+    --border:#DED6C7;
+    --muted-teal-grey:#3D5B65;
+    --muted-warm-grey:#6B655A;
+    --muted-label-grey:#8A8478;
+    --light-teal:#E4F3F1;
+    --divider:#EFEBE2;
+    --dark-body:#E4EEF0;
+    --footer-secondary:#A9C2C8;
+    --footer-copyright:#7E9AA1;
+    --footer-badge-text:#7FD9CE;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--cream);
+    font-family:'Nunito', sans-serif;
+    color:var(--navy);
+    -webkit-font-smoothing:antialiased;
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+  }
+  a{color:var(--teal); text-decoration:none;}
+  a:hover{color:var(--navy);}
+  img{max-width:100%;}
+
+  /* ===== HEADER ===== */
+  .site-header{
+    background:var(--cream); padding:20px 24px; display:flex; align-items:center;
+    justify-content:space-between; flex-wrap:wrap; gap:16px; border-bottom:1px solid var(--border);
+  }
+  .brand{display:flex; align-items:center; gap:9px; color:var(--navy);}
+  .brand img{width:36px; height:36px; display:block;}
+  .brand-name{font-size:22px; font-weight:800; letter-spacing:-.01em; color:var(--navy);}
+  .brand-badge{
+    font-family:'Public Sans', sans-serif; font-size:11px; font-weight:700;
+    letter-spacing:.04em; text-transform:uppercase; color:var(--teal);
+    background:var(--light-teal); padding:3px 9px; border-radius:20px;
+  }
+  .nav-links{display:flex; align-items:center; gap:24px; font-size:16px; font-weight:700; flex-wrap:wrap;}
+  .nav-links a{color:var(--navy);}
+  .nav-links a.is-active{color:var(--teal);}
+
+  /* ===== MAIN ===== */
+  main{flex:1; padding:64px 24px 90px; display:flex; justify-content:center;}
+  .doc{max-width:680px; width:100%; display:flex; flex-direction:column; gap:34px;}
+  .doc-head{display:flex; flex-direction:column; gap:10px;}
+  .doc-eyebrow{
+    font-family:'IBM Plex Mono', monospace; font-size:12px; letter-spacing:.08em;
+    text-transform:uppercase; color:var(--muted-label-grey);
+  }
+  .doc-head h1{margin:0; font-size:clamp(34px, 6vw, 52px); line-height:1.05; font-weight:800; letter-spacing:-.02em;}
+  .doc-updated{font-size:16px; font-weight:500; color:var(--muted-warm-grey);}
+  .doc-intro{margin:0; font-size:18px; line-height:1.6; font-weight:500; color:var(--muted-teal-grey);}
+  .doc section{display:flex; flex-direction:column; gap:12px;}
+  .doc section h2{margin:0; font-size:26px; font-weight:800; line-height:1.2;}
+  .doc section p{margin:0; font-size:17px; line-height:1.65; font-weight:500; color:var(--muted-teal-grey);}
+  .doc section ul{margin:0; padding-left:22px; display:flex; flex-direction:column; gap:10px; font-size:17px; line-height:1.6; font-weight:500; color:var(--muted-teal-grey);}
+  .doc section strong{color:var(--navy);}
+  .doc .contact-section{padding-top:10px; border-top:2px solid var(--divider);}
+
+  /* ===== FOOTER ===== */
+  .site-footer{background:var(--navy); padding:44px 24px; color:var(--dark-body);}
+  .footer-inner{max-width:1000px; margin:0 auto; display:flex; flex-direction:column; gap:26px;}
+  .footer-brand{display:flex; align-items:center; gap:8px;}
+  .footer-brand img{width:30px; height:30px; display:block;}
+  .footer-brand-name{font-size:20px; font-weight:800; color:#fff;}
+  .footer-brand-badge{
+    font-size:11px; font-weight:700; letter-spacing:.04em; text-transform:uppercase;
+    color:var(--footer-badge-text); background:rgba(255,255,255,.12); padding:3px 9px; border-radius:20px;
+  }
+  .footer-links{display:flex; flex-wrap:wrap; gap:14px 24px; font-size:16px; font-weight:600;}
+  .footer-links a{color:#fff;}
+  .footer-disclaimer{font-size:14px; font-weight:400; line-height:1.5; color:var(--footer-secondary); max-width:640px;}
+  .footer-copyright{font-size:14px; color:var(--footer-copyright);}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <a href="index.html" class="brand" aria-label="Kavedi home">
+    <img src="assets/mark.png" alt="Kavedi">
+    <span class="brand-name">Kavedi</span>
+    <span class="brand-badge">Operator</span>
+  </a>
+  <nav class="nav-links" aria-label="Primary">
+    <a href="index.html#how-it-works">How it works</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="privacy.html" class="is-active">Privacy</a>
+    <a href="terms.html">Terms</a>
+  </nav>
+</header>
+
+<main>
+  <div class="doc">
+
+    <div class="doc-head">
+      <div class="doc-eyebrow">Draft &mdash; pending legal review</div>
+      <h1>Privacy Policy</h1>
+      <div class="doc-updated">Last updated September 6, 2026</div>
+    </div>
+
+    <p class="doc-intro">Kavedi is an AI operator that connects to a WhatsApp number you already use, so it can answer messages on your behalf. This policy explains what we collect, why, and how you stay in control of it. Kavedi is not affiliated with WhatsApp or Meta.</p>
+
+    <section>
+      <h2>What Kavedi connects to</h2>
+      <p>Kavedi links to your existing WhatsApp number using an unofficial multi-device connection method (the same approach WhatsApp Web uses), not the official WhatsApp Business API. To keep that connection alive, we hold the session and authentication state for your linked number on our servers. We never ask for or store your WhatsApp account password, and we never collect payment credentials through this connection.</p>
+    </section>
+
+    <section>
+      <h2>What we collect</h2>
+      <ul>
+        <li><strong>Your "knowledge":</strong> the text, PDFs, images and product or business information you feed Kavedi so it can answer accurately.</li>
+        <li><strong>Conversation data:</strong> the WhatsApp messages Kavedi needs to see to generate replies, and the replies it sends.</li>
+        <li><strong>Session and authentication state:</strong> the credentials that keep your WhatsApp connection linked, held on your behalf.</li>
+        <li><strong>Waitlist emails:</strong> the email address you give us to join the waitlist.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Why we collect it</h2>
+      <p>We use this data only to operate Kavedi: to keep your WhatsApp connection active, to generate replies grounded in the knowledge you've given it, to flag conversations that need you, and to run the waitlist and tell you when it's your turn.</p>
+    </section>
+
+    <section>
+      <h2>How it's stored and secured</h2>
+      <p>Your data is encrypted in transit and stored on access-controlled infrastructure. Session and authentication state is treated as sensitive: it is scoped to your account and used only to maintain your WhatsApp connection.</p>
+    </section>
+
+    <section>
+      <h2>Who can access it</h2>
+      <p>Access is limited to the Kavedi team, and only as needed to operate, support, or debug the service. We do not sell your data to third parties.</p>
+    </section>
+
+    <section>
+      <h2>Your choices</h2>
+      <p>You can disconnect your WhatsApp number from Kavedi at any time, and you can ask us to delete your data &mdash; including your knowledge base, conversation history, and session state. Email <a href="mailto:support@kavedi.com.ng">support@kavedi.com.ng</a> and we'll action it.</p>
+    </section>
+
+    <section>
+      <h2>Changes to this policy</h2>
+      <p>Kavedi is early-stage and this policy will change as the product does. We'll update the date above when it does.</p>
+    </section>
+
+    <section class="contact-section">
+      <h2>Contact</h2>
+      <p>Questions about this policy or your data: <a href="mailto:support@kavedi.com.ng">support@kavedi.com.ng</a></p>
+    </section>
+
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <img src="assets/mark.png" alt="Kavedi">
+      <span class="footer-brand-name">Kavedi</span>
+      <span class="footer-brand-badge">Operator</span>
+    </div>
+    <div class="footer-links">
+      <a href="index.html#how-it-works">How it works</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="terms.html">Terms</a>
+      <a href="mailto:support@kavedi.com.ng">support@kavedi.com.ng</a>
+    </div>
+    <div class="footer-disclaimer">Kavedi connects to your existing WhatsApp number, like WhatsApp Web. Not affiliated with WhatsApp or Meta.</div>
+    <div class="footer-copyright">&copy; 2026 Kavedi &middot; Lagos, Nigeria</div>
+  </div>
+</footer>
+
+</body>
+</html>
