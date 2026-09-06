@@ -169,9 +169,12 @@
   }
   .phone-topbar{
     background:var(--teal-bright); padding:38px 18px 16px; border-radius:40px 40px 0 0;
-    display:flex; align-items:center; gap:10px;
+    display:flex; align-items:flex-start; gap:10px;
   }
-  .phone-topbar .chevron{font-size:30px; line-height:1; color:var(--teal-deep); margin-right:-2px;}
+  .phone-topbar .chevron{flex:0 0 auto; font-size:30px; line-height:1; color:var(--teal-deep); margin-right:-2px;}
+  .phone-contact{
+    flex:1; display:flex; align-items:center; justify-content:center; gap:9px; margin-top:6px;
+  }
   .phone-avatar{
     width:36px; height:36px; border-radius:50%; background:var(--navy);
     display:flex; align-items:center; justify-content:center; color:#fff;
@@ -418,11 +421,13 @@
               <div class="dynamic-island" aria-hidden="true"></div>
               <div class="phone-topbar">
                 <span class="chevron" aria-hidden="true">&#8249;</span>
-                <span class="phone-avatar">A</span>
-                <span>
-                  <span class="phone-contact-name" style="display:block;">Amaka O.</span>
-                  <span class="phone-contact-status" style="display:block;">online</span>
-                </span>
+                <div class="phone-contact">
+                  <span class="phone-avatar">A</span>
+                  <span>
+                    <span class="phone-contact-name" style="display:block;">Amaka O.</span>
+                    <span class="phone-contact-status" style="display:block;">online</span>
+                  </span>
+                </div>
               </div>
               <div class="phone-messages">
                 <div class="bubble in">How much for the black one?</div>
