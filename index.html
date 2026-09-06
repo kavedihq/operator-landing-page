@@ -5,6 +5,21 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Kavedi Operator — Your AI operator for WhatsApp</title>
 <link rel="icon" href="assets/mark.png">
+
+<meta property="og:title" content="Your AI operator for WhatsApp">
+<meta property="og:description" content="Tell Kavedi what it needs to know. It answers the messages you keep answering, and pings you when it can't. Same number you already use.">
+<meta property="og:image" content="https://kavedi.com.ng/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:url" content="https://kavedi.com.ng">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Kavedi Operator">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Your AI operator for WhatsApp">
+<meta name="twitter:description" content="Tell Kavedi what it needs to know. It answers the messages you keep answering, and pings you when it can't. Same number you already use.">
+<meta name="twitter:image" content="https://kavedi.com.ng/assets/og.png">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -171,7 +186,8 @@
     padding:14px 22px 4px; display:flex; align-items:center; justify-content:space-between;
     font-size:13px; font-weight:700; color:var(--navy); background:#fff;
   }
-  .phone-status-icons{display:flex; align-items:center; gap:5px;}
+  .phone-status-icons{display:flex; align-items:center; gap:5px; color:var(--navy);}
+  .phone-status-icons svg{display:block;}
   .phone-topbar{
     background:#fff; padding:10px 16px 14px; border-bottom:1px solid var(--divider);
     display:flex; align-items:center; gap:10px;
@@ -275,6 +291,18 @@
   .doesnt-card .row i{color:var(--doesnt-icon);}
   .doesnt-note{margin-top:18px; padding-top:18px; border-top:2px solid var(--dark-divider); font-size:17px; font-weight:600; line-height:1.5; color:#fff;}
 
+  /* ===== ROADMAP ===== */
+  .roadmap{background:var(--cream); padding:40px 24px;}
+  .roadmap h2{margin:0 0 24px; font-size:31px; line-height:1.1; font-weight:800;}
+  .roadmap-grid{display:flex; flex-direction:column; gap:14px;}
+  .roadmap-card{background:#fff; border-radius:24px; padding:22px;}
+  .roadmap-index{
+    font-size:12px; font-weight:800; letter-spacing:.08em; text-transform:uppercase;
+    color:var(--muted-label-grey); margin-bottom:8px;
+  }
+  .roadmap-title{font-size:19px; font-weight:800; line-height:1.2; margin-bottom:6px;}
+  .roadmap-body{font-size:16px; font-weight:500; line-height:1.45; color:var(--muted-teal-grey);}
+
   /* ===== FINAL CTA ===== */
   .final-cta{background:var(--teal-bright); padding:44px 24px; text-align:center;}
   .final-cta h2{margin:0 0 10px; font-size:34px; line-height:1.08; font-weight:800; color:var(--teal-deep);}
@@ -360,6 +388,14 @@
     .does-list{font-size:19px; gap:14px;}
     .doesnt-note{font-size:19px; margin-top:24px; padding-top:24px;}
 
+    .roadmap{padding:84px 64px;}
+    .roadmap h2{font-size:48px; line-height:1.06; letter-spacing:-.02em; margin-bottom:40px;}
+    .roadmap-grid{display:grid; grid-template-columns:1fr 1fr; gap:24px;}
+    .roadmap-card{border-radius:30px; padding:34px;}
+    .roadmap-index{font-size:13px; margin-bottom:12px;}
+    .roadmap-title{font-size:24px; margin-bottom:8px;}
+    .roadmap-body{font-size:18px;}
+
     .final-cta{padding:90px 64px;}
     .final-cta h2{font-size:54px; line-height:1.04; letter-spacing:-.02em; margin-bottom:12px;}
     .final-cta p.sub{font-size:20px; margin-bottom:30px;}
@@ -428,9 +464,10 @@
               <div class="dynamic-island" aria-hidden="true"></div>
               <div class="phone-statusbar">
                 <span>9:41</span>
-                <span class="phone-status-icons">
-                  <i data-lucide="wifi" width="14" height="14" stroke-width="2.4"></i>
-                  <i data-lucide="battery" width="18" height="14" stroke-width="2.2"></i>
+                <span class="phone-status-icons" aria-hidden="true">
+                  <svg width="18" height="12" viewBox="0 0 18 12" fill="currentColor"><rect x="0" y="8" width="3" height="4" rx="1"></rect><rect x="4.7" y="5.6" width="3" height="6.4" rx="1"></rect><rect x="9.4" y="3" width="3" height="9" rx="1"></rect><rect x="14.1" y="0" width="3" height="12" rx="1"></rect></svg>
+                  <svg width="17" height="12" viewBox="0 0 17 12" fill="none" stroke="currentColor" stroke-linecap="round"><path d="M1.2 4.2a11 11 0 0 1 14.6 0" stroke-width="2.1"></path><path d="M4.2 7.5a6.6 6.6 0 0 1 8.6 0" stroke-width="2.1"></path><circle cx="8.5" cy="10.4" r="1.5" fill="currentColor" stroke="none"></circle></svg>
+                  <svg width="25" height="12" viewBox="0 0 25 12"><rect x="0.5" y="0.5" width="21" height="11" rx="3.4" fill="none" stroke="currentColor" stroke-width="1" opacity=".4"></rect><rect x="2" y="2" width="18" height="8" rx="2.2" fill="currentColor"></rect><rect x="22.8" y="4.1" width="1.7" height="3.8" rx="0.85" fill="currentColor" opacity=".4"></rect></svg>
                 </span>
               </div>
               <div class="phone-topbar">
@@ -554,6 +591,28 @@
           <div class="row"><i data-lucide="x" width="20" height="20" stroke-width="2.6"></i><span>Hide a conversation from you</span></div>
         </div>
         <div class="doesnt-note">Not sure? It flags the chat and you take over in one tap.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ROADMAP ===== -->
+  <section class="roadmap">
+    <h2 class="reveal">Where Kavedi is headed.</h2>
+    <div class="roadmap-grid reveal-group">
+      <div class="roadmap-card reveal">
+        <div class="roadmap-index">01</div>
+        <div class="roadmap-title">Appointment booking</div>
+        <div class="roadmap-body">People book a time right in the chat. Kavedi checks what&rsquo;s open and confirms it.</div>
+      </div>
+      <div class="roadmap-card reveal">
+        <div class="roadmap-index">02</div>
+        <div class="roadmap-title">Scheduled follow-ups</div>
+        <div class="roadmap-body">Write it once, send it later. Payment nudges, check-ins, the message you&rsquo;d forget to send.</div>
+      </div>
+      <div class="roadmap-card reveal">
+        <div class="roadmap-index">03</div>
+        <div class="roadmap-title">Reminders</div>
+        <div class="roadmap-body">A nudge before the appointment. Another on the day something&rsquo;s due.</div>
       </div>
     </div>
   </section>
