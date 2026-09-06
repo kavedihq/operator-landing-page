@@ -132,6 +132,7 @@
     .feature-tag:hover{transform:none;}
     .site-header, .nav, .brand img, .brand-name{transition:none;}
     .bubble{opacity:1 !important; transform:none !important; transition:none !important;}
+    .notif-card{opacity:1 !important; transform:none !important; transition:none !important; animation:none !important;}
   }
 
   /* ===== HERO ===== */
@@ -215,9 +216,16 @@
     width:32px; height:32px; border-radius:50%; background:var(--cream);
     display:flex; align-items:center; justify-content:center; flex:0 0 32px; color:var(--navy);
   }
-  .phone-messages{background:var(--phone-bg); padding:20px 14px 26px; display:flex; flex-direction:column; gap:12px;}
-  .bubble, .notif-card{transition:opacity .35s ease, transform .35s ease;}
-  .bubble-hidden{opacity:0; transform:translateY(10px);}
+  .phone-messages{background:var(--phone-bg); padding:20px 14px 26px; display:flex; flex-direction:column; gap:12px; overflow:hidden;}
+  .bubble{transition:opacity .45s cubic-bezier(.22,.61,.36,1), transform .45s cubic-bezier(.22,.61,.36,1);}
+  .notif-card{transition:opacity .45s cubic-bezier(.22,.61,.36,1), transform .45s cubic-bezier(.22,.61,.36,1);}
+  .bubble-hidden{opacity:0; transform:translateY(34px);}
+  .notif-card.bubble-hidden{transform:translateY(20px);}
+  @keyframes notifFloat{
+    0%, 100%{transform:translateY(0);}
+    50%{transform:translateY(-7px);}
+  }
+  .notif-card.is-floating{animation:notifFloat 2.6s ease-in-out infinite;}
   .bubble{max-width:86%; border-radius:20px; padding:13px 16px; font-size:16px; font-weight:600; line-height:1.4;}
   .bubble.in{align-self:flex-start; max-width:80%; background:#fff; border-radius:20px 20px 20px 7px;}
   .bubble.out{
@@ -873,14 +881,17 @@
     });
   }
 
-  // Hero phone: chat bubbles appear one at a time on load
+  // Hero phone: chat bubbles scroll up into place one at a time on load
   if (!prefersReducedMotion) {
     var heroItems = document.querySelectorAll('.phone-messages .bubble, .notif-card');
     heroItems.forEach(function (el) { el.classList.add('bubble-hidden'); });
     heroItems.forEach(function (el, i) {
       setTimeout(function () {
         el.classList.remove('bubble-hidden');
-      }, 350 + i * 450);
+        if (el.classList.contains('notif-card')) {
+          setTimeout(function () { el.classList.add('is-floating'); }, 450);
+        }
+      }, 400 + i * 500);
     });
   }
 
