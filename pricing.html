@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pricing — Kavedi Operator</title>
+<link rel="icon" href="assets/mark.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#14323C;
+    --teal:#0A7F7A;
+    --teal-bright:#2AC9C2;
+    --teal-deep:#0C2A32;
+    --cream:#F5F1E9;
+    --white:#FFFFFF;
+    --border:#DED6C7;
+    --muted-teal-grey:#3D5B65;
+    --muted-warm-grey:#6B655A;
+    --light-teal:#E4F3F1;
+    --placeholder-grey:#8A9AA0;
+    --notif-bg:#FDF1DC;
+    --notif-dot:#B4690E;
+    --notif-text:#7C4606;
+    --divider:#EFEBE2;
+    --muted-label-grey:#8A8478;
+    --dark-body:#E4EEF0;
+    --footer-secondary:#A9C2C8;
+    --footer-copyright:#7E9AA1;
+    --footer-badge-text:#7FD9CE;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--cream);
+    font-family:'Nunito', sans-serif;
+    color:var(--navy);
+    -webkit-font-smoothing:antialiased;
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+  }
+  a{color:var(--navy); text-decoration:none;}
+  a:hover{color:var(--teal);}
+  input::placeholder{color:var(--placeholder-grey);}
+  img{max-width:100%;}
+  .sr-only{
+    position:absolute; width:1px; height:1px; padding:0; margin:-1px;
+    overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;
+  }
+  @keyframes kv-spin{to{transform:rotate(360deg);}}
+
+  /* ===== HEADER ===== */
+  .site-header{
+    background:var(--cream); padding:20px 24px; display:flex; align-items:center;
+    justify-content:space-between; flex-wrap:wrap; gap:16px; border-bottom:1px solid var(--border);
+  }
+  .brand{display:flex; align-items:center; gap:9px;}
+  .brand img{width:36px; height:36px; display:block;}
+  .brand-name{font-size:22px; font-weight:800; letter-spacing:-.01em; color:var(--navy);}
+  .brand-badge{
+    font-family:'Public Sans', sans-serif; font-size:11px; font-weight:700;
+    letter-spacing:.04em; text-transform:uppercase; color:var(--teal);
+    background:var(--light-teal); padding:3px 9px; border-radius:20px;
+  }
+  .nav-links{display:flex; align-items:center; gap:24px; font-size:16px; font-weight:700; flex-wrap:wrap;}
+
+  /* ===== MAIN ===== */
+  main{flex:1; padding:64px 24px 90px; display:flex; justify-content:center;}
+  .pricing-inner{
+    max-width:640px; width:100%; display:flex; flex-direction:column;
+    align-items:center; text-align:center; gap:22px;
+  }
+  .pricing-inner h1{
+    margin:0; font-size:clamp(38px, 7vw, 64px); line-height:1.04; font-weight:800; letter-spacing:-.02em;
+  }
+  .pricing-inner p.lede{
+    margin:0; max-width:480px; font-size:19px; line-height:1.5; font-weight:500; color:var(--muted-teal-grey);
+  }
+  .pricing-card{
+    width:100%; background:#fff; border:1px solid var(--border); border-radius:28px;
+    padding:36px 32px; margin-top:14px; text-align:left; display:flex; flex-direction:column; gap:14px;
+  }
+  .pricing-card p{margin:0; font-size:17px; line-height:1.6; font-weight:500; color:var(--muted-teal-grey);}
+  .pricing-card p.emphasis{font-weight:600; color:var(--navy);}
+
+  /* ===== BUTTONS ===== */
+  .btn-primary{
+    height:60px; border:none; border-radius:999px; background:var(--teal);
+    color:#fff; font-family:'Nunito', sans-serif; font-size:18px; font-weight:800;
+    cursor:pointer; display:flex; align-items:center; justify-content:center; gap:10px;
+  }
+  .btn-primary:hover{background:var(--navy);}
+  .btn-primary:focus-visible{outline:none; box-shadow:0 0 0 2px var(--cream), 0 0 0 5px var(--teal);}
+  .btn-primary:disabled{cursor:default; opacity:.85;}
+  .spinner{
+    width:18px; height:18px; border-radius:50%;
+    border:2.5px solid rgba(255,255,255,.4); border-top-color:#fff;
+    display:inline-block; animation:kv-spin .7s linear infinite;
+  }
+
+  /* ===== WAITLIST FORM ===== */
+  .waitlist-form{width:100%; max-width:440px; display:flex; flex-direction:column; gap:10px; margin-top:8px;}
+  .waitlist-input{
+    width:100%; height:60px; box-sizing:border-box; padding:0 22px;
+    font-family:'Nunito', sans-serif; font-size:16px; font-weight:600; color:var(--navy);
+    background:#fff; border:2px solid var(--navy); border-radius:999px; outline:none;
+  }
+  .waitlist-input:focus{border-color:var(--teal); box-shadow:0 0 0 4px rgba(10,127,122,.18);}
+  .waitlist-input:disabled{color:var(--muted-label-grey); background:var(--divider); border-color:var(--border);}
+  .waitlist-input.has-error{background:var(--notif-bg); border-color:var(--notif-dot);}
+  .field-error{
+    display:flex; gap:7px; align-items:flex-start; padding:0 4px;
+    font-size:14px; font-weight:600; color:var(--notif-text); line-height:1.4;
+  }
+  .field-error[hidden]{display:none;}
+  .form-note{margin-top:2px; font-size:15px; font-weight:600; color:var(--muted-warm-grey); text-align:center;}
+
+  .waitlist-success{
+    width:100%; max-width:440px; background:var(--cream); border:1px solid var(--border);
+    border-radius:20px; padding:30px 26px; margin-top:8px; display:flex; flex-direction:column;
+    align-items:center; gap:12px;
+  }
+  .waitlist-success .check{
+    width:52px; height:52px; border-radius:999px; background:var(--teal-bright);
+    display:flex; align-items:center; justify-content:center; color:var(--teal-deep);
+    font-size:26px; font-weight:800;
+  }
+  .waitlist-success h2{margin:0; font-size:22px; font-weight:800;}
+  .waitlist-success p{margin:0; font-size:16px; font-weight:500; line-height:1.4; color:var(--muted-teal-grey);}
+
+  /* ===== FOOTER ===== */
+  .site-footer{background:var(--navy); padding:44px 24px; color:var(--dark-body);}
+  .footer-inner{max-width:1000px; margin:0 auto; display:flex; flex-direction:column; gap:26px;}
+  .footer-brand{display:flex; align-items:center; gap:8px;}
+  .footer-brand img{width:30px; height:30px; display:block;}
+  .footer-brand-name{font-size:20px; font-weight:800; color:#fff;}
+  .footer-brand-badge{
+    font-size:11px; font-weight:700; letter-spacing:.04em; text-transform:uppercase;
+    color:var(--footer-badge-text); background:rgba(255,255,255,.12); padding:3px 9px; border-radius:20px;
+  }
+  .footer-links{display:flex; flex-wrap:wrap; gap:14px 24px; font-size:16px; font-weight:600;}
+  .footer-links a{color:#fff;}
+  .footer-disclaimer{font-size:14px; font-weight:400; line-height:1.5; color:var(--footer-secondary); max-width:640px;}
+  .footer-copyright{font-size:14px; color:var(--footer-copyright);}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <a href="index.html" class="brand" aria-label="Kavedi home">
+    <img src="assets/mark.png" alt="Kavedi">
+    <span class="brand-name">Kavedi</span>
+    <span class="brand-badge">Operator</span>
+  </a>
+  <nav class="nav-links" aria-label="Primary">
+    <a href="index.html#how-it-works">How it works</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="privacy.html">Privacy</a>
+    <a href="terms.html">Terms</a>
+  </nav>
+</header>
+
+<main>
+  <div class="pricing-inner">
+    <h1>Pricing</h1>
+    <p class="lede">We&rsquo;re still finalizing pricing.</p>
+
+    <div class="pricing-card">
+      <p>Kavedi is pre-launch &mdash; we&rsquo;re setting up the first users by hand and haven&rsquo;t locked plans or numbers yet. When pricing is ready, everyone on the waitlist hears about it first.</p>
+      <p class="emphasis">The first 10 people who join get free setup, whatever pricing ends up looking like.</p>
+    </div>
+
+    <form class="waitlist-form" id="waitlist-form-pricing" action="https://formspree.io/f/xzebadda" method="POST" novalidate>
+      <label for="pricing-email" class="sr-only">Your email address</label>
+      <input type="email" id="pricing-email" name="email" class="waitlist-input" placeholder="Your email address" required autocomplete="email">
+      <div class="field-error" data-error hidden><span aria-hidden="true">&#9888;</span><span data-error-text></span></div>
+      <button type="submit" class="btn-primary" data-submit-btn>
+        <span data-btn-label>Join the waitlist</span>
+      </button>
+      <div class="form-note">Join the waitlist for early access and pricing news.</div>
+    </form>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <img src="assets/mark.png" alt="Kavedi">
+      <span class="footer-brand-name">Kavedi</span>
+      <span class="footer-brand-badge">Operator</span>
+    </div>
+    <div class="footer-links">
+      <a href="index.html#how-it-works">How it works</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="terms.html">Terms</a>
+      <a href="mailto:support@kavedi.com.ng">support@kavedi.com.ng</a>
+    </div>
+    <div class="footer-disclaimer">Kavedi connects to your existing WhatsApp number, like WhatsApp Web. Not affiliated with WhatsApp or Meta.</div>
+    <div class="footer-copyright">&copy; 2026 Kavedi &middot; Lagos, Nigeria</div>
+  </div>
+</footer>
+
+<script>
+  var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  var form = document.getElementById('waitlist-form-pricing');
+
+  function setError(message) {
+    var input = form.querySelector('.waitlist-input');
+    var errorEl = form.querySelector('[data-error]');
+    var errorText = form.querySelector('[data-error-text]');
+    input.classList.add('has-error');
+    errorText.textContent = message;
+    errorEl.hidden = false;
+  }
+
+  function clearError() {
+    var input = form.querySelector('.waitlist-input');
+    var errorEl = form.querySelector('[data-error]');
+    input.classList.remove('has-error');
+    errorEl.hidden = true;
+  }
+
+  function setSubmitting(isSubmitting) {
+    var input = form.querySelector('.waitlist-input');
+    var btn = form.querySelector('[data-submit-btn]');
+    var label = form.querySelector('[data-btn-label]');
+    input.disabled = isSubmitting;
+    btn.disabled = isSubmitting;
+    if (isSubmitting) {
+      label.innerHTML = '<span class="spinner" aria-hidden="true"></span>Joining&hellip;';
+    }
+  }
+
+  function showSuccess() {
+    var wrap = document.createElement('div');
+    wrap.className = 'waitlist-success';
+    wrap.innerHTML =
+      '<div class="check" aria-hidden="true">&#10003;</div>' +
+      '<h2>You&rsquo;re on the list</h2>' +
+      '<p>We&rsquo;ll email you when it&rsquo;s your turn &mdash; and when pricing is live.</p>';
+    form.replaceWith(wrap);
+  }
+
+  function resetToRetry() {
+    var btn = form.querySelector('[data-submit-btn]');
+    var label = form.querySelector('[data-btn-label]');
+    btn.disabled = false;
+    form.querySelector('.waitlist-input').disabled = false;
+    label.textContent = 'Retry';
+    setError('Something went wrong. Please try again.');
+  }
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var input = form.querySelector('.waitlist-input');
+    var email = input.value.trim();
+
+    clearError();
+
+    if (!email) {
+      setError('Enter your email address.');
+      return;
+    }
+    if (!EMAIL_RE.test(email)) {
+      setError('That doesn’t look like a valid email.');
+      return;
+    }
+
+    setSubmitting(true);
+
+    fetch(form.action, {
+      method: 'POST',
+      body: new FormData(form),
+      headers: { Accept: 'application/json' }
+    }).then(function (response) {
+      if (response.ok) {
+        showSuccess();
+      } else {
+        setSubmitting(false);
+        resetToRetry();
+      }
+    }).catch(function () {
+      setSubmitting(false);
+      resetToRetry();
+    });
+  });
+</script>
+
+</body>
+</html>
