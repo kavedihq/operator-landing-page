@@ -159,30 +159,37 @@
   /* phone mockup */
   .phone-wrap{display:flex; justify-content:center; margin-top:34px; padding-bottom:140px;}
   .phone{
-    width:100%; max-width:340px; background:var(--navy); border-radius:46px;
+    width:100%; max-width:340px; background:#0A0A0C; border-radius:46px;
     padding:8px; position:relative;
   }
-  .phone-screen{background:var(--phone-bg); border-radius:40px; overflow:visible; position:relative;}
+  .phone-screen{background:#fff; border-radius:40px; overflow:hidden; position:relative;}
   .dynamic-island{
-    position:absolute; top:14px; left:50%; transform:translateX(-50%);
-    width:84px; height:24px; background:#000; border-radius:999px; z-index:10;
+    position:absolute; top:10px; left:50%; transform:translateX(-50%);
+    width:84px; height:24px; background:#0A0A0C; border-radius:16px; z-index:2;
   }
+  .phone-statusbar{
+    padding:14px 22px 4px; display:flex; align-items:center; justify-content:space-between;
+    font-size:13px; font-weight:700; color:var(--navy); background:#fff;
+  }
+  .phone-status-icons{display:flex; align-items:center; gap:5px;}
   .phone-topbar{
-    background:var(--teal-bright); padding:38px 18px 16px; border-radius:40px 40px 0 0;
-    display:flex; align-items:flex-start; gap:10px;
+    background:#fff; padding:10px 16px 14px; border-bottom:1px solid var(--divider);
+    display:flex; align-items:center; gap:10px;
   }
-  .phone-topbar .chevron{flex:0 0 auto; font-size:30px; line-height:1; color:var(--teal-deep); margin-right:-2px;}
-  .phone-contact{
-    flex:1; display:flex; align-items:center; justify-content:center; gap:9px; margin-top:6px;
-  }
+  .phone-topbar .chevron{flex:0 0 auto; font-size:30px; line-height:1; color:var(--navy); margin-right:-2px;}
+  .phone-contact-info{flex:1;}
   .phone-avatar{
-    width:36px; height:36px; border-radius:50%; background:var(--navy);
+    width:34px; height:34px; border-radius:50%; background:var(--navy);
     display:flex; align-items:center; justify-content:center; color:#fff;
-    font-size:15px; font-weight:800; flex:0 0 36px;
+    font-size:15px; font-weight:800; flex:0 0 34px;
   }
-  .phone-contact-name{color:var(--teal-deep); font-size:16px; font-weight:800;}
-  .phone-contact-status{color:var(--teal-deep); font-size:13px; font-weight:600;}
-  .phone-messages{padding:20px 14px 26px; display:flex; flex-direction:column; gap:12px;}
+  .phone-contact-name{color:var(--navy); font-size:16px; font-weight:800;}
+  .phone-contact-status{color:var(--muted-warm-grey); font-size:13px; font-weight:600;}
+  .phone-video-btn{
+    width:32px; height:32px; border-radius:50%; background:var(--cream);
+    display:flex; align-items:center; justify-content:center; flex:0 0 32px; color:var(--navy);
+  }
+  .phone-messages{background:var(--phone-bg); padding:20px 14px 26px; display:flex; flex-direction:column; gap:12px;}
   .bubble{max-width:86%; border-radius:20px; padding:13px 16px; font-size:16px; font-weight:600; line-height:1.4;}
   .bubble.in{align-self:flex-start; max-width:80%; background:#fff; border-radius:20px 20px 20px 7px;}
   .bubble.out{
@@ -191,7 +198,7 @@
   .bubble-meta{display:flex; justify-content:flex-end; align-items:center; gap:5px; margin-top:5px; font-size:12px; color:var(--muted-green);}
   .phone-inputbar{
     margin:16px -14px -26px; padding:11px 12px; background:var(--message-bar-bg);
-    border-radius:0 0 40px 40px; display:flex; align-items:center; gap:9px;
+    border-radius:0 0 24px 24px; display:flex; align-items:center; gap:9px;
   }
   .phone-inputbar .field{
     flex:1; height:40px; background:#fff; border-radius:999px; display:flex; align-items:center;
@@ -419,15 +426,21 @@
           <div class="phone">
             <div class="phone-screen">
               <div class="dynamic-island" aria-hidden="true"></div>
+              <div class="phone-statusbar">
+                <span>9:41</span>
+                <span class="phone-status-icons">
+                  <i data-lucide="wifi" width="14" height="14" stroke-width="2.4"></i>
+                  <i data-lucide="battery" width="18" height="14" stroke-width="2.2"></i>
+                </span>
+              </div>
               <div class="phone-topbar">
                 <span class="chevron" aria-hidden="true">&#8249;</span>
-                <div class="phone-contact">
-                  <span class="phone-avatar">A</span>
-                  <span>
-                    <span class="phone-contact-name" style="display:block;">Amaka O.</span>
-                    <span class="phone-contact-status" style="display:block;">online</span>
-                  </span>
+                <span class="phone-avatar">A</span>
+                <div class="phone-contact-info">
+                  <span class="phone-contact-name" style="display:block;">Amaka O.</span>
+                  <span class="phone-contact-status" style="display:block;">online</span>
                 </div>
+                <span class="phone-video-btn" aria-hidden="true"><i data-lucide="video" width="17" height="17" stroke-width="2.2"></i></span>
               </div>
               <div class="phone-messages">
                 <div class="bubble in">How much for the black one?</div>
@@ -439,20 +452,20 @@
                   <div class="field">Message</div>
                   <div class="send" aria-hidden="true"></div>
                 </div>
-                <div class="notif-card">
-                  <img src="assets/mark.png" alt="">
-                  <div class="notif-body">
-                    <div class="notif-head">
-                      <span class="name">Kavedi</span>
-                      <span class="time">now</span>
-                    </div>
-                    <div class="notif-pill">
-                      <span class="dot" aria-hidden="true"></span>
-                      <span class="label">Needs your attention</span>
-                    </div>
-                    <div class="notif-text">Amaka is asking for &#8358;15,000 for three. I won&rsquo;t guess &mdash; tap to take over.</div>
-                  </div>
+              </div>
+            </div>
+            <div class="notif-card">
+              <img src="assets/mark.png" alt="">
+              <div class="notif-body">
+                <div class="notif-head">
+                  <span class="name">Kavedi</span>
+                  <span class="time">now</span>
                 </div>
+                <div class="notif-pill">
+                  <span class="dot" aria-hidden="true"></span>
+                  <span class="label">Needs your attention</span>
+                </div>
+                <div class="notif-text">Amaka is asking for &#8358;15,000 for three. I won&rsquo;t guess &mdash; tap to take over.</div>
               </div>
             </div>
           </div>
