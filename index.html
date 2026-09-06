@@ -117,6 +117,38 @@
   }
   @keyframes spin{to{transform:rotate(360deg);}}
 
+  /* ===== CHANNEL TOGGLE (email / WhatsApp) ===== */
+  .channel-toggle{display:flex; gap:8px; margin-bottom:10px;}
+  .channel-btn{
+    flex:1; height:44px; border-radius:999px; border:2px solid var(--border);
+    background:#fff; color:var(--muted-warm-grey); font-family:'Nunito', sans-serif;
+    font-size:14px; font-weight:800; cursor:pointer;
+    transition:background .15s ease, border-color .15s ease, color .15s ease;
+  }
+  .channel-btn.is-active{background:var(--navy); border-color:var(--navy); color:#fff;}
+  .channel-btn:focus-visible{outline:none; box-shadow:0 0 0 2px var(--cream), 0 0 0 5px var(--teal);}
+  .cta-invert .channel-btn{background:rgba(12,42,50,.08); border-color:var(--teal-deep); color:var(--teal-deep);}
+  .cta-invert .channel-btn.is-active{background:var(--teal-deep); border-color:var(--teal-deep); color:#fff;}
+  .cta-invert .channel-btn:focus-visible{box-shadow:0 0 0 2px var(--teal-bright), 0 0 0 5px var(--teal-deep);}
+
+  /* ===== WHO ROTATOR ===== */
+  @keyframes kvRotate{
+    0%    { opacity:0; transform:translateY(14px); }
+    1.5%  { opacity:0; transform:translateY(14px); }
+    5%    { opacity:1; transform:translateY(0); }
+    9.3%  { opacity:1; transform:translateY(0); }
+    12.8% { opacity:0; transform:translateY(-14px); }
+    100%  { opacity:0; transform:translateY(14px); }
+  }
+  @keyframes kvDot{
+    0%    { opacity:0; transform:translateY(6px); }
+    10.5% { opacity:0; transform:translateY(6px); }
+    35%   { opacity:1; transform:translateY(0); }
+    65%   { opacity:1; transform:translateY(0); }
+    89.6% { opacity:0; transform:translateY(-6px); }
+    100%  { opacity:0; transform:translateY(6px); }
+  }
+
   /* ===== SCROLL REVEAL ===== */
   .reveal{
     opacity:0; transform:translateY(24px);
@@ -133,6 +165,9 @@
     .site-header, .nav, .brand img, .brand-name{transition:none;}
     .bubble{opacity:1 !important; transform:none !important; transition:none !important;}
     .notif-card{opacity:1 !important; transform:none !important; transition:none !important; animation:none !important;}
+    .who-dot{animation:none !important; opacity:1 !important; transform:none !important;}
+    .who-rotor-item{animation:none !important; opacity:0 !important; transform:none !important;}
+    .who-rotor-item:first-child{opacity:1 !important;}
   }
 
   /* ===== HERO ===== */
@@ -152,6 +187,7 @@
 
   /* waitlist form */
   .waitlist-form{display:flex; flex-direction:column; gap:10px;}
+  .waitlist-fields{display:flex; flex-direction:column; gap:10px;}
   .field-row{display:flex; flex-direction:column; gap:8px;}
   .waitlist-input{
     width:100%; height:60px; box-sizing:border-box; padding:0 22px;
@@ -290,8 +326,14 @@
   .who-head{display:flex; align-items:flex-start; justify-content:space-between; gap:16px;}
   .who h2{margin:0 0 20px; font-size:31px; line-height:1.1; font-weight:800; flex:1;}
   .who-illustration{width:72px; height:auto; flex:0 0 auto; margin-top:2px; opacity:.92;}
-  .who-list{list-style:none; margin:0; padding:0; display:grid; grid-template-columns:1fr;}
-  .who-list li{font-size:17px; font-weight:600; line-height:1.35; padding:14px 0; border-bottom:2px solid var(--divider);}
+  .who-rotor{display:flex; align-items:center; gap:12px; height:44px;}
+  .who-dot{width:8px; height:8px; border-radius:50%; background:var(--teal-bright); flex:0 0 auto; animation:kvDot 2.2s ease-in-out infinite;}
+  .who-rotor-viewport{position:relative; flex:1; height:100%; overflow:hidden;}
+  .who-rotor-item{
+    position:absolute; inset:0; display:flex; align-items:center;
+    font-size:19px; font-weight:700; color:var(--navy); white-space:nowrap;
+    animation:kvRotate 15.4s ease-in-out infinite;
+  }
 
   /* ===== HOW IT WORKS ===== */
   .how{background:var(--cream); padding:40px 24px; border-radius:34px 34px 0 0;}
@@ -310,6 +352,23 @@
   /* ===== DOES / DOESN'T ===== */
   .does{padding:40px 24px;}
   .does h2{margin:0 0 26px; font-size:31px; line-height:1.1; font-weight:800;}
+  .does-phone-wrap{margin:-30px 0 10px; display:flex; justify-content:center;}
+  .does-phone{
+    width:280px; background:#0A0A0C; border-radius:40px 40px 0 0; padding:7px; position:relative;
+    box-shadow:0 20px 44px rgba(20,50,60,.16);
+    -webkit-mask-image:linear-gradient(to bottom, #000 78%, transparent 100%);
+    mask-image:linear-gradient(to bottom, #000 78%, transparent 100%);
+  }
+  .does-phone .phone-screen{border-radius:34px 34px 0 0;}
+  .does-phone .dynamic-island{width:70px; height:19px; top:8px;}
+  .does-phone .phone-statusbar{padding:11px 18px 3px; font-size:11px;}
+  .does-phone .phone-topbar{padding:9px 14px 12px; gap:8px;}
+  .does-phone .phone-topbar .chevron{font-size:26px;}
+  .does-phone .phone-avatar{width:28px; height:28px; flex-basis:28px; font-size:12px;}
+  .does-phone .phone-contact-name{font-size:14px;}
+  .does-phone .phone-contact-status{font-size:11px;}
+  .does-phone .phone-messages{padding:14px 12px 70px; gap:9px;}
+  .does-phone .bubble{font-size:14px; padding:10px 13px;}
   .does-grid{display:flex; flex-direction:column; gap:14px;}
   .does-card{border:2px solid var(--navy); border-radius:26px; padding:24px;}
   .doesnt-card{background:var(--navy); border-radius:26px; padding:24px; color:var(--dark-body);}
@@ -361,6 +420,16 @@
   }
   .feature-tag:hover{transform:scale(1.05); background:var(--teal-bright); color:var(--teal-deep);}
 
+  /* ===== TEAM ===== */
+  .team{padding:56px 24px 44px;}
+  .team h2{margin:0 0 6px; font-size:31px; line-height:1.1; font-weight:800;}
+  .team p.sub{margin:0 0 22px; font-size:16px; font-weight:500; color:var(--muted-warm-grey);}
+  .team-grid{display:grid; grid-template-columns:1fr 1fr; gap:20px;}
+  .team-member{display:flex; flex-direction:column; align-items:center; text-align:center; gap:8px;}
+  .team-member img{width:64px; height:64px; border-radius:50%; object-fit:cover; display:block;}
+  .team-name{font-size:15px; font-weight:800;}
+  .team-role{font-size:13px; font-weight:600; color:var(--muted-warm-grey);}
+
   /* ===== FINAL CTA ===== */
   .final-cta{background:var(--teal-bright); padding:44px 24px; text-align:center;}
   .final-cta h2{margin:0 0 10px; font-size:34px; line-height:1.08; font-weight:800; color:var(--teal-deep);}
@@ -379,8 +448,6 @@
   .footer-disclaimer{font-size:14px; font-weight:400; line-height:1.5; color:var(--footer-secondary);}
   .footer-copyright{margin-top:10px; font-size:14px; color:var(--footer-copyright);}
   .footer-bottom{padding-top:28px; border-top:1px solid var(--dark-divider); display:flex; justify-content:space-between; align-items:flex-end; gap:28px; flex-wrap:wrap;}
-  .footer-copyright-row{display:flex; align-items:flex-end; gap:20px;}
-  .footer-illustration{width:48px; height:auto; opacity:.16;}
 
   /* ===== DESKTOP (>=1280px) ===== */
   @media (min-width:768px){
@@ -404,7 +471,8 @@
     }
     .hero h1{font-size:72px; line-height:1.0; letter-spacing:-.03em;}
     .hero p.lede{font-size:20px; max-width:520px;}
-    .hero .waitlist-form{flex-direction:row; gap:12px; max-width:540px;}
+    .hero .channel-toggle{max-width:400px;}
+    .hero .waitlist-fields{flex-direction:row; gap:12px; max-width:540px;}
     .hero .field-row{flex:1;}
     .hero .waitlist-input{height:64px; font-size:17px; padding:0 26px;}
     .hero .btn-primary{height:64px; padding:0 30px; font-size:18px; white-space:nowrap;}
@@ -437,10 +505,11 @@
     .who-head{gap:40px;}
     .who h2{font-size:48px; line-height:1.06; letter-spacing:-.02em; max-width:900px; margin-bottom:34px;}
     .who-illustration{width:150px;}
-    .who-list{grid-template-columns:repeat(3, minmax(0,1fr)); column-gap:48px;}
-    .who-list li{font-size:20px; padding:18px 0;}
+    .who-rotor{height:60px; gap:16px; max-width:640px;}
+    .who-dot{width:10px; height:10px;}
+    .who-rotor-item{font-size:26px;}
 
-    .how{padding:84px 64px; border-radius:44px 44px 0 0;}
+    .how{padding:84px 64px 170px; border-radius:44px 44px 0 0;}
     .how h2{font-size:48px; line-height:1.06; letter-spacing:-.02em; margin-bottom:44px;}
     .steps{display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:24px;}
     .step{flex-direction:column; align-items:flex-start; border-radius:30px; padding:34px;}
@@ -449,14 +518,30 @@
     .step-title{font-size:24px; margin-bottom:8px;}
     .step-body{font-size:18px; line-height:1.45;}
 
-    .does{padding:84px 64px;}
-    .does h2{font-size:48px; line-height:1.06; letter-spacing:-.02em; margin-bottom:44px;}
-    .does-grid{display:grid; grid-template-columns:1fr 1fr; gap:24px;}
-    .does-card{border-radius:32px; padding:38px;}
-    .doesnt-card{border-radius:32px; padding:38px;}
+    .does{padding:56px 64px 96px; position:relative;}
+    .does h2{font-size:48px; line-height:1.06; letter-spacing:-.02em; margin-bottom:44px; position:relative; z-index:1;}
+    .does-grid{display:grid; grid-template-columns:1fr 1fr; gap:24px; position:relative;}
+    .does-card{border-radius:32px; padding:38px; position:relative; z-index:1; background:#FBF8F2;}
+    .doesnt-card{border-radius:32px; padding:38px; position:relative; z-index:1;}
     .badge-does, .badge-doesnt{font-size:17px; padding:8px 18px; margin-bottom:22px;}
     .does-list{font-size:19px; gap:14px;}
     .doesnt-note{font-size:19px; margin-top:24px; padding-top:24px;}
+
+    .does-phone-wrap{position:absolute; top:-290px; right:6%; margin:0; z-index:0; display:block;}
+    .does-phone{
+      width:300px; border-radius:46px 46px 0 0; box-shadow:0 24px 52px rgba(20,50,60,.18);
+      -webkit-mask-image:none; mask-image:none;
+    }
+    .does-phone .phone-screen{border-radius:39px 39px 0 0;}
+    .does-phone .dynamic-island{width:78px; height:22px; top:9px;}
+    .does-phone .phone-statusbar{padding:13px 20px 3px; font-size:12px;}
+    .does-phone .phone-topbar{padding:11px 16px 14px; gap:9px;}
+    .does-phone .phone-topbar .chevron{font-size:28px;}
+    .does-phone .phone-avatar{width:32px; height:32px; flex-basis:32px; font-size:13px;}
+    .does-phone .phone-contact-name{font-size:15px;}
+    .does-phone .phone-contact-status{font-size:12px;}
+    .does-phone .phone-messages{padding:16px 13px 76px; gap:10px;}
+    .does-phone .bubble{font-size:15px; padding:11px 14px;}
 
     .features{padding:84px 64px;}
     .features h2{font-size:48px; line-height:1.06; letter-spacing:-.02em; margin-bottom:40px;}
@@ -471,10 +556,19 @@
     .feature-tags{gap:10px;}
     .feature-tag{font-size:14px; padding:6px 14px;}
 
+    .team{padding:110px 64px 90px;}
+    .team h2{font-size:40px; line-height:1.08; letter-spacing:-.02em; margin-bottom:8px;}
+    .team p.sub{font-size:19px; margin-bottom:36px;}
+    .team-grid{grid-template-columns:repeat(4, minmax(0,1fr)); gap:28px;}
+    .team-member img{width:88px; height:88px;}
+    .team-name{font-size:18px;}
+    .team-role{font-size:15px;}
+
     .final-cta{padding:90px 64px;}
     .final-cta h2{font-size:54px; line-height:1.04; letter-spacing:-.02em; margin-bottom:12px;}
     .final-cta p.sub{font-size:20px; margin-bottom:30px;}
-    .final-cta .waitlist-form{flex-direction:row; gap:12px;}
+    .final-cta .channel-toggle{max-width:400px; margin-left:auto; margin-right:auto;}
+    .final-cta .waitlist-fields{flex-direction:row; gap:12px;}
     .final-cta .field-row{flex:1;}
     .final-cta .waitlist-input{height:64px; font-size:17px; padding:0 26px;}
     .final-cta .btn-primary{height:64px; padding:0 30px; font-size:18px; white-space:nowrap;}
@@ -482,7 +576,6 @@
 
     .site-footer{padding:56px 64px;}
     .footer-top{display:grid; grid-template-columns:1.4fr 1fr 1fr 1fr; gap:40px; margin-bottom:42px;}
-    .footer-illustration{width:64px;}
     .footer-brand-name{font-size:21px;}
     .footer-blurb{font-size:16px;}
     .footer-links{display:none;}
@@ -519,15 +612,21 @@
         <h1>Your AI for WhatsApp</h1>
         <p class="lede">Tell Kavedi what it needs to know. It answers the messages you keep answering, and pings you when it can&rsquo;t. Same number you already use.</p>
 
-        <form class="waitlist-form" id="waitlist-form-hero" action="https://formspree.io/f/xzebadda" method="POST" novalidate>
-          <div class="field-row" data-field-row>
-            <label for="hero-email" class="sr-only">Your email address</label>
-            <input type="email" id="hero-email" name="email" class="waitlist-input" placeholder="Your email address" required autocomplete="email">
-            <div class="field-error" data-error hidden><span aria-hidden="true">&#9888;</span><span data-error-text></span></div>
+        <form class="waitlist-form" id="waitlist-form-hero" action="https://formspree.io/f/xzebadda" method="POST" novalidate data-channel="email">
+          <div class="channel-toggle" role="group" aria-label="Contact method">
+            <button type="button" class="channel-btn is-active" data-channel-btn="email" aria-pressed="true">Email</button>
+            <button type="button" class="channel-btn" data-channel-btn="whatsapp" aria-pressed="false">WhatsApp number</button>
           </div>
-          <button type="submit" class="btn-primary" data-submit-btn>
-            <span data-btn-label>Join the waitlist</span>
-          </button>
+          <div class="waitlist-fields">
+            <div class="field-row" data-field-row>
+              <label for="hero-email" class="sr-only" data-field-label>Your email address</label>
+              <input type="email" id="hero-email" name="email" class="waitlist-input" placeholder="Your email address" required autocomplete="email" data-channel-input>
+              <div class="field-error" data-error hidden><span aria-hidden="true">&#9888;</span><span data-error-text></span></div>
+            </div>
+            <button type="submit" class="btn-primary" data-submit-btn>
+              <span data-btn-label>Join the waitlist</span>
+            </button>
+          </div>
         </form>
         <div class="free-setup">Free setup for the first 10 people who sign up.</div>
       </div>
@@ -637,15 +736,18 @@
       <h2 class="reveal">If people message you all day, Kavedi is for you.</h2>
       <img src="assets/illustration-team-assignment.svg" alt="" class="who-illustration">
     </div>
-    <ul class="who-list reveal">
-      <li>Shop owners and online sellers</li>
-      <li>Service providers and freelancers</li>
-      <li>Secretaries and personal assistants</li>
-      <li>School and church admins</li>
-      <li>Group and community admins</li>
-      <li>Event coordinators</li>
-      <li>Sales reps</li>
-    </ul>
+    <div class="who-rotor reveal">
+      <span class="who-dot" aria-hidden="true"></span>
+      <div class="who-rotor-viewport">
+        <div class="who-rotor-item" style="animation-delay:0s;">Shop owners</div>
+        <div class="who-rotor-item" style="animation-delay:-2.2s;">Freelancers</div>
+        <div class="who-rotor-item" style="animation-delay:-4.4s;">Secretaries</div>
+        <div class="who-rotor-item" style="animation-delay:-6.6s;">School &amp; church admins</div>
+        <div class="who-rotor-item" style="animation-delay:-8.8s;">Group admins</div>
+        <div class="who-rotor-item" style="animation-delay:-11s;">Event coordinators</div>
+        <div class="who-rotor-item" style="animation-delay:-13.2s;">Sales reps</div>
+      </div>
+    </div>
   </section>
 
   <!-- ===== HOW IT WORKS ===== -->
@@ -681,6 +783,33 @@
 
   <!-- ===== WHAT IT DOES / DOESN'T ===== -->
   <section class="does" id="what-it-does">
+    <div class="does-phone-wrap">
+      <div class="does-phone">
+        <div class="phone-screen">
+          <div class="dynamic-island" aria-hidden="true"></div>
+          <div class="phone-statusbar">
+            <span>9:41</span>
+            <span class="phone-status-icons" aria-hidden="true">
+              <svg width="18" height="12" viewBox="0 0 18 12" fill="currentColor"><rect x="0" y="8" width="3" height="4" rx="1"></rect><rect x="4.7" y="5.6" width="3" height="6.4" rx="1"></rect><rect x="9.4" y="3" width="3" height="9" rx="1"></rect><rect x="14.1" y="0" width="3" height="12" rx="1"></rect></svg>
+              <svg width="17" height="12" viewBox="0 0 17 12" fill="none" stroke="currentColor" stroke-linecap="round"><path d="M1.2 4.2a11 11 0 0 1 14.6 0" stroke-width="2.1"></path><path d="M4.2 7.5a6.6 6.6 0 0 1 8.6 0" stroke-width="2.1"></path><circle cx="8.5" cy="10.4" r="1.5" fill="currentColor" stroke="none"></circle></svg>
+              <svg width="25" height="12" viewBox="0 0 25 12"><rect x="0.5" y="0.5" width="21" height="11" rx="3.4" fill="none" stroke="currentColor" stroke-width="1" opacity=".4"></rect><rect x="2" y="2" width="18" height="8" rx="2.2" fill="currentColor"></rect><rect x="22.8" y="4.1" width="1.7" height="3.8" rx="0.85" fill="currentColor" opacity=".4"></rect></svg>
+            </span>
+          </div>
+          <div class="phone-topbar">
+            <span class="chevron" aria-hidden="true">&#8249;</span>
+            <span class="phone-avatar">F</span>
+            <div class="phone-contact-info">
+              <span class="phone-contact-name" style="display:block;">Front Desk</span>
+              <span class="phone-contact-status" style="display:block;">online</span>
+            </div>
+          </div>
+          <div class="phone-messages">
+            <div class="bubble in">Is Mr. Adeyemi free Thursday?</div>
+            <div class="bubble out">He has 2pm or 4pm open Thursday. I&rsquo;ve booked you in for 2pm &mdash; you&rsquo;ll get a reminder before.</div>
+          </div>
+        </div>
+      </div>
+    </div>
     <h2 class="reveal">What it does, and what it won&rsquo;t.</h2>
     <div class="does-grid reveal-group">
       <div class="does-card reveal">
@@ -777,19 +906,53 @@
     </div>
   </section>
 
+  <!-- ===== TEAM ===== -->
+  <section class="team reveal-group">
+    <h2 class="reveal">Who&rsquo;s building this</h2>
+    <p class="sub reveal">Four students in Lagos, building this by hand.</p>
+    <div class="team-grid reveal">
+      <div class="team-member">
+        <img src="assets/team-kelvin.png" alt="">
+        <div class="team-name">Kelvin A.</div>
+        <div class="team-role">Lead Developer</div>
+      </div>
+      <div class="team-member">
+        <img src="assets/team-ada.png" alt="">
+        <div class="team-name">Ada D.</div>
+        <div class="team-role">Project management &amp; marketing</div>
+      </div>
+      <div class="team-member">
+        <img src="assets/team-wakil.png" alt="">
+        <div class="team-name">Wakil O.</div>
+        <div class="team-role">Research &amp; web</div>
+      </div>
+      <div class="team-member">
+        <img src="assets/team-chidera.png" alt="">
+        <div class="team-name">Chidera E.</div>
+        <div class="team-role">Marketing strategy &amp; ideation</div>
+      </div>
+    </div>
+  </section>
+
   <!-- ===== FINAL CTA ===== -->
   <section class="final-cta cta-invert reveal-group">
     <h2 class="reveal">Join the waitlist</h2>
     <p class="sub reveal">We&rsquo;re setting up the first ten by hand.</p>
-    <form class="waitlist-form reveal" id="waitlist-form-cta" action="https://formspree.io/f/xzebadda" method="POST" novalidate>
-      <div class="field-row" data-field-row>
-        <label for="cta-email" class="sr-only">Your email address</label>
-        <input type="email" id="cta-email" name="email" class="waitlist-input" placeholder="Your email address" required autocomplete="email">
-        <div class="field-error" data-error hidden><span aria-hidden="true">&#9888;</span><span data-error-text></span></div>
+    <form class="waitlist-form reveal" id="waitlist-form-cta" action="https://formspree.io/f/xzebadda" method="POST" novalidate data-channel="email">
+      <div class="channel-toggle" role="group" aria-label="Contact method">
+        <button type="button" class="channel-btn is-active" data-channel-btn="email" aria-pressed="true">Email</button>
+        <button type="button" class="channel-btn" data-channel-btn="whatsapp" aria-pressed="false">WhatsApp number</button>
       </div>
-      <button type="submit" class="btn-primary" data-submit-btn>
-        <span data-btn-label>Join the waitlist</span>
-      </button>
+      <div class="waitlist-fields">
+        <div class="field-row" data-field-row>
+          <label for="cta-email" class="sr-only" data-field-label>Your email address</label>
+          <input type="email" id="cta-email" name="email" class="waitlist-input" placeholder="Your email address" required autocomplete="email" data-channel-input>
+          <div class="field-error" data-error hidden><span aria-hidden="true">&#9888;</span><span data-error-text></span></div>
+        </div>
+        <button type="submit" class="btn-primary" data-submit-btn>
+          <span data-btn-label>Join the waitlist</span>
+        </button>
+      </div>
     </form>
   </section>
 
@@ -817,7 +980,6 @@
     <div class="footer-cols">
       <div class="col-head">Contact</div>
       <a href="mailto:support@kavedi.com.ng">support@kavedi.com.ng</a>
-      <a href="tel:+2349135000629">+234 913 500 0629</a>
     </div>
   </div>
 
@@ -827,15 +989,11 @@
     <a href="privacy.html">Privacy</a>
     <a href="terms.html">Terms</a>
     <a href="mailto:support@kavedi.com.ng">support@kavedi.com.ng</a>
-    <a href="tel:+2349135000629">+234 913 500 0629</a>
   </div>
 
   <div class="footer-bottom">
     <div class="footer-disclaimer">Kavedi connects to your existing WhatsApp number, like WhatsApp Web. Not affiliated with WhatsApp or Meta.</div>
-    <div class="footer-copyright-row">
-      <div class="footer-copyright">&copy; 2026 Kavedi &middot; Lagos, Nigeria</div>
-      <img src="assets/illustration-mail-sent.svg" alt="" class="footer-illustration">
-    </div>
+    <div class="footer-copyright">&copy; 2026 Kavedi &middot; Lagos, Nigeria</div>
   </div>
 </footer>
 
@@ -941,7 +1099,41 @@
     updateHeaderCondensed();
   }
 
+  // Channel toggle: switch each waitlist form between email and WhatsApp number
+  document.querySelectorAll('.channel-toggle').forEach(function (toggle) {
+    var form = toggle.closest('form');
+    var input = form.querySelector('[data-channel-input]');
+    var label = form.querySelector('[data-field-label]');
+    toggle.querySelectorAll('.channel-btn').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var channel = btn.getAttribute('data-channel-btn');
+        toggle.querySelectorAll('.channel-btn').forEach(function (b) {
+          var active = b === btn;
+          b.classList.toggle('is-active', active);
+          b.setAttribute('aria-pressed', active ? 'true' : 'false');
+        });
+        form.setAttribute('data-channel', channel);
+        clearError(form);
+        input.value = '';
+        if (channel === 'whatsapp') {
+          input.type = 'tel';
+          input.name = 'phone';
+          input.placeholder = 'e.g. 0813 000 0000';
+          input.autocomplete = 'tel';
+          label.textContent = 'Your WhatsApp number';
+        } else {
+          input.type = 'email';
+          input.name = 'email';
+          input.placeholder = 'Your email address';
+          input.autocomplete = 'email';
+          label.textContent = 'Your email address';
+        }
+      });
+    });
+  });
+
   var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  var PHONE_RE = /^\+?[0-9\s-]{7,}$/;
 
   function setError(form, message) {
     var input = form.querySelector('.waitlist-input');
@@ -974,12 +1166,16 @@
   }
 
   function showSuccess(form) {
+    var channel = form.getAttribute('data-channel') || 'email';
+    var message = channel === 'whatsapp'
+      ? 'We&rsquo;ll message you on WhatsApp when it&rsquo;s your turn.'
+      : 'We&rsquo;ll email you when it&rsquo;s your turn &mdash; we&rsquo;re setting up the first ten by hand.';
     var wrap = document.createElement('div');
     wrap.className = 'waitlist-success';
     wrap.innerHTML =
       '<img src="assets/illustration-message-sent.svg" alt="" class="success-illustration">' +
       '<h3>You&rsquo;re on the list</h3>' +
-      '<p>We&rsquo;ll email you when it&rsquo;s your turn &mdash; we&rsquo;re setting up the first ten by hand.</p>';
+      '<p>' + message + '</p>';
     form.replaceWith(wrap);
   }
 
@@ -994,16 +1190,22 @@
   function handleSubmit(e) {
     e.preventDefault();
     var form = e.target;
+    var channel = form.getAttribute('data-channel') || 'email';
     var input = form.querySelector('.waitlist-input');
-    var email = input.value.trim();
+    var value = input.value.trim();
 
     clearError(form);
 
-    if (!email) {
-      setError(form, 'Enter your email address.');
+    if (!value) {
+      setError(form, channel === 'whatsapp' ? 'Enter your WhatsApp number.' : 'Enter your email address.');
       return;
     }
-    if (!EMAIL_RE.test(email)) {
+    if (channel === 'whatsapp') {
+      if (!PHONE_RE.test(value)) {
+        setError(form, 'That doesn’t look like a valid phone number.');
+        return;
+      }
+    } else if (!EMAIL_RE.test(value)) {
       setError(form, 'That doesn’t look like a valid email.');
       return;
     }
