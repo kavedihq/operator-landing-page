@@ -3,23 +3,49 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Kavedi — Your AI for WhatsApp</title>
+<title>Kavedi — Your AI for WhatsApp in Nigeria</title>
+<meta name="description" content="Kavedi is an AI for WhatsApp that replies instantly, sounds like you, and hands off when unsure — built for Nigerian businesses.">
+<link rel="canonical" href="https://kavedi.com.ng/">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="assets/favicon-32x32.png" sizes="32x32" type="image/png">
 <link rel="icon" href="assets/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 
-<meta property="og:title" content="Your AI for WhatsApp">
-<meta property="og:description" content="Tell Kavedi what it needs to know. It answers the messages you keep answering, and pings you when it can't. Same number you already use.">
+<meta property="og:title" content="Kavedi — Your AI for WhatsApp in Nigeria">
+<meta property="og:description" content="Kavedi is an AI for WhatsApp that replies instantly, sounds like you, and hands off when unsure — built for Nigerian businesses.">
 <meta property="og:image" content="https://kavedi.com.ng/assets/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:url" content="https://kavedi.com.ng">
+<meta property="og:url" content="https://kavedi.com.ng/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Kavedi">
+<meta property="og:locale" content="en_NG">
 
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Your AI for WhatsApp">
-<meta name="twitter:description" content="Tell Kavedi what it needs to know. It answers the messages you keep answering, and pings you when it can't. Same number you already use.">
+<meta name="twitter:title" content="Kavedi — Your AI for WhatsApp in Nigeria">
+<meta name="twitter:description" content="Kavedi is an AI for WhatsApp that replies instantly, sounds like you, and hands off when unsure — built for Nigerian businesses.">
 <meta name="twitter:image" content="https://kavedi.com.ng/assets/og.png">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Kavedi",
+  "url": "https://kavedi.com.ng/",
+  "logo": "https://kavedi.com.ng/assets/mark.png",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Lagos",
+    "addressCountry": "NG"
+  },
+  "sameAs": [
+    "https://x.com/kavedihq",
+    "https://instagram.com/kavedihq",
+    "https://github.com/kavedihq",
+    "https://youtube.com/@kavedihq"
+  ]
+}
+</script>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -302,6 +328,7 @@
   .dashboard-head h2{margin:0 0 8px; font-size:31px; line-height:1.1; font-weight:800;}
   .dashboard-head p.sub{margin:0 0 24px; font-size:17px; line-height:1.5; font-weight:400; color:var(--muted-teal-grey);}
   .dashboard-card{background:#fff; border:1px solid var(--border); border-radius:28px; padding:22px;}
+  .dashboard-example{font-size:12px; font-weight:800; letter-spacing:.06em; text-transform:uppercase; color:var(--muted-label-grey); margin-bottom:12px;}
   .dashboard-stats{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:16px;}
   .stat-tile{background:var(--cream); border-radius:18px; padding:16px;}
   .stat-tile.attention{background:var(--notif-bg); border:1px solid var(--notif-border);}
@@ -393,6 +420,45 @@
     100%{opacity:1; transform:scale(1);}
   }
   .doesnt-note{margin-top:18px; padding-top:18px; border-top:2px solid var(--dark-divider); font-size:17px; font-weight:600; line-height:1.5; color:#fff;}
+
+  /* ===== HOW IT CONNECTS ===== */
+  .connects{padding:36px 24px 44px;}
+  .connects h2{margin:0 0 20px; font-size:22px; line-height:1.2; font-weight:800; color:var(--muted-teal-grey);}
+  .connects-list{display:flex; flex-direction:column; gap:16px;}
+  .connects-item{padding-bottom:16px; border-bottom:1px solid var(--message-bar-bg);}
+  .connects-item:last-child{border-bottom:none; padding-bottom:0;}
+  .connects-item h3{margin:0 0 4px; font-size:16px; font-weight:800; color:var(--navy);}
+  .connects-item p{margin:0; font-size:15px; font-weight:500; line-height:1.5; color:var(--muted-warm-grey);}
+
+  /* ===== WHY KAVEDI ===== */
+  .why{padding:56px 24px 44px;}
+  .why h2{margin:0 0 8px; font-size:31px; line-height:1.1; font-weight:800;}
+  .why p.sub{margin:0 0 22px; font-size:16px; font-weight:500; color:var(--muted-warm-grey);}
+  .why-grid{display:flex; flex-direction:column; gap:16px;}
+  .why-card{background:var(--cream); border-radius:20px; padding:22px;}
+  .why-label{font-size:13px; font-weight:800; letter-spacing:.06em; text-transform:uppercase; color:var(--teal); margin-bottom:6px;}
+  .why-card p{margin:0; font-size:16px; font-weight:500; line-height:1.5; color:var(--muted-teal-grey);}
+
+  /* ===== PRICING (HOMEPAGE) ===== */
+  .home-pricing{background:var(--cream); padding:44px 24px 52px;}
+  .home-pricing h2{margin:0 0 6px; font-size:31px; line-height:1.1; font-weight:800;}
+  .home-pricing p.sub{margin:0 0 22px; font-size:16px; font-weight:500; color:var(--muted-warm-grey);}
+  .home-pricing-grid{display:flex; flex-direction:column; gap:16px;}
+  .home-pricing-card{background:#fff; border:2px solid var(--border); border-radius:24px; padding:24px;}
+  .home-pricing-card.pro{background:var(--navy); border:none; color:#fff;}
+  .home-pricing-tier-row{display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:6px;}
+  .home-pricing-tier{font-size:13px; font-weight:800; letter-spacing:.06em; text-transform:uppercase; color:var(--muted-label-grey);}
+  .home-pricing-card.pro .home-pricing-tier{color:#8FC7C2;}
+  .home-pricing-badge{display:none; background:var(--teal-bright); color:var(--teal-deep); font-size:12px; font-weight:800; padding:4px 11px; border-radius:999px; white-space:nowrap;}
+  .home-pricing-price{display:flex; align-items:baseline; gap:6px; margin-bottom:12px;}
+  .home-pricing-price .amount{font-size:30px; font-weight:800;}
+  .home-pricing-price .period{font-size:14px; font-weight:600; color:var(--muted-warm-grey);}
+  .home-pricing-card.pro .home-pricing-price .period{color:var(--footer-secondary);}
+  .home-pricing-list{display:flex; flex-direction:column; gap:8px; font-size:15px; font-weight:600; line-height:1.4;}
+  .home-pricing-list div{display:flex; gap:8px;}
+  .home-pricing-list span.check{color:var(--teal-bright);}
+  .home-pricing-note{margin-top:16px; font-size:14px; font-weight:500; color:var(--muted-warm-grey);}
+  .home-pricing-note a{color:var(--teal); font-weight:700;}
 
   /* ===== FEATURES ===== */
   .features{background:var(--cream); padding:40px 24px;}
@@ -543,6 +609,32 @@
     .does-phone .phone-messages{padding:16px 13px 76px; gap:10px;}
     .does-phone .bubble{font-size:15px; padding:11px 14px;}
 
+    .connects{padding:64px 64px 80px;}
+    .connects h2{font-size:28px; max-width:640px; margin-bottom:36px;}
+    .connects-list{display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:36px 48px; max-width:960px;}
+    .connects-item{border-bottom:none; padding-bottom:0;}
+    .connects-item h3{font-size:18px; margin-bottom:6px;}
+    .connects-item p{font-size:16px; line-height:1.55;}
+
+    .why{padding:90px 64px 70px;}
+    .why h2{font-size:40px; line-height:1.08; letter-spacing:-.02em; max-width:640px;}
+    .why p.sub{font-size:19px; margin-bottom:36px;}
+    .why-grid{display:grid; grid-template-columns:repeat(4, minmax(0,1fr)); gap:24px;}
+    .why-card{border-radius:24px; padding:28px;}
+    .why-label{font-size:14px; margin-bottom:10px;}
+    .why-card p{font-size:17px;}
+
+    .home-pricing{padding:70px 64px 84px;}
+    .home-pricing h2{font-size:40px; line-height:1.08; letter-spacing:-.02em;}
+    .home-pricing p.sub{font-size:19px; margin-bottom:32px;}
+    .home-pricing-grid{display:grid; grid-template-columns:1fr 1fr; gap:24px; max-width:820px;}
+    .home-pricing-card{border-radius:28px; padding:32px;}
+    .home-pricing-badge{display:inline-block;}
+    .home-pricing-price .amount{font-size:36px;}
+    .home-pricing-price .period{font-size:15px;}
+    .home-pricing-list{font-size:16px; gap:10px;}
+    .home-pricing-note{margin-top:20px; font-size:15px;}
+
     .features{padding:84px 64px;}
     .features h2{font-size:48px; line-height:1.06; letter-spacing:-.02em; margin-bottom:40px;}
     .features-grid{display:grid; grid-template-columns:1fr 1fr; gap:24px;}
@@ -589,7 +681,7 @@
 
 <header class="site-header">
   <nav class="nav" aria-label="Primary">
-    <a href="#" class="brand" aria-label="Kavedi home">
+    <a href="/" class="brand" aria-label="Kavedi home">
       <img src="assets/mark.png" alt="Kavedi">
       <span class="brand-text">
         <span class="brand-name">Kavedi</span>
@@ -613,6 +705,7 @@
         <p class="lede">Tell Kavedi what it needs to know. It answers the messages you keep answering, and pings you when it can&rsquo;t. Same number you already use.</p>
 
         <form class="waitlist-form" id="waitlist-form-hero" action="https://formspree.io/f/xzebadda" method="POST" novalidate data-channel="email">
+          <input type="hidden" name="signup_method" value="email" data-channel-method>
           <div class="channel-toggle" role="group" aria-label="Contact method">
             <button type="button" class="channel-btn is-active" data-channel-btn="email" aria-pressed="true">Email</button>
             <button type="button" class="channel-btn" data-channel-btn="whatsapp" aria-pressed="false">WhatsApp number</button>
@@ -624,11 +717,11 @@
               <div class="field-error" data-error hidden><span aria-hidden="true">&#9888;</span><span data-error-text></span></div>
             </div>
             <button type="submit" class="btn-primary" data-submit-btn>
-              <span data-btn-label>Join the waitlist</span>
+              <span data-btn-label>Reserve your spot</span>
             </button>
           </div>
         </form>
-        <div class="free-setup">Free setup for the first 10 people who sign up.</div>
+        <div class="free-setup">The first ten sign-ups get onboarded personally, with Pro free for two months &mdash; everyone else, we&rsquo;ll email you within the week.</div>
       </div>
 
       <div class="hero-visual">
@@ -692,6 +785,7 @@
       <p class="sub">This is the dashboard, not another chat.</p>
     </div>
     <div class="dashboard-card reveal">
+      <div class="dashboard-example">Example day &mdash; not live data</div>
       <div class="dashboard-stats">
         <div class="stat-tile">
           <div class="stat-number" data-count-to="18">0</div>
@@ -703,7 +797,7 @@
         </div>
         <div class="stat-tile">
           <div class="stat-number" data-count-to="5">0</div>
-          <div class="stat-label">New leads</div>
+          <div class="stat-label">New conversations</div>
         </div>
         <div class="stat-tile">
           <div class="stat-number" data-count-to="7">0</div>
@@ -711,7 +805,7 @@
         </div>
       </div>
       <div class="dashboard-activity">
-        <div>Replied to 6 pricing questions</div>
+        <div>Replied to 6 questions on its own</div>
         <div>Flagged 1 conversation for you</div>
       </div>
     </div>
@@ -767,7 +861,7 @@
         <div>
           <div class="step-eyebrow">Step 2</div>
           <div class="step-title">Tell Kavedi what it needs to know</div>
-          <div class="step-body">Products, prices, hours, delivery.</div>
+          <div class="step-body">Prices, times, details &mdash; whatever people keep asking you.</div>
         </div>
       </div>
       <div class="step reveal">
@@ -816,7 +910,7 @@
         <div class="badge-does">It does</div>
         <div class="does-list">
           <div class="row"><i class="row-icon" data-lucide="check" width="20" height="20" stroke-width="2.6"></i><span>Answers the questions you get asked constantly</span></div>
-          <div class="row"><i class="row-icon" data-lucide="check" width="20" height="20" stroke-width="2.6"></i><span>Quotes the prices, times or details you&rsquo;ve given it</span></div>
+          <div class="row"><i class="row-icon" data-lucide="check" width="20" height="20" stroke-width="2.6"></i><span>Quotes the details, prices or times you&rsquo;ve given it</span></div>
           <div class="row"><i class="row-icon" data-lucide="check" width="20" height="20" stroke-width="2.6"></i><span>Says when you&rsquo;re open, closed or away</span></div>
           <div class="row"><i class="row-icon" data-lucide="check" width="20" height="20" stroke-width="2.6"></i><span>Collects the information you need from people</span></div>
         </div>
@@ -824,12 +918,35 @@
       <div class="doesnt-card reveal">
         <div class="badge-doesnt">It doesn&rsquo;t</div>
         <div class="does-list">
-          <div class="row"><i class="row-icon" data-lucide="x" width="20" height="20" stroke-width="2.6"></i><span>Guess a price it wasn&rsquo;t given</span></div>
+          <div class="row"><i class="row-icon" data-lucide="x" width="20" height="20" stroke-width="2.6"></i><span>Guess an answer it wasn&rsquo;t given</span></div>
           <div class="row"><i class="row-icon" data-lucide="x" width="20" height="20" stroke-width="2.6"></i><span>Make promises you didn&rsquo;t authorise</span></div>
           <div class="row"><i class="row-icon" data-lucide="x" width="20" height="20" stroke-width="2.6"></i><span>Pretend to be you</span></div>
           <div class="row"><i class="row-icon" data-lucide="x" width="20" height="20" stroke-width="2.6"></i><span>Hide a conversation from you</span></div>
         </div>
         <div class="doesnt-note">Not sure? It flags the chat and you take over in one tap.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== HOW IT CONNECTS ===== -->
+  <section class="connects reveal-group">
+    <h2 class="reveal">What connecting actually means.</h2>
+    <div class="connects-list">
+      <div class="connects-item reveal">
+        <h3>Same number, nothing moves</h3>
+        <p>Kavedi connects to the WhatsApp number you already use, like WhatsApp Web. Your chats stay right where they are.</p>
+      </div>
+      <div class="connects-item reveal">
+        <h3>You see everything, always</h3>
+        <p>Every conversation shows up in your dashboard, and you can take over any chat in one tap. Nothing is hidden from you.</p>
+      </div>
+      <div class="connects-item reveal">
+        <h3>No person is reading your chats</h3>
+        <p>Replies are written by the AI. Our team only opens a conversation if you ask for help, or if something breaks.</p>
+      </div>
+      <div class="connects-item reveal">
+        <h3>Leave whenever</h3>
+        <p>Disconnect any time and Kavedi stops replying immediately. No lock-in, no contract.</p>
       </div>
     </div>
   </section>
@@ -891,6 +1008,62 @@
     </div>
   </section>
 
+  <!-- ===== WHY KAVEDI ===== -->
+  <section class="why reveal-group">
+    <h2 class="reveal">Why Kavedi</h2>
+    <p class="sub reveal">Four things that are true about us and nobody else.</p>
+    <div class="why-grid">
+      <div class="why-card reveal">
+        <div class="why-label">No paperwork</div>
+        <p>A phone number and a pairing code. No Facebook account, no business registration, no verification queue.</p>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-label">Runs on our servers</div>
+        <p>Always on, without a laptop that has to stay open. Everything runs from your phone.</p>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-label">Flat naira pricing</div>
+        <p>No platform fee stacked on a per-message charge, no dollar billing that changes every month. One number, in naira.</p>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-label">Set up by hand</div>
+        <p>A real person from our team gets you connected &mdash; not a support ticket in a queue.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PRICING (HOMEPAGE) ===== -->
+  <section class="home-pricing reveal-group">
+    <h2 class="reveal">Pricing</h2>
+    <p class="sub reveal">Two plans, flat naira, no per-message charges.</p>
+    <div class="home-pricing-grid">
+      <div class="home-pricing-card reveal">
+        <div class="home-pricing-tier">Free</div>
+        <div class="home-pricing-price"><span class="amount">&#8358;0</span><span class="period">/month</span></div>
+        <div class="home-pricing-list">
+          <div><span class="check">&#10003;</span><span>1 connected number</span></div>
+          <div><span class="check">&#10003;</span><span>150 AI credits/month</span></div>
+          <div><span class="check">&#10003;</span><span>Human handoff &amp; alerts</span></div>
+          <div><span class="check">&#10003;</span><span>Dashboard</span></div>
+        </div>
+      </div>
+      <div class="home-pricing-card pro reveal">
+        <div class="home-pricing-tier-row">
+          <div class="home-pricing-tier">Pro</div>
+          <span class="home-pricing-badge">Most solo operators</span>
+        </div>
+        <div class="home-pricing-price"><span class="amount">~&#8358;2,500</span><span class="period">/month</span></div>
+        <div class="home-pricing-list">
+          <div><span class="check">&#10003;</span><span>Everything in Free, more credits</span></div>
+          <div><span class="check">&#10003;</span><span>Appointment booking</span></div>
+          <div><span class="check">&#10003;</span><span>Shared team inbox</span></div>
+          <div><span class="check">&#10003;</span><span>Free setup</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="home-pricing-note reveal">Prices and credit limits are indicative &mdash; not final. <a href="/pricing">See full pricing &rarr;</a></div>
+  </section>
+
   <!-- ===== TEAM ===== -->
   <section class="team reveal-group">
     <h2 class="reveal">Who&rsquo;s building this</h2>
@@ -922,8 +1095,9 @@
   <!-- ===== FINAL CTA ===== -->
   <section class="final-cta cta-invert reveal-group">
     <h2 class="reveal">Join the waitlist</h2>
-    <p class="sub reveal">We&rsquo;re setting up the first ten by hand.</p>
+    <p class="sub reveal">The first ten sign-ups get onboarded personally, with Pro free for two months &mdash; everyone else, we&rsquo;ll email you within the week.</p>
     <form class="waitlist-form reveal" id="waitlist-form-cta" action="https://formspree.io/f/xzebadda" method="POST" novalidate data-channel="email">
+      <input type="hidden" name="signup_method" value="email" data-channel-method>
       <div class="channel-toggle" role="group" aria-label="Contact method">
         <button type="button" class="channel-btn is-active" data-channel-btn="email" aria-pressed="true">Email</button>
         <button type="button" class="channel-btn" data-channel-btn="whatsapp" aria-pressed="false">WhatsApp number</button>
@@ -935,7 +1109,7 @@
           <div class="field-error" data-error hidden><span aria-hidden="true">&#9888;</span><span data-error-text></span></div>
         </div>
         <button type="submit" class="btn-primary" data-submit-btn>
-          <span data-btn-label>Join the waitlist</span>
+          <span data-btn-label>Claim your spot</span>
         </button>
       </div>
     </form>
@@ -955,12 +1129,12 @@
     <div class="footer-cols">
       <div class="col-head">Product</div>
       <a href="#how-it-works">How it works</a>
-      <a href="pricing.html">Pricing</a>
+      <a href="/pricing">Pricing</a>
     </div>
     <div class="footer-cols">
       <div class="col-head">Company</div>
-      <a href="privacy.html">Privacy</a>
-      <a href="terms.html">Terms</a>
+      <a href="/privacy">Privacy</a>
+      <a href="/terms">Terms</a>
     </div>
     <div class="footer-cols">
       <div class="col-head">Contact</div>
@@ -970,9 +1144,9 @@
 
   <div class="footer-links">
     <a href="#how-it-works">How it works</a>
-    <a href="pricing.html">Pricing</a>
-    <a href="privacy.html">Privacy</a>
-    <a href="terms.html">Terms</a>
+    <a href="/pricing">Pricing</a>
+    <a href="/privacy">Privacy</a>
+    <a href="/terms">Terms</a>
     <a href="mailto:support@kavedi.com.ng">support@kavedi.com.ng</a>
   </div>
 
@@ -981,10 +1155,10 @@
     <div class="footer-meta">
       <div class="footer-copyright">&copy; 2026 Kavedi &middot; Lagos, Nigeria</div>
       <div class="footer-social">
-        <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.2" cy="6.8" r="1" fill="currentColor" stroke="none"></circle></svg></a>
-        <a href="#" aria-label="X"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.9 2H22l-7.6 8.7L23 22h-6.6l-5.2-6.8L5 22H2l8.1-9.3L1.6 2h6.7l4.7 6.2L18.9 2Zm-2.3 18h1.8L7.5 4H5.6l11 16Z"></path></svg></a>
-        <a href="#" aria-label="GitHub"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5a11.5 11.5 0 0 0-3.64 22.42c.58.1.79-.25.79-.56v-2.1c-3.2.7-3.88-1.36-3.88-1.36-.53-1.33-1.28-1.68-1.28-1.68-1.05-.7.08-.69.08-.69 1.16.08 1.77 1.19 1.77 1.19 1.03 1.75 2.7 1.25 3.36.96.1-.74.4-1.25.72-1.54-2.55-.29-5.23-1.27-5.23-5.65 0-1.25.44-2.27 1.18-3.07-.12-.29-.51-1.46.11-3.04 0 0 .97-.31 3.18 1.18a11.1 11.1 0 0 1 5.8 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.58.24 2.75.12 3.04.74.8 1.18 1.82 1.18 3.07 0 4.39-2.69 5.36-5.25 5.64.42.36.78 1.07.78 2.16v3.2c0 .32.21.66.8.56A11.5 11.5 0 0 0 12 .5Z"></path></svg></a>
-        <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.9a3 3 0 0 0-2.1-2.1C19.4 4.3 12 4.3 12 4.3s-7.4 0-9.4.5A3 3 0 0 0 .5 6.9 31.6 31.6 0 0 0 0 12a31.6 31.6 0 0 0 .5 5.1 3 3 0 0 0 2.1 2.1c2 .5 9.4.5 9.4.5s7.4 0 9.4-.5a3 3 0 0 0 2.1-2.1A31.6 31.6 0 0 0 24 12a31.6 31.6 0 0 0-.5-5.1ZM9.6 15.5V8.5l6.3 3.5-6.3 3.5Z"></path></svg></a>
+        <a href="https://instagram.com/kavedihq" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.2" cy="6.8" r="1" fill="currentColor" stroke="none"></circle></svg></a>
+        <a href="https://x.com/kavedihq" target="_blank" rel="noopener" aria-label="X"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.9 2H22l-7.6 8.7L23 22h-6.6l-5.2-6.8L5 22H2l8.1-9.3L1.6 2h6.7l4.7 6.2L18.9 2Zm-2.3 18h1.8L7.5 4H5.6l11 16Z"></path></svg></a>
+        <a href="https://github.com/kavedihq" target="_blank" rel="noopener" aria-label="GitHub"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5a11.5 11.5 0 0 0-3.64 22.42c.58.1.79-.25.79-.56v-2.1c-3.2.7-3.88-1.36-3.88-1.36-.53-1.33-1.28-1.68-1.28-1.68-1.05-.7.08-.69.08-.69 1.16.08 1.77 1.19 1.77 1.19 1.03 1.75 2.7 1.25 3.36.96.1-.74.4-1.25.72-1.54-2.55-.29-5.23-1.27-5.23-5.65 0-1.25.44-2.27 1.18-3.07-.12-.29-.51-1.46.11-3.04 0 0 .97-.31 3.18 1.18a11.1 11.1 0 0 1 5.8 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.58.24 2.75.12 3.04.74.8 1.18 1.82 1.18 3.07 0 4.39-2.69 5.36-5.25 5.64.42.36.78 1.07.78 2.16v3.2c0 .32.21.66.8.56A11.5 11.5 0 0 0 12 .5Z"></path></svg></a>
+        <a href="https://youtube.com/@kavedihq" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.9a3 3 0 0 0-2.1-2.1C19.4 4.3 12 4.3 12 4.3s-7.4 0-9.4.5A3 3 0 0 0 .5 6.9 31.6 31.6 0 0 0 0 12a31.6 31.6 0 0 0 .5 5.1 3 3 0 0 0 2.1 2.1c2 .5 9.4.5 9.4.5s7.4 0 9.4-.5a3 3 0 0 0 2.1-2.1A31.6 31.6 0 0 0 24 12a31.6 31.6 0 0 0-.5-5.1ZM9.6 15.5V8.5l6.3 3.5-6.3 3.5Z"></path></svg></a>
       </div>
     </div>
   </div>
@@ -1097,6 +1271,7 @@
     var form = toggle.closest('form');
     var input = form.querySelector('[data-channel-input]');
     var label = form.querySelector('[data-field-label]');
+    var methodField = form.querySelector('[data-channel-method]');
     toggle.querySelectorAll('.channel-btn').forEach(function (btn) {
       btn.addEventListener('click', function () {
         var channel = btn.getAttribute('data-channel-btn');
@@ -1106,6 +1281,7 @@
           b.setAttribute('aria-pressed', active ? 'true' : 'false');
         });
         form.setAttribute('data-channel', channel);
+        if (methodField) methodField.value = channel;
         clearError(form);
         input.value = '';
         if (channel === 'whatsapp') {

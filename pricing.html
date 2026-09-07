@@ -3,12 +3,32 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pricing — Kavedi</title>
+<title>Pricing — Kavedi | Flat Naira Plans for WhatsApp AI</title>
+<meta name="description" content="Kavedi pricing: a free plan to try it, and Pro at ~₦2,500/month. Flat naira pricing, no per-message charges, no surprise bills.">
+<link rel="canonical" href="https://kavedi.com.ng/pricing">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="assets/favicon-32x32.png" sizes="32x32" type="image/png">
 <link rel="icon" href="assets/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+
+<meta property="og:title" content="Pricing — Kavedi">
+<meta property="og:description" content="A free plan to try it, and Pro at ~₦2,500/month. Flat naira pricing, no per-message charges, no surprise bills.">
+<meta property="og:image" content="https://kavedi.com.ng/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:url" content="https://kavedi.com.ng/pricing">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Kavedi">
+<meta property="og:locale" content="en_NG">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Pricing — Kavedi">
+<meta name="twitter:description" content="A free plan to try it, and Pro at ~₦2,500/month. Flat naira pricing, no per-message charges, no surprise bills.">
+<meta name="twitter:image" content="https://kavedi.com.ng/assets/og.png">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root{
     --navy:#14323C;
@@ -28,9 +48,9 @@
     --divider:#EFEBE2;
     --muted-label-grey:#8A8478;
     --dark-body:#E4EEF0;
+    --dark-divider:#2C5A66;
     --footer-secondary:#A9C2C8;
     --footer-copyright:#7E9AA1;
-    --footer-badge-text:#7FD9CE;
   }
   *{box-sizing:border-box;}
   html,body{margin:0;padding:0;}
@@ -62,25 +82,67 @@
   .brand img{width:36px; height:36px; display:block;}
   .brand-name{font-size:22px; font-weight:800; letter-spacing:-.01em; color:var(--navy);}
   .nav-links{display:flex; align-items:center; gap:24px; font-size:16px; font-weight:700; flex-wrap:wrap;}
+  .nav-links a.is-active{color:var(--teal);}
 
   /* ===== MAIN ===== */
-  main{flex:1; padding:64px 24px 90px; display:flex; justify-content:center;}
+  main{flex:1; padding:56px 24px 90px; display:flex; justify-content:center;}
   .pricing-inner{
-    max-width:640px; width:100%; display:flex; flex-direction:column;
-    align-items:center; text-align:center; gap:22px;
+    max-width:900px; width:100%; display:flex; flex-direction:column;
+    align-items:center; text-align:center; gap:16px;
   }
   .pricing-inner h1{
-    margin:0; font-size:clamp(38px, 7vw, 64px); line-height:1.04; font-weight:800; letter-spacing:-.02em;
+    margin:0; font-size:clamp(38px, 7vw, 60px); line-height:1.04; font-weight:800; letter-spacing:-.02em;
   }
   .pricing-inner p.lede{
-    margin:0; max-width:480px; font-size:19px; line-height:1.5; font-weight:500; color:var(--muted-teal-grey);
+    margin:0; max-width:560px; font-size:18px; line-height:1.5; font-weight:500; color:var(--muted-teal-grey);
   }
-  .pricing-card{
-    width:100%; background:#fff; border:1px solid var(--border); border-radius:28px;
-    padding:36px 32px; margin-top:14px; text-align:left; display:flex; flex-direction:column; gap:14px;
+  .pricing-notice{
+    width:100%; max-width:640px; background:#fff; border:1px solid var(--border); border-radius:20px;
+    padding:16px 22px; margin-top:10px; text-align:center; font-size:15px; font-weight:600; line-height:1.5;
+    color:var(--muted-warm-grey);
   }
-  .pricing-card p{margin:0; font-size:17px; line-height:1.6; font-weight:500; color:var(--muted-teal-grey);}
-  .pricing-card p.emphasis{font-weight:600; color:var(--navy);}
+
+  /* ===== TIER GRID ===== */
+  .tier-grid{
+    width:100%; display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));
+    gap:20px; margin-top:28px;
+  }
+  .tier-card{
+    background:#fff; border:2px solid var(--border); border-radius:28px; padding:32px 28px;
+    display:flex; flex-direction:column; gap:18px; text-align:left; position:relative;
+  }
+  .tier-card.pro{background:var(--navy); border:none; color:#fff;}
+  .tier-badge{
+    position:absolute; top:26px; right:28px; background:var(--teal-bright); color:var(--teal-deep);
+    font-size:13px; font-weight:800; padding:5px 12px; border-radius:999px;
+  }
+  .tier-name{font-size:15px; font-weight:800; letter-spacing:.06em; text-transform:uppercase; color:var(--muted-label-grey); margin-bottom:8px;}
+  .tier-card.pro .tier-name{color:#8FC7C2;}
+  .tier-price{display:flex; align-items:baseline; gap:6px;}
+  .tier-price .amount{font-size:40px; font-weight:800; letter-spacing:-.02em;}
+  .tier-price .period{font-size:16px; font-weight:600; color:var(--muted-warm-grey);}
+  .tier-card.pro .tier-price .period{color:var(--footer-secondary);}
+  .tier-card p.tier-desc{margin:8px 0 0; font-size:16px; font-weight:500; line-height:1.5; color:var(--muted-teal-grey);}
+  .tier-card.pro p.tier-desc{color:#C9D8DB;}
+  .tier-list{
+    display:flex; flex-direction:column; gap:10px; font-size:16px; font-weight:600; line-height:1.4;
+    padding-top:6px; border-top:1px solid var(--divider);
+  }
+  .tier-card.pro .tier-list{border-top-color:var(--dark-divider);}
+  .tier-list div{display:flex; gap:10px;}
+  .tier-list span.check{color:var(--teal-bright); flex:0 0 auto;}
+  .tier-note{width:100%; max-width:640px; margin-top:8px; font-size:14px; font-weight:500; line-height:1.5; color:var(--muted-warm-grey); text-align:center;}
+
+  /* ===== CHANNEL TOGGLE ===== */
+  .channel-toggle{display:flex; gap:8px; margin-bottom:10px; width:100%; max-width:440px;}
+  .channel-btn{
+    flex:1; height:44px; border-radius:999px; border:2px solid var(--border);
+    background:#fff; color:var(--muted-warm-grey); font-family:'Nunito', sans-serif;
+    font-size:14px; font-weight:800; cursor:pointer; white-space:nowrap;
+    transition:background .15s ease, border-color .15s ease, color .15s ease;
+  }
+  .channel-btn.is-active{background:var(--navy); border-color:var(--navy); color:#fff;}
+  .channel-btn:focus-visible{outline:none; box-shadow:0 0 0 2px var(--cream), 0 0 0 5px var(--teal);}
 
   /* ===== BUTTONS ===== */
   .btn-primary{
@@ -98,7 +160,7 @@
   }
 
   /* ===== WAITLIST FORM ===== */
-  .waitlist-form{width:100%; max-width:440px; display:flex; flex-direction:column; gap:10px; margin-top:8px;}
+  .waitlist-form{width:100%; max-width:440px; display:flex; flex-direction:column; gap:10px; margin-top:20px;}
   .waitlist-input{
     width:100%; height:60px; box-sizing:border-box; padding:0 22px;
     font-family:'Nunito', sans-serif; font-size:16px; font-weight:600; color:var(--navy);
@@ -115,11 +177,11 @@
   .form-note{margin-top:2px; font-size:15px; font-weight:600; color:var(--muted-warm-grey); text-align:center;}
 
   .waitlist-success{
-    width:100%; max-width:440px; background:var(--cream); border:1px solid var(--border);
-    border-radius:20px; padding:30px 26px; margin-top:8px; display:flex; flex-direction:column;
+    width:100%; max-width:440px; background:#fff; border:1px solid var(--border);
+    border-radius:20px; padding:30px 26px; margin-top:20px; display:flex; flex-direction:column;
     align-items:center; gap:12px;
   }
-  .waitlist-success .check{
+  .waitlist-success .check-badge{
     width:52px; height:52px; border-radius:999px; background:var(--teal-bright);
     display:flex; align-items:center; justify-content:center; color:var(--teal-deep);
     font-size:26px; font-weight:800;
@@ -137,41 +199,87 @@
   .footer-links a{color:#fff;}
   .footer-disclaimer{font-size:14px; font-weight:400; line-height:1.5; color:var(--footer-secondary); max-width:640px;}
   .footer-copyright{font-size:14px; color:var(--footer-copyright);}
+
+  @media (min-width:768px){
+    .site-header{padding:20px 64px;}
+    main{padding:80px 64px 110px;}
+    .site-footer{padding:44px 64px;}
+  }
 </style>
 </head>
 <body>
 
 <header class="site-header">
-  <a href="index.html" class="brand" aria-label="Kavedi home">
+  <a href="/" class="brand" aria-label="Kavedi home">
     <img src="assets/mark.png" alt="Kavedi">
     <span class="brand-name">Kavedi</span>
   </a>
   <nav class="nav-links" aria-label="Primary">
-    <a href="index.html#how-it-works">How it works</a>
-    <a href="pricing.html">Pricing</a>
-    <a href="privacy.html">Privacy</a>
-    <a href="terms.html">Terms</a>
+    <a href="/#how-it-works">How it works</a>
+    <a href="/pricing" class="is-active">Pricing</a>
+    <a href="/privacy">Privacy</a>
+    <a href="/terms">Terms</a>
   </nav>
 </header>
 
 <main>
   <div class="pricing-inner">
-    <h1>Pricing</h1>
-    <p class="lede">We&rsquo;re still finalizing pricing.</p>
+    <h1>Simple, flat pricing.</h1>
+    <p class="lede">One price a month. No per-message charges, no surprise bills &mdash; ever.</p>
 
-    <div class="pricing-card">
-      <p>Kavedi is pre-launch &mdash; we&rsquo;re setting up the first users by hand and haven&rsquo;t locked plans or numbers yet. When pricing is ready, everyone on the waitlist hears about it first.</p>
-      <p class="emphasis">The first 10 people who join get free setup, whatever pricing ends up looking like.</p>
+    <div class="pricing-notice">Kavedi is pre-launch &mdash; plans, prices and credit allowances are indicative, not final. The first ten sign-ups get onboarded personally, with Pro free for two months &mdash; everyone else, we&rsquo;ll email you within the week.</div>
+
+    <div class="tier-grid">
+      <div class="tier-card">
+        <div>
+          <div class="tier-name">Free</div>
+          <div class="tier-price"><span class="amount">&#8358;0</span><span class="period">/month</span></div>
+          <p class="tier-desc">Everything you need to try it properly and decide for yourself.</p>
+        </div>
+        <div class="tier-list">
+          <div><span class="check">&#10003;</span><span>1 connected WhatsApp number</span></div>
+          <div><span class="check">&#10003;</span><span>Teach it what it needs to know</span></div>
+          <div><span class="check">&#10003;</span><span>150 AI credits / month</span></div>
+          <div><span class="check">&#10003;</span><span>Human handoff &amp; &ldquo;needs your attention&rdquo; flag</span></div>
+          <div><span class="check">&#10003;</span><span>Dashboard</span></div>
+          <div><span class="check">&#10003;</span><span>1 user</span></div>
+        </div>
+      </div>
+
+      <div class="tier-card pro">
+        <div class="tier-badge">Most solo operators</div>
+        <div>
+          <div class="tier-name">Pro</div>
+          <div class="tier-price"><span class="amount">~&#8358;2,500</span><span class="period">/month</span></div>
+          <p class="tier-desc">For when Kavedi is doing real work every day.</p>
+        </div>
+        <div class="tier-list">
+          <div><span class="check">&#10003;</span><span>Everything in Free</span></div>
+          <div><span class="check">&#10003;</span><span>2,000 AI credits / month</span></div>
+          <div><span class="check">&#10003;</span><span>Appointment booking</span></div>
+          <div><span class="check">&#10003;</span><span>Scheduled follow-ups &amp; reminders</span></div>
+          <div><span class="check">&#10003;</span><span>Shared team inbox &mdash; more than one person on one number</span></div>
+          <div><span class="check">&#10003;</span><span>Priority support</span></div>
+          <div><span class="check">&#10003;</span><span>Free setup</span></div>
+        </div>
+      </div>
     </div>
 
-    <form class="waitlist-form" id="waitlist-form-pricing" action="https://formspree.io/f/xzebadda" method="POST" novalidate>
-      <label for="pricing-email" class="sr-only">Your email address</label>
-      <input type="email" id="pricing-email" name="email" class="waitlist-input" placeholder="Your email address" required autocomplete="email">
+    <div class="tier-note">An AI credit is roughly one AI reply. No platform fee plus per-message charges stacked on top &mdash; just one flat number.</div>
+
+    <form class="waitlist-form" id="waitlist-form-pricing" action="https://formspree.io/f/xzebadda" method="POST" novalidate data-channel="email">
+      <input type="hidden" name="signup_method" value="email" data-channel-method>
+      <div class="channel-toggle" role="group" aria-label="Contact method">
+        <button type="button" class="channel-btn is-active" data-channel-btn="email" aria-pressed="true">Email</button>
+        <button type="button" class="channel-btn" data-channel-btn="whatsapp" aria-pressed="false">WhatsApp number</button>
+      </div>
+      <label for="pricing-email" class="sr-only" data-field-label>Your email address</label>
+      <input type="email" id="pricing-email" name="email" class="waitlist-input" placeholder="Your email address" required autocomplete="email" data-channel-input>
       <div class="field-error" data-error hidden><span aria-hidden="true">&#9888;</span><span data-error-text></span></div>
       <button type="submit" class="btn-primary" data-submit-btn>
-        <span data-btn-label>Join the waitlist</span>
+        <span data-btn-label>Reserve your spot</span>
       </button>
-      <div class="form-note">Join the waitlist for early access and pricing news.</div>
+      <div class="form-note">Both plans are waitlist-only for now. Join to get early access.</div>
     </form>
   </div>
 </main>
@@ -183,10 +291,10 @@
       <span class="footer-brand-name">Kavedi</span>
     </div>
     <div class="footer-links">
-      <a href="index.html#how-it-works">How it works</a>
-      <a href="pricing.html">Pricing</a>
-      <a href="privacy.html">Privacy</a>
-      <a href="terms.html">Terms</a>
+      <a href="/#how-it-works">How it works</a>
+      <a href="/pricing">Pricing</a>
+      <a href="/privacy">Privacy</a>
+      <a href="/terms">Terms</a>
       <a href="mailto:support@kavedi.com.ng">support@kavedi.com.ng</a>
     </div>
     <div class="footer-disclaimer">Kavedi connects to your existing WhatsApp number, like WhatsApp Web. Not affiliated with WhatsApp or Meta.</div>
@@ -196,7 +304,41 @@
 
 <script>
   var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  var PHONE_RE = /^\+?[0-9\s-]{7,}$/;
   var form = document.getElementById('waitlist-form-pricing');
+
+  // Channel toggle: switch between email and WhatsApp number
+  var toggle = form.querySelector('.channel-toggle');
+  var channelInput = form.querySelector('[data-channel-input]');
+  var channelLabel = form.querySelector('[data-field-label]');
+  var methodField = form.querySelector('[data-channel-method]');
+  toggle.querySelectorAll('.channel-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var channel = btn.getAttribute('data-channel-btn');
+      toggle.querySelectorAll('.channel-btn').forEach(function (b) {
+        var active = b === btn;
+        b.classList.toggle('is-active', active);
+        b.setAttribute('aria-pressed', active ? 'true' : 'false');
+      });
+      form.setAttribute('data-channel', channel);
+      if (methodField) methodField.value = channel;
+      clearError();
+      channelInput.value = '';
+      if (channel === 'whatsapp') {
+        channelInput.type = 'tel';
+        channelInput.name = 'phone';
+        channelInput.placeholder = 'e.g. 0813 000 0000';
+        channelInput.autocomplete = 'tel';
+        channelLabel.textContent = 'Your WhatsApp number';
+      } else {
+        channelInput.type = 'email';
+        channelInput.name = 'email';
+        channelInput.placeholder = 'Your email address';
+        channelInput.autocomplete = 'email';
+        channelLabel.textContent = 'Your email address';
+      }
+    });
+  });
 
   function setError(message) {
     var input = form.querySelector('.waitlist-input');
@@ -226,12 +368,16 @@
   }
 
   function showSuccess() {
+    var channel = form.getAttribute('data-channel') || 'email';
+    var message = channel === 'whatsapp'
+      ? 'We&rsquo;ll message you on WhatsApp when it&rsquo;s your turn &mdash; and when pricing is live.'
+      : 'We&rsquo;ll email you when it&rsquo;s your turn &mdash; and when pricing is live.';
     var wrap = document.createElement('div');
     wrap.className = 'waitlist-success';
     wrap.innerHTML =
-      '<div class="check" aria-hidden="true">&#10003;</div>' +
+      '<div class="check-badge" aria-hidden="true">&#10003;</div>' +
       '<h2>You&rsquo;re on the list</h2>' +
-      '<p>We&rsquo;ll email you when it&rsquo;s your turn &mdash; and when pricing is live.</p>';
+      '<p>' + message + '</p>';
     form.replaceWith(wrap);
   }
 
@@ -246,16 +392,22 @@
 
   form.addEventListener('submit', function (e) {
     e.preventDefault();
+    var channel = form.getAttribute('data-channel') || 'email';
     var input = form.querySelector('.waitlist-input');
-    var email = input.value.trim();
+    var value = input.value.trim();
 
     clearError();
 
-    if (!email) {
-      setError('Enter your email address.');
+    if (!value) {
+      setError(channel === 'whatsapp' ? 'Enter your WhatsApp number.' : 'Enter your email address.');
       return;
     }
-    if (!EMAIL_RE.test(email)) {
+    if (channel === 'whatsapp') {
+      if (!PHONE_RE.test(value)) {
+        setError('That doesn’t look like a valid phone number.');
+        return;
+      }
+    } else if (!EMAIL_RE.test(value)) {
       setError('That doesn’t look like a valid email.');
       return;
     }
