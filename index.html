@@ -49,8 +49,8 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
-<script src="https://unpkg.com/lucide@latest"></script>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root{
     --navy:#14323C;
@@ -97,8 +97,10 @@
   }
   a{color:var(--navy); text-decoration:none; transition:color .15s ease;}
   a:hover{color:var(--teal);}
+  a:focus-visible{outline:2px solid var(--teal); outline-offset:2px; border-radius:2px;}
   input::placeholder{color:var(--placeholder-grey);}
   img{max-width:100%;}
+  picture{display:contents;}
   .sr-only{
     position:absolute; width:1px; height:1px; padding:0; margin:-1px;
     overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;
@@ -124,7 +126,20 @@
     color:var(--navy); transition:font-size .2s ease;
   }
   .site-header.is-condensed .brand-name{font-size:19px;}
-  .nav-links{display:none;}
+  .nav-right{display:flex; align-items:center; gap:20px;}
+  .nav-links{display:flex; align-items:center; gap:24px; font-size:16px; font-weight:700;}
+  .nav-links a.is-active{color:var(--teal);}
+  @media (max-width:560px){
+    .nav-links{display:none;}
+  }
+  .nav-cta{
+    height:40px; padding:0 18px; border-radius:999px; background:var(--teal);
+    color:#fff; font-family:'Nunito', sans-serif; font-size:14px; font-weight:800;
+    white-space:nowrap; display:flex; align-items:center; justify-content:center;
+    transition:background .18s ease; text-decoration:none;
+  }
+  .nav-cta:hover{background:var(--navy); color:#fff;}
+  .nav-cta:focus-visible{outline:none; box-shadow:0 0 0 2px var(--cream), 0 0 0 5px var(--teal);}
 
   /* ===== BUTTONS ===== */
   .btn-primary{
@@ -371,7 +386,7 @@
     flex:0 0 52px; width:52px; height:52px; border-radius:999px; background:var(--teal-bright);
     display:flex; align-items:center; justify-content:center;
   }
-  .step-icon i{color:var(--teal-deep); display:block;}
+  .step-icon svg{color:var(--teal-deep); display:block;}
   .step-eyebrow{font-size:12px; font-weight:800; letter-spacing:.08em; text-transform:uppercase; color:var(--muted-label-grey); margin-bottom:3px;}
   .step-title{font-size:19px; font-weight:800; line-height:1.2;}
   .step-body{font-size:16px; font-weight:500; line-height:1.4; color:var(--muted-teal-grey);}
@@ -409,9 +424,9 @@
   }
   .does-list{display:flex; flex-direction:column; gap:11px; font-size:17px; font-weight:600; line-height:1.4;}
   .does-list .row{display:flex; gap:11px; align-items:flex-start;}
-  .does-list .row i{flex:0 0 20px; margin-top:2px;}
-  .does-card .row i{color:var(--teal-bright);}
-  .doesnt-card .row i{color:var(--doesnt-icon);}
+  .does-list .row svg{flex:0 0 20px; margin-top:2px;}
+  .does-card .row svg{color:var(--teal-bright);}
+  .doesnt-card .row svg{color:var(--doesnt-icon);}
   .row-icon{opacity:0; transform:scale(.5);}
   .row-icon.is-visible{animation:iconBounce .5s cubic-bezier(.34,1.56,.64,1) forwards;}
   @keyframes iconBounce{
@@ -529,7 +544,8 @@
 
   @media (min-width:1280px){
     .nav{padding:24px 64px;}
-    .nav-links{display:flex; align-items:center; gap:32px; font-size:17px; font-weight:700;}
+    .nav-links{gap:32px; font-size:17px;}
+    .nav-cta{height:50px; padding:0 26px; font-size:17px;}
     .brand-name{font-size:25px;}
 
     .hero-inner{
@@ -682,15 +698,20 @@
 <header class="site-header">
   <nav class="nav" aria-label="Primary">
     <a href="/" class="brand" aria-label="Kavedi home">
-      <img src="assets/mark.png" alt="Kavedi">
+      <picture>
+        <source srcset="assets/mark.webp" type="image/webp">
+        <img src="assets/mark.png" alt="Kavedi" width="38" height="38">
+      </picture>
       <span class="brand-text">
         <span class="brand-name">Kavedi</span>
       </span>
     </a>
-    <div class="nav-links">
-      <a href="#how-it-works">How it works</a>
-      <a href="#what-it-does">What it does</a>
-      <button type="button" class="btn-primary" onclick="document.getElementById('hero-email').focus()">Join the waitlist</button>
+    <div class="nav-right">
+      <div class="nav-links" id="site-nav-links">
+        <a href="#how-it-works">How it works</a>
+        <a href="/pricing">Pricing</a>
+      </div>
+      <a href="#hero-email" class="nav-cta">Join the waitlist</a>
     </div>
   </nav>
 </header>
@@ -744,7 +765,7 @@
                   <span class="phone-contact-name" style="display:block;">Amaka O.</span>
                   <span class="phone-contact-status" style="display:block;">online</span>
                 </div>
-                <span class="phone-video-btn" aria-hidden="true"><i data-lucide="video" width="17" height="17" stroke-width="2.2"></i></span>
+                <span class="phone-video-btn" aria-hidden="true"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m16 13 5.223 3.482a.5.5 0 0 0 .777-.416V7.87a.5.5 0 0 0-.752-.432L16 10.5"></path><rect x="2" y="6" width="14" height="12" rx="2"></rect></svg></span>
               </div>
               <div class="phone-messages">
                 <div class="bubble in">How much for the black one?</div>
@@ -759,7 +780,10 @@
               </div>
             </div>
             <div class="notif-card">
-              <img src="assets/mark.png" alt="">
+              <picture>
+                <source srcset="assets/mark.webp" type="image/webp">
+                <img src="assets/mark.png" alt="" width="36" height="36">
+              </picture>
               <div class="notif-body">
                 <div class="notif-head">
                   <span class="name">Kavedi</span>
@@ -828,11 +852,11 @@
   <section class="who">
     <div class="who-head">
       <h2 class="reveal">If people message you all day, Kavedi is for you.</h2>
-      <img src="assets/illustration-team-assignment.svg" alt="" class="who-illustration">
+      <img src="assets/illustration-team-assignment.svg" alt="" class="who-illustration" width="72" height="49" loading="lazy">
     </div>
     <div class="who-rotor reveal">
       <span class="who-dot" aria-hidden="true"></span>
-      <div class="who-rotor-viewport">
+      <div class="who-rotor-viewport" aria-hidden="true">
         <div class="who-rotor-item" style="animation-delay:0s;">Shop owners</div>
         <div class="who-rotor-item" style="animation-delay:-2.2s;">Freelancers</div>
         <div class="who-rotor-item" style="animation-delay:-4.4s;">Secretaries</div>
@@ -841,6 +865,7 @@
         <div class="who-rotor-item" style="animation-delay:-11s;">Event coordinators</div>
         <div class="who-rotor-item" style="animation-delay:-13.2s;">Sales reps</div>
       </div>
+      <span class="sr-only">Shop owners, freelancers, secretaries, school and church admins, group admins, event coordinators, sales reps</span>
     </div>
   </section>
 
@@ -849,7 +874,7 @@
     <h2 class="reveal">Three steps.</h2>
     <div class="steps reveal-group">
       <div class="step reveal">
-        <div class="step-icon"><i data-lucide="smartphone" width="26" height="26" stroke-width="2.2"></i></div>
+        <div class="step-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="20" x="5" y="2" rx="2" ry="2"></rect><path d="M12 18h.01"></path></svg></div>
         <div>
           <div class="step-eyebrow">Step 1</div>
           <div class="step-title">Connect your number</div>
@@ -857,7 +882,7 @@
         </div>
       </div>
       <div class="step reveal">
-        <div class="step-icon"><i data-lucide="book-open" width="26" height="26" stroke-width="2.2"></i></div>
+        <div class="step-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v16"></path><path d="M20.001 19A2 2 0 0022 17V5a2 2 0 00-1.999-2L16 3.002A5 5 0 0012 5a5 5 0 00-4-2H4a2 2 0 00-2 2v12a2 2 0 001.999 2H8a5 5 0 014 2 5 5 0 014-2z"></path></svg></div>
         <div>
           <div class="step-eyebrow">Step 2</div>
           <div class="step-title">Tell Kavedi what it needs to know</div>
@@ -865,7 +890,7 @@
         </div>
       </div>
       <div class="step reveal">
-        <div class="step-icon"><i data-lucide="message-circle" width="26" height="26" stroke-width="2.2"></i></div>
+        <div class="step-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719"></path></svg></div>
         <div>
           <div class="step-eyebrow">Step 3</div>
           <div class="step-title">It handles the repetitive half</div>
@@ -909,19 +934,19 @@
       <div class="does-card reveal">
         <div class="badge-does">It does</div>
         <div class="does-list">
-          <div class="row"><i class="row-icon" data-lucide="check" width="20" height="20" stroke-width="2.6"></i><span>Answers the questions you get asked constantly</span></div>
-          <div class="row"><i class="row-icon" data-lucide="check" width="20" height="20" stroke-width="2.6"></i><span>Quotes the details, prices or times you&rsquo;ve given it</span></div>
-          <div class="row"><i class="row-icon" data-lucide="check" width="20" height="20" stroke-width="2.6"></i><span>Says when you&rsquo;re open, closed or away</span></div>
-          <div class="row"><i class="row-icon" data-lucide="check" width="20" height="20" stroke-width="2.6"></i><span>Collects the information you need from people</span></div>
+          <div class="row"><svg class="row-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg><span>Answers the questions you get asked constantly</span></div>
+          <div class="row"><svg class="row-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg><span>Quotes the details, prices or times you&rsquo;ve given it</span></div>
+          <div class="row"><svg class="row-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg><span>Says when you&rsquo;re open, closed or away</span></div>
+          <div class="row"><svg class="row-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg><span>Collects the information you need from people</span></div>
         </div>
       </div>
       <div class="doesnt-card reveal">
         <div class="badge-doesnt">It doesn&rsquo;t</div>
         <div class="does-list">
-          <div class="row"><i class="row-icon" data-lucide="x" width="20" height="20" stroke-width="2.6"></i><span>Guess an answer it wasn&rsquo;t given</span></div>
-          <div class="row"><i class="row-icon" data-lucide="x" width="20" height="20" stroke-width="2.6"></i><span>Make promises you didn&rsquo;t authorise</span></div>
-          <div class="row"><i class="row-icon" data-lucide="x" width="20" height="20" stroke-width="2.6"></i><span>Pretend to be you</span></div>
-          <div class="row"><i class="row-icon" data-lucide="x" width="20" height="20" stroke-width="2.6"></i><span>Hide a conversation from you</span></div>
+          <div class="row"><svg class="row-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg><span>Guess an answer it wasn&rsquo;t given</span></div>
+          <div class="row"><svg class="row-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg><span>Make promises you didn&rsquo;t authorise</span></div>
+          <div class="row"><svg class="row-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg><span>Pretend to be you</span></div>
+          <div class="row"><svg class="row-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg><span>Hide a conversation from you</span></div>
         </div>
         <div class="doesnt-note">Not sure? It flags the chat and you take over in one tap.</div>
       </div>
@@ -956,7 +981,7 @@
     <h2 class="reveal">What Kavedi does for you.</h2>
     <div class="features-grid reveal-group">
       <div class="feature-card reveal">
-        <img src="assets/illustration-chat-bot.svg" alt="" class="feature-illustration">
+        <img src="assets/illustration-chat-bot.svg" alt="" class="feature-illustration" width="64" height="57" loading="lazy">
         <div class="feature-title">AI auto-reply</div>
         <div class="feature-body">It answers the questions you get asked constantly, in your tone, using what you&rsquo;ve told it &mdash; and flags anything it&rsquo;s not sure about for you to take over.</div>
         <div class="feature-tags">
@@ -966,7 +991,7 @@
         </div>
       </div>
       <div class="feature-card reveal">
-        <img src="assets/illustration-booking.svg" alt="" class="feature-illustration">
+        <img src="assets/illustration-booking.svg" alt="" class="feature-illustration" width="64" height="46" loading="lazy">
         <div class="feature-title">Appointment booking</div>
         <div class="feature-body">It fits right into the conversation you&rsquo;re already having. Someone asks if you&rsquo;re free Thursday, Kavedi checks what&rsquo;s actually open and offers a real slot &mdash; no separate app, no link to click. They confirm right there in the chat, and it&rsquo;s on the calendar.</div>
         <div class="feature-tags">
@@ -976,7 +1001,7 @@
         </div>
       </div>
       <div class="feature-card reveal">
-        <img src="assets/illustration-mailbox.svg" alt="" class="feature-illustration">
+        <img src="assets/illustration-mailbox.svg" alt="" class="feature-illustration" width="64" height="55" loading="lazy">
         <div class="feature-title">Scheduled follow-ups</div>
         <div class="feature-body">Write the message once, and it goes out when it&rsquo;s supposed to &mdash; a payment reminder, a check-in, the follow-up you meant to send and forgot. Every message still goes out one at a time, to the person it&rsquo;s meant for. It&rsquo;s not bulk sending, just the message you&rsquo;d have sent yourself, on time.</div>
         <div class="feature-tags">
@@ -986,23 +1011,13 @@
         </div>
       </div>
       <div class="feature-card reveal">
-        <img src="assets/illustration-alarm-clock.svg" alt="" class="feature-illustration">
+        <img src="assets/illustration-alarm-clock.svg" alt="" class="feature-illustration" width="64" height="76" loading="lazy">
         <div class="feature-title">Reminders</div>
         <div class="feature-body">The nudge before an appointment. The nudge on the day something&rsquo;s due. Kavedi sends them automatically, so remembering isn&rsquo;t on you anymore.</div>
         <div class="feature-tags">
           <span class="feature-tag">Appointments</span>
           <span class="feature-tag">Due dates</span>
           <span class="feature-tag">Automatic</span>
-        </div>
-      </div>
-      <div class="feature-card reveal">
-        <img src="assets/illustration-team-collaboration.svg" alt="" class="feature-illustration">
-        <div class="feature-title">Your team, one number</div>
-        <div class="feature-body">More than one person can answer the same number, each from their own login. Kavedi keeps track of who&rsquo;s already replied, so nobody double-replies to the same person or steps on a conversation someone else is already handling.</div>
-        <div class="feature-tags">
-          <span class="feature-tag">Shared inbox</span>
-          <span class="feature-tag">No double-replies</span>
-          <span class="feature-tag">Handoff-aware</span>
         </div>
       </div>
     </div>
@@ -1056,7 +1071,6 @@
         <div class="home-pricing-list">
           <div><span class="check">&#10003;</span><span>Everything in Free, more credits</span></div>
           <div><span class="check">&#10003;</span><span>Appointment booking</span></div>
-          <div><span class="check">&#10003;</span><span>Shared team inbox</span></div>
           <div><span class="check">&#10003;</span><span>Free setup</span></div>
         </div>
       </div>
@@ -1066,26 +1080,38 @@
 
   <!-- ===== TEAM ===== -->
   <section class="team reveal-group">
-    <h2 class="reveal">Who&rsquo;s building this</h2>
-    <p class="sub reveal">Four students in Lagos, building this by hand.</p>
+    <h2 class="reveal">Meet the team</h2>
+    <p class="sub reveal">We personally connect every early sign-up, and you can always reach us directly &mdash; no support queue.</p>
     <div class="team-grid reveal">
       <div class="team-member">
-        <img src="assets/team-kelvin.png" alt="">
+        <picture>
+          <source srcset="assets/team-kelvin.webp" type="image/webp">
+          <img src="assets/team-kelvin.png" alt="Kelvin A." width="64" height="64" loading="lazy">
+        </picture>
         <div class="team-name">Kelvin A.</div>
         <div class="team-role">Lead Developer</div>
       </div>
       <div class="team-member">
-        <img src="assets/team-ada.png" alt="">
+        <picture>
+          <source srcset="assets/team-ada.webp" type="image/webp">
+          <img src="assets/team-ada.png" alt="Ada D." width="64" height="64" loading="lazy">
+        </picture>
         <div class="team-name">Ada D.</div>
         <div class="team-role">Project management &amp; marketing</div>
       </div>
       <div class="team-member">
-        <img src="assets/team-wakil.png" alt="">
+        <picture>
+          <source srcset="assets/team-wakil.webp" type="image/webp">
+          <img src="assets/team-wakil.png" alt="Wakil O." width="64" height="64" loading="lazy">
+        </picture>
         <div class="team-name">Wakil O.</div>
         <div class="team-role">Research &amp; web</div>
       </div>
       <div class="team-member">
-        <img src="assets/team-chidera.png" alt="">
+        <picture>
+          <source srcset="assets/team-chidera.webp" type="image/webp">
+          <img src="assets/team-chidera.png" alt="Chidera E." width="64" height="64" loading="lazy">
+        </picture>
         <div class="team-name">Chidera E.</div>
         <div class="team-role">Marketing strategy &amp; ideation</div>
       </div>
@@ -1121,7 +1147,10 @@
   <div class="footer-top">
     <div>
       <div class="footer-brand">
-        <img src="assets/mark.png" alt="Kavedi">
+        <picture>
+          <source srcset="assets/mark.webp" type="image/webp">
+          <img src="assets/mark.png" alt="Kavedi" width="30" height="30" loading="lazy">
+        </picture>
         <span class="footer-brand-name">Kavedi</span>
       </div>
       <div class="footer-blurb">Built in Lagos by Kavedi, for people who run on WhatsApp.</div>
@@ -1165,8 +1194,6 @@
 </footer>
 
 <script>
-  if (window.lucide) lucide.createIcons();
-
   if ('IntersectionObserver' in window) {
     var revealObserver = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
@@ -1342,7 +1369,7 @@
     var wrap = document.createElement('div');
     wrap.className = 'waitlist-success';
     wrap.innerHTML =
-      '<img src="assets/illustration-message-sent.svg" alt="" class="success-illustration">' +
+      '<img src="assets/illustration-message-sent.svg" alt="" class="success-illustration" width="120" height="143">' +
       '<h3>You&rsquo;re on the list</h3>' +
       '<p>' + message + '</p>';
     form.replaceWith(wrap);
@@ -1354,6 +1381,15 @@
     btn.classList.remove('is-loading');
     label.textContent = 'Retry';
     setError(form, 'Something went wrong. Please try again.');
+  }
+
+  function setQuotaExceeded(form) {
+    var input = form.querySelector('.waitlist-input');
+    var btn = form.querySelector('[data-submit-btn]');
+    btn.classList.remove('is-loading');
+    input.disabled = true;
+    btn.disabled = true;
+    setError(form, 'Signups are paused for a moment. Try again shortly, or email support@kavedi.com.ng and we’ll add you by hand.');
   }
 
   function handleSubmit(e) {
@@ -1390,6 +1426,8 @@
       setSubmitting(form, false);
       if (response.ok) {
         showSuccess(form);
+      } else if (response.status === 429) {
+        setQuotaExceeded(form);
       } else {
         resetToRetry(form);
       }

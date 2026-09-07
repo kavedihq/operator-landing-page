@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Page not found — Kavedi</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="assets/favicon-32x32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="assets/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#14323C;
+    --teal:#0A7F7A;
+    --teal-bright:#2AC9C2;
+    --teal-deep:#0C2A32;
+    --cream:#F5F1E9;
+    --border:#DED6C7;
+    --muted-teal-grey:#3D5B65;
+    --muted-warm-grey:#6B655A;
+    --dark-body:#E4EEF0;
+    --footer-secondary:#A9C2C8;
+    --footer-copyright:#7E9AA1;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--cream);
+    font-family:'Nunito', sans-serif;
+    color:var(--navy);
+    -webkit-font-smoothing:antialiased;
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+  }
+  a{color:var(--teal); text-decoration:none;}
+  a:hover{color:var(--navy);}
+  a:focus-visible{outline:2px solid var(--teal); outline-offset:2px; border-radius:2px;}
+  img{max-width:100%;}
+  picture{display:contents;}
+
+  .site-header{
+    background:var(--cream); padding:20px 24px; display:flex; align-items:center;
+    justify-content:space-between; border-bottom:1px solid var(--border);
+  }
+  .brand{display:flex; align-items:center; gap:9px; color:var(--navy);}
+  .brand img{width:36px; height:36px; display:block;}
+  .brand-name{font-size:22px; font-weight:800; letter-spacing:-.01em; color:var(--navy);}
+
+  main{flex:1; padding:80px 24px; display:flex; align-items:center; justify-content:center; text-align:center;}
+  .not-found{max-width:480px; display:flex; flex-direction:column; align-items:center; gap:18px;}
+  .not-found-code{font-size:15px; font-weight:800; letter-spacing:.08em; text-transform:uppercase; color:var(--teal);}
+  .not-found h1{margin:0; font-size:clamp(32px, 6vw, 44px); line-height:1.1; font-weight:800; letter-spacing:-.02em;}
+  .not-found p{margin:0; font-size:17px; line-height:1.5; font-weight:500; color:var(--muted-teal-grey);}
+  .btn-primary{
+    height:56px; padding:0 28px; border:none; border-radius:999px; background:var(--teal);
+    color:#fff; font-family:'Nunito', sans-serif; font-size:16px; font-weight:800;
+    cursor:pointer; display:inline-flex; align-items:center; justify-content:center;
+    transition:background .18s ease; margin-top:6px;
+  }
+  .btn-primary:hover{background:var(--navy); color:#fff;}
+  .btn-primary:focus-visible{outline:none; box-shadow:0 0 0 2px var(--cream), 0 0 0 5px var(--teal);}
+
+  .site-footer{background:var(--navy); padding:32px 24px; color:var(--dark-body); text-align:center;}
+  .footer-copyright{font-size:14px; color:var(--footer-copyright);}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <a href="/" class="brand" aria-label="Kavedi home">
+    <picture>
+      <source srcset="assets/mark.webp" type="image/webp">
+      <img src="assets/mark.png" alt="Kavedi" width="36" height="36">
+    </picture>
+    <span class="brand-name">Kavedi</span>
+  </a>
+</header>
+
+<main>
+  <div class="not-found">
+    <div class="not-found-code">404</div>
+    <h1>This page doesn&rsquo;t exist.</h1>
+    <p>The page you&rsquo;re looking for may have moved or never existed. Let&rsquo;s get you back on track.</p>
+    <a href="/" class="btn-primary">Back to home</a>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="footer-copyright">&copy; 2026 Kavedi &middot; Lagos, Nigeria</div>
+</footer>
+
+</body>
+</html>

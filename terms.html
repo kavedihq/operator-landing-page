@@ -28,7 +28,8 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=IBM+Plex+Mono:wght@400&display=swap">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=IBM+Plex+Mono:wght@400&display=swap" rel="stylesheet">
 <style>
   :root{
     --navy:#14323C;
@@ -58,7 +59,9 @@
   }
   a{color:var(--teal); text-decoration:none;}
   a:hover{color:var(--navy);}
+  a:focus-visible{outline:2px solid var(--teal); outline-offset:2px; border-radius:2px;}
   img{max-width:100%;}
+  picture{display:contents;}
 
   /* ===== HEADER ===== */
   .site-header{
@@ -68,9 +71,21 @@
   .brand{display:flex; align-items:center; gap:9px; color:var(--navy);}
   .brand img{width:36px; height:36px; display:block;}
   .brand-name{font-size:22px; font-weight:800; letter-spacing:-.01em; color:var(--navy);}
+  .nav-right{display:flex; align-items:center; gap:20px;}
   .nav-links{display:flex; align-items:center; gap:24px; font-size:16px; font-weight:700; flex-wrap:wrap;}
   .nav-links a{color:var(--navy);}
   .nav-links a.is-active{color:var(--teal);}
+  @media (max-width:560px){
+    #site-nav-links{display:none;}
+  }
+  .nav-cta{
+    height:40px; padding:0 18px; border-radius:999px; background:var(--teal);
+    color:#fff; font-family:'Nunito', sans-serif; font-size:14px; font-weight:800;
+    white-space:nowrap; display:flex; align-items:center; justify-content:center;
+    transition:background .18s ease;
+  }
+  .nav-cta:hover{background:var(--navy); color:#fff;}
+  .nav-cta:focus-visible{outline:none; box-shadow:0 0 0 2px var(--cream), 0 0 0 5px var(--teal);}
 
   /* ===== MAIN ===== */
   main{flex:1; padding:64px 24px 90px; display:flex; justify-content:center;}
@@ -104,22 +119,26 @@
 
 <header class="site-header">
   <a href="/" class="brand" aria-label="Kavedi home">
-    <img src="assets/mark.png" alt="Kavedi">
+    <picture>
+      <source srcset="assets/mark.webp" type="image/webp">
+      <img src="assets/mark.png" alt="Kavedi" width="36" height="36">
+    </picture>
     <span class="brand-name">Kavedi</span>
   </a>
-  <nav class="nav-links" aria-label="Primary">
-    <a href="/#how-it-works">How it works</a>
-    <a href="/pricing">Pricing</a>
-    <a href="/privacy">Privacy</a>
-    <a href="/terms" class="is-active">Terms</a>
-  </nav>
+  <div class="nav-right">
+    <nav class="nav-links" id="site-nav-links" aria-label="Primary">
+      <a href="/#how-it-works">How it works</a>
+      <a href="/pricing">Pricing</a>
+    </nav>
+    <a href="/#hero-email" class="nav-cta">Join the waitlist</a>
+  </div>
 </header>
 
 <main>
   <div class="doc">
 
     <div class="doc-head">
-      <div class="doc-eyebrow">Draft &mdash; pending legal review</div>
+      <div class="doc-eyebrow">Pre-launch &mdash; full terms in effect at launch</div>
       <h1>Terms of Service</h1>
       <div class="doc-updated">Last updated September 6, 2026</div>
     </div>
@@ -172,7 +191,10 @@
 <footer class="site-footer">
   <div class="footer-inner">
     <div class="footer-brand">
-      <img src="assets/mark.png" alt="Kavedi">
+      <picture>
+        <source srcset="assets/mark.webp" type="image/webp">
+        <img src="assets/mark.png" alt="Kavedi" width="30" height="30" loading="lazy">
+      </picture>
       <span class="footer-brand-name">Kavedi</span>
     </div>
     <div class="footer-links">
