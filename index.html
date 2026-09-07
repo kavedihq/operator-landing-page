@@ -118,7 +118,7 @@
   @keyframes spin{to{transform:rotate(360deg);}}
 
   /* ===== CHANNEL TOGGLE (email / WhatsApp) ===== */
-  .channel-toggle{display:flex; gap:8px; margin-bottom:10px;}
+  .channel-toggle{display:flex; gap:8px; margin-bottom:10px; width:100%;}
   .channel-btn{
     flex:1; height:44px; border-radius:999px; border:2px solid var(--border);
     background:#fff; color:var(--muted-warm-grey); font-family:'Nunito', sans-serif;
@@ -405,10 +405,6 @@
   .feature-card:hover{border-color:var(--teal); background:var(--hover-tint);}
   .feature-illustration{width:64px; height:auto; float:right; margin:0 0 12px 16px; transition:transform .18s ease;}
   .feature-card:hover .feature-illustration{transform:translateY(-4px) scale(1.06);}
-  .feature-index{
-    font-size:12px; font-weight:800; letter-spacing:.08em; text-transform:uppercase;
-    color:var(--muted-label-grey); margin-bottom:4px;
-  }
   .feature-title{font-size:19px; font-weight:800; line-height:1.2; margin-bottom:8px;}
   .feature-body{font-size:16px; font-weight:500; line-height:1.5; color:var(--muted-teal-grey); margin-bottom:14px;}
   .feature-tags{display:flex; flex-wrap:wrap; gap:8px; clear:both;}
@@ -470,7 +466,7 @@
     }
     .hero h1{font-size:72px; line-height:1.0; letter-spacing:-.03em;}
     .hero p.lede{font-size:20px; max-width:520px;}
-    .hero .channel-toggle{max-width:460px;}
+    .hero .channel-toggle{max-width:540px;}
     .hero .waitlist-fields{flex-direction:row; gap:12px; max-width:540px;}
     .hero .field-row{flex:1;}
     .hero .waitlist-input{height:64px; font-size:17px; padding:0 26px;}
@@ -548,7 +544,6 @@
     .feature-card{border-radius:30px; padding:34px;}
     .feature-illustration{width:100px; margin:0 0 16px 20px;}
     .feature-card:hover .feature-illustration{transform:translateY(-5px) scale(1.06);}
-    .feature-index{font-size:13px;}
     .feature-title{font-size:24px; margin-bottom:10px;}
     .feature-body{font-size:18px; margin-bottom:16px;}
     .feature-tags{gap:10px;}
@@ -565,7 +560,7 @@
     .final-cta{padding:90px 64px;}
     .final-cta h2{font-size:54px; line-height:1.04; letter-spacing:-.02em; margin-bottom:12px;}
     .final-cta p.sub{font-size:20px; margin-bottom:30px;}
-    .final-cta .channel-toggle{max-width:460px; margin-left:auto; margin-right:auto;}
+    .final-cta .channel-toggle{max-width:560px; margin-left:auto; margin-right:auto;}
     .final-cta .waitlist-fields{flex-direction:row; gap:12px;}
     .final-cta .field-row{flex:1;}
     .final-cta .waitlist-input{height:64px; font-size:17px; padding:0 26px;}
@@ -781,7 +776,7 @@
 
   <!-- ===== WHAT IT DOES / DOESN'T ===== -->
   <section class="does" id="what-it-does">
-    <div class="does-phone-wrap">
+    <div class="does-phone-wrap reveal">
       <div class="does-phone">
         <div class="phone-screen">
           <div class="dynamic-island" aria-hidden="true"></div>
@@ -838,7 +833,6 @@
     <div class="features-grid reveal-group">
       <div class="feature-card reveal">
         <img src="assets/illustration-chat-bot.svg" alt="" class="feature-illustration">
-        <div class="feature-index">01</div>
         <div class="feature-title">AI auto-reply</div>
         <div class="feature-body">It answers the questions you get asked constantly, in your tone, using what you&rsquo;ve told it &mdash; and flags anything it&rsquo;s not sure about for you to take over.</div>
         <div class="feature-tags">
@@ -849,7 +843,6 @@
       </div>
       <div class="feature-card reveal">
         <img src="assets/illustration-booking.svg" alt="" class="feature-illustration">
-        <div class="feature-index">02</div>
         <div class="feature-title">Appointment booking</div>
         <div class="feature-body">It fits right into the conversation you&rsquo;re already having. Someone asks if you&rsquo;re free Thursday, Kavedi checks what&rsquo;s actually open and offers a real slot &mdash; no separate app, no link to click. They confirm right there in the chat, and it&rsquo;s on the calendar.</div>
         <div class="feature-tags">
@@ -860,7 +853,6 @@
       </div>
       <div class="feature-card reveal">
         <img src="assets/illustration-mailbox.svg" alt="" class="feature-illustration">
-        <div class="feature-index">03</div>
         <div class="feature-title">Scheduled follow-ups</div>
         <div class="feature-body">Write the message once, and it goes out when it&rsquo;s supposed to &mdash; a payment reminder, a check-in, the follow-up you meant to send and forgot. Every message still goes out one at a time, to the person it&rsquo;s meant for. It&rsquo;s not bulk sending, just the message you&rsquo;d have sent yourself, on time.</div>
         <div class="feature-tags">
@@ -871,7 +863,6 @@
       </div>
       <div class="feature-card reveal">
         <img src="assets/illustration-alarm-clock.svg" alt="" class="feature-illustration">
-        <div class="feature-index">04</div>
         <div class="feature-title">Reminders</div>
         <div class="feature-body">The nudge before an appointment. The nudge on the day something&rsquo;s due. Kavedi sends them automatically, so remembering isn&rsquo;t on you anymore.</div>
         <div class="feature-tags">
@@ -882,7 +873,6 @@
       </div>
       <div class="feature-card reveal">
         <img src="assets/illustration-team-collaboration.svg" alt="" class="feature-illustration">
-        <div class="feature-index">05</div>
         <div class="feature-title">Your team, one number</div>
         <div class="feature-body">More than one person can answer the same number, each from their own login. Kavedi keeps track of who&rsquo;s already replied, so nobody double-replies to the same person or steps on a conversation someone else is already handling.</div>
         <div class="feature-tags">
