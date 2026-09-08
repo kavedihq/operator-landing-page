@@ -34,6 +34,7 @@
   :root{
     --navy:#14323C;
     --teal:#0A7F7A;
+    --teal-on-cream:#08756E;
     --cream:#F5F1E9;
     --border:#DED6C7;
     --muted-teal-grey:#3D5B65;
@@ -59,6 +60,7 @@
   }
   a{color:var(--teal); text-decoration:none;}
   a:hover{color:var(--navy);}
+  .doc a{color:var(--teal-on-cream);}
   a:focus-visible{outline:2px solid var(--teal); outline-offset:2px; border-radius:2px;}
   img{max-width:100%;}
   picture{display:contents;}
@@ -74,18 +76,28 @@
   .nav-right{display:flex; align-items:center; gap:20px;}
   .nav-links{display:flex; align-items:center; gap:24px; font-size:16px; font-weight:700; flex-wrap:wrap;}
   .nav-links a{color:var(--navy);}
-  .nav-links a.is-active{color:var(--teal);}
+  .nav-links a.is-active{color:var(--teal-on-cream);}
   @media (max-width:560px){
     #site-nav-links{display:none;}
   }
   .nav-cta{
-    height:40px; padding:0 18px; border-radius:999px; background:var(--teal);
+    height:40px; padding:0 18px; border-radius:999px;
+    background:linear-gradient(90deg,#0A7F7A,#14323C,#0A7F7A); background-size:200% 100%;
+    animation:kvNavGradient 6s ease infinite;
     color:#fff; font-family:'Nunito', sans-serif; font-size:14px; font-weight:800;
     white-space:nowrap; display:flex; align-items:center; justify-content:center;
-    transition:background .18s ease;
+    transition:box-shadow .18s ease;
   }
-  .nav-cta:hover{background:var(--navy); color:#fff;}
+  .nav-cta:hover{box-shadow:inset 0 0 0 999px rgba(20,50,60,.35);}
   .nav-cta:focus-visible{outline:none; box-shadow:0 0 0 2px var(--cream), 0 0 0 5px var(--teal);}
+  @keyframes kvNavGradient{
+    0%   { background-position:0% 50%; }
+    50%  { background-position:100% 50%; }
+    100% { background-position:0% 50%; }
+  }
+  @media (prefers-reduced-motion: reduce){
+    .nav-cta{animation:none;}
+  }
 
   /* ===== MAIN ===== */
   main{flex:1; padding:64px 24px 90px; display:flex; justify-content:center;}
@@ -93,7 +105,7 @@
   .doc-head{display:flex; flex-direction:column; gap:10px;}
   .doc-eyebrow{
     font-family:'IBM Plex Mono', monospace; font-size:12px; letter-spacing:.08em;
-    text-transform:uppercase; color:var(--muted-label-grey);
+    text-transform:uppercase; color:var(--muted-warm-grey);
   }
   .doc-head h1{margin:0; font-size:clamp(34px, 6vw, 52px); line-height:1.05; font-weight:800; letter-spacing:-.02em;}
   .doc-updated{font-size:16px; font-weight:500; color:var(--muted-warm-grey);}

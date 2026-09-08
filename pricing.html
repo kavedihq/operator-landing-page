@@ -34,6 +34,7 @@
   :root{
     --navy:#14323C;
     --teal:#0A7F7A;
+    --teal-on-cream:#08756E;
     --teal-bright:#2AC9C2;
     --teal-deep:#0C2A32;
     --cream:#F5F1E9;
@@ -66,6 +67,7 @@
   }
   a{color:var(--navy); text-decoration:none;}
   a:hover{color:var(--teal);}
+  .site-header a:hover{color:var(--teal-on-cream);}
   a:focus-visible{outline:2px solid var(--teal); outline-offset:2px; border-radius:2px;}
   input::placeholder{color:var(--placeholder-grey);}
   img{max-width:100%;}
@@ -85,7 +87,7 @@
   .brand img{width:36px; height:36px; display:block;}
   .brand-name{font-size:22px; font-weight:800; letter-spacing:-.01em; color:var(--navy);}
   .nav-links{display:flex; align-items:center; gap:24px; font-size:16px; font-weight:700; flex-wrap:wrap;}
-  .nav-links a.is-active{color:var(--teal);}
+  .nav-links a.is-active{color:var(--teal-on-cream);}
   @media (max-width:560px){
     #site-nav-links{display:none;}
   }
@@ -107,6 +109,7 @@
     padding:16px 22px; margin-top:10px; text-align:center; font-size:15px; font-weight:600; line-height:1.5;
     color:var(--muted-warm-grey);
   }
+  .first-ten-inline{font-weight:800; color:var(--notif-text);}
 
   /* ===== TIER GRID ===== */
   .tier-grid{
@@ -234,7 +237,7 @@
     <h1>Simple, flat pricing.</h1>
     <p class="lede">One price a month. No per-message charges, no surprise bills &mdash; ever.</p>
 
-    <div class="pricing-notice">Kavedi is pre-launch &mdash; plans, prices and credit allowances are indicative, not final. The first ten sign-ups get onboarded personally, with Pro free for two months &mdash; everyone else, we&rsquo;ll email you within the week.</div>
+    <div class="pricing-notice">Kavedi is pre-launch &mdash; plans, prices and credit allowances are indicative, not final. <span class="first-ten-inline">First 10 signups: personal set up + 2 months of Pro free.</span></div>
 
     <div class="tier-grid">
       <div class="tier-card">
@@ -283,7 +286,7 @@
       <input type="email" id="pricing-email" name="email" class="waitlist-input" placeholder="Your email address" required autocomplete="email" data-channel-input>
       <div class="field-error" data-error hidden><span aria-hidden="true">&#9888;</span><span data-error-text></span></div>
       <button type="submit" class="btn-primary" data-submit-btn>
-        <span data-btn-label>Reserve your spot</span>
+        <span data-btn-label>Claim your spot</span>
       </button>
       <div class="form-note">Both plans are waitlist-only for now. Join to get early access.</div>
     </form>
@@ -311,6 +314,7 @@
   </div>
 </footer>
 
+<script src="assets/attribution.js"></script>
 <script>
   var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   var PHONE_RE = /^\+?[0-9\s-]{7,}$/;
@@ -430,6 +434,9 @@
     }
 
     var formData = new FormData(form);
+    if (window.kvAppendAttribution) {
+      window.kvAppendAttribution(formData, 'pricing');
+    }
     setSubmitting(true);
 
     fetch(form.action, {

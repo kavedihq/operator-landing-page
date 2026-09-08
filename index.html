@@ -3,16 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Kavedi — Your AI for WhatsApp in Nigeria</title>
-<meta name="description" content="Kavedi is an AI for WhatsApp that replies instantly, sounds like you, and hands off when unsure — built for Nigerian businesses.">
+<title>Kavedi — Your AI Operator for WhatsApp in Nigeria</title>
+<meta name="description" content="Kavedi is an AI for WhatsApp that replies instantly and sounds like you — built in Nigeria for people who message you all day.">
 <link rel="canonical" href="https://kavedi.com.ng/">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="assets/favicon-32x32.png" sizes="32x32" type="image/png">
 <link rel="icon" href="assets/favicon.ico" sizes="any">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 
-<meta property="og:title" content="Kavedi — Your AI for WhatsApp in Nigeria">
-<meta property="og:description" content="Kavedi is an AI for WhatsApp that replies instantly, sounds like you, and hands off when unsure — built for Nigerian businesses.">
+<meta property="og:title" content="Kavedi — Your AI Operator for WhatsApp in Nigeria">
+<meta property="og:description" content="Kavedi is an AI for WhatsApp that replies instantly and sounds like you — built in Nigeria for people who message you all day.">
 <meta property="og:image" content="https://kavedi.com.ng/assets/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -22,8 +22,8 @@
 <meta property="og:locale" content="en_NG">
 
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Kavedi — Your AI for WhatsApp in Nigeria">
-<meta name="twitter:description" content="Kavedi is an AI for WhatsApp that replies instantly, sounds like you, and hands off when unsure — built for Nigerian businesses.">
+<meta name="twitter:title" content="Kavedi — Your AI Operator for WhatsApp in Nigeria">
+<meta name="twitter:description" content="Kavedi is an AI for WhatsApp that replies instantly and sounds like you — built in Nigeria for people who message you all day.">
 <meta name="twitter:image" content="https://kavedi.com.ng/assets/og.png">
 
 <script type="application/ld+json">
@@ -55,6 +55,7 @@
   :root{
     --navy:#14323C;
     --teal:#0A7F7A;
+    --teal-on-cream:#08756E;
     --teal-bright:#2AC9C2;
     --teal-deep:#0C2A32;
     --cream:#F5F1E9;
@@ -97,6 +98,7 @@
   }
   a{color:var(--navy); text-decoration:none; transition:color .15s ease;}
   a:hover{color:var(--teal);}
+  .site-header a:hover{color:var(--teal-on-cream);}
   a:focus-visible{outline:2px solid var(--teal); outline-offset:2px; border-radius:2px;}
   input::placeholder{color:var(--placeholder-grey);}
   img{max-width:100%;}
@@ -128,18 +130,28 @@
   .site-header.is-condensed .brand-name{font-size:19px;}
   .nav-right{display:flex; align-items:center; gap:20px;}
   .nav-links{display:flex; align-items:center; gap:24px; font-size:16px; font-weight:700;}
-  .nav-links a.is-active{color:var(--teal);}
+  .nav-links a.is-active{color:var(--teal-on-cream);}
   @media (max-width:560px){
     .nav-links{display:none;}
   }
   .nav-cta{
-    height:40px; padding:0 18px; border-radius:999px; background:var(--teal);
+    height:40px; padding:0 18px; border-radius:999px;
+    background:linear-gradient(90deg,#0A7F7A,#14323C,#0A7F7A); background-size:200% 100%;
+    animation:kvNavGradient 6s ease infinite;
     color:#fff; font-family:'Nunito', sans-serif; font-size:14px; font-weight:800;
     white-space:nowrap; display:flex; align-items:center; justify-content:center;
-    transition:background .18s ease; text-decoration:none;
+    transition:box-shadow .18s ease; text-decoration:none;
   }
-  .nav-cta:hover{background:var(--navy); color:#fff;}
+  .nav-cta:hover{box-shadow:inset 0 0 0 999px rgba(20,50,60,.35);}
   .nav-cta:focus-visible{outline:none; box-shadow:0 0 0 2px var(--cream), 0 0 0 5px var(--teal);}
+  @keyframes kvNavGradient{
+    0%   { background-position:0% 50%; }
+    50%  { background-position:100% 50%; }
+    100% { background-position:0% 50%; }
+  }
+  @media (prefers-reduced-motion: reduce){
+    .nav-cta{animation:none;}
+  }
 
   /* ===== BUTTONS ===== */
   .btn-primary{
@@ -175,19 +187,16 @@
   /* ===== WHO ROTATOR ===== */
   @keyframes kvRotate{
     0%    { opacity:0; transform:translateY(14px); }
-    1.5%  { opacity:0; transform:translateY(14px); }
-    5%    { opacity:1; transform:translateY(0); }
-    9.3%  { opacity:1; transform:translateY(0); }
-    12.8% { opacity:0; transform:translateY(-14px); }
+    2.6%  { opacity:1; transform:translateY(0); }
+    11.7% { opacity:1; transform:translateY(0); }
+    14.3% { opacity:0; transform:translateY(-14px); }
     100%  { opacity:0; transform:translateY(14px); }
   }
   @keyframes kvDot{
-    0%    { opacity:0; transform:translateY(6px); }
-    10.5% { opacity:0; transform:translateY(6px); }
-    35%   { opacity:1; transform:translateY(0); }
-    65%   { opacity:1; transform:translateY(0); }
-    89.6% { opacity:0; transform:translateY(-6px); }
-    100%  { opacity:0; transform:translateY(6px); }
+    0%    { opacity:.35; transform:scale(.8); }
+    17%   { opacity:1; transform:scale(1); }
+    83%   { opacity:1; transform:scale(1); }
+    100%  { opacity:.35; transform:scale(.8); }
   }
 
   /* ===== SCROLL REVEAL ===== */
@@ -224,7 +233,14 @@
   .hero p.lede{
     margin:0 0 26px; font-size:17px; line-height:1.55; font-weight:400; color:var(--muted-teal-grey);
   }
-  .free-setup{margin-top:12px; font-size:15px; font-weight:600; color:var(--muted-warm-grey); text-align:center;}
+  .early-access{margin-top:14px; display:flex; flex-direction:column; align-items:center; gap:8px;}
+  .early-access-text{font-size:14px; font-weight:600; color:var(--muted-warm-grey); text-align:center;}
+  .first-ten-badge{
+    display:inline-flex; align-items:center; gap:6px; background:var(--notif-bg);
+    border:1px solid var(--notif-border); padding:5px 12px; border-radius:999px;
+    font-size:12px; font-weight:800; color:var(--notif-text); text-align:center;
+  }
+  .cta-invert .first-ten-badge{background:rgba(12,42,50,.1); border-color:var(--teal-deep); color:var(--teal-deep);}
 
   /* waitlist form */
   .waitlist-form{display:flex; flex-direction:column; gap:10px;}
@@ -342,8 +358,11 @@
   .dashboard{padding:8px 24px 40px;}
   .dashboard-head h2{margin:0 0 8px; font-size:31px; line-height:1.1; font-weight:800;}
   .dashboard-head p.sub{margin:0 0 24px; font-size:17px; line-height:1.5; font-weight:400; color:var(--muted-teal-grey);}
-  .dashboard-card{background:#fff; border:1px solid var(--border); border-radius:28px; padding:22px;}
-  .dashboard-example{font-size:12px; font-weight:800; letter-spacing:.06em; text-transform:uppercase; color:var(--muted-label-grey); margin-bottom:12px;}
+  .dashboard-card{background:#fff; border:1px solid var(--border); border-radius:28px; overflow:hidden;}
+  .dashboard-chrome{background:var(--phone-bg); padding:10px 16px; display:flex; align-items:center; gap:7px;}
+  .chrome-dot{width:8px; height:8px; border-radius:50%; background:var(--border); flex:0 0 auto;}
+  .chrome-url{flex:1; text-align:center; font-family:ui-monospace, 'SF Mono', Menlo, Consolas, monospace; font-size:11px; color:var(--muted-label-grey);}
+  .dashboard-body{padding:22px;}
   .dashboard-stats{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:16px;}
   .stat-tile{background:var(--cream); border-radius:18px; padding:16px;}
   .stat-tile.attention{background:var(--notif-bg); border:1px solid var(--notif-border);}
@@ -354,27 +373,18 @@
   .dashboard-activity{display:flex; flex-direction:column; gap:8px; padding-top:14px; border-top:2px solid var(--divider);}
   .dashboard-activity div{font-size:15px; font-weight:600; color:var(--navy);}
 
-  /* ===== PROBLEM ===== */
-  .problem{padding:40px 24px 44px;}
-  .problem h2{margin:0 0 8px; font-size:31px; line-height:1.1; font-weight:800;}
-  .problem p.sub{margin:0 0 24px; font-size:17px; line-height:1.5; font-weight:400; color:var(--muted-teal-grey);}
-  .problem-cards{display:flex; flex-direction:column; gap:12px;}
-  .problem-card{border-radius:24px; padding:22px; font-size:22px; font-weight:800; line-height:1.28;}
-  .problem-card.bright{background:var(--teal-bright); color:var(--teal-deep);}
-  .problem-card.plain{background:var(--cream); color:var(--navy);}
-
   /* ===== WHO IT'S FOR ===== */
   .who{padding:0 24px 44px;}
   .who-head{display:flex; align-items:flex-start; justify-content:space-between; gap:16px;}
   .who h2{margin:0 0 20px; font-size:31px; line-height:1.1; font-weight:800; flex:1;}
   .who-illustration{width:72px; height:auto; flex:0 0 auto; margin-top:2px; opacity:.92;}
   .who-rotor{display:flex; align-items:center; gap:12px; height:44px;}
-  .who-dot{width:8px; height:8px; border-radius:50%; background:var(--teal-bright); flex:0 0 auto; animation:kvDot 2.2s ease-in-out infinite;}
+  .who-dot{width:8px; height:8px; border-radius:50%; background:var(--teal-bright); flex:0 0 auto; animation:kvDot 1.5s ease-in-out infinite;}
   .who-rotor-viewport{position:relative; flex:1; height:100%; overflow:hidden;}
   .who-rotor-item{
     position:absolute; inset:0; display:flex; align-items:center;
     font-size:19px; font-weight:700; color:var(--navy); white-space:nowrap;
-    animation:kvRotate 15.4s ease-in-out infinite;
+    animation:kvRotate 10.5s ease-in-out infinite;
   }
 
   /* ===== HOW IT WORKS ===== */
@@ -451,7 +461,7 @@
   .why p.sub{margin:0 0 22px; font-size:16px; font-weight:500; color:var(--muted-warm-grey);}
   .why-grid{display:flex; flex-direction:column; gap:16px;}
   .why-card{background:var(--cream); border-radius:20px; padding:22px;}
-  .why-label{font-size:13px; font-weight:800; letter-spacing:.06em; text-transform:uppercase; color:var(--teal); margin-bottom:6px;}
+  .why-label{font-size:13px; font-weight:800; letter-spacing:.06em; text-transform:uppercase; color:var(--teal-on-cream); margin-bottom:6px;}
   .why-card p{margin:0; font-size:16px; font-weight:500; line-height:1.5; color:var(--muted-teal-grey);}
 
   /* ===== PRICING (HOMEPAGE) ===== */
@@ -472,8 +482,9 @@
   .home-pricing-list{display:flex; flex-direction:column; gap:8px; font-size:15px; font-weight:600; line-height:1.4;}
   .home-pricing-list div{display:flex; gap:8px;}
   .home-pricing-list span.check{color:var(--teal-bright);}
+  .home-pricing-plus{margin-top:12px; display:flex; gap:8px; font-size:14px; font-weight:600; color:#8FC7C2;}
   .home-pricing-note{margin-top:16px; font-size:14px; font-weight:500; color:var(--muted-warm-grey);}
-  .home-pricing-note a{color:var(--teal); font-weight:700;}
+  .home-pricing-note a{color:var(--teal-on-cream); font-weight:700;}
 
   /* ===== FEATURES ===== */
   .features{background:var(--cream); padding:40px 24px;}
@@ -505,11 +516,14 @@
   .team-member img{width:64px; height:64px; border-radius:50%; object-fit:cover; display:block;}
   .team-name{font-size:15px; font-weight:800;}
   .team-role{font-size:13px; font-weight:600; color:var(--muted-warm-grey);}
+  .team-contact{margin-top:22px; font-size:14px; font-weight:600; color:var(--muted-warm-grey); text-align:center;}
+  .team-contact a{color:var(--teal);}
 
   /* ===== FINAL CTA ===== */
   .final-cta{background:var(--teal-bright); padding:44px 24px; text-align:center;}
   .final-cta h2{margin:0 0 10px; font-size:34px; line-height:1.08; font-weight:800; color:var(--teal-deep);}
-  .final-cta p.sub{margin:0 auto 24px; max-width:540px; font-size:17px; font-weight:600; line-height:1.5; color:var(--teal-deep);}
+  .final-cta p.sub{margin:0 auto 12px; max-width:540px; font-size:17px; font-weight:600; line-height:1.5; color:var(--teal-deep);}
+  .final-cta .first-ten-badge{margin:0 0 22px;}
   .final-cta .waitlist-form{max-width:560px; margin:0 auto;}
 
   /* ===== FOOTER ===== */
@@ -536,7 +550,7 @@
     .hero-inner{padding:0 80px 46px;}
     .hero h1{font-size:48px;}
     .hero p.lede{max-width:480px;}
-    .problem, .who, .does{padding-left:80px; padding-right:80px;}
+    .who, .does{padding-left:80px; padding-right:80px;}
     .how{padding-left:80px; padding-right:80px;}
     .final-cta{padding-left:80px; padding-right:80px;}
     .site-footer{padding-left:80px; padding-right:80px;}
@@ -558,7 +572,9 @@
     .hero .field-row{flex:1;}
     .hero .waitlist-input{height:64px; font-size:17px; padding:0 26px;}
     .hero .btn-primary{height:64px; padding:0 30px; font-size:18px; white-space:nowrap;}
-    .hero .free-setup{text-align:left; margin-top:14px; font-size:16px;}
+    .hero .early-access{flex-direction:row; flex-wrap:wrap; align-items:center; gap:12px; margin-top:16px;}
+    .hero .early-access-text{text-align:left; font-size:15px;}
+    .hero .first-ten-badge{font-size:13px; padding:6px 14px;}
     .hero .waitlist-success{align-items:flex-start; text-align:left;}
 
     .phone-wrap{margin-top:0; padding-bottom:0;}
@@ -568,7 +584,11 @@
     .dashboard-head{max-width:760px; margin-bottom:40px;}
     .dashboard-head h2{font-size:48px; line-height:1.06; letter-spacing:-.02em; margin-bottom:10px;}
     .dashboard-head p.sub{font-size:20px; margin-bottom:0;}
-    .dashboard-card{padding:36px; max-width:900px;}
+    .dashboard-card{max-width:900px;}
+    .dashboard-chrome{padding:12px 20px; gap:8px;}
+    .chrome-dot{width:10px; height:10px;}
+    .chrome-url{font-size:13px;}
+    .dashboard-body{padding:36px;}
     .dashboard-stats{grid-template-columns:repeat(4, minmax(0,1fr)); gap:16px; margin-bottom:24px;}
     .stat-tile{border-radius:22px; padding:22px;}
     .stat-number{font-size:36px;}
@@ -649,6 +669,7 @@
     .home-pricing-price .amount{font-size:36px;}
     .home-pricing-price .period{font-size:15px;}
     .home-pricing-list{font-size:16px; gap:10px;}
+    .home-pricing-plus{margin-top:14px; font-size:15px;}
     .home-pricing-note{margin-top:20px; font-size:15px;}
 
     .features{padding:84px 64px;}
@@ -672,7 +693,8 @@
 
     .final-cta{padding:90px 64px;}
     .final-cta h2{font-size:54px; line-height:1.04; letter-spacing:-.02em; margin-bottom:12px;}
-    .final-cta p.sub{font-size:20px; margin-bottom:30px;}
+    .final-cta p.sub{font-size:20px; margin-bottom:16px;}
+    .final-cta .first-ten-badge{margin-bottom:26px; font-size:14px; padding:7px 16px;}
     .final-cta .channel-toggle{max-width:560px; margin-left:auto; margin-right:auto;}
     .final-cta .waitlist-fields{flex-direction:row; gap:12px;}
     .final-cta .field-row{flex:1;}
@@ -723,7 +745,7 @@
     <div class="hero-inner">
       <div class="hero-copy">
         <h1>Your AI Operator for WhatsApp</h1>
-        <p class="lede">Tell Kavedi what it needs to know. It answers the messages you keep answering, and pings you when it can&rsquo;t. Same number you already use.</p>
+        <p class="lede">It replies, books, follows up and reminds &mdash; in your tone, on the number you already use.</p>
 
         <form class="waitlist-form" id="waitlist-form-hero" action="https://formspree.io/f/xzebadda" method="POST" novalidate data-channel="email">
           <input type="hidden" name="signup_method" value="email" data-channel-method>
@@ -738,11 +760,14 @@
               <div class="field-error" data-error hidden><span aria-hidden="true">&#9888;</span><span data-error-text></span></div>
             </div>
             <button type="submit" class="btn-primary" data-submit-btn>
-              <span data-btn-label>Reserve your spot</span>
+              <span data-btn-label>Claim your spot</span>
             </button>
           </div>
         </form>
-        <div class="free-setup">The first ten sign-ups get onboarded personally, with Pro free for two months &mdash; everyone else, we&rsquo;ll email you within the week.</div>
+        <div class="early-access">
+          <div class="early-access-text">Early access &mdash; we&rsquo;ll email you within the week with what&rsquo;s next.</div>
+          <div class="first-ten-badge">First 10 signups: personal set up + 2 months of Pro free</div>
+        </div>
       </div>
 
       <div class="hero-visual">
@@ -802,52 +827,6 @@
     </div>
   </section>
 
-  <!-- ===== DASHBOARD ===== -->
-  <section class="dashboard">
-    <div class="dashboard-head reveal">
-      <h2>What has your AI been doing while you weren&rsquo;t looking?</h2>
-      <p class="sub">This is the dashboard, not another chat.</p>
-    </div>
-    <div class="dashboard-card reveal">
-      <div class="dashboard-example">Example day &mdash; not live data</div>
-      <div class="dashboard-stats">
-        <div class="stat-tile">
-          <div class="stat-number" data-count-to="18">0</div>
-          <div class="stat-label">Conversations handled today</div>
-        </div>
-        <div class="stat-tile attention">
-          <div class="stat-number" data-count-to="3">0</div>
-          <div class="stat-label">Needs your attention</div>
-        </div>
-        <div class="stat-tile">
-          <div class="stat-number" data-count-to="5">0</div>
-          <div class="stat-label">New conversations</div>
-        </div>
-        <div class="stat-tile">
-          <div class="stat-number" data-count-to="7">0</div>
-          <div class="stat-label">Follow-ups sent</div>
-        </div>
-      </div>
-      <div class="dashboard-activity">
-        <div>Replied to 6 questions on its own</div>
-        <div>Flagged 1 conversation for you</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== PROBLEM ===== -->
-  <section class="problem">
-    <div class="problem-inner reveal">
-      <h2>You didn&rsquo;t sign up to be a full-time replier.</h2>
-      <p class="sub">And what came in while you were asleep?</p>
-    </div>
-    <div class="problem-cards reveal-group">
-      <div class="problem-card bright reveal">The same five questions, every single day</div>
-      <div class="problem-card plain reveal">Messages piling up while you sleep</div>
-      <div class="problem-card plain reveal">The ones you meant to reply to, and forgot</div>
-    </div>
-  </section>
-
   <!-- ===== WHO IT'S FOR ===== -->
   <section class="who">
     <div class="who-head">
@@ -858,14 +837,61 @@
       <span class="who-dot" aria-hidden="true"></span>
       <div class="who-rotor-viewport" aria-hidden="true">
         <div class="who-rotor-item" style="animation-delay:0s;">Shop owners</div>
-        <div class="who-rotor-item" style="animation-delay:-2.2s;">Freelancers</div>
-        <div class="who-rotor-item" style="animation-delay:-4.4s;">Secretaries</div>
-        <div class="who-rotor-item" style="animation-delay:-6.6s;">School &amp; church admins</div>
-        <div class="who-rotor-item" style="animation-delay:-8.8s;">Group admins</div>
-        <div class="who-rotor-item" style="animation-delay:-11s;">Event coordinators</div>
-        <div class="who-rotor-item" style="animation-delay:-13.2s;">Sales reps</div>
+        <div class="who-rotor-item" style="animation-delay:-1.5s;">Freelancers</div>
+        <div class="who-rotor-item" style="animation-delay:-3s;">Secretaries</div>
+        <div class="who-rotor-item" style="animation-delay:-4.5s;">School &amp; church admins</div>
+        <div class="who-rotor-item" style="animation-delay:-6s;">Group admins</div>
+        <div class="who-rotor-item" style="animation-delay:-7.5s;">Event coordinators</div>
+        <div class="who-rotor-item" style="animation-delay:-9s;">Sales reps</div>
       </div>
       <span class="sr-only">Shop owners, freelancers, secretaries, school and church admins, group admins, event coordinators, sales reps</span>
+    </div>
+  </section>
+
+  <!-- ===== FEATURES ===== -->
+  <section class="features">
+    <h2 class="reveal">Auto-replies. Bookings. Follow-ups. Reminders.</h2>
+    <div class="features-grid reveal-group">
+      <div class="feature-card reveal">
+        <img src="assets/illustration-chat-bot.svg" alt="" class="feature-illustration" width="64" height="57" loading="lazy">
+        <div class="feature-title">AI auto-reply</div>
+        <div class="feature-body">It answers the questions you get asked constantly, written the way you actually write &mdash; so it sounds like you, not a bot &mdash; and flags anything it&rsquo;s not sure about for you to take over.</div>
+        <div class="feature-tags">
+          <span class="feature-tag">Instant replies</span>
+          <span class="feature-tag">Your knowledge</span>
+          <span class="feature-tag">Flags uncertainty</span>
+        </div>
+      </div>
+      <div class="feature-card reveal">
+        <img src="assets/illustration-booking.svg" alt="" class="feature-illustration" width="64" height="46" loading="lazy">
+        <div class="feature-title">Appointment booking</div>
+        <div class="feature-body">It fits right into the conversation you&rsquo;re already having. Someone asks if you&rsquo;re free Thursday, Kavedi checks what&rsquo;s actually open and offers a real slot &mdash; no separate app, no link to click. They confirm right there in the chat, and it&rsquo;s on the calendar.</div>
+        <div class="feature-tags">
+          <span class="feature-tag">In-chat</span>
+          <span class="feature-tag">Calendar sync</span>
+          <span class="feature-tag">Confirmations</span>
+        </div>
+      </div>
+      <div class="feature-card reveal">
+        <img src="assets/illustration-mailbox.svg" alt="" class="feature-illustration" width="64" height="55" loading="lazy">
+        <div class="feature-title">Scheduled follow-ups</div>
+        <div class="feature-body">Write the message once, and it goes out when it&rsquo;s supposed to &mdash; a payment reminder, a check-in, the follow-up you meant to send and forgot. It&rsquo;s not bulk sending, just the message you&rsquo;d have sent yourself, on time.</div>
+        <div class="feature-tags">
+          <span class="feature-tag">Payment nudges</span>
+          <span class="feature-tag">Check-ins</span>
+          <span class="feature-tag">Paced sending</span>
+        </div>
+      </div>
+      <div class="feature-card reveal">
+        <img src="assets/illustration-alarm-clock.svg" alt="" class="feature-illustration" width="64" height="76" loading="lazy">
+        <div class="feature-title">Reminders</div>
+        <div class="feature-body">The nudge before an appointment. The nudge on the day something&rsquo;s due. Kavedi sends them automatically, so remembering isn&rsquo;t on you anymore.</div>
+        <div class="feature-tags">
+          <span class="feature-tag">Appointments</span>
+          <span class="feature-tag">Due dates</span>
+          <span class="feature-tag">Automatic</span>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -971,54 +997,7 @@
       </div>
       <div class="connects-item reveal">
         <h3>Leave whenever</h3>
-        <p>Disconnect any time and Kavedi stops replying immediately. No lock-in, no contract.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== FEATURES ===== -->
-  <section class="features">
-    <h2 class="reveal">What Kavedi does for you.</h2>
-    <div class="features-grid reveal-group">
-      <div class="feature-card reveal">
-        <img src="assets/illustration-chat-bot.svg" alt="" class="feature-illustration" width="64" height="57" loading="lazy">
-        <div class="feature-title">AI auto-reply</div>
-        <div class="feature-body">It answers the questions you get asked constantly, in your tone, using what you&rsquo;ve told it &mdash; and flags anything it&rsquo;s not sure about for you to take over.</div>
-        <div class="feature-tags">
-          <span class="feature-tag">Instant replies</span>
-          <span class="feature-tag">Your knowledge</span>
-          <span class="feature-tag">Flags uncertainty</span>
-        </div>
-      </div>
-      <div class="feature-card reveal">
-        <img src="assets/illustration-booking.svg" alt="" class="feature-illustration" width="64" height="46" loading="lazy">
-        <div class="feature-title">Appointment booking</div>
-        <div class="feature-body">It fits right into the conversation you&rsquo;re already having. Someone asks if you&rsquo;re free Thursday, Kavedi checks what&rsquo;s actually open and offers a real slot &mdash; no separate app, no link to click. They confirm right there in the chat, and it&rsquo;s on the calendar.</div>
-        <div class="feature-tags">
-          <span class="feature-tag">In-chat</span>
-          <span class="feature-tag">Calendar sync</span>
-          <span class="feature-tag">Confirmations</span>
-        </div>
-      </div>
-      <div class="feature-card reveal">
-        <img src="assets/illustration-mailbox.svg" alt="" class="feature-illustration" width="64" height="55" loading="lazy">
-        <div class="feature-title">Scheduled follow-ups</div>
-        <div class="feature-body">Write the message once, and it goes out when it&rsquo;s supposed to &mdash; a payment reminder, a check-in, the follow-up you meant to send and forgot. Every message still goes out one at a time, to the person it&rsquo;s meant for. It&rsquo;s not bulk sending, just the message you&rsquo;d have sent yourself, on time.</div>
-        <div class="feature-tags">
-          <span class="feature-tag">Payment nudges</span>
-          <span class="feature-tag">Check-ins</span>
-          <span class="feature-tag">Paced sending</span>
-        </div>
-      </div>
-      <div class="feature-card reveal">
-        <img src="assets/illustration-alarm-clock.svg" alt="" class="feature-illustration" width="64" height="76" loading="lazy">
-        <div class="feature-title">Reminders</div>
-        <div class="feature-body">The nudge before an appointment. The nudge on the day something&rsquo;s due. Kavedi sends them automatically, so remembering isn&rsquo;t on you anymore.</div>
-        <div class="feature-tags">
-          <span class="feature-tag">Appointments</span>
-          <span class="feature-tag">Due dates</span>
-          <span class="feature-tag">Automatic</span>
-        </div>
+        <p>Disconnect any time and Kavedi stops replying immediately. No lock-in, no contract &mdash; and you can ask us to delete your data on the way out.</p>
       </div>
     </div>
   </section>
@@ -1043,6 +1022,87 @@
       <div class="why-card reveal">
         <div class="why-label">Set up by hand</div>
         <p>A real person from our team gets you connected &mdash; not a support ticket in a queue.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== TEAM ===== -->
+  <section class="team reveal-group">
+    <h2 class="reveal">Meet the team</h2>
+    <p class="sub reveal">We personally connect every early sign-up, and you can always reach us directly &mdash; no support queue.</p>
+    <div class="team-grid reveal">
+      <div class="team-member">
+        <picture>
+          <source srcset="assets/team-kelvin.webp" type="image/webp">
+          <img src="assets/team-kelvin.png" alt="Kelvin A." width="64" height="64" loading="lazy">
+        </picture>
+        <div class="team-name">Kelvin A.</div>
+        <div class="team-role">Lead Developer</div>
+      </div>
+      <div class="team-member">
+        <picture>
+          <source srcset="assets/team-ada.webp" type="image/webp">
+          <img src="assets/team-ada.png" alt="Ada D." width="64" height="64" loading="lazy">
+        </picture>
+        <div class="team-name">Ada D.</div>
+        <div class="team-role">Project management &amp; marketing</div>
+      </div>
+      <div class="team-member">
+        <picture>
+          <source srcset="assets/team-wakil.webp" type="image/webp">
+          <img src="assets/team-wakil.png" alt="Abdulwakil O." width="64" height="64" loading="lazy">
+        </picture>
+        <div class="team-name">Abdulwakil O.</div>
+        <div class="team-role">Research &amp; web</div>
+      </div>
+      <div class="team-member">
+        <picture>
+          <source srcset="assets/team-chidera.webp" type="image/webp">
+          <img src="assets/team-chidera.png" alt="Chidera E." width="64" height="64" loading="lazy">
+        </picture>
+        <div class="team-name">Chidera E.</div>
+        <div class="team-role">Marketing strategy &amp; ideation</div>
+      </div>
+    </div>
+    <div class="team-contact reveal">Questions any time: <a href="mailto:support@kavedi.com.ng">support@kavedi.com.ng</a></div>
+  </section>
+
+  <!-- ===== DASHBOARD ===== -->
+  <section class="dashboard">
+    <div class="dashboard-head reveal">
+      <h2>What has your AI been doing while you weren&rsquo;t looking?</h2>
+      <p class="sub">This is the dashboard, not another chat.</p>
+    </div>
+    <div class="dashboard-card reveal">
+      <div class="dashboard-chrome">
+        <span class="chrome-dot" aria-hidden="true"></span>
+        <span class="chrome-dot" aria-hidden="true"></span>
+        <span class="chrome-dot" aria-hidden="true"></span>
+        <div class="chrome-url">kavedi.com.ng/dashboard</div>
+      </div>
+      <div class="dashboard-body">
+        <div class="dashboard-stats">
+          <div class="stat-tile">
+            <div class="stat-number" data-count-to="18">0</div>
+            <div class="stat-label">Conversations handled today</div>
+          </div>
+          <div class="stat-tile attention">
+            <div class="stat-number" data-count-to="3">0</div>
+            <div class="stat-label">Needs your attention</div>
+          </div>
+          <div class="stat-tile">
+            <div class="stat-number" data-count-to="5">0</div>
+            <div class="stat-label">New conversations</div>
+          </div>
+          <div class="stat-tile">
+            <div class="stat-number" data-count-to="7">0</div>
+            <div class="stat-label">Follow-ups sent</div>
+          </div>
+        </div>
+        <div class="dashboard-activity">
+          <div>Replied to 6 questions on its own</div>
+          <div>Flagged 1 conversation for you</div>
+        </div>
       </div>
     </div>
   </section>
@@ -1075,53 +1135,15 @@
         </div>
       </div>
     </div>
-    <div class="home-pricing-note reveal">Prices and credit limits are indicative &mdash; not final. <a href="/pricing">See full pricing &rarr;</a></div>
-  </section>
-
-  <!-- ===== TEAM ===== -->
-  <section class="team reveal-group">
-    <h2 class="reveal">Meet the team</h2>
-    <p class="sub reveal">We personally connect every early sign-up, and you can always reach us directly &mdash; no support queue.</p>
-    <div class="team-grid reveal">
-      <div class="team-member">
-        <picture>
-          <source srcset="assets/team-kelvin.webp" type="image/webp">
-          <img src="assets/team-kelvin.png" alt="Kelvin A." width="64" height="64" loading="lazy">
-        </picture>
-        <div class="team-name">Kelvin A.</div>
-        <div class="team-role">Lead Developer</div>
-      </div>
-      <div class="team-member">
-        <picture>
-          <source srcset="assets/team-ada.webp" type="image/webp">
-          <img src="assets/team-ada.png" alt="Ada D." width="64" height="64" loading="lazy">
-        </picture>
-        <div class="team-name">Ada D.</div>
-        <div class="team-role">Project management &amp; marketing</div>
-      </div>
-      <div class="team-member">
-        <picture>
-          <source srcset="assets/team-wakil.webp" type="image/webp">
-          <img src="assets/team-wakil.png" alt="Wakil O." width="64" height="64" loading="lazy">
-        </picture>
-        <div class="team-name">Wakil O.</div>
-        <div class="team-role">Research &amp; web</div>
-      </div>
-      <div class="team-member">
-        <picture>
-          <source srcset="assets/team-chidera.webp" type="image/webp">
-          <img src="assets/team-chidera.png" alt="Chidera E." width="64" height="64" loading="lazy">
-        </picture>
-        <div class="team-name">Chidera E.</div>
-        <div class="team-role">Marketing strategy &amp; ideation</div>
-      </div>
-    </div>
+    <div class="home-pricing-plus reveal"><span class="plus-sign">+</span><span>Scheduled follow-ups, reminders, priority support</span></div>
+    <div class="home-pricing-note reveal">Prices and credit limits are indicative &mdash; not final. <a href="/pricing">See everything Pro includes &rarr;</a></div>
   </section>
 
   <!-- ===== FINAL CTA ===== -->
   <section class="final-cta cta-invert reveal-group">
-    <h2 class="reveal">Join the waitlist</h2>
-    <p class="sub reveal">The first ten sign-ups get onboarded personally, with Pro free for two months &mdash; everyone else, we&rsquo;ll email you within the week.</p>
+    <h2 class="reveal">Get early access</h2>
+    <p class="sub reveal">We&rsquo;ll email you within the week with what&rsquo;s next.</p>
+    <div class="first-ten-badge reveal">First 10 signups: personal set up + 2 months of Pro free</div>
     <form class="waitlist-form reveal" id="waitlist-form-cta" action="https://formspree.io/f/xzebadda" method="POST" novalidate data-channel="email">
       <input type="hidden" name="signup_method" value="email" data-channel-method>
       <div class="channel-toggle" role="group" aria-label="Contact method">
@@ -1193,6 +1215,7 @@
   </div>
 </footer>
 
+<script src="assets/attribution.js"></script>
 <script>
   if ('IntersectionObserver' in window) {
     var revealObserver = new IntersectionObserver(function (entries) {
@@ -1416,6 +1439,10 @@
     }
 
     var formData = new FormData(form);
+    if (window.kvAppendAttribution) {
+      var formId = form.id === 'waitlist-form-hero' ? 'hero' : 'bottom';
+      window.kvAppendAttribution(formData, formId);
+    }
     setSubmitting(form, true);
 
     fetch(form.action, {
