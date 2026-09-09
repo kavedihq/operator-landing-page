@@ -374,7 +374,7 @@
   .dashboard-activity div{font-size:15px; font-weight:600; color:var(--navy);}
 
   /* ===== WHO IT'S FOR ===== */
-  .who{padding:0 24px 44px;}
+  .who{padding:40px 24px 44px;}
   .who-head{display:flex; align-items:flex-start; justify-content:space-between; gap:16px;}
   .who h2{margin:0 0 20px; font-size:31px; line-height:1.1; font-weight:800; flex:1;}
   .who-illustration{width:72px; height:auto; flex:0 0 auto; margin-top:2px; opacity:.92;}
@@ -603,7 +603,7 @@
     .problem-cards{display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:20px;}
     .problem-card{border-radius:28px; padding:34px; font-size:31px;}
 
-    .who{padding:0 64px 84px;}
+    .who{padding:70px 64px 84px;}
     .who-head{gap:40px;}
     .who h2{font-size:48px; line-height:1.06; letter-spacing:-.02em; max-width:900px; margin-bottom:34px;}
     .who-illustration{width:150px;}
@@ -747,7 +747,10 @@
         <h1>Your AI Operator for WhatsApp</h1>
         <p class="lede">It replies, books, follows up and reminds &mdash; in your tone, on the number you already use.</p>
 
-        <form class="waitlist-form" id="waitlist-form-hero" action="https://formspree.io/f/xzebadda" method="POST" novalidate data-channel="email">
+        <form class="waitlist-form" id="waitlist-form-hero" action="https://api.web3forms.com/submit" method="POST" novalidate data-channel="email">
+          <input type="hidden" name="access_key" value="f04060d7-7b1b-4650-860a-60f03e66933a">
+          <input type="hidden" name="subject" value="New Kavedi waitlist signup">
+          <input type="checkbox" name="botcheck" style="display:none;" tabindex="-1" autocomplete="off" aria-hidden="true">
           <input type="hidden" name="signup_method" value="email" data-channel-method>
           <div class="channel-toggle" role="group" aria-label="Contact method">
             <button type="button" class="channel-btn is-active" data-channel-btn="email" aria-pressed="true">Email</button>
@@ -1144,7 +1147,10 @@
     <h2 class="reveal">Get early access</h2>
     <p class="sub reveal">We&rsquo;ll email you within the week with what&rsquo;s next.</p>
     <div class="first-ten-badge reveal">First 10 signups: personal set up + 2 months of Pro free</div>
-    <form class="waitlist-form reveal" id="waitlist-form-cta" action="https://formspree.io/f/xzebadda" method="POST" novalidate data-channel="email">
+    <form class="waitlist-form reveal" id="waitlist-form-cta" action="https://api.web3forms.com/submit" method="POST" novalidate data-channel="email">
+      <input type="hidden" name="access_key" value="f04060d7-7b1b-4650-860a-60f03e66933a">
+      <input type="hidden" name="subject" value="New Kavedi waitlist signup">
+      <input type="checkbox" name="botcheck" style="display:none;" tabindex="-1" autocomplete="off" aria-hidden="true">
       <input type="hidden" name="signup_method" value="email" data-channel-method>
       <div class="channel-toggle" role="group" aria-label="Contact method">
         <button type="button" class="channel-btn is-active" data-channel-btn="email" aria-pressed="true">Email</button>
@@ -1450,10 +1456,18 @@
       body: formData,
       headers: { Accept: 'application/json' }
     }).then(function (response) {
+      return response.json().catch(function () { return null; }).then(function (data) {
+        return { status: response.status, data: data };
+      });
+    }).then(function (result) {
       setSubmitting(form, false);
-      if (response.ok) {
+      var data = result.data;
+      if (data && data.success) {
         showSuccess(form);
-      } else if (response.status === 429) {
+        return;
+      }
+      var message = (data && (data.message || (data.body && data.body.message))) || '';
+      if (result.status === 429 || /limit|quota/i.test(message)) {
         setQuotaExceeded(form);
       } else {
         resetToRetry(form);

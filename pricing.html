@@ -276,7 +276,10 @@
 
     <div class="tier-note">An AI credit is roughly one AI reply. No platform fee plus per-message charges stacked on top &mdash; just one flat number.</div>
 
-    <form class="waitlist-form" id="waitlist-form-pricing" action="https://formspree.io/f/xzebadda" method="POST" novalidate data-channel="email">
+    <form class="waitlist-form" id="waitlist-form-pricing" action="https://api.web3forms.com/submit" method="POST" novalidate data-channel="email">
+      <input type="hidden" name="access_key" value="f04060d7-7b1b-4650-860a-60f03e66933a">
+      <input type="hidden" name="subject" value="New Kavedi waitlist signup">
+      <input type="checkbox" name="botcheck" style="display:none;" tabindex="-1" autocomplete="off" aria-hidden="true">
       <input type="hidden" name="signup_method" value="email" data-channel-method>
       <div class="channel-toggle" role="group" aria-label="Contact method">
         <button type="button" class="channel-btn is-active" data-channel-btn="email" aria-pressed="true">Email</button>
@@ -444,13 +447,20 @@
       body: formData,
       headers: { Accept: 'application/json' }
     }).then(function (response) {
-      if (response.ok) {
+      return response.json().catch(function () { return null; }).then(function (data) {
+        return { status: response.status, data: data };
+      });
+    }).then(function (result) {
+      var data = result.data;
+      if (data && data.success) {
         showSuccess();
-      } else if (response.status === 429) {
-        setSubmitting(false);
+        return;
+      }
+      var message = (data && (data.message || (data.body && data.body.message))) || '';
+      setSubmitting(false);
+      if (result.status === 429 || /limit|quota/i.test(message)) {
         setQuotaExceeded();
       } else {
-        setSubmitting(false);
         resetToRetry();
       }
     }).catch(function () {
