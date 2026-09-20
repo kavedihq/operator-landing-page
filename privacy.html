@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Privacy Policy — How Kavedi Handles Your WhatsApp Data</title>
-<meta name="description" content="How Kavedi collects, uses, and protects your data when you connect your WhatsApp number, including what we store and how to delete it.">
+<meta name="description" content="What Kavedi stores when you connect your WhatsApp number, who it is sent to, how long it is kept, and how to delete it.">
 <link rel="canonical" href="https://kavedi.com.ng/privacy">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="assets/favicon-32x32.png" sizes="32x32" type="image/png">
@@ -131,6 +131,18 @@
   .footer-disclaimer{font-size:14px; font-weight:400; line-height:1.5; color:var(--footer-secondary); max-width:640px;}
   .footer-copyright{font-size:14px; color:var(--footer-copyright);}
 </style>
+<meta name="theme-color" content="#F5F1E9">
+<script>
+  (function () {
+    try {
+      var choice = localStorage.getItem('kv-theme');
+      if (choice === 'dark' || choice === 'light') document.documentElement.setAttribute('data-theme', choice);
+      var dark = choice === 'dark' || (choice !== 'light' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', dark ? '#0E1A1F' : '#F5F1E9');
+    } catch (e) {}
+  })();
+</script>
+<link rel="stylesheet" href="/assets/site.css">
 </head>
 <body>
 
@@ -157,59 +169,83 @@
     <div class="doc-head">
       <div class="doc-eyebrow">Pre-launch &mdash; plain-language summary below, full policy in effect at launch</div>
       <h1>Privacy Policy</h1>
-      <div class="doc-updated">Last updated September 6, 2026</div>
+      <div class="doc-updated">Last updated September 20, 2026</div>
     </div>
 
     <div class="doc-plain">
       <div class="doc-plain-label">In plain language</div>
       <ul>
-        <li>No person reads your chats &mdash; the AI writes the replies. Our team only opens a conversation if you ask for support, or if something breaks.</li>
-        <li>We store what Kavedi needs to keep working: your connection, your messages, and whatever you&rsquo;ve taught it.</li>
-        <li>We don&rsquo;t sell your data, and we don&rsquo;t need your WhatsApp password.</li>
-        <li>Disconnect any time. Ask us to delete your data and we will.</li>
+        <li>Kavedi doesn&rsquo;t keep your conversations. It reads a message to answer it, and then it&rsquo;s gone.</li>
+        <li>What we do keep: what you taught it, the questions it couldn&rsquo;t answer, your contacts (encrypted), and what&rsquo;s queued to go out.</li>
+        <li>No person reads your chats. Our team only opens something if you ask for help, or to fix a fault.</li>
+        <li>Messages are sent to AI providers to be answered. They don&rsquo;t get your contacts or your account.</li>
+        <li>Disconnect any time. Delete your account and everything above goes with it.</li>
       </ul>
     </div>
 
-    <p class="doc-intro">Kavedi is an AI that connects to a WhatsApp number you already use, so it can answer messages on your behalf. This policy explains what we collect, why, and how you stay in control of it. Kavedi is not affiliated with WhatsApp or Meta.</p>
+    <p class="doc-intro">Kavedi connects to a WhatsApp number you already use and answers messages on your behalf. This policy says exactly what is stored, where it goes, and how to get rid of it. Kavedi is not affiliated with WhatsApp or Meta.</p>
 
     <section>
-      <h2>What Kavedi connects to</h2>
-      <p>Kavedi links to your existing WhatsApp number using an unofficial multi-device connection method (the same approach WhatsApp Web uses), not the official WhatsApp Business API. To keep that connection alive, we hold the session and authentication state for your linked number on our servers. We never ask for or store your WhatsApp account password, and we never collect payment credentials through this connection.</p>
+      <h2>How Kavedi connects</h2>
+      <p>Kavedi links to your number as a companion device, the same way WhatsApp Web does. It is not the official WhatsApp Business API. To hold that link we store the session and authentication state for your number, encrypted (AES-256-GCM) with a key that is not kept in the database. We never ask for your WhatsApp password &mdash; there isn&rsquo;t one to give &mdash; and we never take payment details through this connection.</p>
     </section>
 
     <section>
-      <h2>What we collect</h2>
+      <h2>What we store</h2>
       <ul>
-        <li><strong>Your "knowledge":</strong> the text, PDFs, images and product or business information you feed Kavedi so it can answer accurately.</li>
-        <li><strong>Conversation data:</strong> the WhatsApp messages Kavedi needs to see to generate replies, and the replies it sends.</li>
-        <li><strong>Session and authentication state:</strong> the credentials that keep your WhatsApp connection linked, held on your behalf.</li>
-        <li><strong>Waitlist emails:</strong> the email address you give us to join the waitlist.</li>
+        <li><strong>What you teach it:</strong> the answers you write, and the text read out of any price list, flyer or document you upload. The file itself is not kept &mdash; only the answers you approve. Each answer also gets a numerical &ldquo;embedding&rdquo; so the right one can be found.</li>
+        <li><strong>Questions Kavedi couldn&rsquo;t answer:</strong> the text of that one message, so it can reach you under &ldquo;waiting for you&rdquo;. A voice note is kept as a reference that lets Kavedi fetch it from WhatsApp again if you press Transcribe, plus the transcript once you do.</li>
+        <li><strong>Your contacts:</strong> names, numbers and when each chat last had a message, taken from the address book WhatsApp syncs to the linked device. Stored encrypted, so contacts survive a restart without being downloaded again. Labels you add and anyone who replied STOP are stored too.</li>
+        <li><strong>Messages you schedule:</strong> the text, who it goes to and when, until it is sent, and whether it was delivered or read.</li>
+        <li><strong>Appointments:</strong> the time, what was booked and the name of whoever booked it.</li>
+        <li><strong>Settings and profile:</strong> your name, what you do, address, phone and website if you fill them in, your time zone and how you want Kavedi to reply.</li>
+        <li><strong>Counts, not content:</strong> one row per reply or hand-over, holding the kind and who it involved &mdash; that is where &ldquo;9 replies today&rdquo; comes from.</li>
+        <li><strong>Your account:</strong> the email address you sign in with (and your name and picture if you use Google).</li>
+        <li><strong>Waitlist:</strong> the email address or WhatsApp number you give us, and what you told us you do.</li>
       </ul>
+      <p><strong>What we don&rsquo;t store:</strong> the conversations themselves. An incoming message is read to answer it and is not written down; the only message text kept is a question that was passed to you. Kavedi never reads or answers anything in a group, a broadcast list, a status or a Channel &mdash; those are dropped before they are even decrypted.</p>
     </section>
 
     <section>
-      <h2>Why we collect it</h2>
-      <p>We use this data only to operate Kavedi: to keep your WhatsApp connection active, to generate replies grounded in the knowledge you've given it, to flag conversations that need you, and to run the waitlist and tell you when it's your turn.</p>
+      <h2>Who else sees it</h2>
+      <p>To answer a message, its text is sent to an AI provider along with the answers you taught Kavedi and your profile. To find the right answer, the message is also turned into an embedding by Google. Voice notes you ask to transcribe are sent to a speech-to-text provider. None of them receive your contact list, your account or your other conversations. Today that means <strong>Groq</strong> (writing replies, and transcription) and <strong>Google Gemini</strong> (embeddings, and reading uploaded documents); providers can change, and this page will say so.</p>
+      <p>Kavedi itself runs on <strong>Render</strong>, with data stored by <strong>Supabase</strong> (Postgres), both outside Nigeria. Sign-in email goes through <strong>Resend</strong>, the waitlist form through <strong>Web3Forms</strong>, and this site is served through <strong>Cloudflare</strong>. We do not sell anything to anyone, and there is no advertising.</p>
+      <p><strong>Worth knowing while Kavedi is free:</strong> we use free tiers of those AI providers, and some providers reserve the right to review content sent on a free tier to improve their services. If that matters for what people send you, wait until we are on paid plans before connecting a number &mdash; ask us and we&rsquo;ll tell you where we are.</p>
     </section>
 
     <section>
-      <h2>How it's stored and secured</h2>
-      <p>Your data is encrypted in transit and stored on access-controlled infrastructure. Session and authentication state is treated as sensitive: it is scoped to your account and used only to maintain your WhatsApp connection.</p>
+      <h2>Who at Kavedi can see it</h2>
+      <p>Access is limited to the Kavedi team, and only to run the service, support you, or fix something. Nobody reads your chats for any other reason &mdash; and for the most part there is nothing to read, because conversations are not stored.</p>
     </section>
 
     <section>
-      <h2>Who can access it</h2>
-      <p>Access is limited to the Kavedi team, and only as needed to operate, support, or debug the service. We do not sell your data to third parties.</p>
+      <h2>The people who message you</h2>
+      <p>They are messaging you, not us, and their messages stay in your WhatsApp. Kavedi passes a message to an AI provider in order to answer it, keeps the question if it couldn&rsquo;t, and records that a reply happened. If someone replies STOP, that is stored permanently so nothing automatic ever reaches them again. If someone asks you to remove their details, email us and we will.</p>
+    </section>
+
+    <section>
+      <h2>How long we keep it</h2>
+      <p>What you teach it, your contacts, appointments and settings stay until you delete them or delete your account. Questions waiting for you stay until they are resolved or deleted. Scheduled messages are kept after sending so you can see what went out. Server logs hold no message text &mdash; only counts, numbers and errors &mdash; and are kept by our hosting provider for a short period.</p>
     </section>
 
     <section>
       <h2>Your choices</h2>
-      <p>You can disconnect your WhatsApp number from Kavedi at any time, and you can ask us to delete your data &mdash; including your knowledge base, conversation history, and session state. Email <a href="mailto:support@kavedi.com.ng">support@kavedi.com.ng</a> and we'll action it.</p>
+      <p>Disconnect your number at any time in Settings &rarr; WhatsApp: Kavedi unlinks the device and forgets the stored login and address book. <strong>Delete account</strong> in the same place removes everything above &mdash; answers, questions, contacts, labels, appointments, queued messages, settings and your sign-in &mdash; and cannot be undone. You can also email <a href="mailto:support@kavedi.com.ng">support@kavedi.com.ng</a> to ask for a copy of your data, a correction, or deletion.</p>
+    </section>
+
+    <section>
+      <h2>Where you stand legally</h2>
+      <p>If you are in Nigeria, the Nigeria Data Protection Act applies: for the people messaging you, you are the data controller and Kavedi processes on your behalf. If you are in the UK or EU, the UK GDPR or GDPR applies on the same basis, and your data is processed outside those regions by the providers named above. Either way you can ask us to hand back or delete what we hold. We&rsquo;ll sign a processing agreement if you need one.</p>
+    </section>
+
+    <section>
+      <h2>Security</h2>
+      <p>Data is encrypted in transit. Session state and your saved address book are also encrypted at rest with a key held outside the database, and every request to Kavedi is checked against your signed-in account so one account can never read another&rsquo;s. If something goes wrong that affects you, we&rsquo;ll tell you.</p>
     </section>
 
     <section>
       <h2>Changes to this policy</h2>
-      <p>Kavedi is early-stage and this policy will change as the product does. We'll update the date above when it does.</p>
+      <p>Kavedi is early, and this will change as the product does. The date at the top changes with it, and anything material will be sent to you.</p>
     </section>
 
     <section class="contact-section">
@@ -237,9 +273,13 @@
       <a href="mailto:support@kavedi.com.ng">support@kavedi.com.ng</a>
     </div>
     <div class="footer-disclaimer">Kavedi connects to your existing WhatsApp number, like WhatsApp Web. Not affiliated with WhatsApp or Meta.</div>
+    <div class="footer-theme">
+      <div data-theme-switch></div>
+    </div>
     <div class="footer-copyright">&copy; 2026 Kavedi &middot; Lagos, Nigeria</div>
   </div>
 </footer>
 
+<script src="/assets/site.js"></script>
 </body>
 </html>

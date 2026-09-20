@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pricing — Kavedi | Flat Naira Plans for WhatsApp AI</title>
-<meta name="description" content="Kavedi pricing: a free plan to try it, and Pro at ~₦2,500/month. Flat naira pricing, no per-message charges, no surprise bills.">
+<title>Pricing — Kavedi | Flat monthly plans for WhatsApp</title>
+<meta name="description" content="Kavedi pricing: a free plan to try it, Pro at $9 a month and Business at $24. One flat price a month, no per-message charges.">
 <link rel="canonical" href="https://kavedi.com.ng/pricing">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="assets/favicon-32x32.png" sizes="32x32" type="image/png">
@@ -12,7 +12,7 @@
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 
 <meta property="og:title" content="Pricing — Kavedi">
-<meta property="og:description" content="A free plan to try it, and Pro at ~₦2,500/month. Flat naira pricing, no per-message charges, no surprise bills.">
+<meta property="og:description" content="A free plan to try it, Pro at $9 a month and Business at $24. One flat price a month, no per-message charges.">
 <meta property="og:image" content="https://kavedi.com.ng/assets/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -23,7 +23,7 @@
 
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Pricing — Kavedi">
-<meta name="twitter:description" content="A free plan to try it, and Pro at ~₦2,500/month. Flat naira pricing, no per-message charges, no surprise bills.">
+<meta name="twitter:description" content="A free plan to try it, Pro at $9 a month and Business at $24. One flat price a month, no per-message charges.">
 <meta name="twitter:image" content="https://kavedi.com.ng/assets/og.png">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -215,6 +215,18 @@
     .site-footer{padding:44px 64px;}
   }
 </style>
+<meta name="theme-color" content="#F5F1E9">
+<script>
+  (function () {
+    try {
+      var choice = localStorage.getItem('kv-theme');
+      if (choice === 'dark' || choice === 'light') document.documentElement.setAttribute('data-theme', choice);
+      var dark = choice === 'dark' || (choice !== 'light' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', dark ? '#0E1A1F' : '#F5F1E9');
+    } catch (e) {}
+  })();
+</script>
+<link rel="stylesheet" href="/assets/site.css">
 </head>
 <body>
 
@@ -235,47 +247,76 @@
 <main>
   <div class="pricing-inner">
     <h1>Simple, flat pricing.</h1>
-    <p class="lede">One price a month. No per-message charges, no surprise bills &mdash; ever.</p>
+    <p class="lede">One price a month, in your currency. No per-message charges, no surprise bills &mdash; ever.</p>
 
-    <div class="pricing-notice">Kavedi is pre-launch &mdash; plans, prices and credit allowances are indicative, not final. <span class="first-ten-inline">First 10 signups: personal set up + 2 months of Pro free.</span></div>
+    <div class="pricing-notice">Kavedi is pre-launch &mdash; plans and prices are indicative, not final. <span class="first-ten-inline">First 10 signups: personal set up + 2 months of Pro free.</span></div>
+
+    <div class="currency">
+      <label for="currency">Prices in</label>
+      <select id="currency" data-currency>
+        <option value="USD">US dollars</option>
+        <option value="NGN">Naira</option>
+        <option value="GBP">Pounds</option>
+        <option value="EUR">Euro</option>
+      </select>
+    </div>
 
     <div class="tier-grid">
       <div class="tier-card">
         <div>
           <div class="tier-name">Free</div>
-          <div class="tier-price"><span class="amount">&#8358;0</span><span class="period">/month</span></div>
-          <p class="tier-desc">Everything you need to try it properly and decide for yourself.</p>
+          <div class="tier-price"><span class="amount" data-price="free">$0</span><span class="period">/month</span></div>
+          <p class="tier-desc">Enough to connect your number and see it answer your real messages.</p>
         </div>
         <div class="tier-list">
-          <div><span class="check">&#10003;</span><span>1 connected WhatsApp number</span></div>
-          <div><span class="check">&#10003;</span><span>Teach it what it needs to know</span></div>
-          <div><span class="check">&#10003;</span><span>150 AI credits / month</span></div>
-          <div><span class="check">&#10003;</span><span>Human handoff &amp; &ldquo;needs your attention&rdquo; flag</span></div>
-          <div><span class="check">&#10003;</span><span>Dashboard</span></div>
-          <div><span class="check">&#10003;</span><span>1 user</span></div>
+          <div><span class="check">&#10003;</span><span>1 WhatsApp number</span></div>
+          <div><span class="check">&#10003;</span><span><strong>100 AI replies</strong> a month</span></div>
+          <div><span class="check">&#10003;</span><span>Teach it by typing, or upload a price list</span></div>
+          <div><span class="check">&#10003;</span><span>Hands anything it wasn&rsquo;t taught to you</span></div>
+          <div><span class="check">&#10003;</span><span>Reply from Kavedi, and exceptions</span></div>
+          <div><span class="check">&#10003;</span><span>Scheduled messages, 30 a month</span></div>
         </div>
       </div>
 
       <div class="tier-card pro">
-        <div class="tier-badge">Most solo operators</div>
+        <div class="tier-badge">Most operators</div>
         <div>
           <div class="tier-name">Pro</div>
-          <div class="tier-price"><span class="amount">~&#8358;2,500</span><span class="period">/month</span></div>
+          <div class="tier-price"><span class="amount" data-price="pro">$9</span><span class="period">/month</span></div>
           <p class="tier-desc">For when Kavedi is doing real work every day.</p>
         </div>
         <div class="tier-list">
           <div><span class="check">&#10003;</span><span>Everything in Free</span></div>
-          <div><span class="check">&#10003;</span><span>2,000 AI credits / month</span></div>
-          <div><span class="check">&#10003;</span><span>Appointment booking</span></div>
-          <div><span class="check">&#10003;</span><span>Scheduled messages &amp; broadcasts</span></div>
-          <div><span class="check">&#10003;</span><span>Reminders &amp; follow-ups</span></div>
+          <div><span class="check">&#10003;</span><span><strong>1,500 AI replies</strong> a month</span></div>
+          <div><span class="check">&#10003;</span><span>Appointment booking in the chat</span></div>
+          <div><span class="check">&#10003;</span><span>Reminders and check-ins</span></div>
+          <div><span class="check">&#10003;</span><span>Scheduled messages, no limit</span></div>
+          <div><span class="check">&#10003;</span><span>Broadcasts &mdash; people and groups</span></div>
+          <div><span class="check">&#10003;</span><span>Word-for-word answers</span></div>
+        </div>
+      </div>
+
+      <div class="tier-card">
+        <div>
+          <div class="tier-name">Business</div>
+          <div class="tier-price"><span class="amount" data-price="business">$24</span><span class="period">/month</span></div>
+          <p class="tier-desc">Busy numbers, and help getting it right from day one.</p>
+        </div>
+        <div class="tier-list">
+          <div><span class="check">&#10003;</span><span>Everything in Pro</span></div>
+          <div><span class="check">&#10003;</span><span><strong>5,000 AI replies</strong> a month</span></div>
+          <div><span class="check">&#10003;</span><span>Voice notes transcribed on request</span></div>
+          <div><span class="check">&#10003;</span><span>Set up with you, and your answers written from your documents</span></div>
           <div><span class="check">&#10003;</span><span>Priority support</span></div>
-          <div><span class="check">&#10003;</span><span>Free setup</span></div>
         </div>
       </div>
     </div>
 
-    <div class="tier-note">An AI credit is roughly one AI reply. No platform fee plus per-message charges stacked on top &mdash; just one flat number.</div>
+    <div class="tier-note">
+      An <strong>AI reply</strong> is one message Kavedi reads and answers with AI. Scheduled messages, reminders, broadcasts and
+      replies you send yourself use none. Run out and Kavedi doesn&rsquo;t stop &mdash; it passes messages to you instead of
+      answering, and never bills you for more.
+    </div>
 
     <form class="waitlist-form" id="waitlist-form-pricing" action="https://api.web3forms.com/submit" method="POST" novalidate data-channel="email">
       <input type="hidden" name="access_key" value="f04060d7-7b1b-4650-860a-60f03e66933a">
@@ -314,6 +355,9 @@
       <a href="mailto:support@kavedi.com.ng">support@kavedi.com.ng</a>
     </div>
     <div class="footer-disclaimer">Kavedi connects to your existing WhatsApp number, like WhatsApp Web. Not affiliated with WhatsApp or Meta.</div>
+    <div class="footer-theme">
+      <div data-theme-switch></div>
+    </div>
     <div class="footer-copyright">&copy; 2026 Kavedi &middot; Lagos, Nigeria</div>
   </div>
 </footer>
@@ -471,5 +515,6 @@
   });
 </script>
 
+<script src="/assets/site.js"></script>
 </body>
 </html>

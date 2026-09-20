@@ -3,16 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Kavedi — Your AI Operator for WhatsApp in Nigeria</title>
-<meta name="description" content="Kavedi answers, books, reminds and broadcasts on the WhatsApp number you already use — built in Nigeria for people who message you all day.">
+<title>Kavedi — Your AI Operator for WhatsApp</title>
+<meta name="description" content="Kavedi answers the questions you get asked twenty times a week, books appointments and sends the messages you keep forgetting — on your own WhatsApp number.">
 <link rel="canonical" href="https://kavedi.com.ng/">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="assets/favicon-32x32.png" sizes="32x32" type="image/png">
 <link rel="icon" href="assets/favicon.ico" sizes="any">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 
-<meta property="og:title" content="Kavedi — Your AI Operator for WhatsApp in Nigeria">
-<meta property="og:description" content="Kavedi answers, books, reminds and broadcasts on the WhatsApp number you already use — built in Nigeria for people who message you all day.">
+<meta property="og:title" content="Kavedi — Your AI Operator for WhatsApp">
+<meta property="og:description" content="Kavedi answers the questions you get asked twenty times a week, books appointments and sends the messages you keep forgetting — on your own WhatsApp number.">
 <meta property="og:image" content="https://kavedi.com.ng/assets/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -22,8 +22,8 @@
 <meta property="og:locale" content="en_NG">
 
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Kavedi — Your AI Operator for WhatsApp in Nigeria">
-<meta name="twitter:description" content="Kavedi answers, books, reminds and broadcasts on the WhatsApp number you already use — built in Nigeria for people who message you all day.">
+<meta name="twitter:title" content="Kavedi — Your AI Operator for WhatsApp">
+<meta name="twitter:description" content="Kavedi answers the questions you get asked twenty times a week, books appointments and sends the messages you keep forgetting — on your own WhatsApp number.">
 <meta name="twitter:image" content="https://kavedi.com.ng/assets/og.png">
 
 <script type="application/ld+json">
@@ -355,23 +355,6 @@
   .notif-text{font-size:15px; font-weight:600; line-height:1.42; color:var(--navy);}
 
   /* ===== DASHBOARD ===== */
-  .dashboard{padding:8px 24px 40px;}
-  .dashboard-head h2{margin:0 0 8px; font-size:31px; line-height:1.1; font-weight:800;}
-  .dashboard-head p.sub{margin:0 0 24px; font-size:17px; line-height:1.5; font-weight:400; color:var(--muted-teal-grey);}
-  .dashboard-card{background:#fff; border:1px solid var(--border); border-radius:28px; overflow:hidden;}
-  .dashboard-chrome{background:var(--phone-bg); padding:10px 16px; display:flex; align-items:center; gap:7px;}
-  .chrome-dot{width:8px; height:8px; border-radius:50%; background:var(--border); flex:0 0 auto;}
-  .chrome-url{flex:1; text-align:center; font-family:ui-monospace, 'SF Mono', Menlo, Consolas, monospace; font-size:11px; color:var(--muted-label-grey);}
-  .dashboard-body{padding:22px;}
-  .dashboard-stats{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:16px;}
-  .stat-tile{background:var(--cream); border-radius:18px; padding:16px;}
-  .stat-tile.attention{background:var(--notif-bg); border:1px solid var(--notif-border);}
-  .stat-number{font-size:28px; font-weight:800; color:var(--navy);}
-  .stat-tile.attention .stat-number{color:var(--notif-text);}
-  .stat-label{font-size:13px; font-weight:600; color:var(--muted-warm-grey); margin-top:4px;}
-  .stat-tile.attention .stat-label{color:var(--notif-text);}
-  .dashboard-activity{display:flex; flex-direction:column; gap:8px; padding-top:14px; border-top:2px solid var(--divider);}
-  .dashboard-activity div{font-size:15px; font-weight:600; color:var(--navy);}
 
   /* ===== WHO IT'S FOR ===== */
   .who{padding:40px 24px 44px;}
@@ -580,21 +563,6 @@
     .phone-wrap{margin-top:0; padding-bottom:0;}
     .phone{max-width:340px; box-shadow:0 26px 60px rgba(20,50,60,.18);}
 
-    .dashboard{padding:84px 64px;}
-    .dashboard-head{max-width:760px; margin-bottom:40px;}
-    .dashboard-head h2{font-size:48px; line-height:1.06; letter-spacing:-.02em; margin-bottom:10px;}
-    .dashboard-head p.sub{font-size:20px; margin-bottom:0;}
-    .dashboard-card{max-width:900px;}
-    .dashboard-chrome{padding:12px 20px; gap:8px;}
-    .chrome-dot{width:10px; height:10px;}
-    .chrome-url{font-size:13px;}
-    .dashboard-body{padding:36px;}
-    .dashboard-stats{grid-template-columns:repeat(4, minmax(0,1fr)); gap:16px; margin-bottom:24px;}
-    .stat-tile{border-radius:22px; padding:22px;}
-    .stat-number{font-size:36px;}
-    .stat-label{font-size:15px; margin-top:6px;}
-    .dashboard-activity{gap:10px; padding-top:20px;}
-    .dashboard-activity div{font-size:17px;}
 
     .problem{padding:84px 64px;}
     .problem-inner{max-width:760px; margin-bottom:40px;}
@@ -714,6 +682,18 @@
     .footer-social svg{width:22px; height:22px;}
   }
 </style>
+<meta name="theme-color" content="#F5F1E9">
+<script>
+  (function () {
+    try {
+      var choice = localStorage.getItem('kv-theme');
+      if (choice === 'dark' || choice === 'light') document.documentElement.setAttribute('data-theme', choice);
+      var dark = choice === 'dark' || (choice !== 'light' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', dark ? '#0E1A1F' : '#F5F1E9');
+    } catch (e) {}
+  })();
+</script>
+<link rel="stylesheet" href="/assets/site.css">
 </head>
 <body>
 
@@ -730,13 +710,16 @@
     </a>
     <div class="nav-right">
       <div class="nav-links" id="site-nav-links">
+        <a href="#see-it">The app</a>
         <a href="#how-it-works">How it works</a>
         <a href="/pricing">Pricing</a>
       </div>
-      <a href="#hero-email" class="nav-cta">Join the waitlist</a>
+      <a href="#join" class="nav-cta">Join the waitlist</a>
     </div>
   </nav>
 </header>
+
+<div class="scroll-bar" data-scroll-bar aria-hidden="true"></div>
 
 <main>
 
@@ -797,10 +780,10 @@
               </div>
               <div class="phone-messages">
                 <div class="bubble in">How much for the black one?</div>
-                <div class="bubble out">The black tote is &#8358;18,500. Four left. Lagos delivery is &#8358;2,000 &mdash; should I hold one for you?
+                <div class="bubble out">The black tote is $45. Four left. Delivery is $6 &mdash; should I hold one for you?
                   <div class="bubble-meta">11:42 <span aria-hidden="true">&#10003;&#10003;</span></div>
                 </div>
-                <div class="bubble in">Can you do &#8358;15,000 if I take three?</div>
+                <div class="bubble in">Can you do $38 if I take three?</div>
                 <div class="phone-inputbar">
                   <div class="field">Message</div>
                   <div class="send" aria-hidden="true"></div>
@@ -821,7 +804,70 @@
                   <span class="dot" aria-hidden="true"></span>
                   <span class="label">Needs your attention</span>
                 </div>
-                <div class="notif-text">Amaka is asking for &#8358;15,000 for three. I won&rsquo;t guess &mdash; it&rsquo;s waiting for you.</div>
+                <div class="notif-text">Amaka is asking for $38 for three. I won&rsquo;t guess &mdash; it&rsquo;s waiting for you.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ONE MESSAGE, START TO FINISH ===== -->
+  <section class="story" id="story" data-story>
+    <div class="story-rail">
+      <div class="story-stage">
+        <div class="story-copy">
+          <span class="eyebrow">11:42pm, Tuesday</span>
+          <h2>One message, start to finish.</h2>
+          <div class="story-steps">
+            <p class="story-step is-on" data-story-step="0">Someone asks a price while you&rsquo;re asleep.</p>
+            <p class="story-step" data-story-step="1">Kavedi answers it &mdash; from the price you typed in once.</p>
+            <p class="story-step" data-story-step="2">They push for a discount. That&rsquo;s not Kavedi&rsquo;s to give, so it stops.</p>
+            <p class="story-step" data-story-step="3">You wake up to one question, not forty unread chats.</p>
+          </div>
+          <div class="story-progress" aria-hidden="true">
+            <span class="is-on"></span><span></span><span></span><span></span>
+          </div>
+        </div>
+
+        <div class="story-phone">
+          <div class="phone">
+            <div class="phone-screen">
+              <div class="dynamic-island" aria-hidden="true"></div>
+              <div class="phone-statusbar"><span>23:42</span></div>
+              <div class="phone-topbar">
+                <span class="chevron" aria-hidden="true">&#8249;</span>
+                <span class="phone-avatar">A</span>
+                <div class="phone-contact-info">
+                  <span class="phone-contact-name" style="display:block;">Amaka O.</span>
+                  <span class="phone-contact-status" style="display:block;">online</span>
+                </div>
+              </div>
+              <div class="phone-messages">
+                <div class="bubble in" data-story-at="0">How much for the black one?</div>
+                <div class="bubble out" data-story-at="1">The black tote is $45. Four left. Delivery is $6 &mdash; should I hold one for you?
+                  <div class="bubble-meta">23:42 <span aria-hidden="true">&#10003;&#10003;</span></div>
+                </div>
+                <div class="bubble in" data-story-at="2">Can you do $38 if I take three?</div>
+                <div class="bubble out" data-story-at="3">Morning! Three for $38 each works. I&rsquo;ll put them aside &mdash; what time suits for pickup?
+                  <div class="bubble-meta">07:10 <span aria-hidden="true">&#10003;&#10003;</span></div>
+                </div>
+                <div class="phone-inputbar">
+                  <div class="field">Message</div>
+                  <div class="send" aria-hidden="true"></div>
+                </div>
+              </div>
+            </div>
+            <div class="notif-card" data-story-at="2">
+              <picture>
+                <source srcset="assets/mark.webp" type="image/webp">
+                <img src="assets/mark.png" alt="" width="36" height="36">
+              </picture>
+              <div class="notif-body">
+                <div class="notif-head"><span class="name">Kavedi</span><span class="time">now</span></div>
+                <div class="notif-pill"><span class="dot" aria-hidden="true"></span><span class="label">Waiting for you</span></div>
+                <div class="notif-text">Amaka is asking for $38 for three. I won&rsquo;t guess &mdash; it&rsquo;s yours to answer.</div>
               </div>
             </div>
           </div>
@@ -848,6 +894,22 @@
         <div class="who-rotor-item" style="animation-delay:-9s;">Sales reps</div>
       </div>
       <span class="sr-only">Shop owners, freelancers, secretaries, school and church admins, group admins, event coordinators, sales reps</span>
+    </div>
+  </section>
+
+  <!-- ===== THE SCREEN YOU OPEN ===== -->
+  <section class="glass" id="see-it">
+    <div class="glass-head reveal">
+      <span class="eyebrow">The app</span>
+      <h2>One screen instead of fifty unread chats.</h2>
+      <p>Kavedi answers what it was taught and hands you the rest &mdash; with the question, the name, and a reply box.</p>
+    </div>
+    <div class="shot-reveal reveal">
+      <div class="shot-frame">
+        <div class="shot-chrome" aria-hidden="true"><span class="shot-dot"></span><span class="shot-dot"></span><span class="shot-dot"></span></div>
+        <img class="shot-light" src="assets/screens/home-light.webp" alt="Kavedi’s home screen: questions waiting for you, today’s numbers, and what Kavedi did lately" width="1600" height="1000" loading="lazy" decoding="async">
+        <img class="shot-dark" src="assets/screens/home-dark.webp" alt="Kavedi’s home screen: questions waiting for you, today’s numbers, and what Kavedi did lately" width="1600" height="1000" loading="lazy" decoding="async">
+      </div>
     </div>
   </section>
 
@@ -898,6 +960,34 @@
     </div>
   </section>
 
+  <!-- ===== ANSWERS AND BOOKINGS ===== -->
+  <section class="showcase">
+    <div class="showcase-row reveal">
+      <div class="showcase-text">
+        <span class="eyebrow">Answers</span>
+        <h3>Type it once. Hear it back before anyone else does.</h3>
+        <p>Write the answers you repeat all day, or upload the price list you already have. <strong>Try it</strong> shows you the reply Kavedi would send, without sending it.</p>
+      </div>
+      <div class="shot-frame">
+        <div class="shot-chrome" aria-hidden="true"><span class="shot-dot"></span><span class="shot-dot"></span><span class="shot-dot"></span></div>
+        <img class="shot-light" src="assets/screens/autoreply-light.webp" alt="The answers screen, with Try it showing the reply Kavedi would send" width="1600" height="1000" loading="lazy" decoding="async">
+        <img class="shot-dark" src="assets/screens/autoreply-dark.webp" alt="The answers screen, with Try it showing the reply Kavedi would send" width="1600" height="1000" loading="lazy" decoding="async">
+      </div>
+    </div>
+    <div class="showcase-row is-flipped reveal">
+      <div class="showcase-text">
+        <span class="eyebrow">Bookings</span>
+        <h3>&ldquo;Are you free Thursday?&rdquo; &mdash; answered, and booked.</h3>
+        <p>Kavedi offers the times you really have open, takes the reply, and puts it in your week. Walk-ins and time you&rsquo;re blocking off go in by hand.</p>
+      </div>
+      <div class="shot-frame">
+        <div class="shot-chrome" aria-hidden="true"><span class="shot-dot"></span><span class="shot-dot"></span><span class="shot-dot"></span></div>
+        <img class="shot-light" src="assets/screens/bookings-light.webp" alt="A week in the bookings diary, with appointments, a walk-in and blocked time" width="1600" height="1000" loading="lazy" decoding="async">
+        <img class="shot-dark" src="assets/screens/bookings-dark.webp" alt="A week in the bookings diary, with appointments, a walk-in and blocked time" width="1600" height="1000" loading="lazy" decoding="async">
+      </div>
+    </div>
+  </section>
+
   <!-- ===== HOW IT WORKS ===== -->
   <section class="how" id="how-it-works">
     <h2 class="reveal">Three steps.</h2>
@@ -925,6 +1015,22 @@
           <div class="step-title">It handles the repetitive half</div>
           <div class="step-body">You keep the ones that need a person.</div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== BROADCAST ===== -->
+  <section class="showcase">
+    <div class="showcase-row reveal">
+      <div class="showcase-text">
+        <span class="eyebrow">Broadcast</span>
+        <h3>Tell fifty people something, without sounding like a blast.</h3>
+        <p>You tick names off your own list. Kavedi sends them one at a time, at the speed a person types, each with their own name in it. Nothing goes out at 3am, and anyone who replied STOP is left out for good.</p>
+      </div>
+      <div class="shot-frame">
+        <div class="shot-chrome" aria-hidden="true"><span class="shot-dot"></span><span class="shot-dot"></span><span class="shot-dot"></span></div>
+        <img class="shot-light" src="assets/screens/broadcast-light.webp" alt="The broadcast screen: people picked, the message with a name filled in, and the limits it sends under" width="1600" height="1000" loading="lazy" decoding="async">
+        <img class="shot-dark" src="assets/screens/broadcast-dark.webp" alt="The broadcast screen: people picked, the message with a name filled in, and the limits it sends under" width="1600" height="1000" loading="lazy" decoding="async">
       </div>
     </div>
   </section>
@@ -1019,8 +1125,8 @@
         <p>Always on, without a laptop that has to stay open. Everything runs from your phone.</p>
       </div>
       <div class="why-card reveal">
-        <div class="why-label">Flat naira pricing</div>
-        <p>No platform fee stacked on a per-message charge, no dollar billing that changes every month. One number, in naira.</p>
+        <div class="why-label">One price a month</div>
+        <p>Not a platform fee with a charge per message on top. The bill doesn&rsquo;t move because you had a busy week.</p>
       </div>
       <div class="why-card reveal">
         <div class="why-label">Set up by hand</div>
@@ -1070,103 +1176,128 @@
     <div class="team-contact reveal">Questions any time: <a href="mailto:support@kavedi.com.ng">support@kavedi.com.ng</a></div>
   </section>
 
-  <!-- ===== DASHBOARD ===== -->
-  <section class="dashboard">
-    <div class="dashboard-head reveal">
-      <h2>What has your AI been doing while you weren&rsquo;t looking?</h2>
-      <p class="sub">This is the dashboard, not another chat.</p>
-    </div>
-    <div class="dashboard-card reveal">
-      <div class="dashboard-chrome">
-        <span class="chrome-dot" aria-hidden="true"></span>
-        <span class="chrome-dot" aria-hidden="true"></span>
-        <span class="chrome-dot" aria-hidden="true"></span>
-        <div class="chrome-url">app.kavedi.com.ng</div>
-      </div>
-      <div class="dashboard-body">
-        <div class="dashboard-stats">
-          <div class="stat-tile">
-            <div class="stat-number" data-count-to="18">0</div>
-            <div class="stat-label">Replies today</div>
-          </div>
-          <div class="stat-tile attention">
-            <div class="stat-number" data-count-to="3">0</div>
-            <div class="stat-label">Waiting for you</div>
-          </div>
-          <div class="stat-tile">
-            <div class="stat-number" data-count-to="5">0</div>
-            <div class="stat-label">Messaged you</div>
-          </div>
-          <div class="stat-tile">
-            <div class="stat-number" data-count-to="7">0</div>
-            <div class="stat-label">Going out</div>
-          </div>
-        </div>
-        <div class="dashboard-activity">
-          <div>Answered 6 questions on its own</div>
-          <div>Passed 1 question to you</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- ===== PRICING (HOMEPAGE) ===== -->
   <section class="home-pricing reveal-group">
     <h2 class="reveal">Pricing</h2>
-    <p class="sub reveal">Two plans, flat naira, no per-message charges.</p>
+    <p class="sub reveal">One price a month. Nothing per message.</p>
     <div class="home-pricing-grid">
       <div class="home-pricing-card reveal">
         <div class="home-pricing-tier">Free</div>
-        <div class="home-pricing-price"><span class="amount">&#8358;0</span><span class="period">/month</span></div>
+        <div class="home-pricing-price"><span class="amount">$0</span><span class="period">/month</span></div>
         <div class="home-pricing-list">
-          <div><span class="check">&#10003;</span><span>1 connected number</span></div>
-          <div><span class="check">&#10003;</span><span>150 AI credits/month</span></div>
-          <div><span class="check">&#10003;</span><span>Human handoff &amp; alerts</span></div>
-          <div><span class="check">&#10003;</span><span>Dashboard</span></div>
+          <div><span class="check">&#10003;</span><span>1 WhatsApp number</span></div>
+          <div><span class="check">&#10003;</span><span>100 AI replies a month</span></div>
+          <div><span class="check">&#10003;</span><span>Answers, uploads, hand-over</span></div>
+          <div><span class="check">&#10003;</span><span>30 scheduled messages</span></div>
         </div>
       </div>
       <div class="home-pricing-card pro reveal">
         <div class="home-pricing-tier-row">
           <div class="home-pricing-tier">Pro</div>
-          <span class="home-pricing-badge">Most solo operators</span>
+          <span class="home-pricing-badge">Most people</span>
         </div>
-        <div class="home-pricing-price"><span class="amount">~&#8358;2,500</span><span class="period">/month</span></div>
+        <div class="home-pricing-price"><span class="amount">$9</span><span class="period">/month</span></div>
         <div class="home-pricing-list">
-          <div><span class="check">&#10003;</span><span>Everything in Free, more credits</span></div>
-          <div><span class="check">&#10003;</span><span>Appointment booking</span></div>
-          <div><span class="check">&#10003;</span><span>Free setup</span></div>
+          <div><span class="check">&#10003;</span><span>1,500 AI replies a month</span></div>
+          <div><span class="check">&#10003;</span><span>Bookings, reminders, check-ins</span></div>
+          <div><span class="check">&#10003;</span><span>Scheduling and broadcasts</span></div>
         </div>
       </div>
     </div>
-    <div class="home-pricing-plus reveal"><span class="plus-sign">+</span><span>Scheduled messages, broadcasts, reminders &amp; follow-ups, priority support</span></div>
-    <div class="home-pricing-note reveal">Prices and credit limits are indicative &mdash; not final. <a href="/pricing">See everything Pro includes &rarr;</a></div>
+    <div class="home-pricing-plus reveal"><span class="plus-sign">+</span><span>Business at $24 &mdash; 5,000 replies, voice notes, and we set it up with you</span></div>
+    <div class="home-pricing-note reveal">Indicative, in dollars. Naira, pounds and euro on the <a href="/pricing">pricing page &rarr;</a></div>
   </section>
 
-  <!-- ===== FINAL CTA ===== -->
-  <section class="final-cta cta-invert reveal-group">
-    <h2 class="reveal">Get early access</h2>
-    <p class="sub reveal">We&rsquo;ll email you within the week with what&rsquo;s next.</p>
-    <div class="first-ten-badge reveal">First 10 signups: personal set up + 2 months of Pro free</div>
-    <form class="waitlist-form reveal" id="waitlist-form-cta" action="https://api.web3forms.com/submit" method="POST" novalidate data-channel="email">
-      <input type="hidden" name="access_key" value="f04060d7-7b1b-4650-860a-60f03e66933a">
-      <input type="hidden" name="subject" value="New Kavedi waitlist signup">
-      <input type="checkbox" name="botcheck" style="display:none;" tabindex="-1" autocomplete="off" aria-hidden="true">
-      <input type="hidden" name="signup_method" value="email" data-channel-method>
-      <div class="channel-toggle" role="group" aria-label="Contact method">
-        <button type="button" class="channel-btn is-active" data-channel-btn="email" aria-pressed="true">Email</button>
-        <button type="button" class="channel-btn" data-channel-btn="whatsapp" aria-pressed="false">WhatsApp number</button>
-      </div>
-      <div class="waitlist-fields">
-        <div class="field-row" data-field-row>
-          <label for="cta-email" class="sr-only" data-field-label>Your email address</label>
-          <input type="email" id="cta-email" name="email" class="waitlist-input" placeholder="Your email address" required autocomplete="email" data-channel-input>
-          <div class="field-error" data-error hidden><span aria-hidden="true">&#9888;</span><span data-error-text></span></div>
+  <!-- ===== FAQ ===== -->
+  <section class="faq reveal-group" id="faq">
+    <h2 class="reveal">Before you ask</h2>
+    <div class="faq-list">
+      <details class="faq-item reveal">
+        <summary>Is my number safe?</summary>
+        <p>There&rsquo;s a real risk and we won&rsquo;t pretend otherwise: Kavedi links to your number the way WhatsApp Web does, and WhatsApp doesn&rsquo;t offer this officially. So Kavedi replies to people who wrote to you first, sends anything outbound one message at a time between 8am and 8pm, up to 50 a day, and warns you before it messages someone you&rsquo;ve never chatted with. Use a work number rather than your personal one.</p>
+      </details>
+      <details class="faq-item reveal">
+        <summary>What happens when it doesn&rsquo;t know?</summary>
+        <p>It says nothing. The question turns up in Kavedi with the person&rsquo;s name and you answer it there or on your phone, after which Kavedi stays out of that chat. One tap turns your answer into the answer, so the next person gets it straight away. If you&rsquo;d rather it said &ldquo;let me check&rdquo; in the meantime, write that line once.</p>
+      </details>
+      <details class="faq-item reveal">
+        <summary>Will it sound like a bot?</summary>
+        <p>It writes each reply from what you taught it, in the tone you picked, and it never invents a price or a time. Anything that has to go out exactly as written &mdash; a price list, account details &mdash; you mark word for word. Asked outright whether it&rsquo;s a person, it says it&rsquo;s an assistant.</p>
+      </details>
+      <details class="faq-item reveal">
+        <summary>Which countries?</summary>
+        <p>Anywhere WhatsApp works. Times follow your time zone, prices show in your currency, and it replies in English.</p>
+      </details>
+      <details class="faq-item reveal">
+        <summary>Can I switch it off?</summary>
+        <p>Instantly, and in pieces: replies, bookings and check-ins are three separate switches. Disconnecting takes Kavedi off your number altogether.</p>
+      </details>
+      <details class="faq-item reveal">
+        <summary>Is anyone reading my chats?</summary>
+        <p>No. Kavedi doesn&rsquo;t keep conversations &mdash; only the questions it passes to you, what you taught it, and your contacts, encrypted. The <a href="/privacy">privacy policy</a> lists every last thing.</p>
+      </details>
+    </div>
+  </section>
+
+  <!-- ===== JOIN ===== -->
+  <section class="join reveal-group" id="join">
+    <div class="join-inner">
+      <div class="join-left">
+        <div class="join-head reveal">
+          <span class="eyebrow">Waitlist</span>
+          <h2>Get early access</h2>
+          <p>We connect every early number ourselves, so the list moves in small groups.</p>
         </div>
-        <button type="submit" class="btn-primary" data-submit-btn>
-          <span data-btn-label>Claim your spot</span>
-        </button>
+        <div class="first-ten-badge reveal">First 10 signups: personal set up + 2 months of Pro free</div>
+        <div class="join-steps reveal">
+          <div class="join-step"><b>1</b><div>You leave an email or a number<small>Ten seconds. Nothing else asked.</small></div></div>
+          <div class="join-step"><b>2</b><div>We write within the week<small>A person, with a time to do it together.</small></div></div>
+          <div class="join-step"><b>3</b><div>We connect your number with you<small>One code, and your first answers written on the call.</small></div></div>
+        </div>
+        <div class="shot-phones reveal">
+          <img class="shot-light" src="assets/screens/phone-home-light.webp" alt="Kavedi on a phone, showing what is waiting for you" width="640" height="1331" loading="lazy" decoding="async">
+          <img class="shot-dark" src="assets/screens/phone-home-dark.webp" alt="Kavedi on a phone, dark" width="640" height="1331" loading="lazy" decoding="async">
+          <img class="shot-light" src="assets/screens/phone-waiting-light.webp" alt="A question waiting for you, with Reply and Open in WhatsApp" width="640" height="1331" loading="lazy" decoding="async">
+          <img class="shot-dark" src="assets/screens/phone-waiting-dark.webp" alt="A question waiting for you, dark" width="640" height="1331" loading="lazy" decoding="async">
+        </div>
       </div>
-    </form>
+
+      <div class="join-card reveal">
+        <form class="waitlist-form" id="waitlist-form-cta" action="https://api.web3forms.com/submit" method="POST" novalidate data-channel="email">
+          <input type="hidden" name="access_key" value="f04060d7-7b1b-4650-860a-60f03e66933a">
+          <input type="hidden" name="subject" value="New Kavedi waitlist signup">
+          <input type="checkbox" name="botcheck" style="display:none;" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <input type="hidden" name="signup_method" value="email" data-channel-method>
+          <div class="channel-toggle" role="group" aria-label="Contact method">
+            <button type="button" class="channel-btn is-active" data-channel-btn="email" aria-pressed="true">Email</button>
+            <button type="button" class="channel-btn" data-channel-btn="whatsapp" aria-pressed="false">WhatsApp number</button>
+          </div>
+          <div class="waitlist-fields">
+            <div class="field-row" data-field-row>
+              <label for="cta-email" class="sr-only" data-field-label>Your email address</label>
+              <input type="email" id="cta-email" name="email" class="waitlist-input" placeholder="Your email address" required autocomplete="email" data-channel-input>
+              <div class="field-error" data-error hidden><span aria-hidden="true">&#9888;</span><span data-error-text></span></div>
+            </div>
+            <div class="join-field">
+              <label for="cta-role">What do people message you about?</label>
+              <select id="cta-role" name="what_you_do" class="join-select">
+                <option value="">Pick one &mdash; optional</option>
+                <option>Selling things</option>
+                <option>Appointments and bookings</option>
+                <option>Teaching or tutoring</option>
+                <option>A school, church or community</option>
+                <option>Freelance or services</option>
+                <option>Something else</option>
+              </select>
+            </div>
+            <button type="submit" class="btn-primary" data-submit-btn>
+              <span data-btn-label>Claim your spot</span>
+            </button>
+          </div>
+          <p class="join-small">One message when it&rsquo;s your turn. Nothing else, ever. <a href="/privacy">Privacy</a></p>
+        </form>
+      </div>
+    </div>
   </section>
 
 </main>
@@ -1210,6 +1341,9 @@
   <div class="footer-bottom">
     <div class="footer-disclaimer">Kavedi connects to your existing WhatsApp number, like WhatsApp Web. Not affiliated with WhatsApp or Meta.</div>
     <div class="footer-meta">
+      <div class="footer-theme">
+        <div data-theme-switch></div>
+      </div>
       <div class="footer-copyright">&copy; 2026 Kavedi &middot; Lagos, Nigeria</div>
       <div class="footer-social">
         <a href="https://instagram.com/kavedihq" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.2" cy="6.8" r="1" fill="currentColor" stroke="none"></circle></svg></a>
@@ -1223,24 +1357,6 @@
 
 <script src="assets/attribution.js"></script>
 <script>
-  if ('IntersectionObserver' in window) {
-    var revealObserver = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-visible');
-          revealObserver.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
-    document.querySelectorAll('.reveal').forEach(function (el) {
-      revealObserver.observe(el);
-    });
-  } else {
-    document.querySelectorAll('.reveal').forEach(function (el) {
-      el.classList.add('is-visible');
-    });
-  }
-
   var prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   // Does/doesn't icons: bounce in when scrolled into view
@@ -1274,37 +1390,6 @@
         }
       }, 400 + i * 500);
     });
-  }
-
-  // Dashboard stat tiles: count up from 0 when scrolled into view
-  function animateCountUp(el) {
-    var target = parseInt(el.getAttribute('data-count-to'), 10) || 0;
-    if (prefersReducedMotion) { el.textContent = target; return; }
-    var duration = 900;
-    var start = null;
-    function step(ts) {
-      if (start === null) start = ts;
-      var progress = Math.min((ts - start) / duration, 1);
-      el.textContent = Math.round(progress * target);
-      if (progress < 1) requestAnimationFrame(step);
-    }
-    requestAnimationFrame(step);
-  }
-  var dashboardCard = document.querySelector('.dashboard-card');
-  if (dashboardCard) {
-    if ('IntersectionObserver' in window) {
-      var statObserver = new IntersectionObserver(function (entries) {
-        entries.forEach(function (entry) {
-          if (entry.isIntersecting) {
-            entry.target.querySelectorAll('[data-count-to]').forEach(animateCountUp);
-            statObserver.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.3 });
-      statObserver.observe(dashboardCard);
-    } else {
-      dashboardCard.querySelectorAll('[data-count-to]').forEach(animateCountUp);
-    }
   }
 
   // Nav: condense after 100px of scroll
@@ -1343,7 +1428,7 @@
         if (channel === 'whatsapp') {
           input.type = 'tel';
           input.name = 'phone';
-          input.placeholder = 'e.g. 0813 000 0000';
+          input.placeholder = 'Your number, with country code';
           input.autocomplete = 'tel';
           label.textContent = 'Your WhatsApp number';
         } else {
@@ -1482,5 +1567,6 @@
   document.getElementById('waitlist-form-cta').addEventListener('submit', handleSubmit);
 </script>
 
+<script src="/assets/site.js"></script>
 </body>
 </html>

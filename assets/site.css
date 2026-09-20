@@ -1,0 +1,304 @@
+/* Shared across every page: dark mode, the screenshot gallery, the waitlist section, the FAQ and the currency switch.
+   Loaded after each page's own <style>, so it can override what is there without touching it. */
+
+/* ===== DARK MODE =====
+   The palette is a set of tokens on :root in each page. Most of them can simply be redefined. Two can't:
+   --navy is both the body text colour and the background of the footer, the Pro card and the "it doesn't" card, and
+   the phone mock is a picture of WhatsApp whose surfaces are fixed light colours. Both are handled below. */
+:root {
+  --surface: #fff;
+  --panel-ink: var(--navy);
+  --link-accent: var(--teal-on-cream, var(--teal));
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    color-scheme: dark;
+    --navy: #E6EEF0;
+    --white: #0E1A1F;
+    --cream: #12222A;
+    --surface: #17292F;
+    --panel-ink: #16323C;
+    --border: #2A4750;
+    --divider: #213A42;
+    --muted-teal-grey: #A8C0C7;
+    --muted-warm-grey: #A9B6B7;
+    --muted-label-grey: #93A6AC;
+    --light-teal: #103833;
+    --link-accent: #5FD9CF;
+    --notif-bg: #3A2B12;
+    --notif-border: #7A5A22;
+    --notif-text: #F1C98D;
+    --notif-dot: #D9A24E;
+    --doesnt-badge-bg: #6A4A12;
+    --doesnt-badge-text: #F7D9A3;
+    --hover-tint: #1B2F36;
+    --dark-divider: #33606C;
+  }
+}
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --navy: #E6EEF0;
+  --white: #0E1A1F;
+  --cream: #12222A;
+  --surface: #17292F;
+  --panel-ink: #16323C;
+  --border: #2A4750;
+  --divider: #213A42;
+  --muted-teal-grey: #A8C0C7;
+  --muted-warm-grey: #A9B6B7;
+  --muted-label-grey: #93A6AC;
+  --light-teal: #103833;
+  --link-accent: #5FD9CF;
+  --notif-bg: #3A2B12;
+  --notif-border: #7A5A22;
+  --notif-text: #F1C98D;
+  --notif-dot: #D9A24E;
+  --doesnt-badge-bg: #6A4A12;
+  --doesnt-badge-text: #F7D9A3;
+  --hover-tint: #1B2F36;
+  --dark-divider: #33606C;
+}
+
+/* Every white card, in one place. */
+.step, .why-card, .dashboard-card, .home-pricing-card, .tier-card, .pricing-notice, .waitlist-success,
+.channel-btn, .waitlist-input, .doc, .shot-frame, .faq-item, .join-card, .join-step {
+  background: var(--surface);
+}
+/* The panels that are navy in the light theme: a raised surface rather than near-black on near-black. */
+.site-footer, .doesnt-card, .home-pricing-card.pro, .tier-card.pro, .channel-btn.is-active,
+.btn-primary:hover, .cta-invert .btn-primary { background: var(--panel-ink); }
+.channel-btn.is-active { border-color: var(--panel-ink); }
+.waitlist-input { border-color: var(--border); color: var(--navy); }
+.waitlist-input:focus { border-color: var(--teal-bright, var(--teal)); }
+a:hover, .nav-links a.is-active { color: var(--link-accent); }
+.site-header { border-bottom-color: var(--border); }
+
+/* The phone mock and the notification cards stay light: they are a picture of WhatsApp, and WhatsApp's own colours
+   are part of what makes it read as one. Only the text tokens inside them are pinned back to their light values. */
+.phone, .notif-card {
+  --navy: #14323C;
+  --muted-teal-grey: #3D5B65;
+  --muted-warm-grey: #6B655A;
+  --muted-label-grey: #8A8478;
+  --notif-bg: #FDF1DC;
+  --notif-border: #EFC479;
+  --notif-text: #7C4606;
+  --notif-dot: #B4690E;
+  --divider: #EFEBE2;
+  --surface: #fff;
+}
+
+/* ===== THEME SWITCH (in the footer) ===== */
+.theme-switch { display: inline-flex; align-items: center; gap: 2px; padding: 3px; border-radius: 999px; background: rgba(255, 255, 255, .08); }
+.theme-switch button {
+  display: inline-flex; align-items: center; justify-content: center; width: 30px; height: 30px; padding: 0; border: 0;
+  border-radius: 999px; background: transparent; color: var(--footer-secondary); cursor: pointer;
+}
+.theme-switch button:hover { color: #fff; }
+.theme-switch button[aria-pressed='true'] { background: rgba(255, 255, 255, .14); color: #fff; }
+.theme-switch button:focus-visible { outline: 2px solid var(--teal-bright); outline-offset: 2px; }
+.theme-switch svg { width: 15px; height: 15px; }
+.footer-theme { display: inline-flex; }
+
+/* ===== SCREENS ON THE PAGE ===== */
+.eyebrow {
+  display: inline-block; margin-bottom: 10px; font-size: 13px; font-weight: 800; letter-spacing: .08em;
+  text-transform: uppercase; color: var(--teal-on-cream);
+}
+.glass { position: relative; padding: 10px 24px 50px; overflow: hidden; }
+.glass::before {
+  content: ''; position: absolute; left: 50%; top: 0; width: 760px; height: 420px; transform: translateX(-50%);
+  background: radial-gradient(closest-side, rgba(42, 201, 194, .20), transparent 70%); pointer-events: none;
+}
+.glass-head { position: relative; max-width: 700px; margin: 0 auto 26px; text-align: center; }
+.glass-head h2 { margin: 0 0 10px; font-size: 32px; line-height: 1.08; font-weight: 800; letter-spacing: -.02em; }
+.glass-head p { margin: 0; font-size: 17px; line-height: 1.55; font-weight: 500; color: var(--muted-teal-grey); }
+
+.shot-frame {
+  position: relative; border: 1px solid var(--border); border-radius: 18px; overflow: hidden;
+  background: var(--surface); box-shadow: 0 24px 60px rgba(12, 42, 50, .16);
+}
+.shot-chrome { display: flex; align-items: center; gap: 7px; padding: 9px 13px; background: var(--cream); border-bottom: 1px solid var(--border); }
+.shot-dot { width: 9px; height: 9px; border-radius: 50%; background: var(--border); }
+.shot-frame img { display: block; width: 100%; height: auto; }
+.shot-reveal { position: relative; max-width: 1000px; margin: 0 auto; }
+.shot-dark { display: none; }
+:root[data-theme='dark'] .shot-dark { display: block; }
+:root[data-theme='dark'] .shot-light { display: none; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) .shot-dark { display: block; }
+  :root:not([data-theme='light']) .shot-light { display: none; }
+}
+
+/* A screen beside the words about it, alternating sides. */
+.showcase { padding: 20px 24px 30px; display: flex; flex-direction: column; gap: 56px; }
+.showcase-row { display: flex; flex-direction: column; gap: 20px; max-width: 1180px; margin: 0 auto; width: 100%; }
+.showcase-text h3 { margin: 0 0 10px; font-size: 27px; line-height: 1.12; font-weight: 800; letter-spacing: -.01em; }
+.showcase-text p { margin: 0; font-size: 17px; line-height: 1.6; font-weight: 500; color: var(--muted-teal-grey); }
+.showcase-text strong { color: var(--navy); }
+.shot-phones { display: flex; justify-content: flex-start; gap: 16px; margin-top: 26px; }
+.shot-phones img { width: 46%; max-width: 200px; height: auto; border-radius: 20px; border: 1px solid var(--border); box-shadow: 0 16px 34px rgba(12, 42, 50, .16); }
+
+@media (min-width: 900px) {
+  .glass { padding: 30px 64px 70px; }
+  .glass-head h2 { font-size: 46px; }
+  .showcase { padding: 40px 64px 60px; gap: 90px; }
+  .showcase-row { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: 48px; align-items: center; }
+  .showcase-row.is-flipped .showcase-text { order: 2; }
+  .showcase-text h3 { font-size: 34px; }
+}
+
+/* ===== THE STORY: a phone pinned while its chat plays out ===== */
+.story { position: relative; background: var(--cream); }
+.story-rail { position: relative; }
+.story-stage {
+  position: sticky; top: 0; min-height: 100vh; display: flex; flex-direction: column; align-items: center;
+  justify-content: center; gap: 26px; padding: 70px 24px 40px; overflow: hidden;
+}
+.story-stage::before {
+  content: ''; position: absolute; left: 50%; top: 40%; width: 680px; height: 680px; transform: translate(-50%, -50%);
+  background: radial-gradient(closest-side, rgba(10, 127, 122, .16), transparent 70%); pointer-events: none;
+}
+.story-copy { position: relative; max-width: 460px; text-align: center; }
+.story-copy h2 { margin: 0 0 10px; font-size: 28px; line-height: 1.1; font-weight: 800; letter-spacing: -.02em; }
+.story-steps { position: relative; min-height: 84px; }
+.story-step {
+  position: absolute; inset: 0; display: flex; align-items: flex-start; justify-content: center; gap: 10px;
+  font-size: 17px; line-height: 1.45; font-weight: 600; color: var(--muted-teal-grey);
+  opacity: 0; transform: translateY(10px); transition: opacity .35s ease, transform .35s ease;
+}
+.story-step.is-on { opacity: 1; transform: none; }
+.story-progress { display: flex; gap: 6px; justify-content: center; }
+.story-progress span { width: 26px; height: 3px; border-radius: 999px; background: var(--border); transition: background .3s ease; }
+.story-progress span.is-on { background: var(--teal); }
+.story-phone { position: relative; width: 268px; flex: none; }
+
+.story-phone .phone-messages { justify-content: flex-end; }
+.story-phone .bubble, .story-phone .notif-card {
+  opacity: 0; transform: translateY(14px) scale(.98); transition: opacity .4s ease, transform .4s cubic-bezier(.2, .8, .3, 1);
+}
+.story-phone .bubble.is-in, .story-phone .notif-card.is-in { opacity: 1; transform: none; }
+.story-typing { display: inline-flex; gap: 4px; align-self: flex-start; padding: 10px 14px; border-radius: 20px 20px 20px 7px; background: #fff; }
+.story-typing i { width: 6px; height: 6px; border-radius: 50%; background: #9DB2BA; animation: kv-typing 1.2s infinite; }
+.story-typing i:nth-child(2) { animation-delay: .15s; }
+.story-typing i:nth-child(3) { animation-delay: .3s; }
+@keyframes kv-typing { 0%, 60%, 100% { transform: translateY(0); opacity: .5; } 30% { transform: translateY(-4px); opacity: 1; } }
+@media (min-width: 900px) {
+  .story-stage { flex-direction: row; justify-content: center; gap: 70px; padding: 0 64px; }
+  .story-copy { text-align: left; max-width: 420px; }
+  .story-copy h2 { font-size: 42px; }
+  .story-steps { min-height: 62px; }
+  .story-step { justify-content: flex-start; }
+  .story-progress { justify-content: flex-start; }
+  .story-phone { width: 300px; }
+
+}
+
+/* ===== MOTION =====
+   Everything that moves does so on the way in, once, and not at all for anyone who asked for less motion. */
+.reveal { opacity: 0; transform: translateY(18px); transition: opacity .6s cubic-bezier(.2, .7, .3, 1), transform .6s cubic-bezier(.2, .7, .3, 1); }
+.reveal.is-visible { opacity: 1; transform: none; }
+.shot-reveal, .showcase-row .shot-frame { transform: perspective(1400px) rotateX(4deg) translateY(24px); opacity: 0; transition: transform .9s cubic-bezier(.2, .7, .3, 1), opacity .7s ease; }
+.shot-reveal.is-visible, .showcase-row.is-visible .shot-frame { transform: perspective(1400px) rotateX(0) translateY(0); opacity: 1; }
+.feature-card, .why-card, .join-step, .faq-item, .home-pricing-card { transition: transform .25s cubic-bezier(.2, .8, .3, 1), box-shadow .25s ease, border-color .25s ease; }
+.feature-card:hover, .why-card:hover, .join-step:hover { transform: translateY(-3px); box-shadow: 0 14px 30px rgba(12, 42, 50, .10); }
+.home-pricing-card:hover { transform: translateY(-4px); box-shadow: 0 18px 40px rgba(12, 42, 50, .14); }
+.scroll-bar {
+  position: fixed; left: 0; top: 0; height: 3px; width: 100%; transform: scaleX(0); transform-origin: 0 50%;
+  background: linear-gradient(90deg, var(--teal), var(--teal-bright)); z-index: 200; pointer-events: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .reveal, .shot-reveal, .showcase-row .shot-frame { opacity: 1 !important; transform: none !important; transition: none; }
+  .story-step { transition: none; }
+  .story-phone .bubble, .story-phone .notif-card { opacity: 1; transform: none; }
+  .scroll-bar { display: none; }
+}
+
+/* ===== WAITLIST SECTION ===== */
+.join { padding: 40px 24px 70px; background: var(--cream); }
+.join-inner { max-width: 1000px; margin: 0 auto; display: flex; flex-direction: column; gap: 28px; }
+.join-head h2 { margin: 0 0 8px; font-size: 31px; line-height: 1.08; font-weight: 800; letter-spacing: -.01em; }
+.join-head p { margin: 0; font-size: 17px; line-height: 1.5; font-weight: 500; color: var(--muted-teal-grey); max-width: 520px; }
+.join-steps { display: flex; flex-direction: column; gap: 12px; }
+.join-step { display: flex; gap: 14px; align-items: flex-start; padding: 16px 18px; border: 1px solid var(--border); border-radius: 18px; }
+.join-step b { flex: none; width: 26px; height: 26px; border-radius: 999px; background: var(--light-teal); color: var(--teal-on-cream); display: flex; align-items: center; justify-content: center; font-size: 14px; }
+.join-step div { font-size: 15px; font-weight: 600; line-height: 1.5; }
+.join-step small { display: block; margin-top: 2px; font-size: 14px; font-weight: 500; color: var(--muted-warm-grey); }
+.join-card { padding: 24px 22px; border: 1px solid var(--border); border-radius: 24px; }
+.join-card .waitlist-form { margin-top: 0; }
+.join-field { display: flex; flex-direction: column; gap: 6px; }
+.join-field label { font-size: 14px; font-weight: 700; color: var(--muted-warm-grey); }
+.join-select {
+  width: 100%; height: 52px; padding: 0 18px; border-radius: 999px; border: 2px solid var(--border); background: var(--surface);
+  font-family: 'Nunito', sans-serif; font-size: 16px; font-weight: 600; color: var(--navy);
+}
+.join-select:focus { outline: none; border-color: var(--teal); }
+.join-small { font-size: 13px; font-weight: 600; line-height: 1.5; color: var(--muted-label-grey); }
+.join-small a { text-decoration: underline; }
+@media (min-width: 900px) {
+  .join { padding: 70px 64px 90px; }
+  .join-inner { flex-direction: row; align-items: flex-start; gap: 48px; }
+  .join-left { flex: 1; }
+  .join-card { flex: 0 0 420px; }
+  .join-head h2 { font-size: 44px; }
+}
+
+/* ===== FAQ ===== */
+.faq { padding: 40px 24px 20px; }
+.faq h2 { max-width: 820px; margin: 0 auto 18px; font-size: 31px; line-height: 1.1; font-weight: 800; text-align: center; letter-spacing: -.01em; }
+.faq-list { max-width: 820px; margin: 0 auto; display: flex; flex-direction: column; gap: 10px; }
+.faq-item { border: 1px solid var(--border); border-radius: 18px; padding: 4px 18px; }
+.faq-item summary {
+  display: flex; align-items: center; justify-content: space-between; gap: 14px; padding: 14px 0; cursor: pointer;
+  font-size: 17px; font-weight: 700; line-height: 1.4; list-style: none;
+}
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item summary::after { content: '+'; flex: none; font-size: 22px; font-weight: 700; color: var(--teal-on-cream); }
+.faq-item[open] summary::after { content: '–'; }
+.faq-item p { margin: 0 0 16px; font-size: 16px; font-weight: 500; line-height: 1.6; color: var(--muted-teal-grey); }
+@media (min-width: 768px) { .faq { padding: 60px 64px 20px; } .faq h2 { font-size: 40px; } }
+
+/* ===== CURRENCY SWITCH (pricing) ===== */
+.currency { display: inline-flex; align-items: center; gap: 8px; margin-top: 6px; font-size: 14px; font-weight: 600; color: var(--muted-warm-grey); }
+.currency select {
+  height: 38px; padding: 0 12px; border-radius: 999px; border: 2px solid var(--border); background: var(--surface);
+  font-family: 'Nunito', sans-serif; font-size: 14px; font-weight: 800; color: var(--navy); cursor: pointer;
+}
+.currency select:focus-visible { outline: 2px solid var(--teal); outline-offset: 2px; }
+
+/* The phone and its notifications are a picture of WhatsApp: their text colour has to be set, not inherited, or the
+   dark theme's near-white body colour lands on a white bubble. */
+.phone, .notif-card, .phone-screen { color: #14323C; }
+.story-phone .bubble, .phone-messages .bubble { color: #14323C; }
+.phone-contact-status, .phone-statusbar { color: #3D5B65; }
+
+/* The eyebrow is teal on cream; in the dark theme it needs the lighter teal to stay legible. */
+:root[data-theme='dark'] .eyebrow, :root[data-theme='dark'] .why-label { color: var(--link-accent); }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) .eyebrow, :root:not([data-theme='light']) .why-label { color: var(--link-accent); }
+}
+
+/* On a phone the pinned stage has to fit inside one screen, or it scrolls away before the chat has played out.
+   The notification hangs just under the phone: in the flow it would reserve empty space inside the phone's body. */
+@media (max-width: 899px) {
+  .story-stage { gap: 8px; padding: 54px 20px 110px; min-height: 100dvh; }
+  .story-copy h2 { font-size: 25px; margin-bottom: 6px; }
+  .story-steps { min-height: 72px; font-size: 15px; }
+  .story-progress { margin-top: 4px; }
+  .story-phone { width: min(56vw, 214px); }
+  .story-phone .phone-screen { height: auto; }
+  .story-phone .notif-card { left: -6%; right: -6%; width: auto; bottom: -92px; padding: 11px 13px; }
+  .story-phone .notif-text { font-size: 12px; }
+}
+
+/* ===== The phones are phone-shaped =====
+   An iPhone's screen is 19.5:9, so the mock is built from its width and that ratio rather than a height picked by eye.
+   Anything that doesn't fit scrolls out of sight behind the bezel, the way a real chat does. */
+.phone-screen { aspect-ratio: 9 / 19.5; display: flex; flex-direction: column; }
+.phone-messages { flex: 1; min-height: 0; justify-content: flex-end; }
+.story-phone .phone-screen, .hero-visual .phone-screen { height: auto; }
+.shot-phones img { aspect-ratio: 9 / 19.5; object-fit: cover; object-position: top; }
+@media (max-width: 899px) {
+  .story-phone { width: min(52vw, 200px); }
+}

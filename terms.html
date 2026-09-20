@@ -126,6 +126,18 @@
   .footer-disclaimer{font-size:14px; font-weight:400; line-height:1.5; color:var(--footer-secondary); max-width:640px;}
   .footer-copyright{font-size:14px; color:var(--footer-copyright);}
 </style>
+<meta name="theme-color" content="#F5F1E9">
+<script>
+  (function () {
+    try {
+      var choice = localStorage.getItem('kv-theme');
+      if (choice === 'dark' || choice === 'light') document.documentElement.setAttribute('data-theme', choice);
+      var dark = choice === 'dark' || (choice !== 'light' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', dark ? '#0E1A1F' : '#F5F1E9');
+    } catch (e) {}
+  })();
+</script>
+<link rel="stylesheet" href="/assets/site.css">
 </head>
 <body>
 
@@ -217,9 +229,13 @@
       <a href="mailto:support@kavedi.com.ng">support@kavedi.com.ng</a>
     </div>
     <div class="footer-disclaimer">Kavedi connects to your existing WhatsApp number, like WhatsApp Web. Not affiliated with WhatsApp or Meta.</div>
+    <div class="footer-theme">
+      <div data-theme-switch></div>
+    </div>
     <div class="footer-copyright">&copy; 2026 Kavedi &middot; Lagos, Nigeria</div>
   </div>
 </footer>
 
+<script src="/assets/site.js"></script>
 </body>
 </html>
