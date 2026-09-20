@@ -151,7 +151,7 @@ a:hover, .nav-links a.is-active { color: var(--link-accent); }
 
 /* ===== THE STORY: a phone pinned while its chat plays out ===== */
 .story { position: relative; background: var(--cream); }
-.story-rail { position: relative; height: 400vh; }
+.story-rail { position: relative; height: 250vh; }
 .story-stage {
   position: sticky; top: 0; min-height: 100vh; display: flex; flex-direction: column; align-items: center;
   justify-content: center; gap: 26px; padding: 70px 24px 40px; overflow: hidden;
@@ -206,7 +206,7 @@ a:hover, .nav-links a.is-active { color: var(--link-accent); }
 .home-pricing-card:hover { transform: translateY(-4px); box-shadow: 0 18px 40px rgba(12, 42, 50, .14); }
 .scroll-bar {
   position: fixed; left: 0; top: 0; height: 3px; width: 100%; transform: scaleX(0); transform-origin: 0 50%;
-  background: linear-gradient(90deg, var(--teal), var(--teal-bright)); z-index: 200; pointer-events: none;
+  background: linear-gradient(90deg, var(--navy), var(--teal)); z-index: 200; pointer-events: none;
 }
 @media (prefers-reduced-motion: reduce) {
   .reveal, .shot-reveal, .showcase-row .shot-frame { opacity: 1 !important; transform: none !important; transition: none; }
@@ -282,7 +282,7 @@ a:hover, .nav-links a.is-active { color: var(--link-accent); }
 /* On a phone the pinned stage has to fit inside one screen, or it scrolls away before the chat has played out.
    The notification hangs just under the phone: in the flow it would reserve empty space inside the phone's body. */
 @media (max-width: 899px) {
-  .story-rail { height: 340vh; }
+  .story-rail { height: 240vh; }
   .story-stage { gap: 8px; padding: 54px 20px 110px; min-height: 100dvh; }
   .story-copy h2 { font-size: 25px; margin-bottom: 6px; }
   .story-steps { min-height: 72px; font-size: 15px; }
@@ -307,3 +307,74 @@ a:hover, .nav-links a.is-active { color: var(--link-accent); }
 /* The hero phone: right shape, less of it. A 19.5:9 phone at 340px is 736px tall and swallows the section. */
 .hero-visual .phone { max-width: 290px; }
 @media (min-width: 900px) { .hero-visual .phone { max-width: 300px; } }
+
+/* ===== WHO IT'S FOR: a line and a list, not a rotor ===== */
+.roles { padding: 28px 24px 10px; }
+.roles-inner { max-width: 1180px; margin: 0 auto; display: flex; flex-direction: column; gap: 14px; }
+.roles-lead { margin: 0; font-size: 20px; font-weight: 700; line-height: 1.35; letter-spacing: -.01em; }
+.roles-list { display: flex; flex-wrap: wrap; gap: 8px; margin: 0; padding: 0; list-style: none; }
+.roles-list li {
+  padding: 7px 14px; border: 1px solid var(--border); border-radius: 999px; background: var(--surface);
+  font-size: 14px; font-weight: 700; color: var(--muted-warm-grey);
+}
+@media (min-width: 900px) {
+  .roles { padding: 44px 64px 10px; }
+  .roles-inner { flex-direction: row; align-items: baseline; gap: 30px; }
+  .roles-lead { flex: 0 0 300px; font-size: 22px; }
+}
+
+/* ===== THE APP: one section, the wide screen off-centre, then the rows ===== */
+.app-section { position: relative; padding: 50px 0 20px; overflow: hidden; }
+.app-head { padding: 0 24px; max-width: 700px; margin: 0 0 26px; }
+.app-head h2 { margin: 0 0 10px; font-size: 32px; line-height: 1.06; font-weight: 800; letter-spacing: -.02em; }
+.app-head p { margin: 0; font-size: 17px; line-height: 1.55; font-weight: 500; color: var(--muted-teal-grey); }
+.app-wide { padding: 0 24px; }
+.app-section .showcase { padding-top: 46px; }
+@media (min-width: 900px) {
+  .app-section { padding: 80px 0 40px; }
+  .app-head { padding: 0 64px; margin-left: 6%; }
+  .app-head h2 { font-size: 46px; }
+  /* Off the centre line on purpose: the screen runs past the right edge of the text column. */
+  .app-wide { padding: 0 0 0 64px; max-width: 1320px; margin-left: 6%; }
+  .app-wide .shot-frame { border-radius: 18px 0 0 18px; border-right: 0; }
+}
+
+/* ===== THE HONEST PART: a sticky column of who we are, a list beside it ===== */
+.honest { padding: 60px 24px 50px; background: var(--cream); }
+.honest-grid { max-width: 1180px; margin: 0 auto; display: flex; flex-direction: column; gap: 32px; }
+.honest-side h2 { margin: 0 0 14px; font-size: 30px; line-height: 1.08; font-weight: 800; letter-spacing: -.02em; }
+.honest-proof {
+  margin: 0 0 20px; padding: 16px 18px; border-left: 3px solid var(--teal); background: var(--surface);
+  border-radius: 0 14px 14px 0; font-size: 16px; line-height: 1.6; font-weight: 600;
+}
+.honest-team { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; }
+.honest-team img { width: 42px; height: 42px; border-radius: 999px; display: block; }
+.honest-team picture + picture img { margin-left: -14px; }
+.honest-team p { flex: 1 1 220px; margin: 0 0 0 6px; font-size: 15px; line-height: 1.5; font-weight: 600; color: var(--muted-teal-grey); }
+.honest-list { display: flex; flex-direction: column; }
+.honest-item { padding: 20px 0; border-top: 1px solid var(--border); }
+.honest-item:first-child { border-top: 0; }
+.honest-item h3 { margin: 0 0 6px; font-size: 19px; font-weight: 800; letter-spacing: -.01em; }
+.honest-item p { margin: 0; font-size: 16px; line-height: 1.6; font-weight: 500; color: var(--muted-teal-grey); }
+@media (min-width: 900px) {
+  .honest { padding: 90px 64px 80px; }
+  .honest-grid { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: 60px; align-items: start; }
+  .honest-side { position: sticky; top: 90px; }
+  .honest-side h2 { font-size: 38px; }
+}
+
+/* ===== FAQ sits beside the form, so the page ends on one screen ===== */
+.join-faq { display: flex; flex-direction: column; gap: 10px; margin-top: 26px; }
+.join-faq .faq-item { background: var(--surface); }
+@media (min-width: 900px) {
+  .join-inner { align-items: start; }
+  .join-faq { margin-top: 30px; }
+}
+
+/* The ending is two columns, not three: what happens next and the questions on the left, the form on the right. */
+@media (min-width: 900px) {
+  .join-inner { display: grid; grid-template-columns: minmax(0, 1fr) 420px; column-gap: 48px; row-gap: 10px; }
+  .join-left { grid-column: 1; grid-row: 1; }
+  .join-faq { grid-column: 1; grid-row: 2; margin-top: 8px; }
+  .join-card { grid-column: 2; grid-row: 1 / span 2; position: sticky; top: 90px; }
+}
