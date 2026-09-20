@@ -347,7 +347,7 @@ a:hover, .nav-links a.is-active { color: var(--link-accent); }
   margin: 0 0 20px; padding: 16px 18px; border-left: 3px solid var(--teal); background: var(--surface);
   border-radius: 0 14px 14px 0; font-size: 16px; line-height: 1.6; font-weight: 600;
 }
-.honest-team { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; }
+.honest-team { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; margin-top: 4px; }
 .honest-team img { width: 42px; height: 42px; border-radius: 999px; display: block; }
 .honest-team picture + picture img { margin-left: -14px; }
 .honest-team p { flex: 1 1 220px; margin: 0 0 0 6px; font-size: 15px; line-height: 1.5; font-weight: 600; color: var(--muted-teal-grey); }
@@ -403,3 +403,15 @@ h1, .app-head h2, .honest-side h2, .story-copy h2, .home-pricing h2, .join-head 
 }
 :root[data-theme='dark'] .hero-kicker { color: var(--link-accent); }
 @media (prefers-color-scheme: dark) { :root:not([data-theme='light']) .hero-kicker { color: var(--link-accent); } }
+
+/* Shorter phones. A real iPhone is 19.5:9, which on a page this size reads as a stretched sliver — this keeps the
+   proportions of a phone without the length. */
+.phone-screen { aspect-ratio: 9 / 17.2; }
+.hero-visual .phone { max-width: 272px; }
+@media (min-width: 900px) { .hero-visual .phone { max-width: 280px; } }
+.story-phone { width: 222px; }
+@media (min-width: 900px) { .story-phone { width: 236px; } }
+@media (max-width: 899px) { .story-phone { width: min(52vw, 196px); } }
+.shot-phones img { aspect-ratio: 9 / 17.2; }
+.phone-statusbar { align-items: center; }
+.phone-inputbar .send svg { display: block; }
