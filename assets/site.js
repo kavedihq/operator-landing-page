@@ -84,6 +84,8 @@
   // ===== Things appearing as you reach them =====
   var still = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var reveals = document.querySelectorAll('.reveal, .shot-reveal, .showcase-row');
+  // Only hide things to animate them in once we know we can bring them back.
+  if (!still && 'IntersectionObserver' in window) document.documentElement.classList.add('kv-motion');
   if (still || !('IntersectionObserver' in window)) {
     reveals.forEach(function (el) { el.classList.add('is-visible'); });
   } else {
@@ -133,7 +135,6 @@
       rail.style.height = 'auto';
       showStep(steps.length - 1);
     } else {
-      rail.style.height = steps.length * 100 + 'vh';
       var follow = function () {
         var box = story.getBoundingClientRect();
         var travelled = -box.top;
@@ -145,5 +146,9 @@
       window.addEventListener('resize', follow);
       follow();
     }
+  }
+  if (location.hash) {
+    var landing = document.getElementById(location.hash.slice(1));
+    if (landing) window.addEventListener('load', function () { landing.scrollIntoView(); });
   }
 })();

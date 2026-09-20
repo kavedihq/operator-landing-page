@@ -123,12 +123,12 @@ a:hover, .nav-links a.is-active { color: var(--link-accent); }
 .shot-dot { width: 9px; height: 9px; border-radius: 50%; background: var(--border); }
 .shot-frame img { display: block; width: 100%; height: auto; }
 .shot-reveal { position: relative; max-width: 1000px; margin: 0 auto; }
-.shot-dark { display: none; }
-:root[data-theme='dark'] .shot-dark { display: block; }
-:root[data-theme='dark'] .shot-light { display: none; }
+.shot-frame img.shot-dark, img.shot-dark { display: none; }
+:root[data-theme='dark'] .shot-frame img.shot-dark, :root[data-theme='dark'] img.shot-dark { display: block; }
+:root[data-theme='dark'] .shot-frame img.shot-light, :root[data-theme='dark'] img.shot-light { display: none; }
 @media (prefers-color-scheme: dark) {
-  :root:not([data-theme='light']) .shot-dark { display: block; }
-  :root:not([data-theme='light']) .shot-light { display: none; }
+  :root:not([data-theme='light']) .shot-frame img.shot-dark, :root:not([data-theme='light']) img.shot-dark { display: block; }
+  :root:not([data-theme='light']) .shot-frame img.shot-light, :root:not([data-theme='light']) img.shot-light { display: none; }
 }
 
 /* A screen beside the words about it, alternating sides. */
@@ -151,7 +151,7 @@ a:hover, .nav-links a.is-active { color: var(--link-accent); }
 
 /* ===== THE STORY: a phone pinned while its chat plays out ===== */
 .story { position: relative; background: var(--cream); }
-.story-rail { position: relative; }
+.story-rail { position: relative; height: 400vh; }
 .story-stage {
   position: sticky; top: 0; min-height: 100vh; display: flex; flex-direction: column; align-items: center;
   justify-content: center; gap: 26px; padding: 70px 24px 40px; overflow: hidden;
@@ -172,7 +172,7 @@ a:hover, .nav-links a.is-active { color: var(--link-accent); }
 .story-progress { display: flex; gap: 6px; justify-content: center; }
 .story-progress span { width: 26px; height: 3px; border-radius: 999px; background: var(--border); transition: background .3s ease; }
 .story-progress span.is-on { background: var(--teal); }
-.story-phone { position: relative; width: 268px; flex: none; }
+.story-phone { position: relative; width: 236px; flex: none; }
 
 .story-phone .phone-messages { justify-content: flex-end; }
 .story-phone .bubble, .story-phone .notif-card {
@@ -191,16 +191,16 @@ a:hover, .nav-links a.is-active { color: var(--link-accent); }
   .story-steps { min-height: 62px; }
   .story-step { justify-content: flex-start; }
   .story-progress { justify-content: flex-start; }
-  .story-phone { width: 300px; }
+  .story-phone { width: 250px; }
 
 }
 
 /* ===== MOTION =====
    Everything that moves does so on the way in, once, and not at all for anyone who asked for less motion. */
-.reveal { opacity: 0; transform: translateY(18px); transition: opacity .6s cubic-bezier(.2, .7, .3, 1), transform .6s cubic-bezier(.2, .7, .3, 1); }
-.reveal.is-visible { opacity: 1; transform: none; }
-.shot-reveal, .showcase-row .shot-frame { transform: perspective(1400px) rotateX(4deg) translateY(24px); opacity: 0; transition: transform .9s cubic-bezier(.2, .7, .3, 1), opacity .7s ease; }
-.shot-reveal.is-visible, .showcase-row.is-visible .shot-frame { transform: perspective(1400px) rotateX(0) translateY(0); opacity: 1; }
+.kv-motion .reveal { opacity: 0; transform: translateY(18px); transition: opacity .6s cubic-bezier(.2, .7, .3, 1), transform .6s cubic-bezier(.2, .7, .3, 1); }
+.kv-motion .reveal.is-visible { opacity: 1; transform: none; }
+.kv-motion .shot-reveal, .kv-motion .showcase-row .shot-frame { transform: perspective(1400px) rotateX(4deg) translateY(24px); opacity: 0; transition: transform .9s cubic-bezier(.2, .7, .3, 1), opacity .7s ease; }
+.kv-motion .shot-reveal.is-visible, .kv-motion .showcase-row.is-visible .shot-frame { transform: perspective(1400px) rotateX(0) translateY(0); opacity: 1; }
 .feature-card, .why-card, .join-step, .faq-item, .home-pricing-card { transition: transform .25s cubic-bezier(.2, .8, .3, 1), box-shadow .25s ease, border-color .25s ease; }
 .feature-card:hover, .why-card:hover, .join-step:hover { transform: translateY(-3px); box-shadow: 0 14px 30px rgba(12, 42, 50, .10); }
 .home-pricing-card:hover { transform: translateY(-4px); box-shadow: 0 18px 40px rgba(12, 42, 50, .14); }
@@ -282,6 +282,7 @@ a:hover, .nav-links a.is-active { color: var(--link-accent); }
 /* On a phone the pinned stage has to fit inside one screen, or it scrolls away before the chat has played out.
    The notification hangs just under the phone: in the flow it would reserve empty space inside the phone's body. */
 @media (max-width: 899px) {
+  .story-rail { height: 340vh; }
   .story-stage { gap: 8px; padding: 54px 20px 110px; min-height: 100dvh; }
   .story-copy h2 { font-size: 25px; margin-bottom: 6px; }
   .story-steps { min-height: 72px; font-size: 15px; }
@@ -302,3 +303,7 @@ a:hover, .nav-links a.is-active { color: var(--link-accent); }
 @media (max-width: 899px) {
   .story-phone { width: min(52vw, 200px); }
 }
+
+/* The hero phone: right shape, less of it. A 19.5:9 phone at 340px is 736px tall and swallows the section. */
+.hero-visual .phone { max-width: 290px; }
+@media (min-width: 900px) { .hero-visual .phone { max-width: 300px; } }
