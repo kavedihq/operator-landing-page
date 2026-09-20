@@ -378,3 +378,28 @@ a:hover, .nav-links a.is-active { color: var(--link-accent); }
   .join-faq { grid-column: 1; grid-row: 2; margin-top: 8px; }
   .join-card { grid-column: 2; grid-row: 1 / span 2; position: sticky; top: 90px; }
 }
+
+/* ===== Headings fade out toward the end of the line ===== */
+/* A gradient on the text itself: full-strength ink at the start, easing toward teal and then lighter, so a heading
+   reads as one gesture rather than a flat block. The plain colour stays as the fallback wherever background-clip
+   isn't supported. */
+h1, .app-head h2, .honest-side h2, .story-copy h2, .home-pricing h2, .join-head h2, .glass-head h2, .how h2 {
+  background-image: linear-gradient(105deg, var(--navy) 18%, var(--teal-on-cream) 62%, var(--teal-bright) 108%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+@supports not ((background-clip: text) or (-webkit-background-clip: text)) {
+  h1, .app-head h2, .honest-side h2, .story-copy h2, .home-pricing h2, .join-head h2, .glass-head h2, .how h2 {
+    color: var(--navy); -webkit-text-fill-color: var(--navy);
+  }
+}
+
+/* The category line, small above the headline. */
+.hero-kicker {
+  margin: 0 0 12px; font-size: 14px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--teal-on-cream);
+}
+:root[data-theme='dark'] .hero-kicker { color: var(--link-accent); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme='light']) .hero-kicker { color: var(--link-accent); } }
