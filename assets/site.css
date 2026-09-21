@@ -347,10 +347,12 @@ a:hover, .nav-links a.is-active { color: var(--link-accent); }
   margin: 0 0 20px; padding: 16px 18px; border-left: 3px solid var(--teal); background: var(--surface);
   border-radius: 0 14px 14px 0; font-size: 16px; line-height: 1.6; font-weight: 600;
 }
-.honest-team { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; margin-top: 4px; }
-.honest-team img { width: 42px; height: 42px; border-radius: 999px; display: block; }
-.honest-team picture + picture img { margin-left: -14px; }
-.honest-team p { flex: 1 1 220px; margin: 0 0 0 6px; font-size: 15px; line-height: 1.5; font-weight: 600; color: var(--muted-teal-grey); }
+.honest-team { margin-top: 18px; }
+.honest-team-label { margin: 0 0 12px; font-size: 13px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--muted-teal-grey); }
+.honest-faces { display: flex; flex-wrap: wrap; gap: 16px 14px; }
+.honest-faces figure { margin: 0; display: flex; flex-direction: column; align-items: center; gap: 8px; width: 66px; }
+.honest-faces img { width: 46px; height: 46px; border-radius: 999px; display: block; }
+.honest-faces figcaption { font-size: 12.5px; line-height: 1.25; font-weight: 700; text-align: center; color: var(--muted-teal-grey); }
 .honest-list { display: flex; flex-direction: column; }
 .honest-item { padding: 20px 0; border-top: 1px solid var(--border); }
 .honest-item:first-child { border-top: 0; }
