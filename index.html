@@ -19,7 +19,7 @@
 <meta property="og:url" content="https://kavedi.com.ng/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Kavedi">
-<meta property="og:locale" content="en_NG">
+<meta property="og:locale" content="en_US">
 
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Kavedi — Your AI Operator for WhatsApp">
@@ -33,11 +33,8 @@
   "name": "Kavedi",
   "url": "https://kavedi.com.ng/",
   "logo": "https://kavedi.com.ng/assets/mark.png",
-  "address": {
-    "@type": "PostalAddress",
-    "addressLocality": "Lagos",
-    "addressCountry": "NG"
-  },
+  "description": "WhatsApp automation: answers the questions you get asked every day, books appointments and sends reminders, on the number you already use.",
+  "areaServed": "Worldwide",
   "sameAs": [
     "https://x.com/kavedihq",
     "https://instagram.com/kavedihq",
@@ -130,8 +127,9 @@
   .site-header.is-condensed .brand-name{font-size:19px;}
   .nav-right{display:flex; align-items:center; gap:20px;}
   .nav-links{display:flex; align-items:center; gap:24px; font-size:16px; font-weight:700;}
+  .nav-links a{white-space:nowrap;}
   .nav-links a.is-active{color:var(--teal-on-cream);}
-  @media (max-width:560px){
+  @media (max-width:720px){
     .nav-links{display:none;}
   }
   .nav-cta{
@@ -681,6 +679,17 @@
     .footer-social{gap:16px;}
     .footer-social svg{width:22px; height:22px;}
   }
+  /* ===== Beta calls to action (replaced the waitlist forms) ===== */
+  .hero-beta{display:flex; flex-direction:column; align-items:center; gap:14px; margin-top:6px;}
+  .hero-beta .btn-primary, .join-beta .btn-primary{display:flex; align-items:center; justify-content:center;}
+  .hero-beta .btn-primary:hover, .join-beta .btn-primary:hover{color:#fff;}
+  .hero-beta .btn-primary{width:100%; max-width:360px; text-decoration:none;}
+  .hero-beta-demo{font-size:16px; font-weight:800; color:var(--teal-on-cream);}
+  .join-beta{display:flex; flex-direction:column; gap:14px; align-items:flex-start;}
+  .join-beta h3{margin:0; font-size:22px; font-weight:800; line-height:1.2;}
+  .join-beta p{margin:0; font-size:16px; line-height:1.55; color:var(--muted-teal-grey);}
+  .join-beta .btn-primary{width:100%; text-decoration:none;}
+  @media (min-width:900px){ .hero-beta{flex-direction:row; justify-content:flex-start;} .hero-beta .btn-primary{width:auto; padding:0 34px;} }
 </style>
 <meta name="theme-color" content="#F5F1E9">
 <script>
@@ -714,7 +723,7 @@
         <a href="#honest">Straight answers</a>
         <a href="/pricing">Pricing</a>
       </div>
-      <a href="#join" class="nav-cta">Join the waitlist</a>
+      <a href="/beta" class="nav-cta">Join the beta</a>
     </div>
   </nav>
 </header>
@@ -731,29 +740,13 @@
         <h1>Wake up to one question,<br>not forty unread chats.</h1>
         <p class="lede">Kavedi answers what you&rsquo;ve taught it on the WhatsApp number you already use, books the appointment, sends the reminder &mdash; and hands you anything it shouldn&rsquo;t be guessing at.</p>
 
-        <form class="waitlist-form" id="waitlist-form-hero" action="https://api.web3forms.com/submit" method="POST" novalidate data-channel="email">
-          <input type="hidden" name="access_key" value="f04060d7-7b1b-4650-860a-60f03e66933a">
-          <input type="hidden" name="subject" value="New Kavedi waitlist signup">
-          <input type="checkbox" name="botcheck" style="display:none;" tabindex="-1" autocomplete="off" aria-hidden="true">
-          <input type="hidden" name="signup_method" value="email" data-channel-method>
-          <div class="channel-toggle" role="group" aria-label="Contact method">
-            <button type="button" class="channel-btn is-active" data-channel-btn="email" aria-pressed="true">Email</button>
-            <button type="button" class="channel-btn" data-channel-btn="whatsapp" aria-pressed="false">WhatsApp number</button>
-          </div>
-          <div class="waitlist-fields">
-            <div class="field-row" data-field-row>
-              <label for="hero-email" class="sr-only" data-field-label>Your email address</label>
-              <input type="email" id="hero-email" name="email" class="waitlist-input" placeholder="Your email address" required autocomplete="email" data-channel-input>
-              <div class="field-error" data-error hidden><span aria-hidden="true">&#9888;</span><span data-error-text></span></div>
-            </div>
-            <button type="submit" class="btn-primary" data-submit-btn>
-              <span data-btn-label>Claim your spot</span>
-            </button>
-          </div>
-        </form>
+        <div class="hero-beta">
+          <a class="btn-primary" href="/beta">Apply to test Kavedi</a>
+          <a class="hero-beta-demo" href="/beta#demo">Try the demo first &rarr;</a>
+        </div>
         <div class="early-access">
-          <div class="early-access-text">Early access &mdash; we&rsquo;ll email you within the week with what&rsquo;s next.</div>
-          <div class="first-ten-badge">First 10 signups: personal set up + 2 months of Pro free</div>
+          <div class="early-access-text">Private beta &mdash; we&rsquo;re letting testers in a few at a time.</div>
+          <div class="first-ten-badge">First 10 testers: personal set up + 2 months of Pro free</div>
         </div>
       </div>
 
@@ -774,7 +767,7 @@
                 <span class="chevron" aria-hidden="true">&#8249;</span>
                 <span class="phone-avatar">A</span>
                 <div class="phone-contact-info">
-                  <span class="phone-contact-name" style="display:block;">Amaka O.</span>
+                  <span class="phone-contact-name" style="display:block;">Sarah M.</span>
                   <span class="phone-contact-status" style="display:block;">online</span>
                 </div>
                 <span class="phone-video-btn" aria-hidden="true"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m16 13 5.223 3.482a.5.5 0 0 0 .777-.416V7.87a.5.5 0 0 0-.752-.432L16 10.5"></path><rect x="2" y="6" width="14" height="12" rx="2"></rect></svg></span>
@@ -805,7 +798,7 @@
                   <span class="dot" aria-hidden="true"></span>
                   <span class="label">Needs your attention</span>
                 </div>
-                <div class="notif-text">Amaka is asking for $38 for three. I won&rsquo;t guess &mdash; it&rsquo;s waiting for you.</div>
+                <div class="notif-text">Sarah is asking for $38 for three. I won&rsquo;t guess &mdash; it&rsquo;s waiting for you.</div>
               </div>
             </div>
           </div>
@@ -859,7 +852,7 @@
                 <span class="chevron" aria-hidden="true">&#8249;</span>
                 <span class="phone-avatar">A</span>
                 <div class="phone-contact-info">
-                  <span class="phone-contact-name" style="display:block;">Amaka O.</span>
+                  <span class="phone-contact-name" style="display:block;">Sarah M.</span>
                   <span class="phone-contact-status" style="display:block;">online</span>
                 </div>
                 <span class="phone-video-btn" aria-hidden="true"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m16 13 5.223 3.482a.5.5 0 0 0 .777-.416V7.87a.5.5 0 0 0-.752-.432L16 10.5"></path><rect x="2" y="6" width="14" height="12" rx="2"></rect></svg></span>
@@ -887,7 +880,7 @@
               <div class="notif-body">
                 <div class="notif-head"><span class="name">Kavedi</span><span class="time">now</span></div>
                 <div class="notif-pill"><span class="dot" aria-hidden="true"></span><span class="label">Waiting for you</span></div>
-                <div class="notif-text">Amaka is asking for $38 for three. I won&rsquo;t guess &mdash; it&rsquo;s yours to answer.</div>
+                <div class="notif-text">Sarah is asking for $38 for three. I won&rsquo;t guess &mdash; it&rsquo;s yours to answer.</div>
               </div>
             </div>
           </div>
@@ -1047,7 +1040,7 @@
     <div class="home-pricing-grid">
       <div class="home-pricing-card reveal">
         <div class="home-pricing-tier">Free</div>
-        <div class="home-pricing-price"><span class="amount">$0</span><span class="period">/month</span></div>
+        <div class="home-pricing-price"><span class="amount" data-price="free">$0</span><span class="period">/month</span></div>
         <div class="home-pricing-list">
           <div><span class="check">&#10003;</span><span>1 WhatsApp number</span></div>
           <div><span class="check">&#10003;</span><span>100 AI replies a month</span></div>
@@ -1060,7 +1053,7 @@
           <div class="home-pricing-tier">Pro</div>
           <span class="home-pricing-badge">Most people</span>
         </div>
-        <div class="home-pricing-price"><span class="amount">$9</span><span class="period">/month</span></div>
+        <div class="home-pricing-price"><span class="amount" data-price="pro">$9</span><span class="period">/month</span></div>
         <div class="home-pricing-list">
           <div><span class="check">&#10003;</span><span>1,500 AI replies a month</span></div>
           <div><span class="check">&#10003;</span><span>Bookings, reminders, check-ins</span></div>
@@ -1068,8 +1061,8 @@
         </div>
       </div>
     </div>
-    <div class="home-pricing-plus reveal"><span class="plus-sign">+</span><span>Business at $24 &mdash; 5,000 replies, voice notes, and we set it up with you</span></div>
-    <div class="home-pricing-note reveal">Indicative, in dollars. Naira, pounds and euro on the <a href="/pricing">pricing page &rarr;</a></div>
+    <div class="home-pricing-plus reveal"><span class="plus-sign">+</span><span>Business at <span data-price="business">$24</span> &mdash; 5,000 replies, voice notes, and we set it up with you</span></div>
+    <div class="home-pricing-note reveal">Indicative prices. Change the currency on the <a href="/pricing">pricing page &rarr;</a></div>
   </section>
 
   <!-- ===== FAQ AND JOIN ===== -->
@@ -1077,14 +1070,14 @@
     <div class="join-inner">
       <div class="join-left">
         <div class="join-head reveal">
-          <span class="eyebrow">Waitlist</span>
-          <h2>Get early access</h2>
-          <p>We connect every early number ourselves, so the list moves in small groups.</p>
+          <span class="eyebrow">Private beta</span>
+          <h2>Test it before anyone else</h2>
+          <p>We connect every tester&rsquo;s number ourselves, so the beta moves in small groups.</p>
         </div>
-        <div class="first-ten-badge reveal">First 10 signups: personal set up + 2 months of Pro free</div>
+        <div class="first-ten-badge reveal">First 10 testers: personal set up + 2 months of Pro free</div>
         <div class="join-steps reveal">
-          <div class="join-step"><b>1</b><div>You leave an email or a number<small>Ten seconds. Nothing else asked.</small></div></div>
-          <div class="join-step"><b>2</b><div>We write within the week<small>A person, with a time to do it together.</small></div></div>
+          <div class="join-step"><b>1</b><div>You apply<small>Three quick questions, about a minute.</small></div></div>
+          <div class="join-step"><b>2</b><div>We email you when it&rsquo;s your turn<small>The link signs you straight into Kavedi.</small></div></div>
           <div class="join-step"><b>3</b><div>We connect your number with you<small>One code, and your first answers written on the call.</small></div></div>
         </div>
       </div>
@@ -1117,39 +1110,12 @@
       </div>
 
       <div class="join-card reveal">
-        <form class="waitlist-form" id="waitlist-form-cta" action="https://api.web3forms.com/submit" method="POST" novalidate data-channel="email">
-          <input type="hidden" name="access_key" value="f04060d7-7b1b-4650-860a-60f03e66933a">
-          <input type="hidden" name="subject" value="New Kavedi waitlist signup">
-          <input type="checkbox" name="botcheck" style="display:none;" tabindex="-1" autocomplete="off" aria-hidden="true">
-          <input type="hidden" name="signup_method" value="email" data-channel-method>
-          <div class="channel-toggle" role="group" aria-label="Contact method">
-            <button type="button" class="channel-btn is-active" data-channel-btn="email" aria-pressed="true">Email</button>
-            <button type="button" class="channel-btn" data-channel-btn="whatsapp" aria-pressed="false">WhatsApp number</button>
-          </div>
-          <div class="waitlist-fields">
-            <div class="field-row" data-field-row>
-              <label for="cta-email" class="sr-only" data-field-label>Your email address</label>
-              <input type="email" id="cta-email" name="email" class="waitlist-input" placeholder="Your email address" required autocomplete="email" data-channel-input>
-              <div class="field-error" data-error hidden><span aria-hidden="true">&#9888;</span><span data-error-text></span></div>
-            </div>
-            <div class="join-field">
-              <label for="cta-role">What do people message you about?</label>
-              <select id="cta-role" name="what_you_do" class="join-select">
-                <option value="">Pick one &mdash; optional</option>
-                <option>Selling things</option>
-                <option>Appointments and bookings</option>
-                <option>Teaching or tutoring</option>
-                <option>A school, church or community</option>
-                <option>Freelance or services</option>
-                <option>Something else</option>
-              </select>
-            </div>
-            <button type="submit" class="btn-primary" data-submit-btn>
-              <span data-btn-label>Claim your spot</span>
-            </button>
-          </div>
-          <p class="join-small">One message when it&rsquo;s your turn. Nothing else, ever. <a href="/privacy">Privacy</a></p>
-        </form>
+        <div class="join-beta">
+          <h3>Three questions, then we&rsquo;ll be in touch.</h3>
+          <p>Try the demo on the beta page &mdash; ask Kavedi something it wasn&rsquo;t taught and watch it hand the question to you instead of guessing.</p>
+          <a class="btn-primary" href="/beta">Apply to test Kavedi</a>
+          <p class="join-small">Free while you test. <a href="/privacy">Privacy</a></p>
+        </div>
       </div>
     </div>
   </section>
@@ -1166,7 +1132,7 @@
         </picture>
         <span class="footer-brand-name">Kavedi</span>
       </div>
-      <div class="footer-blurb">Built in Lagos by Kavedi, for people who run on WhatsApp.</div>
+      <div class="footer-blurb">WhatsApp automation for people who run on messages, wherever they are.</div>
     </div>
     <div class="footer-cols">
       <div class="col-head">Product</div>
@@ -1187,6 +1153,7 @@
   <div class="footer-links">
     <a href="#how-it-works">How it works</a>
     <a href="/pricing">Pricing</a>
+    <a href="/beta">Beta</a>
     <a href="/privacy">Privacy</a>
     <a href="/terms">Terms</a>
     <a href="mailto:support@kavedi.com.ng">support@kavedi.com.ng</a>
@@ -1198,7 +1165,7 @@
       <div class="footer-theme">
         <div data-theme-switch></div>
       </div>
-      <div class="footer-copyright">&copy; 2026 Kavedi &middot; Lagos, Nigeria</div>
+      <div class="footer-copyright">&copy; 2026 Kavedi</div>
       <div class="footer-social">
         <a href="https://instagram.com/kavedihq" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.2" cy="6.8" r="1" fill="currentColor" stroke="none"></circle></svg></a>
         <a href="https://x.com/kavedihq" target="_blank" rel="noopener" aria-label="X"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.9 2H22l-7.6 8.7L23 22h-6.6l-5.2-6.8L5 22H2l8.1-9.3L1.6 2h6.7l4.7 6.2L18.9 2Zm-2.3 18h1.8L7.5 4H5.6l11 16Z"></path></svg></a>
@@ -1261,164 +1228,6 @@
     updateHeaderCondensed();
   }
 
-  // Channel toggle: switch each waitlist form between email and WhatsApp number
-  document.querySelectorAll('.channel-toggle').forEach(function (toggle) {
-    var form = toggle.closest('form');
-    var input = form.querySelector('[data-channel-input]');
-    var label = form.querySelector('[data-field-label]');
-    var methodField = form.querySelector('[data-channel-method]');
-    toggle.querySelectorAll('.channel-btn').forEach(function (btn) {
-      btn.addEventListener('click', function () {
-        var channel = btn.getAttribute('data-channel-btn');
-        toggle.querySelectorAll('.channel-btn').forEach(function (b) {
-          var active = b === btn;
-          b.classList.toggle('is-active', active);
-          b.setAttribute('aria-pressed', active ? 'true' : 'false');
-        });
-        form.setAttribute('data-channel', channel);
-        if (methodField) methodField.value = channel;
-        clearError(form);
-        input.value = '';
-        if (channel === 'whatsapp') {
-          input.type = 'tel';
-          input.name = 'phone';
-          input.placeholder = 'Your number, with country code';
-          input.autocomplete = 'tel';
-          label.textContent = 'Your WhatsApp number';
-        } else {
-          input.type = 'email';
-          input.name = 'email';
-          input.placeholder = 'Your email address';
-          input.autocomplete = 'email';
-          label.textContent = 'Your email address';
-        }
-      });
-    });
-  });
-
-  var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  var PHONE_RE = /^\+?[0-9\s-]{7,}$/;
-
-  function setError(form, message) {
-    var input = form.querySelector('.waitlist-input');
-    var errorEl = form.querySelector('[data-error]');
-    var errorText = form.querySelector('[data-error-text]');
-    input.classList.add('has-error');
-    errorText.textContent = message;
-    errorEl.hidden = false;
-  }
-
-  function clearError(form) {
-    var input = form.querySelector('.waitlist-input');
-    var errorEl = form.querySelector('[data-error]');
-    input.classList.remove('has-error');
-    errorEl.hidden = true;
-  }
-
-  function setSubmitting(form, isSubmitting) {
-    var input = form.querySelector('.waitlist-input');
-    var btn = form.querySelector('[data-submit-btn]');
-    var label = form.querySelector('[data-btn-label]');
-    input.disabled = isSubmitting;
-    btn.disabled = isSubmitting;
-    if (isSubmitting) {
-      btn.classList.add('is-loading');
-      label.innerHTML = '<span class="spinner" aria-hidden="true"></span>Joining&hellip;';
-    } else {
-      btn.classList.remove('is-loading');
-    }
-  }
-
-  function showSuccess(form) {
-    var channel = form.getAttribute('data-channel') || 'email';
-    var message = channel === 'whatsapp'
-      ? 'We&rsquo;ll message you on WhatsApp when it&rsquo;s your turn.'
-      : 'We&rsquo;ll email you when it&rsquo;s your turn &mdash; we&rsquo;re setting up the first ten by hand.';
-    var wrap = document.createElement('div');
-    wrap.className = 'waitlist-success';
-    wrap.innerHTML =
-      '<img src="assets/illustration-message-sent.svg" alt="" class="success-illustration" width="120" height="143">' +
-      '<h3>You&rsquo;re on the list</h3>' +
-      '<p>' + message + '</p>';
-    form.replaceWith(wrap);
-  }
-
-  function resetToRetry(form) {
-    var btn = form.querySelector('[data-submit-btn]');
-    var label = form.querySelector('[data-btn-label]');
-    btn.classList.remove('is-loading');
-    label.textContent = 'Retry';
-    setError(form, 'Something went wrong. Please try again.');
-  }
-
-  function setQuotaExceeded(form) {
-    var input = form.querySelector('.waitlist-input');
-    var btn = form.querySelector('[data-submit-btn]');
-    btn.classList.remove('is-loading');
-    input.disabled = true;
-    btn.disabled = true;
-    setError(form, 'Signups are paused for a moment. Try again shortly, or email support@kavedi.com.ng and we’ll add you by hand.');
-  }
-
-  function handleSubmit(e) {
-    e.preventDefault();
-    var form = e.target;
-    var channel = form.getAttribute('data-channel') || 'email';
-    var input = form.querySelector('.waitlist-input');
-    var value = input.value.trim();
-
-    clearError(form);
-
-    if (!value) {
-      setError(form, channel === 'whatsapp' ? 'Enter your WhatsApp number.' : 'Enter your email address.');
-      return;
-    }
-    if (channel === 'whatsapp') {
-      if (!PHONE_RE.test(value)) {
-        setError(form, 'That doesn’t look like a valid phone number.');
-        return;
-      }
-    } else if (!EMAIL_RE.test(value)) {
-      setError(form, 'That doesn’t look like a valid email.');
-      return;
-    }
-
-    var formData = new FormData(form);
-    if (window.kvAppendAttribution) {
-      var formId = form.id === 'waitlist-form-hero' ? 'hero' : 'bottom';
-      window.kvAppendAttribution(formData, formId);
-    }
-    setSubmitting(form, true);
-
-    fetch(form.action, {
-      method: 'POST',
-      body: formData,
-      headers: { Accept: 'application/json' }
-    }).then(function (response) {
-      return response.json().catch(function () { return null; }).then(function (data) {
-        return { status: response.status, data: data };
-      });
-    }).then(function (result) {
-      setSubmitting(form, false);
-      var data = result.data;
-      if (data && data.success) {
-        showSuccess(form);
-        return;
-      }
-      var message = (data && (data.message || (data.body && data.body.message))) || '';
-      if (result.status === 429 || /limit|quota/i.test(message)) {
-        setQuotaExceeded(form);
-      } else {
-        resetToRetry(form);
-      }
-    }).catch(function () {
-      setSubmitting(form, false);
-      resetToRetry(form);
-    });
-  }
-
-  document.getElementById('waitlist-form-hero').addEventListener('submit', handleSubmit);
-  document.getElementById('waitlist-form-cta').addEventListener('submit', handleSubmit);
 </script>
 
 <script src="/assets/site.js"></script>

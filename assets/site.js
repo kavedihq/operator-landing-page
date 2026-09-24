@@ -64,21 +64,27 @@
     GBP: { symbol: '£', free: '0', pro: '7', business: '19' },
     EUR: { symbol: '€', free: '0', pro: '8', business: '22' }
   };
+  // Prices anywhere on the site follow the currency last picked on the pricing page, so choosing naira
+  // there and coming back home doesn't quietly switch you back to dollars. The picker itself is only
+  // on the pricing page; everywhere else just reads the choice.
+  var drawPrices = function (code) {
+    var price = PRICES[code] || PRICES.USD;
+    document.querySelectorAll('[data-price]').forEach(function (el) {
+      el.textContent = price.symbol + price[el.getAttribute('data-price')];
+    });
+  };
+  var savedCurrency = null;
+  try { savedCurrency = localStorage.getItem('kv-currency'); } catch (e) {}
+  // Dollars unless someone picks otherwise; the choice sticks per device.
+  var currency = PRICES[savedCurrency] ? savedCurrency : 'USD';
+  drawPrices(currency);
   var picker = document.querySelector('[data-currency]');
   if (picker) {
-    var draw = function (code) {
-      var price = PRICES[code] || PRICES.USD;
-      document.querySelectorAll('[data-price]').forEach(function (el) {
-        el.textContent = price.symbol + price[el.getAttribute('data-price')];
-      });
-      try { localStorage.setItem('kv-currency', code); } catch (e) {}
-    };
-    var saved = null;
-    try { saved = localStorage.getItem('kv-currency'); } catch (e) {}
-    // Dollars unless someone picks otherwise; the choice sticks per device.
-    picker.value = PRICES[saved] ? saved : 'USD';
-    draw(picker.value);
-    picker.addEventListener('change', function () { draw(picker.value); });
+    picker.value = currency;
+    picker.addEventListener('change', function () {
+      drawPrices(picker.value);
+      try { localStorage.setItem('kv-currency', picker.value); } catch (e) {}
+    });
   }
 
   // ===== Things appearing as you reach them =====

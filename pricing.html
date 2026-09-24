@@ -19,7 +19,7 @@
 <meta property="og:url" content="https://kavedi.com.ng/pricing">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Kavedi">
-<meta property="og:locale" content="en_NG">
+<meta property="og:locale" content="en_US">
 
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Pricing — Kavedi">
@@ -69,14 +69,8 @@
   a:hover{color:var(--teal);}
   .site-header a:hover{color:var(--teal-on-cream);}
   a:focus-visible{outline:2px solid var(--teal); outline-offset:2px; border-radius:2px;}
-  input::placeholder{color:var(--placeholder-grey);}
   img{max-width:100%;}
   picture{display:contents;}
-  .sr-only{
-    position:absolute; width:1px; height:1px; padding:0; margin:-1px;
-    overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;
-  }
-  @keyframes kv-spin{to{transform:rotate(360deg);}}
 
   /* ===== HEADER ===== */
   .site-header{
@@ -142,17 +136,6 @@
   .tier-list span.check{color:var(--teal-bright); flex:0 0 auto;}
   .tier-note{width:100%; max-width:640px; margin-top:8px; font-size:14px; font-weight:500; line-height:1.5; color:var(--muted-warm-grey); text-align:center;}
 
-  /* ===== CHANNEL TOGGLE ===== */
-  .channel-toggle{display:flex; gap:8px; margin-bottom:10px; width:100%; max-width:440px;}
-  .channel-btn{
-    flex:1; height:44px; border-radius:999px; border:2px solid var(--border);
-    background:#fff; color:var(--muted-warm-grey); font-family:'Nunito', sans-serif;
-    font-size:14px; font-weight:800; cursor:pointer; white-space:nowrap;
-    transition:background .15s ease, border-color .15s ease, color .15s ease;
-  }
-  .channel-btn.is-active{background:var(--navy); border-color:var(--navy); color:#fff;}
-  .channel-btn:focus-visible{outline:none; box-shadow:0 0 0 2px var(--cream), 0 0 0 5px var(--teal);}
-
   /* ===== BUTTONS ===== */
   .btn-primary{
     height:60px; border:none; border-radius:999px; background:var(--teal);
@@ -162,41 +145,12 @@
   .btn-primary:hover{background:var(--navy);}
   .btn-primary:focus-visible{outline:none; box-shadow:0 0 0 2px var(--cream), 0 0 0 5px var(--teal);}
   .btn-primary:disabled{cursor:default; opacity:.85;}
-  .spinner{
-    width:18px; height:18px; border-radius:50%;
-    border:2.5px solid rgba(255,255,255,.4); border-top-color:#fff;
-    display:inline-block; animation:kv-spin .7s linear infinite;
-  }
 
-  /* ===== WAITLIST FORM ===== */
-  .waitlist-form{width:100%; max-width:440px; display:flex; flex-direction:column; gap:10px; margin-top:20px;}
-  .waitlist-input{
-    width:100%; height:60px; box-sizing:border-box; padding:0 22px;
-    font-family:'Nunito', sans-serif; font-size:16px; font-weight:600; color:var(--navy);
-    background:#fff; border:2px solid var(--navy); border-radius:999px; outline:none;
-  }
-  .waitlist-input:focus{border-color:var(--teal); box-shadow:0 0 0 4px rgba(10,127,122,.18);}
-  .waitlist-input:disabled{color:var(--muted-label-grey); background:var(--divider); border-color:var(--border);}
-  .waitlist-input.has-error{background:var(--notif-bg); border-color:var(--notif-dot);}
-  .field-error{
-    display:flex; gap:7px; align-items:flex-start; padding:0 4px;
-    font-size:14px; font-weight:600; color:var(--notif-text); line-height:1.4;
-  }
-  .field-error[hidden]{display:none;}
+  /* ===== BETA CALL TO ACTION ===== */
+  .pricing-beta{width:100%; max-width:440px; display:flex; flex-direction:column; gap:10px; margin-top:20px;}
+  .pricing-beta .btn-primary{text-decoration:none;}
+  .pricing-beta .btn-primary:hover{color:#fff;}
   .form-note{margin-top:2px; font-size:15px; font-weight:600; color:var(--muted-warm-grey); text-align:center;}
-
-  .waitlist-success{
-    width:100%; max-width:440px; background:#fff; border:1px solid var(--border);
-    border-radius:20px; padding:30px 26px; margin-top:20px; display:flex; flex-direction:column;
-    align-items:center; gap:12px;
-  }
-  .waitlist-success .check-badge{
-    width:52px; height:52px; border-radius:999px; background:var(--teal-bright);
-    display:flex; align-items:center; justify-content:center; color:var(--teal-deep);
-    font-size:26px; font-weight:800;
-  }
-  .waitlist-success h2{margin:0; font-size:22px; font-weight:800;}
-  .waitlist-success p{margin:0; font-size:16px; font-weight:500; line-height:1.4; color:var(--muted-teal-grey);}
 
   /* ===== FOOTER ===== */
   .site-footer{background:var(--navy); padding:44px 24px; color:var(--dark-body);}
@@ -241,6 +195,7 @@
   <nav class="nav-links" id="site-nav-links" aria-label="Primary">
     <a href="/#how-it-works">How it works</a>
     <a href="/pricing" class="is-active">Pricing</a>
+    <a href="/beta">Beta</a>
   </nav>
 </header>
 
@@ -249,7 +204,7 @@
     <h1>Simple, flat pricing.</h1>
     <p class="lede">One price a month, in your currency. No per-message charges, no surprise bills &mdash; ever.</p>
 
-    <div class="pricing-notice">Kavedi is pre-launch &mdash; plans and prices are indicative, not final. <span class="first-ten-inline">First 10 signups: personal set up + 2 months of Pro free.</span></div>
+    <div class="pricing-notice">Kavedi is pre-launch &mdash; plans and prices are indicative, not final. <span class="first-ten-inline">First 10 testers: personal set up + 2 months of Pro free.</span></div>
 
     <div class="currency">
       <label for="currency">Prices in</label>
@@ -318,23 +273,10 @@
       answering, and never bills you for more.
     </div>
 
-    <form class="waitlist-form" id="waitlist-form-pricing" action="https://api.web3forms.com/submit" method="POST" novalidate data-channel="email">
-      <input type="hidden" name="access_key" value="f04060d7-7b1b-4650-860a-60f03e66933a">
-      <input type="hidden" name="subject" value="New Kavedi waitlist signup">
-      <input type="checkbox" name="botcheck" style="display:none;" tabindex="-1" autocomplete="off" aria-hidden="true">
-      <input type="hidden" name="signup_method" value="email" data-channel-method>
-      <div class="channel-toggle" role="group" aria-label="Contact method">
-        <button type="button" class="channel-btn is-active" data-channel-btn="email" aria-pressed="true">Email</button>
-        <button type="button" class="channel-btn" data-channel-btn="whatsapp" aria-pressed="false">WhatsApp number</button>
-      </div>
-      <label for="pricing-email" class="sr-only" data-field-label>Your email address</label>
-      <input type="email" id="pricing-email" name="email" class="waitlist-input" placeholder="Your email address" required autocomplete="email" data-channel-input>
-      <div class="field-error" data-error hidden><span aria-hidden="true">&#9888;</span><span data-error-text></span></div>
-      <button type="submit" class="btn-primary" data-submit-btn>
-        <span data-btn-label>Claim your spot</span>
-      </button>
-      <div class="form-note">Both plans are waitlist-only for now. Join to get early access.</div>
-    </form>
+    <div class="pricing-beta">
+      <a class="btn-primary" href="/beta">Apply to test Kavedi</a>
+      <div class="form-note">Kavedi is in private beta, and free while you test.</div>
+    </div>
   </div>
 </main>
 
@@ -350,6 +292,7 @@
     <div class="footer-links">
       <a href="/#how-it-works">How it works</a>
       <a href="/pricing">Pricing</a>
+      <a href="/beta">Beta</a>
       <a href="/privacy">Privacy</a>
       <a href="/terms">Terms</a>
       <a href="mailto:support@kavedi.com.ng">support@kavedi.com.ng</a>
@@ -358,162 +301,11 @@
     <div class="footer-theme">
       <div data-theme-switch></div>
     </div>
-    <div class="footer-copyright">&copy; 2026 Kavedi &middot; Lagos, Nigeria</div>
+    <div class="footer-copyright">&copy; 2026 Kavedi</div>
   </div>
 </footer>
 
 <script src="assets/attribution.js"></script>
-<script>
-  var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  var PHONE_RE = /^\+?[0-9\s-]{7,}$/;
-  var form = document.getElementById('waitlist-form-pricing');
-
-  // Channel toggle: switch between email and WhatsApp number
-  var toggle = form.querySelector('.channel-toggle');
-  var channelInput = form.querySelector('[data-channel-input]');
-  var channelLabel = form.querySelector('[data-field-label]');
-  var methodField = form.querySelector('[data-channel-method]');
-  toggle.querySelectorAll('.channel-btn').forEach(function (btn) {
-    btn.addEventListener('click', function () {
-      var channel = btn.getAttribute('data-channel-btn');
-      toggle.querySelectorAll('.channel-btn').forEach(function (b) {
-        var active = b === btn;
-        b.classList.toggle('is-active', active);
-        b.setAttribute('aria-pressed', active ? 'true' : 'false');
-      });
-      form.setAttribute('data-channel', channel);
-      if (methodField) methodField.value = channel;
-      clearError();
-      channelInput.value = '';
-      if (channel === 'whatsapp') {
-        channelInput.type = 'tel';
-        channelInput.name = 'phone';
-        channelInput.placeholder = 'e.g. 0813 000 0000';
-        channelInput.autocomplete = 'tel';
-        channelLabel.textContent = 'Your WhatsApp number';
-      } else {
-        channelInput.type = 'email';
-        channelInput.name = 'email';
-        channelInput.placeholder = 'Your email address';
-        channelInput.autocomplete = 'email';
-        channelLabel.textContent = 'Your email address';
-      }
-    });
-  });
-
-  function setError(message) {
-    var input = form.querySelector('.waitlist-input');
-    var errorEl = form.querySelector('[data-error]');
-    var errorText = form.querySelector('[data-error-text]');
-    input.classList.add('has-error');
-    errorText.textContent = message;
-    errorEl.hidden = false;
-  }
-
-  function clearError() {
-    var input = form.querySelector('.waitlist-input');
-    var errorEl = form.querySelector('[data-error]');
-    input.classList.remove('has-error');
-    errorEl.hidden = true;
-  }
-
-  function setSubmitting(isSubmitting) {
-    var input = form.querySelector('.waitlist-input');
-    var btn = form.querySelector('[data-submit-btn]');
-    var label = form.querySelector('[data-btn-label]');
-    input.disabled = isSubmitting;
-    btn.disabled = isSubmitting;
-    if (isSubmitting) {
-      label.innerHTML = '<span class="spinner" aria-hidden="true"></span>Joining&hellip;';
-    }
-  }
-
-  function showSuccess() {
-    var channel = form.getAttribute('data-channel') || 'email';
-    var message = channel === 'whatsapp'
-      ? 'We&rsquo;ll message you on WhatsApp when it&rsquo;s your turn &mdash; and when pricing is live.'
-      : 'We&rsquo;ll email you when it&rsquo;s your turn &mdash; and when pricing is live.';
-    var wrap = document.createElement('div');
-    wrap.className = 'waitlist-success';
-    wrap.innerHTML =
-      '<div class="check-badge" aria-hidden="true">&#10003;</div>' +
-      '<h2>You&rsquo;re on the list</h2>' +
-      '<p>' + message + '</p>';
-    form.replaceWith(wrap);
-  }
-
-  function resetToRetry() {
-    var btn = form.querySelector('[data-submit-btn]');
-    var label = form.querySelector('[data-btn-label]');
-    btn.disabled = false;
-    form.querySelector('.waitlist-input').disabled = false;
-    label.textContent = 'Retry';
-    setError('Something went wrong. Please try again.');
-  }
-
-  function setQuotaExceeded() {
-    var input = form.querySelector('.waitlist-input');
-    var btn = form.querySelector('[data-submit-btn]');
-    input.disabled = true;
-    btn.disabled = true;
-    setError('Signups are paused for a moment. Try again shortly, or email support@kavedi.com.ng and we’ll add you by hand.');
-  }
-
-  form.addEventListener('submit', function (e) {
-    e.preventDefault();
-    var channel = form.getAttribute('data-channel') || 'email';
-    var input = form.querySelector('.waitlist-input');
-    var value = input.value.trim();
-
-    clearError();
-
-    if (!value) {
-      setError(channel === 'whatsapp' ? 'Enter your WhatsApp number.' : 'Enter your email address.');
-      return;
-    }
-    if (channel === 'whatsapp') {
-      if (!PHONE_RE.test(value)) {
-        setError('That doesn’t look like a valid phone number.');
-        return;
-      }
-    } else if (!EMAIL_RE.test(value)) {
-      setError('That doesn’t look like a valid email.');
-      return;
-    }
-
-    var formData = new FormData(form);
-    if (window.kvAppendAttribution) {
-      window.kvAppendAttribution(formData, 'pricing');
-    }
-    setSubmitting(true);
-
-    fetch(form.action, {
-      method: 'POST',
-      body: formData,
-      headers: { Accept: 'application/json' }
-    }).then(function (response) {
-      return response.json().catch(function () { return null; }).then(function (data) {
-        return { status: response.status, data: data };
-      });
-    }).then(function (result) {
-      var data = result.data;
-      if (data && data.success) {
-        showSuccess();
-        return;
-      }
-      var message = (data && (data.message || (data.body && data.body.message))) || '';
-      setSubmitting(false);
-      if (result.status === 429 || /limit|quota/i.test(message)) {
-        setQuotaExceeded();
-      } else {
-        resetToRetry();
-      }
-    }).catch(function () {
-      setSubmitting(false);
-      resetToRetry();
-    });
-  });
-</script>
 
 <script src="/assets/site.js"></script>
 </body>

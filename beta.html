@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kavedi private beta — Test it on your own WhatsApp</title>
+<meta name="description" content="Kavedi is letting testers in a few at a time. Try the demo — ask it something it wasn't taught and watch it hand the question to you instead of guessing — then apply.">
+<link rel="canonical" href="https://kavedi.com.ng/beta">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="assets/favicon-32x32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="assets/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+
+<meta property="og:title" content="Kavedi private beta">
+<meta property="og:description" content="Test Kavedi on your own WhatsApp. It answers what you've taught it and hands you everything else.">
+<meta property="og:image" content="https://kavedi.com.ng/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:url" content="https://kavedi.com.ng/beta">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Kavedi">
+<meta property="og:locale" content="en_US">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Kavedi private beta">
+<meta name="twitter:description" content="Test Kavedi on your own WhatsApp. It answers what you've taught it and hands you everything else.">
+<meta name="twitter:image" content="https://kavedi.com.ng/assets/og.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#14323C; --teal:#0A7F7A; --teal-on-cream:#08756E; --teal-bright:#2AC9C2; --teal-deep:#0C2A32;
+    --cream:#F5F1E9; --white:#FFFFFF; --border:#DED6C7; --muted-teal-grey:#3D5B65; --muted-warm-grey:#6B655A;
+    --light-teal:#E4F3F1; --placeholder-grey:#8A9AA0; --notif-bg:#FDF1DC; --notif-dot:#B4690E; --notif-text:#7C4606;
+    --divider:#EFEBE2; --muted-label-grey:#8A8478; --dark-body:#E4EEF0; --dark-divider:#2C5A66;
+    --footer-secondary:#A9C2C8; --footer-copyright:#7E9AA1;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto;} }
+  body{background:var(--cream); font-family:'Nunito', sans-serif; color:var(--navy); -webkit-font-smoothing:antialiased; min-height:100vh; display:flex; flex-direction:column;}
+  a{color:var(--navy); text-decoration:none;}
+  a:hover{color:var(--teal);}
+  .site-header a:hover{color:var(--teal-on-cream);}
+  a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible{outline:2px solid var(--teal); outline-offset:2px;}
+  input::placeholder, textarea::placeholder{color:var(--placeholder-grey);}
+  img{max-width:100%;}
+  picture{display:contents;}
+  .sr-only{position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;}
+  @keyframes kv-spin{to{transform:rotate(360deg);}}
+
+  /* ===== HEADER / FOOTER (same as every page) ===== */
+  .site-header{background:var(--cream); padding:20px 24px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:16px; border-bottom:1px solid var(--border);}
+  .brand{display:flex; align-items:center; gap:9px;}
+  .brand img{width:36px; height:36px; display:block;}
+  .brand-name{font-size:22px; font-weight:800; letter-spacing:-.01em; color:var(--navy);}
+  .nav-links{display:flex; align-items:center; gap:24px; font-size:16px; font-weight:700; flex-wrap:wrap;}
+  .nav-links a.is-active{color:var(--teal-on-cream);}
+  @media (max-width:560px){ #site-nav-links{display:none;} }
+  .site-footer{background:var(--navy); padding:44px 24px; color:var(--dark-body);}
+  .footer-inner{max-width:1000px; margin:0 auto; display:flex; flex-direction:column; gap:26px;}
+  .footer-brand{display:flex; align-items:center; gap:8px;}
+  .footer-brand img{width:30px; height:30px; display:block;}
+  .footer-brand-name{font-size:20px; font-weight:800; color:#fff;}
+  .footer-links{display:flex; flex-wrap:wrap; gap:14px 24px; font-size:16px; font-weight:600;}
+  .footer-links a{color:#fff;}
+  .footer-disclaimer{font-size:14px; line-height:1.5; color:var(--footer-secondary); max-width:640px;}
+  .footer-copyright{font-size:14px; color:var(--footer-copyright);}
+
+  /* ===== BUTTONS ===== */
+  .btn-primary{height:56px; padding:0 30px; border:none; border-radius:999px; background:var(--teal); color:#fff; font-family:inherit; font-size:17px; font-weight:800; cursor:pointer; display:inline-flex; align-items:center; justify-content:center; gap:10px;}
+  .btn-primary:hover{background:var(--navy); color:#fff;}
+  .btn-primary:disabled{cursor:default; opacity:.8;}
+  .btn-quiet{height:56px; padding:0 22px; border:2px solid var(--border); border-radius:999px; background:transparent; color:var(--navy); font-family:inherit; font-size:16px; font-weight:800; cursor:pointer; display:inline-flex; align-items:center; gap:8px;}
+  .btn-quiet:hover{border-color:var(--teal); color:var(--teal-on-cream);}
+  .spinner{width:18px; height:18px; border-radius:50%; border:2.5px solid rgba(255,255,255,.4); border-top-color:#fff; display:inline-block; animation:kv-spin .7s linear infinite;}
+
+  main{flex:1;}
+  .wrap{max-width:1080px; margin:0 auto; padding:0 24px;}
+  .kicker{display:inline-flex; align-items:center; gap:8px; font-size:13px; font-weight:900; letter-spacing:.12em; text-transform:uppercase; color:var(--teal-on-cream);}
+  .kicker .dot{width:8px; height:8px; border-radius:99px; background:var(--teal-bright); box-shadow:0 0 0 4px rgba(42,201,194,.22); animation:pulse 2.4s ease-in-out infinite;}
+  @keyframes pulse{50%{box-shadow:0 0 0 8px rgba(42,201,194,0);}}
+  h2{margin:0; font-size:clamp(28px,5vw,40px); line-height:1.08; font-weight:900; letter-spacing:-.02em;}
+  .sub{margin:10px 0 0; font-size:17px; line-height:1.55; color:var(--muted-teal-grey); max-width:620px;}
+
+  /* ===== HERO ===== */
+  .hero{padding:64px 0 40px; text-align:center;}
+  .hero h1{margin:16px auto 0; max-width:760px; font-size:clamp(40px,7.5vw,68px); line-height:1.02; font-weight:900; letter-spacing:-.035em;}
+  .hero .lede{margin:18px auto 0; max-width:580px; font-size:19px; line-height:1.55; color:var(--muted-teal-grey); font-weight:500;}
+  .hero-actions{margin-top:30px; display:flex; flex-wrap:wrap; gap:12px; justify-content:center;}
+  .hero-note{margin-top:18px; font-size:14px; font-weight:700; color:var(--muted-warm-grey);}
+
+  /* ===== DEMO ===== */
+  .demo{padding:40px 0 70px;}
+  .demo-head{text-align:center; display:flex; flex-direction:column; align-items:center;}
+  .who{display:flex; flex-wrap:wrap; gap:8px; justify-content:center; margin:22px 0 26px;}
+  .who button{min-height:44px; padding:0 18px; border-radius:999px; border:2px solid var(--border); background:var(--surface, #fff); font-family:inherit; font-size:15px; font-weight:800; color:var(--navy); cursor:pointer;}
+  .who button[aria-pressed="true"]{border-color:var(--teal); background:var(--light-teal); color:var(--teal-on-cream);}
+  .demo-grid{display:grid; gap:18px; grid-template-columns:1fr;}
+  @media (min-width:880px){ .demo-grid{grid-template-columns:0.85fr 1.15fr; align-items:start;} }
+  .card{background:var(--surface, #fff); border:1px solid var(--border); border-radius:24px; padding:22px; box-shadow:0 18px 44px rgba(12,42,50,.08);}
+  .card-label{font-size:12px; font-weight:900; letter-spacing:.14em; text-transform:uppercase; color:var(--muted-label-grey); margin-bottom:12px;}
+  .taught{display:flex; flex-direction:column; gap:10px;}
+  .taught-item{padding:12px 14px; border-radius:14px; background:var(--light-teal); border:1px solid rgba(10,127,122,.18); font-size:15px; line-height:1.4;}
+  .taught-item b{display:block; font-size:12px; font-weight:900; letter-spacing:.06em; text-transform:uppercase; color:var(--teal-on-cream); margin-bottom:3px;}
+  .taught-item.is-new{animation:land .5s cubic-bezier(.2,1.4,.4,1);}
+  .teach{margin-top:16px; padding-top:16px; border-top:1px dashed var(--border); display:flex; flex-direction:column; gap:8px;}
+  .teach-row{display:flex; gap:8px;}
+  .field{width:100%; min-height:46px; padding:10px 14px; border-radius:14px; border:2px solid var(--border); background:var(--surface, #fff); color:var(--navy); font-family:inherit; font-size:15px; font-weight:600;}
+  .field:focus{border-color:var(--teal); outline:none;}
+  .small-btn{min-height:46px; padding:0 16px; border-radius:14px; border:none; background:var(--navy); color:#fff; font-family:inherit; font-size:15px; font-weight:800; cursor:pointer; white-space:nowrap;}
+  .small-btn:hover{background:var(--teal);}
+  .hint{font-size:13px; font-weight:600; color:var(--muted-warm-grey); line-height:1.4;}
+
+  .chat{display:flex; flex-direction:column; min-height:440px;}
+  .chat-top{display:flex; align-items:center; gap:10px; padding-bottom:14px; border-bottom:1px solid var(--divider);}
+  .chat-top .avatar{width:38px; height:38px; border-radius:99px; background:var(--navy); color:#fff; display:flex; align-items:center; justify-content:center; font-weight:900;}
+  .chat-top strong{display:block; font-size:16px;}
+  .chat-top span{font-size:13px; color:var(--muted-warm-grey); font-weight:700;}
+  .thread{flex:1; display:flex; flex-direction:column; gap:10px; padding:16px 0; min-height:250px; max-height:420px; overflow-y:auto;}
+  .msg{max-width:82%; padding:11px 14px; border-radius:18px; font-size:15.5px; line-height:1.4; animation:land .4s cubic-bezier(.2,1.3,.4,1);}
+  .msg.in{align-self:flex-start; background:var(--cream); border-top-left-radius:6px;}
+  .msg.out{align-self:flex-end; background:var(--teal); color:#fff; border-top-right-radius:6px;}
+  .msg .who-said{display:block; font-size:11px; font-weight:900; letter-spacing:.06em; text-transform:uppercase; opacity:.75; margin-bottom:3px;}
+  .typing{align-self:flex-end; display:flex; gap:5px; padding:14px 16px; border-radius:18px; background:var(--light-teal);}
+  .typing i{width:7px; height:7px; border-radius:99px; background:var(--teal); opacity:.35; animation:blink 1s infinite;}
+  .typing i:nth-child(2){animation-delay:.15s;} .typing i:nth-child(3){animation-delay:.3s;}
+  @keyframes blink{50%{opacity:1;}}
+  .typing.stopped{animation:fade .45s forwards;}
+  @keyframes fade{to{opacity:0; transform:scale(.9);}}
+  @keyframes land{from{opacity:0; transform:translateY(10px) scale(.96);}}
+  .handover{align-self:stretch; display:flex; gap:12px; align-items:flex-start; padding:14px; border-radius:16px; background:var(--notif-bg); border:1px solid rgba(180,105,14,.35); color:var(--notif-text); animation:land .5s cubic-bezier(.2,1.3,.4,1);}
+  .handover .bell{flex:none; width:34px; height:34px; border-radius:10px; background:var(--notif-dot); color:#fff; display:flex; align-items:center; justify-content:center; font-weight:900;}
+  .handover strong{display:block; font-size:12px; font-weight:900; letter-spacing:.1em; text-transform:uppercase;}
+  .handover p{margin:4px 0 0; font-size:14.5px; line-height:1.4; font-weight:600;}
+  .wall{align-self:stretch; height:3px; border-radius:99px; background:var(--teal-bright); box-shadow:0 0 18px var(--teal-bright); animation:wall .7s ease-out forwards;}
+  @keyframes wall{from{transform:scaleX(.1); opacity:1;} to{transform:scaleX(1); opacity:0;}}
+  .asks{display:flex; flex-wrap:wrap; gap:8px; padding:12px 0 10px; border-top:1px solid var(--divider);}
+  .asks button{min-height:40px; padding:0 14px; border-radius:999px; border:1px solid var(--border); background:var(--cream); font-family:inherit; font-size:14px; font-weight:700; color:var(--navy); cursor:pointer;}
+  .asks button:hover{border-color:var(--teal);}
+  .ask-row{display:flex; gap:8px;}
+  .demo-note{margin:14px auto 0; text-align:center; font-size:13.5px; font-weight:700; color:var(--muted-warm-grey); max-width:620px;}
+
+  /* ===== DEAL + HONEST ===== */
+  .deal{padding:30px 0 60px;}
+  .deal-grid{display:grid; gap:18px; margin-top:26px;}
+  @media (min-width:760px){ .deal-grid{grid-template-columns:1fr 1fr;} }
+  .ticks{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:14px;}
+  .ticks li{display:flex; gap:12px; font-size:16px; line-height:1.45; font-weight:600;}
+  .ticks li::before{content:'\2713'; flex:none; width:26px; height:26px; border-radius:99px; background:var(--light-teal); color:var(--teal-on-cream); display:flex; align-items:center; justify-content:center; font-weight:900; font-size:14px;}
+  .ticks.ask li::before{content:'\2192'; background:var(--cream); color:var(--navy);}
+  .ticks small{display:block; font-weight:500; color:var(--muted-teal-grey); margin-top:2px;}
+  .first-ten{margin-top:18px; padding:14px 18px; border-radius:16px; background:var(--navy); color:#fff; font-weight:800; font-size:15px; text-align:center;}
+  .honest{margin-top:18px; display:grid; gap:14px;}
+  @media (min-width:760px){ .honest{grid-template-columns:repeat(3,1fr);} }
+  .honest h3{margin:0 0 6px; font-size:17px; font-weight:900;}
+  .honest p{margin:0; font-size:15px; line-height:1.5; color:var(--muted-teal-grey);}
+
+  /* ===== APPLY ===== */
+  .apply{padding:40px 0 80px;}
+  .apply-card{max-width:620px; margin:26px auto 0; padding:28px;}
+  .steps{display:flex; gap:8px; margin-bottom:22px;}
+  .steps span{flex:1; height:6px; border-radius:99px; background:var(--divider); transition:background .3s;}
+  .steps span.is-on{background:var(--teal);}
+  .step[hidden]{display:none;}
+  .step{animation:land .35s ease-out;}
+  .step h3{margin:0 0 4px; font-size:22px; font-weight:900;}
+  .step .step-sub{margin:0 0 18px; font-size:15px; color:var(--muted-teal-grey);}
+  .q{margin-bottom:16px;}
+  .q > label, .q > .q-label{display:block; font-size:14px; font-weight:800; margin-bottom:7px;}
+  .q .optional{font-weight:600; color:var(--muted-warm-grey);}
+  .chips{display:flex; flex-wrap:wrap; gap:8px;}
+  .chips button{min-height:44px; padding:0 16px; border-radius:999px; border:2px solid var(--border); background:var(--surface, #fff); font-family:inherit; font-size:15px; font-weight:700; color:var(--navy); cursor:pointer;}
+  .chips button[aria-checked="true"]{border-color:var(--teal); background:var(--light-teal); color:var(--teal-on-cream); font-weight:800;}
+  textarea.field{min-height:100px; resize:vertical;}
+  .form-error{margin:0 0 12px; padding:10px 14px; border-radius:12px; background:var(--notif-bg); color:var(--notif-text); font-size:14px; font-weight:700;}
+  .step-actions{display:flex; gap:10px; justify-content:space-between; align-items:center; margin-top:8px;}
+  .back{background:none; border:none; font-family:inherit; font-size:15px; font-weight:800; color:var(--muted-teal-grey); cursor:pointer; min-height:44px; padding:0 6px;}
+  .done{text-align:center; padding:12px 0;}
+  .done .badge{width:64px; height:64px; margin:0 auto 14px; border-radius:99px; background:var(--teal-bright); color:var(--teal-deep); display:flex; align-items:center; justify-content:center; font-size:30px; font-weight:900; animation:land .5s cubic-bezier(.2,1.5,.4,1);}
+  .done h3{margin:0; font-size:26px; font-weight:900;}
+  .done p{margin:10px auto 0; max-width:440px; font-size:16px; line-height:1.55; color:var(--muted-teal-grey);}
+
+  /* ===== FAQ ===== */
+  .faq{padding:0 0 80px;}
+  .faq-list{max-width:720px; margin:22px auto 0; display:flex; flex-direction:column; gap:10px;}
+  .faq details{background:var(--surface, #fff); border:1px solid var(--border); border-radius:18px; padding:4px 18px;}
+  .faq summary{min-height:52px; display:flex; align-items:center; font-size:16px; font-weight:800; cursor:pointer; list-style:none;}
+  .faq summary::-webkit-details-marker{display:none;}
+  .faq summary::after{content:'+'; margin-left:auto; font-size:22px; color:var(--teal-on-cream);}
+  .faq details[open] summary::after{content:'\2212';}
+  .faq details p{margin:0 0 14px; font-size:15.5px; line-height:1.55; color:var(--muted-teal-grey);}
+  .center{text-align:center; display:flex; flex-direction:column; align-items:center;}
+
+  @media (min-width:768px){
+    .site-header{padding:20px 64px;}
+    .site-footer{padding:44px 64px;}
+    .hero{padding:90px 0 50px;}
+  }
+  @media (prefers-reduced-motion: reduce){ *, *::before, *::after{animation:none !important;} }
+</style>
+<meta name="theme-color" content="#F5F1E9">
+<script>
+  (function () {
+    try {
+      var choice = localStorage.getItem('kv-theme');
+      if (choice === 'dark' || choice === 'light') document.documentElement.setAttribute('data-theme', choice);
+      var dark = choice === 'dark' || (choice !== 'light' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', dark ? '#0E1A1F' : '#F5F1E9');
+    } catch (e) {}
+  })();
+</script>
+<link rel="stylesheet" href="/assets/site.css">
+</head>
+<body>
+
+<header class="site-header">
+  <a href="/" class="brand" aria-label="Kavedi home">
+    <picture>
+      <source srcset="assets/mark.webp" type="image/webp">
+      <img src="assets/mark.png" alt="Kavedi" width="36" height="36">
+    </picture>
+    <span class="brand-name">Kavedi</span>
+  </a>
+  <nav class="nav-links" id="site-nav-links" aria-label="Primary">
+    <a href="/#how-it-works">How it works</a>
+    <a href="/pricing">Pricing</a>
+    <a href="/beta" class="is-active">Beta</a>
+  </nav>
+</header>
+
+<main>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero">
+    <div class="wrap">
+      <span class="kicker"><span class="dot" aria-hidden="true"></span>Private beta &middot; a few testers at a time</span>
+      <h1>Test Kavedi on your own WhatsApp.</h1>
+      <p class="lede">It answers the questions you&rsquo;ve taught it, books and reminds &mdash; and hands you anything it shouldn&rsquo;t be guessing at. We&rsquo;re letting people in a few at a time, so each one has us on the other end while they set up.</p>
+      <div class="hero-actions">
+        <a class="btn-primary" href="#apply">Apply to test</a>
+        <a class="btn-quiet" href="#demo">Try it first &darr;</a>
+      </div>
+      <p class="hero-note">Free while you test. Anywhere WhatsApp works.</p>
+    </div>
+  </section>
+
+  <!-- ===== THE DEMO ===== -->
+  <section class="demo" id="demo">
+    <div class="wrap">
+      <div class="demo-head">
+        <span class="kicker">Try the one thing that matters</span>
+        <h2>Ask it something it wasn&rsquo;t taught.</h2>
+        <p class="sub">Pick who it&rsquo;s answering for. Ask a question it knows, then one it doesn&rsquo;t &mdash; or ask for a discount.</p>
+      </div>
+
+      <div class="who" role="group" aria-label="Who Kavedi is answering for">
+        <button type="button" data-who="salon" aria-pressed="true">Hair salon</button>
+        <button type="button" data-who="tutor" aria-pressed="false">Maths tutor</button>
+        <button type="button" data-who="church" aria-pressed="false">Church office</button>
+      </div>
+
+      <div class="demo-grid">
+        <div class="card">
+          <div class="card-label">What you&rsquo;ve taught it</div>
+          <div class="taught" data-taught></div>
+          <form class="teach" data-teach>
+            <div class="card-label" style="margin:0;">Teach it something</div>
+            <input class="field" name="topic" maxlength="40" placeholder="The question it&rsquo;s about (e.g. parking)" aria-label="The question it&rsquo;s about" required>
+            <div class="teach-row">
+              <input class="field" name="answer" maxlength="140" placeholder="The answer (e.g. Free parking round the back.)" aria-label="The answer" required>
+              <button class="small-btn" type="submit">Teach</button>
+            </div>
+            <span class="hint">Then ask about it on the right. Nothing leaves your browser.</span>
+          </form>
+        </div>
+
+        <div class="card chat">
+          <div class="chat-top">
+            <span class="avatar" aria-hidden="true" data-avatar>S</span>
+            <div><strong data-name>Studio Nine</strong><span>Kavedi is answering &middot; you&rsquo;re asleep</span></div>
+          </div>
+          <div class="thread" data-thread aria-live="polite"></div>
+          <div class="asks" data-asks></div>
+          <form class="ask-row" data-ask>
+            <label class="sr-only" for="ask-input">Ask a question</label>
+            <input class="field" id="ask-input" maxlength="140" placeholder="Or type your own question" autocomplete="off">
+            <button class="small-btn" type="submit">Send</button>
+          </form>
+        </div>
+      </div>
+      <p class="demo-note">A demo running in your browser, with made-up answers. The real Kavedi works the same way: it only says what you&rsquo;ve taught it, and hands you the rest.</p>
+    </div>
+  </section>
+
+  <!-- ===== THE DEAL ===== -->
+  <section class="deal">
+    <div class="wrap">
+      <div class="center">
+        <span class="kicker">The deal</span>
+        <h2>What you get, and what we ask.</h2>
+      </div>
+      <div class="deal-grid">
+        <div class="card">
+          <div class="card-label">You get</div>
+          <ul class="ticks">
+            <li><span>Kavedi, free while you test<small>No card, no trial clock.</small></span></li>
+            <li><span>Us, setting it up with you<small>We connect your number and teach it your answers together.</small></span></li>
+            <li><span>A direct line to the four of us<small>Something breaks, you tell a person, not a form.</small></span></li>
+            <li><span>A say in what gets built next<small>Testers decide what&rsquo;s missing.</small></span></li>
+          </ul>
+          <div class="first-ten">First 10 testers: 2 months of Pro free when pricing starts.</div>
+        </div>
+        <div class="card">
+          <div class="card-label">We ask</div>
+          <ul class="ticks ask">
+            <li><span>Use it for real, for two weeks<small>On the messages you actually get.</small></span></li>
+            <li><span>Use a work number if you have one<small>Not the only line your family reaches you on.</small></span></li>
+            <li><span>Tell us what breaks, and what&rsquo;s confusing<small>Short messages are fine. So are rants.</small></span></li>
+            <li><span>One short call at the end<small>Twenty minutes, whenever suits you.</small></span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="honest">
+        <div class="card">
+          <h3>It connects like WhatsApp Web</h3>
+          <p>Kavedi appears as a linked device on the number you already use. You keep using WhatsApp normally. Kavedi is not affiliated with WhatsApp or Meta.</p>
+        </div>
+        <div class="card">
+          <h3>There is some risk</h3>
+          <p>WhatsApp doesn&rsquo;t offer this officially, so a linked device carries some risk. Kavedi only answers people who wrote first, paces everything it sends, and sends nothing overnight.</p>
+        </div>
+        <div class="card">
+          <h3>WhatsApp Business, honestly</h3>
+          <p>Some Business accounts don&rsquo;t link yet. Tell us which WhatsApp you use when you apply, and we&rsquo;ll check before you connect anything.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== APPLY ===== -->
+  <section class="apply" id="apply">
+    <div class="wrap">
+      <div class="center">
+        <span class="kicker">Apply</span>
+        <h2>Three quick questions.</h2>
+        <p class="sub">We read every one. When it&rsquo;s your turn, you&rsquo;ll get an email with a link that opens Kavedi and signs you straight in.</p>
+      </div>
+
+      <div class="card apply-card">
+        <form data-apply novalidate>
+          <div class="steps" aria-hidden="true"><span class="is-on"></span><span></span><span></span></div>
+          <p class="form-error" data-error role="alert" hidden></p>
+
+          <!-- a field only a bot fills in -->
+          <div style="position:absolute; left:-9999px;" aria-hidden="true">
+            <label for="website">Leave this empty</label>
+            <input id="website" name="website" tabindex="-1" autocomplete="off">
+          </div>
+
+          <div class="step" data-step="1">
+            <h3>Where do we reach you?</h3>
+            <p class="step-sub">Your invitation goes here.</p>
+            <div class="q">
+              <label for="email">Email</label>
+              <input class="field" type="email" id="email" name="email" autocomplete="email" placeholder="you@example.com" required>
+            </div>
+            <div class="q">
+              <label for="name">First name <span class="optional">&middot; optional</span></label>
+              <input class="field" id="name" name="name" autocomplete="given-name" maxlength="80">
+            </div>
+            <div class="step-actions"><span></span><button class="btn-primary" type="button" data-next>Next</button></div>
+          </div>
+
+          <div class="step" data-step="2" hidden>
+            <h3>What do you use WhatsApp for?</h3>
+            <p class="step-sub">So we can set it up for how you actually work.</p>
+            <div class="q">
+              <span class="q-label" id="role-label">What do you do?</span>
+              <div class="chips" role="radiogroup" aria-labelledby="role-label" data-chips="role">
+                <button type="button" role="radio" aria-checked="false" data-value="Shop or seller">Shop or seller</button>
+                <button type="button" role="radio" aria-checked="false" data-value="Salon or beauty">Salon or beauty</button>
+                <button type="button" role="radio" aria-checked="false" data-value="Tutor or school">Tutor or school</button>
+                <button type="button" role="radio" aria-checked="false" data-value="Church or community">Church or community</button>
+                <button type="button" role="radio" aria-checked="false" data-value="Freelancer">Freelancer</button>
+                <button type="button" role="radio" aria-checked="false" data-value="Events">Events</button>
+                <button type="button" role="radio" aria-checked="false" data-value="Something else">Something else</button>
+              </div>
+            </div>
+            <div class="q">
+              <span class="q-label" id="wa-label">Which WhatsApp?</span>
+              <div class="chips" role="radiogroup" aria-labelledby="wa-label" data-chips="whatsapp">
+                <button type="button" role="radio" aria-checked="false" data-value="personal">WhatsApp</button>
+                <button type="button" role="radio" aria-checked="false" data-value="business">WhatsApp Business</button>
+                <button type="button" role="radio" aria-checked="true" data-value="unsure">Not sure</button>
+              </div>
+            </div>
+            <div class="q">
+              <label for="country">Where are you based?</label>
+              <input class="field" id="country" name="country" maxlength="60" autocomplete="country-name" placeholder="City, country">
+            </div>
+            <div class="step-actions"><button class="back" type="button" data-back>&larr; Back</button><button class="btn-primary" type="button" data-next>Next</button></div>
+          </div>
+
+          <div class="step" data-step="3" hidden>
+            <h3>Anything we should know?</h3>
+            <p class="step-sub">How many messages you get, what you&rsquo;d hand over first, anything you&rsquo;re worried about. Optional.</p>
+            <div class="q">
+              <label for="about" class="sr-only">Anything we should know</label>
+              <textarea class="field" id="about" name="about" maxlength="600" placeholder="e.g. About 60 messages a day, mostly prices and opening hours. I use WhatsApp Business on my shop phone."></textarea>
+            </div>
+            <div class="step-actions"><button class="back" type="button" data-back>&larr; Back</button><button class="btn-primary" type="submit" data-submit><span data-submit-label>Send my application</span></button></div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FAQ ===== -->
+  <section class="faq">
+    <div class="wrap">
+      <div class="center"><h2>Questions</h2></div>
+      <div class="faq-list">
+        <details><summary>Where does it work?</summary><p>Anywhere WhatsApp works. It replies in the language people write to you in, and runs on your own time zone.</p></details>
+        <details><summary>What does it cost?</summary><p>Nothing while you&rsquo;re testing. The <a href="/pricing">pricing page</a> shows what it&rsquo;ll cost after, and those prices are indicative until launch.</p></details>
+        <details><summary>How long does the beta last?</summary><p>As long as it takes to get right. We ask testers for two weeks of real use, and you&rsquo;re welcome to keep going after that.</p></details>
+        <details><summary>What happens to my messages?</summary><p>Kavedi reads a message to answer it and doesn&rsquo;t keep it. The only message text stored is a question it passed to you. The <a href="/privacy">privacy policy</a> has the details.</p></details>
+        <details><summary>Can I stop it?</summary><p>Any time. Replies, bookings and check-ins are three switches, and disconnecting removes Kavedi from your number entirely.</p></details>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <picture>
+        <source srcset="assets/mark.webp" type="image/webp">
+        <img src="assets/mark.png" alt="Kavedi" width="30" height="30" loading="lazy">
+      </picture>
+      <span class="footer-brand-name">Kavedi</span>
+    </div>
+    <div class="footer-links">
+      <a href="/#how-it-works">How it works</a>
+      <a href="/pricing">Pricing</a>
+      <a href="/beta">Beta</a>
+      <a href="/privacy">Privacy</a>
+      <a href="/terms">Terms</a>
+      <a href="mailto:support@kavedi.com.ng">support@kavedi.com.ng</a>
+    </div>
+    <div class="footer-disclaimer">Kavedi connects to your existing WhatsApp number, like WhatsApp Web. Not affiliated with WhatsApp or Meta.</div>
+    <div class="footer-theme"><div data-theme-switch></div></div>
+    <div class="footer-copyright">&copy; 2026 Kavedi</div>
+  </div>
+</footer>
+
+<script src="assets/attribution.js"></script>
+<script>
+(function () {
+  // ===================== THE DEMO =====================
+  // Runs entirely in the browser. It shows the one behaviour that matters: answer only from what was
+  // taught, and hand over — never guess — everything else. Matching is simple keywords on purpose;
+  // the real product uses the operator's answers and a model, but the rule it follows is this one.
+  var OPERATORS = {
+    salon: {
+      name: 'Studio Nine', avatar: 'S',
+      taught: [
+        { topic: 'Prices', answer: 'A cut is $35, a cut and colour is $90.', keys: ['price', 'cost', 'how much', 'cut', 'colour', 'color'] },
+        { topic: 'Opening hours', answer: 'We’re open Tuesday to Saturday, 9am to 6pm. Closed Sunday and Monday.', keys: ['open', 'hours', 'close', 'sunday', 'monday', 'saturday', 'when'] },
+        { topic: 'Booking', answer: 'Reply with a day and time and I’ll check what’s free.', keys: ['book', 'appointment', 'slot', 'available', 'tomorrow', 'space'] },
+      ],
+      asks: ['How much is a cut?', 'Are you open Sunday?', 'Can you do it for $20?', 'Do you do braids?'],
+    },
+    tutor: {
+      name: 'Ms. Reyes · Maths', avatar: 'R',
+      taught: [
+        { topic: 'Fees', answer: 'Lessons are $30 an hour, or $100 for four.', keys: ['fee', 'price', 'cost', 'how much', 'charge'] },
+        { topic: 'Subjects', answer: 'I teach maths from age 11 up to final-year exams.', keys: ['subject', 'teach', 'maths', 'math', 'level', 'age', 'exam'] },
+        { topic: 'Where', answer: 'Online on Zoom, or at the library on Saturdays.', keys: ['where', 'online', 'zoom', 'location', 'library', 'address'] },
+      ],
+      asks: ['How much per lesson?', 'Do you teach 12 year olds?', 'Can my son start tonight?', 'Do you do physics too?'],
+    },
+    church: {
+      name: 'Grace Chapel office', avatar: 'G',
+      taught: [
+        { topic: 'Service times', answer: 'Sunday services are at 9am and 11am. Wednesday prayer is at 7pm.', keys: ['service', 'time', 'sunday', 'wednesday', 'when', 'prayer'] },
+        { topic: 'Address', answer: '14 Hill Road, next to the post office. There’s parking at the back.', keys: ['address', 'where', 'location', 'parking', 'find'] },
+        { topic: 'Youth group', answer: 'Youth group meets Fridays at 6pm, ages 12 to 18.', keys: ['youth', 'teen', 'friday', 'kids', 'children'] },
+      ],
+      asks: ['What time is service?', 'Where are you?', 'Can I book the hall for a wedding?', 'Is there a choir?'],
+    },
+  };
+  // Things that are a decision, not a fact. Even with prices taught, Kavedi never agrees to these.
+  var DECISIONS = /\b(discount|cheaper|deal|lower|less|guarantee|promise|refund|tonight|hall|wedding|special)\b|for \$/i;
+
+  var who = 'salon';
+  var thread = document.querySelector('[data-thread]');
+  var taughtEl = document.querySelector('[data-taught]');
+  var asksEl = document.querySelector('[data-asks]');
+  var still = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var busy = false;
+
+  function el(tag, cls, text) {
+    var node = document.createElement(tag);
+    if (cls) node.className = cls;
+    if (text != null) node.textContent = text;
+    return node;
+  }
+  var wait = function (ms) { return new Promise(function (r) { setTimeout(r, still ? 0 : ms); }); };
+  var scrollDown = function () { thread.scrollTop = thread.scrollHeight; };
+
+  function drawTaught(latest) {
+    taughtEl.innerHTML = '';
+    OPERATORS[who].taught.forEach(function (t) {
+      var item = el('div', 'taught-item' + (t === latest ? ' is-new' : ''));
+      item.appendChild(el('b', null, t.topic));
+      item.appendChild(document.createTextNode(t.answer));
+      taughtEl.appendChild(item);
+    });
+  }
+
+  function drawAsks() {
+    asksEl.innerHTML = '';
+    OPERATORS[who].asks.forEach(function (q) {
+      var b = el('button', null, q);
+      b.type = 'button';
+      b.addEventListener('click', function () { ask(q); });
+      asksEl.appendChild(b);
+    });
+  }
+
+  function choose(next) {
+    who = next;
+    document.querySelectorAll('[data-who]').forEach(function (b) { b.setAttribute('aria-pressed', b.getAttribute('data-who') === who ? 'true' : 'false'); });
+    document.querySelector('[data-name]').textContent = OPERATORS[who].name;
+    document.querySelector('[data-avatar]').textContent = OPERATORS[who].avatar;
+    thread.innerHTML = '';
+    var hello = el('div', 'msg out');
+    hello.appendChild(el('span', 'who-said', 'Kavedi'));
+    hello.appendChild(document.createTextNode('Ask me something. I only know what ' + OPERATORS[who].name + ' taught me.'));
+    thread.appendChild(hello);
+    drawTaught();
+    drawAsks();
+  }
+
+  function answerFor(question) {
+    var q = ' ' + question.toLowerCase() + ' ';
+    if (DECISIONS.test(q)) return { decision: true };
+    var hit = OPERATORS[who].taught.find(function (t) { return t.keys.some(function (k) { return q.indexOf(k) !== -1; }); });
+    return hit ? { answer: hit.answer } : {};
+  }
+
+  async function ask(question) {
+    question = String(question || '').trim();
+    if (!question || busy) return;
+    busy = true;
+    var mine = el('div', 'msg in');
+    mine.appendChild(el('span', 'who-said', 'Them'));
+    mine.appendChild(document.createTextNode(question));
+    thread.appendChild(mine);
+    scrollDown();
+    await wait(350);
+
+    var dots = el('div', 'typing');
+    dots.innerHTML = '<i></i><i></i><i></i>';
+    thread.appendChild(dots);
+    scrollDown();
+    await wait(1000);
+
+    var result = answerFor(question);
+    if (result.answer) {
+      dots.remove();
+      var reply = el('div', 'msg out');
+      reply.appendChild(el('span', 'who-said', 'Kavedi'));
+      reply.appendChild(document.createTextNode(result.answer));
+      thread.appendChild(reply);
+    } else {
+      // The dots stop. It hits the wall. Nothing is sent to them — it comes to you instead.
+      dots.classList.add('stopped');
+      await wait(420);
+      dots.remove();
+      thread.appendChild(el('div', 'wall'));
+      await wait(380);
+      var card = el('div', 'handover');
+      var bell = el('span', 'bell', '!');
+      var body = el('div');
+      body.appendChild(el('strong', null, 'Waiting for you'));
+      body.appendChild(el('p', null, result.decision
+        ? 'That’s a decision, not a fact — so Kavedi said nothing to them and passed it to you.'
+        : 'Nobody taught it that, so it didn’t guess. It said nothing to them and passed it to you.'));
+      card.appendChild(bell);
+      card.appendChild(body);
+      thread.appendChild(card);
+    }
+    scrollDown();
+    busy = false;
+  }
+
+  document.querySelectorAll('[data-who]').forEach(function (b) {
+    b.addEventListener('click', function () { if (!busy) choose(b.getAttribute('data-who')); });
+  });
+  document.querySelector('[data-ask]').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var input = document.getElementById('ask-input');
+    ask(input.value);
+    input.value = '';
+  });
+  document.querySelector('[data-teach]').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var form = e.currentTarget;
+    var topic = form.topic.value.trim();
+    var answer = form.answer.value.trim();
+    if (!topic || !answer) return;
+    // Keywords from the topic, so asking about it finds it.
+    var keys = topic.toLowerCase().split(/[^a-z0-9$]+/).filter(function (w) { return w.length > 2; });
+    if (!keys.length) keys = [topic.toLowerCase()];
+    var item = { topic: topic, answer: answer, keys: keys };
+    OPERATORS[who].taught.push(item);
+    drawTaught(item);
+    form.reset();
+    var q = 'What about ' + topic.toLowerCase() + '?';
+    var b = el('button', null, q);
+    b.type = 'button';
+    b.addEventListener('click', function () { ask(q); });
+    asksEl.insertBefore(b, asksEl.firstChild);
+  });
+  choose('salon');
+
+  // ===================== THE APPLICATION =====================
+  // Posts to Kavedi's own server. If that can't be reached — a slow cold start, a network blip, the
+  // table not created yet — it goes through Web3Forms instead, exactly as the old waitlist did, so an
+  // application is never lost.
+  var LOCAL = /^(localhost|127\.0\.0\.1)$/.test(location.hostname);
+  var ENDPOINT = LOCAL ? 'http://localhost:3001/api/beta/apply' : 'https://app.kavedi.com.ng/api/beta/apply';
+  var WEB3FORMS_KEY = 'f04060d7-7b1b-4650-860a-60f03e66933a';
+  var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+
+  var form = document.querySelector('[data-apply]');
+  var steps = form.querySelectorAll('[data-step]');
+  var bars = form.querySelectorAll('.steps span');
+  var errorEl = form.querySelector('[data-error]');
+  var current = 1;
+  var picked = { role: '', whatsapp: 'unsure' };
+
+  // A guess at where they are, from the browser's clock ("America/New_York" -> "New York"). Editable.
+  try {
+    var zone = Intl.DateTimeFormat().resolvedOptions().timeZone || '';
+    var city = zone.split('/').pop().replace(/_/g, ' ');
+    if (city && !/^(UTC|GMT|Etc)/i.test(zone)) form.country.value = city;
+  } catch (e) {}
+
+  function showError(message) { errorEl.textContent = message; errorEl.hidden = !message; }
+  function go(n) {
+    current = n;
+    steps.forEach(function (s) { s.hidden = Number(s.getAttribute('data-step')) !== n; });
+    bars.forEach(function (b, i) { b.classList.toggle('is-on', i < n); });
+    showError('');
+    var focusable = form.querySelector('[data-step="' + n + '"] input, [data-step="' + n + '"] textarea, [data-step="' + n + '"] button');
+    if (focusable) focusable.focus({ preventScroll: true });
+  }
+
+  form.querySelectorAll('[data-chips]').forEach(function (group) {
+    var key = group.getAttribute('data-chips');
+    group.querySelectorAll('button').forEach(function (b) {
+      b.addEventListener('click', function () {
+        picked[key] = b.getAttribute('data-value');
+        group.querySelectorAll('button').forEach(function (o) { o.setAttribute('aria-checked', o === b ? 'true' : 'false'); });
+      });
+    });
+  });
+
+  form.querySelectorAll('[data-next]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      if (current === 1 && !EMAIL_RE.test(form.email.value.trim())) {
+        showError('That email address doesn’t look right.');
+        form.email.focus();
+        return;
+      }
+      go(current + 1);
+    });
+  });
+  form.querySelectorAll('[data-back]').forEach(function (b) { b.addEventListener('click', function () { go(current - 1); }); });
+
+  // Where they came from, for Ada: ?utm_source=instagram becomes "beta:instagram".
+  function source() {
+    var utm = new URLSearchParams(location.search).get('utm_source');
+    return (utm ? 'beta:' + utm.replace(/[^a-z0-9_-]/gi, '').slice(0, 30) : 'beta-page');
+  }
+
+  function application() {
+    return {
+      email: form.email.value.trim(),
+      name: document.getElementById('name').value.trim(),
+      role: picked.role,
+      whatsapp: picked.whatsapp,
+      country: form.country.value.trim(),
+      about: form.about.value.trim(),
+      website: form.website.value,
+      source: source(),
+    };
+  }
+
+  function viaKavedi(data) {
+    var controller = window.AbortController ? new AbortController() : null;
+    var timer = controller ? setTimeout(function () { controller.abort(); }, 12000) : null;
+    return fetch(ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data),
+      signal: controller ? controller.signal : undefined,
+    }).then(function (res) {
+      if (timer) clearTimeout(timer);
+      return res.json().catch(function () { return {}; }).then(function (body) { return { status: res.status, body: body }; });
+    });
+  }
+
+  function viaWeb3Forms(data) {
+    var fd = new FormData();
+    fd.append('access_key', WEB3FORMS_KEY);
+    fd.append('subject', 'New Kavedi beta application');
+    fd.append('from_name', 'Kavedi beta');
+    Object.keys(data).forEach(function (k) { if (k !== 'website') fd.append(k, data[k]); });
+    if (window.kvAppendAttribution) window.kvAppendAttribution(fd, 'beta');
+    return fetch('https://api.web3forms.com/submit', { method: 'POST', body: fd, headers: { Accept: 'application/json' } })
+      .then(function (res) { return res.json(); })
+      .then(function (body) { if (!body || !body.success) throw new Error('web3forms'); });
+  }
+
+  function done(email) {
+    var box = document.createElement('div');
+    box.className = 'done';
+    box.innerHTML = '<div class="badge" aria-hidden="true">&#10003;</div><h3>You&rsquo;re on the list.</h3>';
+    var p = document.createElement('p');
+    p.textContent = 'We’ll email ' + email + ' when it’s your turn. The link in that email opens Kavedi and signs you straight in — nothing to remember.';
+    box.appendChild(p);
+    form.replaceWith(box);
+    box.scrollIntoView({ behavior: still ? 'auto' : 'smooth', block: 'center' });
+  }
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var data = application();
+    if (!EMAIL_RE.test(data.email)) { go(1); showError('That email address doesn’t look right.'); return; }
+    var btn = form.querySelector('[data-submit]');
+    var label = form.querySelector('[data-submit-label]');
+    btn.disabled = true;
+    label.innerHTML = '<span class="spinner" aria-hidden="true"></span> Sending&hellip;';
+    var reset = function (message) { btn.disabled = false; label.textContent = 'Send my application'; showError(message); };
+
+    viaKavedi(data).then(function (result) {
+      if (result.status === 200 && result.body && result.body.ok) return done(data.email);
+      if (result.status === 400) { go(1); return reset((result.body && result.body.error) || 'Check your email address.'); }
+      if (result.status === 429) return reset((result.body && result.body.error) || 'That’s a lot of tries — wait a little and try again.');
+      // Anything else (a 503 before the table exists, a 5xx): don't lose them.
+      return viaWeb3Forms(data).then(function () { done(data.email); });
+    }).catch(function () {
+      return viaWeb3Forms(data).then(function () { done(data.email); });
+    }).catch(function () {
+      reset('That didn’t go through. Try again, or email support@kavedi.com.ng and we’ll add you by hand.');
+    });
+  });
+})();
+</script>
+<script src="/assets/site.js"></script>
+</body>
+</html>
