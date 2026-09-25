@@ -1,0 +1,9 @@
+# The whole repo folder is the site, so anything that isn't a page or an asset has to be listed here,
+# or Cloudflare publishes it. .git especially: without this line the repo's history was downloadable.
+.git
+.gitignore
+.assetsignore
+wrangler.jsonc
+.claude
+node_modules
+*.zip

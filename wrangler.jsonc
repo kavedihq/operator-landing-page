@@ -1,0 +1,16 @@
+// kavedi.com.ng is a Cloudflare Worker serving this folder as static assets, deployed on every push to main.
+// This file started as the one Cloudflare generates when a repo has none; the name must stay "operator-landing-page",
+// or the build fails. Headers are in _headers; files that must never be published are in .assetsignore.
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "operator-landing-page",
+  "compatibility_date": "2026-09-23",
+  "observability": {
+    "enabled": true
+  },
+  "assets": {
+    "directory": ".",
+    // An address that matches no file gets 404.html, with a real 404 status, instead of an empty page.
+    "not_found_handling": "404-page"
+  }
+}
