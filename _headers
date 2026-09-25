@@ -6,3 +6,12 @@
   Referrer-Policy: strict-origin-when-cross-origin
   Strict-Transport-Security: max-age=31536000
   Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=()
+
+# Kept out of search results (Kelvin, 25 Sep): the pages stay on the site and in the footer, Google just doesn't list them.
+# The same noindex is in each page's <head>; the header covers anything that reads headers only.
+/pricing
+  X-Robots-Tag: noindex
+/privacy
+  X-Robots-Tag: noindex
+/terms
+  X-Robots-Tag: noindex
