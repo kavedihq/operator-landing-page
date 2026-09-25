@@ -789,14 +789,12 @@ fieldset.form-step { min-width: 0; margin: 0; padding: 0; border: 0; }
 .plan li strong { color: var(--ink); }
 @media (max-width: 399px) { .hero-visual .app-card-actions { display: none; } }
 
-/* The 404 animation: a penguin fishing the missing page out of the water, in Kavedi's colours. In the dark theme its
-   navy body would vanish into the page, so those two navies are lightened (Lottie writes fills as rgb() attributes). */
-.lost-art { width: min(380px, 84vw); aspect-ratio: 490 / 252; margin: 0 auto 28px; }
+/* The 404 animation: a hand-drawn cat trotting nowhere. One colour: its lines are the page's ink and its body is the
+   page's background, so it is navy on cream in the light theme and light on navy in the dark one. Lottie writes colours
+   as attributes, which CSS overrides. */
+.lost-art { width: min(240px, 58vw); aspect-ratio: 870 / 810; margin: 0 auto 28px; }
 .lost-art svg { display: block; width: 100% !important; height: 100% !important; }
-:root[data-theme='dark'] .lost-art path[fill='rgb(20,50,60)'] { fill: #3B6572; }
-:root[data-theme='dark'] .lost-art path[fill='rgb(31,68,80)'] { fill: #4F7C89; }
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme='light']) .lost-art path[fill='rgb(20,50,60)'] { fill: #3B6572; }
-  :root:not([data-theme='light']) .lost-art path[fill='rgb(31,68,80)'] { fill: #4F7C89; }
-}
-.lost { padding-top: 48px; }
+.lost-art path[stroke] { stroke: var(--ink); }
+.lost-art path[fill='rgb(0,0,0)'] { fill: var(--ink); }
+.lost-art path[fill='rgb(255,255,255)'] { fill: var(--bg); }
+.lost { padding-top: 40px; }
