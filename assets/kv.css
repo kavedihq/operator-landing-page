@@ -788,3 +788,22 @@ fieldset.form-step { min-width: 0; margin: 0; padding: 0; border: 0; }
 .pricing-note strong { color: var(--ink-2); }
 .plan li strong { color: var(--ink); }
 @media (max-width: 399px) { .hero-visual .app-card-actions { display: none; } }
+
+/* The 404 drawing: the cat in ink, the mouse in the accent. Lottie writes stroke and fill as attributes, which CSS
+   overrides, so the lines follow the theme; both are drawn 2px wide on screen, whatever their scale. */
+.lost-art { position: relative; width: min(560px, 100%); height: 170px; margin: 0 auto 28px; }
+.lost-cat { position: absolute; left: 0; bottom: 0; width: 124px; height: 152px; }
+.lost-mouse { position: absolute; left: 118px; right: 0; bottom: 0; height: 100%; }
+.lost-art svg { display: block; width: 100% !important; height: 100% !important; overflow: visible; }
+.lost-art path[stroke] { vector-effect: non-scaling-stroke; stroke-width: 2px; }
+.lost-cat path[stroke] { stroke: var(--ink); }
+.lost-cat path[fill]:not([fill='none']) { fill: var(--ink); }
+.lost-mouse path[stroke] { stroke: var(--accent-ink); }
+.lost-mouse path[fill]:not([fill='none']) { fill: var(--accent-ink); }
+.lost { padding-top: 56px; }
+@media (max-width: 479px) {
+  .lost-art { height: 132px; }
+  .lost-cat { width: 96px; height: 118px; }
+  .lost-mouse { left: 88px; }
+  .lost-art path[stroke] { stroke-width: 1.75px; }
+}
