@@ -58,7 +58,19 @@
     GBP: { symbol: '£', free: '0', pro: '7', business: '19' },
     EUR: { symbol: '€', free: '0', pro: '8', business: '22' }
   };
-  var code = 'USD';
+  // Until someone picks, the currency follows the device's time zone: naira in Nigeria, pounds in the UK, euros in the
+  // eurozone, dollars everywhere else. A choice made on the pricing page sticks.
+  var guessCurrency = function () {
+    var zone = '';
+    try { zone = Intl.DateTimeFormat().resolvedOptions().timeZone || ''; } catch (e) {}
+    if (zone === 'Africa/Lagos') return 'NGN';
+    if (zone === 'Europe/London' || zone === 'Europe/Belfast') return 'GBP';
+    var euro = ['Amsterdam', 'Athens', 'Berlin', 'Bratislava', 'Brussels', 'Dublin', 'Helsinki', 'Lisbon', 'Ljubljana',
+      'Luxembourg', 'Madrid', 'Malta', 'Monaco', 'Paris', 'Riga', 'Rome', 'Tallinn', 'Vienna', 'Vilnius', 'Zagreb'];
+    if (zone.indexOf('Europe/') === 0 && euro.indexOf(zone.slice(7)) !== -1) return 'EUR';
+    return 'USD';
+  };
+  var code = guessCurrency();
   try { if (PRICES[localStorage.getItem('kv-currency')]) code = localStorage.getItem('kv-currency'); } catch (e) {}
   var drawPrices = function () {
     document.querySelectorAll('[data-price]').forEach(function (el) {
