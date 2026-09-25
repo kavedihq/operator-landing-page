@@ -2,15 +2,10 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Pricing — Kavedi | Flat monthly plans for WhatsApp</title>
 <meta name="description" content="Kavedi pricing: a free plan to try it, Pro at $9 a month and Business at $24. One flat price a month, no per-message charges.">
 <link rel="canonical" href="https://kavedi.com.ng/pricing">
-<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-<link rel="icon" href="assets/favicon-32x32.png" sizes="32x32" type="image/png">
-<link rel="icon" href="assets/favicon.ico" sizes="any">
-<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
-
 <meta property="og:title" content="Pricing — Kavedi">
 <meta property="og:description" content="A free plan to try it, Pro at $9 a month and Business at $24. One flat price a month, no per-message charges.">
 <meta property="og:image" content="https://kavedi.com.ng/assets/og.png">
@@ -20,155 +15,15 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Kavedi">
 <meta property="og:locale" content="en_US">
-
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Pricing — Kavedi">
 <meta name="twitter:description" content="A free plan to try it, Pro at $9 a month and Business at $24. One flat price a month, no per-message charges.">
 <meta name="twitter:image" content="https://kavedi.com.ng/assets/og.png">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/assets/favicon-32x32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="/assets/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap">
-<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --navy:#14323C;
-    --teal:#0A7F7A;
-    --teal-on-cream:#08756E;
-    --teal-bright:#2AC9C2;
-    --teal-deep:#0C2A32;
-    --cream:#F5F1E9;
-    --white:#FFFFFF;
-    --border:#DED6C7;
-    --muted-teal-grey:#3D5B65;
-    --muted-warm-grey:#6B655A;
-    --light-teal:#E4F3F1;
-    --placeholder-grey:#8A9AA0;
-    --notif-bg:#FDF1DC;
-    --notif-dot:#B4690E;
-    --notif-text:#7C4606;
-    --divider:#EFEBE2;
-    --muted-label-grey:#8A8478;
-    --dark-body:#E4EEF0;
-    --dark-divider:#2C5A66;
-    --footer-secondary:#A9C2C8;
-    --footer-copyright:#7E9AA1;
-  }
-  *{box-sizing:border-box;}
-  html,body{margin:0;padding:0;}
-  body{
-    background:var(--cream);
-    font-family:'Nunito', sans-serif;
-    color:var(--navy);
-    -webkit-font-smoothing:antialiased;
-    min-height:100vh;
-    display:flex;
-    flex-direction:column;
-  }
-  a{color:var(--navy); text-decoration:none;}
-  a:hover{color:var(--teal);}
-  .site-header a:hover{color:var(--teal-on-cream);}
-  a:focus-visible{outline:2px solid var(--teal); outline-offset:2px; border-radius:2px;}
-  img{max-width:100%;}
-  picture{display:contents;}
-
-  /* ===== HEADER ===== */
-  .site-header{
-    background:var(--cream); padding:20px 24px; display:flex; align-items:center;
-    justify-content:space-between; flex-wrap:wrap; gap:16px; border-bottom:1px solid var(--border);
-  }
-  .brand{display:flex; align-items:center; gap:9px;}
-  .brand img{width:36px; height:36px; display:block;}
-  .brand-name{font-size:22px; font-weight:800; letter-spacing:-.01em; color:var(--navy);}
-  .nav-links{display:flex; align-items:center; gap:24px; font-size:16px; font-weight:700; flex-wrap:wrap;}
-  .nav-links a.is-active{color:var(--teal-on-cream);}
-  @media (max-width:560px){
-    #site-nav-links{display:none;}
-  }
-
-  /* ===== MAIN ===== */
-  main{flex:1; padding:56px 24px 90px; display:flex; justify-content:center;}
-  .pricing-inner{
-    max-width:900px; width:100%; display:flex; flex-direction:column;
-    align-items:center; text-align:center; gap:16px;
-  }
-  .pricing-inner h1{
-    margin:0; font-size:clamp(38px, 7vw, 60px); line-height:1.04; font-weight:800; letter-spacing:-.02em;
-  }
-  .pricing-inner p.lede{
-    margin:0; max-width:560px; font-size:18px; line-height:1.5; font-weight:500; color:var(--muted-teal-grey);
-  }
-  .pricing-notice{
-    width:100%; max-width:640px; background:#fff; border:1px solid var(--border); border-radius:20px;
-    padding:16px 22px; margin-top:10px; text-align:center; font-size:15px; font-weight:600; line-height:1.5;
-    color:var(--muted-warm-grey);
-  }
-  .first-ten-inline{font-weight:800; color:var(--notif-text);}
-
-  /* ===== TIER GRID ===== */
-  .tier-grid{
-    width:100%; display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));
-    gap:20px; margin-top:28px;
-  }
-  .tier-card{
-    background:#fff; border:2px solid var(--border); border-radius:28px; padding:32px 28px;
-    display:flex; flex-direction:column; gap:18px; text-align:left; position:relative;
-  }
-  .tier-card.pro{background:var(--navy); border:none; color:#fff;}
-  .tier-badge{
-    position:absolute; top:26px; right:28px; background:var(--teal-bright); color:var(--teal-deep);
-    font-size:13px; font-weight:800; padding:5px 12px; border-radius:999px;
-  }
-  .tier-name{font-size:15px; font-weight:800; letter-spacing:.06em; text-transform:uppercase; color:var(--muted-label-grey); margin-bottom:8px;}
-  .tier-card.pro .tier-name{color:#8FC7C2;}
-  .tier-price{display:flex; align-items:baseline; gap:6px;}
-  .tier-price .amount{font-size:40px; font-weight:800; letter-spacing:-.02em;}
-  .tier-price .period{font-size:16px; font-weight:600; color:var(--muted-warm-grey);}
-  .tier-card.pro .tier-price .period{color:var(--footer-secondary);}
-  .tier-card p.tier-desc{margin:8px 0 0; font-size:16px; font-weight:500; line-height:1.5; color:var(--muted-teal-grey);}
-  .tier-card.pro p.tier-desc{color:#C9D8DB;}
-  .tier-list{
-    display:flex; flex-direction:column; gap:10px; font-size:16px; font-weight:600; line-height:1.4;
-    padding-top:6px; border-top:1px solid var(--divider);
-  }
-  .tier-card.pro .tier-list{border-top-color:var(--dark-divider);}
-  .tier-list div{display:flex; gap:10px;}
-  .tier-list span.check{color:var(--teal-bright); flex:0 0 auto;}
-  .tier-note{width:100%; max-width:640px; margin-top:8px; font-size:14px; font-weight:500; line-height:1.5; color:var(--muted-warm-grey); text-align:center;}
-
-  /* ===== BUTTONS ===== */
-  .btn-primary{
-    height:60px; border:none; border-radius:999px; background:var(--teal);
-    color:#fff; font-family:'Nunito', sans-serif; font-size:18px; font-weight:800;
-    cursor:pointer; display:flex; align-items:center; justify-content:center; gap:10px;
-  }
-  .btn-primary:hover{background:var(--navy);}
-  .btn-primary:focus-visible{outline:none; box-shadow:0 0 0 2px var(--cream), 0 0 0 5px var(--teal);}
-  .btn-primary:disabled{cursor:default; opacity:.85;}
-
-  /* ===== BETA CALL TO ACTION ===== */
-  .pricing-beta{width:100%; max-width:440px; display:flex; flex-direction:column; gap:10px; margin-top:20px;}
-  .pricing-beta .btn-primary{text-decoration:none;}
-  .pricing-beta .btn-primary:hover{color:#fff;}
-  .form-note{margin-top:2px; font-size:15px; font-weight:600; color:var(--muted-warm-grey); text-align:center;}
-
-  /* ===== FOOTER ===== */
-  .site-footer{background:var(--navy); padding:44px 24px; color:var(--dark-body);}
-  .footer-inner{max-width:1000px; margin:0 auto; display:flex; flex-direction:column; gap:26px;}
-  .footer-brand{display:flex; align-items:center; gap:8px;}
-  .footer-brand img{width:30px; height:30px; display:block;}
-  .footer-brand-name{font-size:20px; font-weight:800; color:#fff;}
-  .footer-links{display:flex; flex-wrap:wrap; gap:14px 24px; font-size:16px; font-weight:600;}
-  .footer-links a{color:#fff;}
-  .footer-disclaimer{font-size:14px; font-weight:400; line-height:1.5; color:var(--footer-secondary); max-width:640px;}
-  .footer-copyright{font-size:14px; color:var(--footer-copyright);}
-
-  @media (min-width:768px){
-    .site-header{padding:20px 64px;}
-    main{padding:80px 64px 110px;}
-    .site-footer{padding:44px 64px;}
-  }
-</style>
 <meta name="theme-color" content="#F5F1E9">
 <script>
   (function () {
@@ -180,133 +35,154 @@
     } catch (e) {}
   })();
 </script>
-<link rel="stylesheet" href="/assets/site.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/kv.css">
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 
-<header class="site-header">
-  <a href="/" class="brand" aria-label="Kavedi home">
-    <picture>
-      <source srcset="assets/mark.webp" type="image/webp">
-      <img src="assets/mark.png" alt="Kavedi" width="36" height="36">
-    </picture>
-    <span class="brand-name">Kavedi</span>
-  </a>
-  <nav class="nav-links" id="site-nav-links" aria-label="Primary">
-    <a href="/#how-it-works">How it works</a>
-    <a href="/pricing" class="is-active">Pricing</a>
-    <a href="/beta">Beta</a>
+<header class="site-head">
+  <div class="wrap">
+    <a class="brand" href="/" aria-label="Kavedi, home">
+      <picture><source srcset="/assets/mark.webp" type="image/webp"><img src="/assets/mark.png" alt="" width="30" height="30"></picture>
+      Kavedi
+    </a>
+    <nav class="nav" aria-label="Main">
+      <a href="/#how-it-works">How it works</a>
+      <a href="/#features">Features</a>
+      <a href="/pricing" aria-current="page">Pricing</a>
+      <a href="/#faq">FAQ</a>
+    </nav>
+    <a class="btn btn-primary btn-sm" href="/beta">Join the beta</a>
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="menu" aria-label="Open menu">
+      <svg class="when-closed" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 8h16M4 16h16"/></svg>
+      <svg class="when-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
+    </button>
+  </div>
+  <nav class="menu" id="menu" aria-label="Main">
+    <ul>
+      <li><a href="/#how-it-works">How it works</a></li>
+      <li><a href="/#features">Features</a></li>
+      <li><a href="/pricing">Pricing</a></li>
+      <li><a href="/#faq">FAQ</a></li>
+      <li><a href="/beta">The beta</a></li>
+    </ul>
   </nav>
 </header>
 
-<main>
-  <div class="pricing-inner">
-    <h1>Simple, flat pricing.</h1>
-    <p class="lede">One price a month, in your currency. No per-message charges, no surprise bills &mdash; ever.</p>
-
-    <div class="pricing-notice">Kavedi is pre-launch &mdash; plans and prices are indicative, not final. <span class="first-ten-inline">First 10 testers: personal set up + 2 months of Pro free.</span></div>
-
-    <div class="currency">
-      <label for="currency">Prices in</label>
-      <select id="currency" data-currency>
-        <option value="USD">US dollars</option>
-        <option value="NGN">Naira</option>
-        <option value="GBP">Pounds</option>
-        <option value="EUR">Euro</option>
-      </select>
-    </div>
-
-    <div class="tier-grid">
-      <div class="tier-card">
-        <div>
-          <div class="tier-name">Free</div>
-          <div class="tier-price"><span class="amount" data-price="free">$0</span><span class="period">/month</span></div>
-          <p class="tier-desc">Enough to connect your number and see it answer your real messages.</p>
+<main id="main">
+  <section class="section pricing-page">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="kicker">Pricing</p>
+        <h1 class="h1">Simple, flat pricing.</h1>
+        <p class="lede">One price a month, in your currency. Nothing per message, and no surprise bills.</p>
+      </div>
+      <div class="pricing-bar">
+        <p class="notice">Kavedi is in private beta, and testers use it free. These prices are what we expect to charge after launch, and can still change.</p>
+        <label class="currency">Prices in
+          <select class="field" data-currency>
+            <option value="USD">US dollars</option>
+            <option value="NGN">Naira</option>
+            <option value="GBP">Pounds</option>
+            <option value="EUR">Euro</option>
+          </select>
+        </label>
+      </div>
+      <div class="plans">
+        <div class="plan">
+          <div class="plan-top"><h2 class="plan-name">Free</h2></div>
+          <p class="plan-price"><b data-price="free">$0</b> <span>/ month</span></p>
+          <p class="plan-for">Enough to connect your number and see it answer your real messages.</p>
+          <ul>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>1 WhatsApp number</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span><strong>100 AI replies</strong> a month</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Teach it by typing, or upload a price list</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Hands you anything it wasn&rsquo;t taught</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Reply from Kavedi, and exceptions</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Scheduled messages, 30 a month</span></li>
+          </ul>
         </div>
-        <div class="tier-list">
-          <div><span class="check">&#10003;</span><span>1 WhatsApp number</span></div>
-          <div><span class="check">&#10003;</span><span><strong>100 AI replies</strong> a month</span></div>
-          <div><span class="check">&#10003;</span><span>Teach it by typing, or upload a price list</span></div>
-          <div><span class="check">&#10003;</span><span>Hands anything it wasn&rsquo;t taught to you</span></div>
-          <div><span class="check">&#10003;</span><span>Reply from Kavedi, and exceptions</span></div>
-          <div><span class="check">&#10003;</span><span>Scheduled messages, 30 a month</span></div>
+        <div class="plan is-featured">
+          <div class="plan-top"><h2 class="plan-name">Pro</h2><span class="badge">Most people</span></div>
+          <p class="plan-price"><b data-price="pro">$9</b> <span>/ month</span></p>
+          <p class="plan-for">For when Kavedi is doing real work every day.</p>
+          <ul>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Everything in Free</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span><strong>1,500 AI replies</strong> a month</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Appointment booking in the chat</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Reminders and check-ins</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Scheduled messages, no limit</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Broadcasts to people and groups</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Word-for-word answers</span></li>
+          </ul>
+        </div>
+        <div class="plan">
+          <div class="plan-top"><h2 class="plan-name">Business</h2></div>
+          <p class="plan-price"><b data-price="business">$24</b> <span>/ month</span></p>
+          <p class="plan-for">Busy numbers, and help getting it right from day one.</p>
+          <ul>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Everything in Pro</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span><strong>5,000 AI replies</strong> a month</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Voice notes transcribed on request</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Set up with you, with your answers written from your documents</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Priority support</span></li>
+          </ul>
         </div>
       </div>
+      <p class="pricing-note">An <strong>AI reply</strong> is one message Kavedi reads and answers with AI. Scheduled messages, reminders, broadcasts and replies you send yourself use none. Run out and Kavedi doesn&rsquo;t stop: it passes messages to you instead of answering, and never bills you for more.</p>
+    </div>
+  </section>
 
-      <div class="tier-card pro">
-        <div class="tier-badge">Most operators</div>
-        <div>
-          <div class="tier-name">Pro</div>
-          <div class="tier-price"><span class="amount" data-price="pro">$9</span><span class="period">/month</span></div>
-          <p class="tier-desc">For when Kavedi is doing real work every day.</p>
-        </div>
-        <div class="tier-list">
-          <div><span class="check">&#10003;</span><span>Everything in Free</span></div>
-          <div><span class="check">&#10003;</span><span><strong>1,500 AI replies</strong> a month</span></div>
-          <div><span class="check">&#10003;</span><span>Appointment booking in the chat</span></div>
-          <div><span class="check">&#10003;</span><span>Reminders and check-ins</span></div>
-          <div><span class="check">&#10003;</span><span>Scheduled messages, no limit</span></div>
-          <div><span class="check">&#10003;</span><span>Broadcasts &mdash; people and groups</span></div>
-          <div><span class="check">&#10003;</span><span>Word-for-word answers</span></div>
-        </div>
-      </div>
-
-      <div class="tier-card">
-        <div>
-          <div class="tier-name">Business</div>
-          <div class="tier-price"><span class="amount" data-price="business">$24</span><span class="period">/month</span></div>
-          <p class="tier-desc">Busy numbers, and help getting it right from day one.</p>
-        </div>
-        <div class="tier-list">
-          <div><span class="check">&#10003;</span><span>Everything in Pro</span></div>
-          <div><span class="check">&#10003;</span><span><strong>5,000 AI replies</strong> a month</span></div>
-          <div><span class="check">&#10003;</span><span>Voice notes transcribed on request</span></div>
-          <div><span class="check">&#10003;</span><span>Set up with you, and your answers written from your documents</span></div>
-          <div><span class="check">&#10003;</span><span>Priority support</span></div>
-        </div>
+  <section class="section section-sunken closing">
+    <div class="wrap">
+      <h2 class="h2">Use it free while it&rsquo;s in beta.</h2>
+      <p class="lede">The first 10 testers get two months of Pro free when pricing starts.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary btn-lg" href="/beta">Join the beta</a>
+        <a class="btn btn-secondary btn-lg" href="/beta#demo">Try the demo</a>
       </div>
     </div>
-
-    <div class="tier-note">
-      An <strong>AI reply</strong> is one message Kavedi reads and answers with AI. Scheduled messages, reminders, broadcasts and
-      replies you send yourself use none. Run out and Kavedi doesn&rsquo;t stop &mdash; it passes messages to you instead of
-      answering, and never bills you for more.
-    </div>
-
-    <div class="pricing-beta">
-      <a class="btn-primary" href="/beta">Apply to test Kavedi</a>
-      <div class="form-note">Kavedi is in private beta, and free while you test.</div>
-    </div>
-  </div>
+  </section>
 </main>
 
-<footer class="site-footer">
-  <div class="footer-inner">
-    <div class="footer-brand">
-      <picture>
-        <source srcset="assets/mark.webp" type="image/webp">
-        <img src="assets/mark.png" alt="Kavedi" width="30" height="30" loading="lazy">
-      </picture>
-      <span class="footer-brand-name">Kavedi</span>
+<footer class="site-foot">
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="foot-brand">
+        <a class="brand" href="/" aria-label="Kavedi, home"><picture><source srcset="/assets/mark.webp" type="image/webp"><img src="/assets/mark.png" alt="" width="30" height="30" loading="lazy"></picture>Kavedi</a>
+        <p>WhatsApp automation for people who run on messages.</p>
+      </div>
+      <div class="foot-cols">
+        <div class="foot-col">
+          <h2>Product</h2>
+          <ul><li><a href="/#how-it-works">How it works</a></li><li><a href="/#features">Features</a></li><li><a href="/pricing">Pricing</a></li><li><a href="/beta">The beta</a></li></ul>
+        </div>
+        <div class="foot-col">
+          <h2>Company</h2>
+          <ul><li><a href="/privacy">Privacy</a></li><li><a href="/terms">Terms</a></li></ul>
+        </div>
+        <div class="foot-col">
+          <h2>Contact</h2>
+          <ul><li><a href="mailto:support@kavedi.com.ng">support@kavedi.com.ng</a></li></ul>
+          <div class="foot-social">
+            <a href="https://instagram.com/kavedihq" target="_blank" rel="noopener" aria-label="Kavedi on Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1" fill="currentColor" stroke="none"/></svg></a>
+            <a href="https://x.com/kavedihq" target="_blank" rel="noopener" aria-label="Kavedi on X"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.9 2H22l-7.6 8.7L23 22h-6.6l-5.2-6.8L5 22H2l8.1-9.3L1.6 2h6.7l4.7 6.2L18.9 2Zm-2.3 18h1.8L7.5 4H5.6l11 16Z"/></svg></a>
+            <a href="https://youtube.com/@kavedihq" target="_blank" rel="noopener" aria-label="Kavedi on YouTube"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.5 6.9a3 3 0 0 0-2.1-2.1C19.4 4.3 12 4.3 12 4.3s-7.4 0-9.4.5A3 3 0 0 0 .5 6.9 31.6 31.6 0 0 0 0 12a31.6 31.6 0 0 0 .5 5.1 3 3 0 0 0 2.1 2.1c2 .5 9.4.5 9.4.5s7.4 0 9.4-.5a3 3 0 0 0 2.1-2.1A31.6 31.6 0 0 0 24 12a31.6 31.6 0 0 0-.5-5.1ZM9.6 15.5v-7l6.3 3.5-6.3 3.5Z"/></svg></a>
+            <a href="https://github.com/kavedihq" target="_blank" rel="noopener" aria-label="Kavedi on GitHub"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5a11.5 11.5 0 0 0-3.6 22.4c.6.1.8-.3.8-.6v-2.1c-3.2.7-3.9-1.4-3.9-1.4-.5-1.3-1.3-1.7-1.3-1.7-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.7 1.3 3.4 1 .1-.8.4-1.3.7-1.5-2.6-.3-5.2-1.3-5.2-5.7 0-1.3.4-2.3 1.2-3.1-.1-.3-.5-1.5.1-3 0 0 1-.3 3.2 1.2a11 11 0 0 1 5.8 0c2.2-1.5 3.2-1.2 3.2-1.2.6 1.6.2 2.7.1 3 .7.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.6.4.4.8 1.1.8 2.2v3.2c0 .3.2.7.8.6A11.5 11.5 0 0 0 12 .5Z"/></svg></a>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="footer-links">
-      <a href="/#how-it-works">How it works</a>
-      <a href="/pricing">Pricing</a>
-      <a href="/beta">Beta</a>
-      <a href="/privacy">Privacy</a>
-      <a href="/terms">Terms</a>
-      <a href="mailto:support@kavedi.com.ng">support@kavedi.com.ng</a>
-    </div>
-    <div class="footer-disclaimer">Kavedi connects to your existing WhatsApp number, like WhatsApp Web. Not affiliated with WhatsApp or Meta.</div>
-    <div class="footer-theme">
+    <div class="foot-bottom">
+      <p>Kavedi connects to your existing WhatsApp number as a linked device, like WhatsApp Web. Not affiliated with WhatsApp or Meta. &copy; 2026 Kavedi</p>
       <div data-theme-switch></div>
     </div>
-    <div class="footer-copyright">&copy; 2026 Kavedi</div>
   </div>
 </footer>
 
-<script src="assets/attribution.js"></script>
-
-<script src="/assets/site.js"></script>
+<script src="/assets/kv.js"></script>
 </body>
 </html>

@@ -2,17 +2,17 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Kavedi — Your AI Operator for WhatsApp</title>
-<meta name="description" content="Kavedi answers the questions you get asked twenty times a week, books appointments and sends the messages you keep forgetting — on your own WhatsApp number.">
+<meta name="description" content="Kavedi answers the questions you get asked twenty times a week, books appointments and sends the messages you keep forgetting, on your own WhatsApp number. Anything it wasn't taught, it leaves for you.">
 <link rel="canonical" href="https://kavedi.com.ng/">
-<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-<link rel="icon" href="assets/favicon-32x32.png" sizes="32x32" type="image/png">
-<link rel="icon" href="assets/favicon.ico" sizes="any">
-<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/assets/favicon-32x32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="/assets/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
 
 <meta property="og:title" content="Kavedi — Your AI Operator for WhatsApp">
-<meta property="og:description" content="Kavedi answers the questions you get asked twenty times a week, books appointments and sends the messages you keep forgetting — on your own WhatsApp number.">
+<meta property="og:description" content="Kavedi answers the questions you get asked twenty times a week, books appointments and sends the messages you keep forgetting, on your own WhatsApp number.">
 <meta property="og:image" content="https://kavedi.com.ng/assets/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -20,10 +20,9 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Kavedi">
 <meta property="og:locale" content="en_US">
-
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Kavedi — Your AI Operator for WhatsApp">
-<meta name="twitter:description" content="Kavedi answers the questions you get asked twenty times a week, books appointments and sends the messages you keep forgetting — on your own WhatsApp number.">
+<meta name="twitter:description" content="Kavedi answers the questions you get asked twenty times a week, books appointments and sends the messages you keep forgetting, on your own WhatsApp number.">
 <meta name="twitter:image" content="https://kavedi.com.ng/assets/og.png">
 
 <script type="application/ld+json">
@@ -35,662 +34,10 @@
   "logo": "https://kavedi.com.ng/assets/mark.png",
   "description": "WhatsApp automation: answers the questions you get asked every day, books appointments and sends reminders, on the number you already use.",
   "areaServed": "Worldwide",
-  "sameAs": [
-    "https://x.com/kavedihq",
-    "https://instagram.com/kavedihq",
-    "https://github.com/kavedihq",
-    "https://youtube.com/@kavedihq"
-  ]
+  "sameAs": ["https://x.com/kavedihq", "https://instagram.com/kavedihq", "https://github.com/kavedihq", "https://youtube.com/@kavedihq"]
 }
 </script>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap">
-<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --navy:#14323C;
-    --teal:#0A7F7A;
-    --teal-on-cream:#08756E;
-    --teal-bright:#2AC9C2;
-    --teal-deep:#0C2A32;
-    --cream:#F5F1E9;
-    --white:#FFFFFF;
-    --border:#DED6C7;
-    --muted-teal-grey:#3D5B65;
-    --muted-warm-grey:#6B655A;
-    --muted-label-grey:#8A8478;
-    --light-teal:#E4F3F1;
-    --phone-bg:#EDE9E0;
-    --wa-green:#D9FDD3;
-    --muted-green:#4E7057;
-    --message-bar-bg:#E2DCD1;
-    --placeholder-grey:#8A9AA0;
-    --notif-bg:#FDF1DC;
-    --notif-border:#EFC479;
-    --notif-dot:#B4690E;
-    --notif-text:#7C4606;
-    --divider:#EFEBE2;
-    --doesnt-badge-bg:#F5CE8A;
-    --doesnt-badge-text:#5E3403;
-    --doesnt-icon:#9DB2BA;
-    --dark-body:#E4EEF0;
-    --dark-divider:#2C5A66;
-    --footer-secondary:#A9C2C8;
-    --footer-copyright:#7E9AA1;
-    --hover-tint:#FBFAF6;
-    --footer-badge-text:#7FD9CE;
-  }
-  *{box-sizing:border-box;}
-  html,body{margin:0;padding:0;}
-  @media (prefers-reduced-motion: no-preference){
-    html{scroll-behavior:smooth;}
-  }
-  body{
-    background:var(--white);
-    font-family:'Nunito', sans-serif;
-    color:var(--navy);
-    -webkit-font-smoothing:antialiased;
-  }
-  a{color:var(--navy); text-decoration:none; transition:color .15s ease;}
-  a:hover{color:var(--teal);}
-  .site-header a:hover{color:var(--teal-on-cream);}
-  a:focus-visible{outline:2px solid var(--teal); outline-offset:2px; border-radius:2px;}
-  input::placeholder{color:var(--placeholder-grey);}
-  img{max-width:100%;}
-  picture{display:contents;}
-  .sr-only{
-    position:absolute; width:1px; height:1px; padding:0; margin:-1px;
-    overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;
-  }
-
-  /* ===== NAV ===== */
-  .site-header{
-    background:var(--cream); position:sticky; top:0; z-index:100;
-    transition:box-shadow .2s ease;
-  }
-  .site-header.is-condensed{box-shadow:0 2px 12px rgba(20,50,60,.1);}
-  .nav{
-    display:flex; align-items:center; justify-content:space-between;
-    padding:24px 24px; transition:padding .2s ease;
-  }
-  .site-header.is-condensed .nav{padding-top:14px; padding-bottom:14px;}
-  .brand{display:flex; align-items:center; gap:9px;}
-  .brand img{width:38px; height:38px; display:block; transition:width .2s ease, height .2s ease;}
-  .site-header.is-condensed .brand img{width:30px; height:30px;}
-  .brand-text{display:flex; align-items:center; gap:8px;}
-  .brand-name{
-    font-family:'Nunito', sans-serif; font-size:23px; font-weight:800; letter-spacing:-.01em;
-    color:var(--navy); transition:font-size .2s ease;
-  }
-  .site-header.is-condensed .brand-name{font-size:19px;}
-  .nav-right{display:flex; align-items:center; gap:20px;}
-  .nav-links{display:flex; align-items:center; gap:24px; font-size:16px; font-weight:700;}
-  .nav-links a{white-space:nowrap;}
-  .nav-links a.is-active{color:var(--teal-on-cream);}
-  @media (max-width:720px){
-    .nav-links{display:none;}
-  }
-  .nav-cta{
-    height:40px; padding:0 18px; border-radius:999px;
-    background:linear-gradient(90deg,#0A7F7A,#14323C,#0A7F7A); background-size:200% 100%;
-    animation:kvNavGradient 6s ease infinite;
-    color:#fff; font-family:'Nunito', sans-serif; font-size:14px; font-weight:800;
-    white-space:nowrap; display:flex; align-items:center; justify-content:center;
-    transition:box-shadow .18s ease; text-decoration:none;
-  }
-  .nav-cta:hover{box-shadow:inset 0 0 0 999px rgba(20,50,60,.35);}
-  .nav-cta:focus-visible{outline:none; box-shadow:0 0 0 2px var(--cream), 0 0 0 5px var(--teal);}
-  @keyframes kvNavGradient{
-    0%   { background-position:0% 50%; }
-    50%  { background-position:100% 50%; }
-    100% { background-position:0% 50%; }
-  }
-  @media (prefers-reduced-motion: reduce){
-    .nav-cta{animation:none;}
-  }
-
-  /* ===== BUTTONS ===== */
-  .btn-primary{
-    height:60px; border:none; border-radius:999px; background:var(--teal);
-    color:#fff; font-family:'Nunito', sans-serif; font-size:17px; font-weight:800;
-    cursor:pointer; padding:0 26px; transition:background .18s ease;
-  }
-  .btn-primary:hover{background:var(--navy);}
-  .btn-primary:focus-visible{outline:none; box-shadow:0 0 0 2px var(--cream), 0 0 0 5px var(--teal);}
-  .btn-primary:disabled{background:var(--border); color:var(--muted-label-grey); cursor:not-allowed;}
-  .btn-primary.is-loading{opacity:.85; cursor:default; display:flex; align-items:center; justify-content:center; gap:10px;}
-  .spinner{
-    width:18px; height:18px; border-radius:50%;
-    border:2.5px solid rgba(255,255,255,.4); border-top-color:#fff;
-    display:inline-block; animation:spin .7s linear infinite;
-  }
-  @keyframes spin{to{transform:rotate(360deg);}}
-
-  /* ===== CHANNEL TOGGLE (email / WhatsApp) ===== */
-  .channel-toggle{display:flex; gap:8px; margin-bottom:10px; width:100%;}
-  .channel-btn{
-    flex:1; height:44px; border-radius:999px; border:2px solid var(--border);
-    background:#fff; color:var(--muted-warm-grey); font-family:'Nunito', sans-serif;
-    font-size:14px; font-weight:800; cursor:pointer; white-space:nowrap;
-    transition:background .15s ease, border-color .15s ease, color .15s ease;
-  }
-  .channel-btn.is-active{background:var(--navy); border-color:var(--navy); color:#fff;}
-  .channel-btn:focus-visible{outline:none; box-shadow:0 0 0 2px var(--cream), 0 0 0 5px var(--teal);}
-  .cta-invert .channel-btn{background:rgba(12,42,50,.08); border-color:var(--teal-deep); color:var(--teal-deep);}
-  .cta-invert .channel-btn.is-active{background:var(--teal-deep); border-color:var(--teal-deep); color:#fff;}
-  .cta-invert .channel-btn:focus-visible{box-shadow:0 0 0 2px var(--teal-bright), 0 0 0 5px var(--teal-deep);}
-
-  /* ===== WHO ROTATOR ===== */
-  @keyframes kvRotate{
-    0%    { opacity:0; transform:translateY(14px); }
-    2.6%  { opacity:1; transform:translateY(0); }
-    11.7% { opacity:1; transform:translateY(0); }
-    14.3% { opacity:0; transform:translateY(-14px); }
-    100%  { opacity:0; transform:translateY(14px); }
-  }
-  @keyframes kvDot{
-    0%    { opacity:.35; transform:scale(.8); }
-    17%   { opacity:1; transform:scale(1); }
-    83%   { opacity:1; transform:scale(1); }
-    100%  { opacity:.35; transform:scale(.8); }
-  }
-
-  /* ===== SCROLL REVEAL ===== */
-  .reveal{
-    opacity:0; transform:translateY(24px);
-    transition:opacity .6s ease, transform .6s ease;
-  }
-  .reveal.is-visible{opacity:1; transform:translateY(0);}
-  .reveal-group > .reveal:nth-child(2){transition-delay:.08s;}
-  .reveal-group > .reveal:nth-child(3){transition-delay:.16s;}
-  @media (prefers-reduced-motion: reduce){
-    .reveal{opacity:1; transform:none; transition:none;}
-    .row-icon{opacity:1; transform:none; animation:none;}
-    .feature-card:hover .feature-illustration{transform:none;}
-    .feature-tag:hover{transform:none;}
-    .site-header, .nav, .brand img, .brand-name{transition:none;}
-    .bubble{opacity:1 !important; transform:none !important; transition:none !important;}
-    .notif-card{opacity:1 !important; transform:none !important; transition:none !important; animation:none !important;}
-    .who-dot{animation:none !important; opacity:1 !important; transform:none !important;}
-    .who-rotor-item{animation:none !important; opacity:0 !important; transform:none !important;}
-    .who-rotor-item:first-child{opacity:1 !important;}
-  }
-
-  /* ===== HERO ===== */
-  .hero{background:var(--cream);}
-  .hero-inner{
-    padding:0 24px 44px;
-    display:flex; flex-direction:column; gap:0;
-  }
-  .hero h1{
-    margin:0 0 16px; font-size:41px; line-height:1.05; font-weight:800;
-    letter-spacing:-.02em;
-  }
-  .hero p.lede{
-    margin:0 0 26px; font-size:17px; line-height:1.55; font-weight:400; color:var(--muted-teal-grey);
-  }
-  .early-access{margin-top:14px; display:flex; flex-direction:column; align-items:center; gap:8px;}
-  .early-access-text{font-size:14px; font-weight:600; color:var(--muted-warm-grey); text-align:center;}
-  .first-ten-badge{
-    display:inline-flex; align-items:center; gap:6px; background:var(--notif-bg);
-    border:1px solid var(--notif-border); padding:5px 12px; border-radius:999px;
-    font-size:12px; font-weight:800; color:var(--notif-text); text-align:center;
-  }
-  .cta-invert .first-ten-badge{background:rgba(12,42,50,.1); border-color:var(--teal-deep); color:var(--teal-deep);}
-
-  /* waitlist form */
-  .waitlist-form{display:flex; flex-direction:column; gap:10px;}
-  .waitlist-fields{display:flex; flex-direction:column; gap:10px;}
-  .field-row{display:flex; flex-direction:column; gap:8px;}
-  .waitlist-input{
-    width:100%; height:60px; box-sizing:border-box; padding:0 22px;
-    font-family:'Nunito', sans-serif; font-size:16px; font-weight:600; color:var(--navy);
-    background:#fff; border:2px solid var(--navy); border-radius:999px; outline:none;
-  }
-  .waitlist-input:focus{
-    border-color:var(--teal); box-shadow:0 0 0 4px rgba(10,127,122,.18);
-  }
-  .waitlist-input:disabled{
-    color:var(--muted-label-grey); background:var(--divider); border-color:var(--border);
-  }
-  .waitlist-input.has-error{background:var(--notif-bg); border-color:var(--notif-dot);}
-  .field-error{
-    display:flex; gap:7px; align-items:flex-start; padding:0 4px;
-    font-size:14px; font-weight:600; color:var(--notif-text); line-height:1.4;
-  }
-  .field-error[hidden]{display:none;}
-  .waitlist-success{
-    display:flex; flex-direction:column; align-items:center; text-align:center;
-    gap:12px; padding:14px 0;
-  }
-  .waitlist-success .success-illustration{width:120px; height:auto; margin-bottom:4px;}
-  .waitlist-success h3{margin:0; font-size:22px; font-weight:800;}
-  .waitlist-success p{margin:0; font-size:16px; font-weight:500; line-height:1.4; color:var(--muted-teal-grey);}
-
-  /* CTA-invert variant used on the final CTA section */
-  .cta-invert .btn-primary{background:var(--navy);}
-  .cta-invert .btn-primary:hover{background:var(--teal-deep);}
-
-  /* phone mockup */
-  .phone-wrap{display:flex; justify-content:center; margin-top:34px; padding-bottom:140px;}
-  .phone{
-    width:100%; max-width:340px; background:#0A0A0C; border-radius:46px;
-    padding:8px; position:relative;
-  }
-  .phone-screen{background:#fff; border-radius:40px; overflow:hidden; position:relative;}
-  .dynamic-island{
-    position:absolute; top:10px; left:50%; transform:translateX(-50%);
-    width:84px; height:24px; background:#0A0A0C; border-radius:16px; z-index:2;
-  }
-  .phone-statusbar{
-    padding:14px 22px 4px; display:flex; align-items:center; justify-content:space-between;
-    font-size:13px; font-weight:700; color:var(--navy); background:#fff;
-  }
-  .phone-status-icons{display:flex; align-items:center; gap:5px; color:var(--navy);}
-  .phone-status-icons svg{display:block;}
-  .phone-topbar{
-    background:#fff; padding:10px 16px 14px; border-bottom:1px solid var(--divider);
-    display:flex; align-items:center; gap:10px;
-  }
-  .phone-topbar .chevron{flex:0 0 auto; font-size:30px; line-height:1; color:var(--navy); margin-right:-2px;}
-  .phone-contact-info{flex:1;}
-  .phone-avatar{
-    width:34px; height:34px; border-radius:50%; background:var(--navy);
-    display:flex; align-items:center; justify-content:center; color:#fff;
-    font-size:15px; font-weight:800; flex:0 0 34px;
-  }
-  .phone-contact-name{color:var(--navy); font-size:16px; font-weight:800;}
-  .phone-contact-status{color:var(--muted-warm-grey); font-size:13px; font-weight:600;}
-  .phone-video-btn{
-    width:32px; height:32px; border-radius:50%; background:var(--cream);
-    display:flex; align-items:center; justify-content:center; flex:0 0 32px; color:var(--navy);
-  }
-  .phone-messages{background:var(--phone-bg); padding:20px 14px 26px; display:flex; flex-direction:column; gap:12px; overflow:hidden;}
-  .bubble{transition:opacity .45s cubic-bezier(.22,.61,.36,1), transform .45s cubic-bezier(.22,.61,.36,1);}
-  .notif-card{transition:opacity .45s cubic-bezier(.22,.61,.36,1), transform .45s cubic-bezier(.22,.61,.36,1);}
-  .bubble-hidden{opacity:0; transform:translateY(34px);}
-  .notif-card.bubble-hidden{transform:translateY(20px);}
-  @keyframes notifFloat{
-    0%, 100%{transform:translateY(0);}
-    50%{transform:translateY(-7px);}
-  }
-  .notif-card.is-floating{animation:notifFloat 2.6s ease-in-out infinite;}
-  .bubble{max-width:86%; border-radius:20px; padding:13px 16px; font-size:16px; font-weight:600; line-height:1.4;}
-  .bubble.in{align-self:flex-start; max-width:80%; background:#fff; border-radius:20px 20px 20px 7px;}
-  .bubble.out{
-    align-self:flex-end; background:var(--wa-green); border-radius:20px 20px 7px 20px; line-height:1.45;
-  }
-  .bubble-meta{display:flex; justify-content:flex-end; align-items:center; gap:5px; margin-top:5px; font-size:12px; color:var(--muted-green);}
-  .phone-inputbar{
-    margin:16px -14px -26px; padding:11px 12px; background:var(--message-bar-bg);
-    border-radius:0 0 24px 24px; display:flex; align-items:center; gap:9px;
-  }
-  .phone-inputbar .field{
-    flex:1; height:40px; background:#fff; border-radius:999px; display:flex; align-items:center;
-    padding:0 15px; font-family:'Nunito', sans-serif; font-size:15px; color:var(--placeholder-grey);
-  }
-  .phone-inputbar .send{width:40px; height:40px; border-radius:50%; background:var(--teal); flex:0 0 40px;}
-  .notif-card{
-    position:absolute; left:-12px; right:-12px; bottom:-116px; background:#fff;
-    border-radius:24px; padding:15px; box-shadow:0 20px 44px rgba(20,50,60,.24);
-    display:flex; gap:12px; align-items:flex-start; z-index:5;
-  }
-  .notif-card img{width:36px; height:36px; flex:0 0 36px; display:block;}
-  .notif-body{flex:1; min-width:0;}
-  .notif-head{display:flex; justify-content:space-between; align-items:baseline; gap:10px; margin-bottom:7px;}
-  .notif-head .name{font-size:15px; font-weight:800; color:var(--navy);}
-  .notif-head .time{font-size:13px; color:var(--muted-label-grey);}
-  .notif-pill{
-    display:inline-flex; align-items:center; gap:7px; background:var(--notif-bg);
-    border:1px solid var(--notif-border); padding:4px 11px; border-radius:999px; margin-bottom:8px;
-  }
-  .notif-pill .dot{width:8px; height:8px; border-radius:50%; background:var(--notif-dot);}
-  .notif-pill span.label{
-    font-size:12px; font-weight:700; letter-spacing:.05em; text-transform:uppercase; color:var(--notif-text);
-  }
-  .notif-text{font-size:15px; font-weight:600; line-height:1.42; color:var(--navy);}
-
-  /* ===== DASHBOARD ===== */
-
-  /* ===== WHO IT'S FOR ===== */
-  .who{padding:40px 24px 44px;}
-  .who-head{display:flex; align-items:flex-start; justify-content:space-between; gap:16px;}
-  .who h2{margin:0 0 20px; font-size:31px; line-height:1.1; font-weight:800; flex:1;}
-  .who-illustration{width:72px; height:auto; flex:0 0 auto; margin-top:2px; opacity:.92;}
-  .who-rotor{display:flex; align-items:center; gap:12px; height:44px;}
-  .who-dot{width:8px; height:8px; border-radius:50%; background:var(--teal-bright); flex:0 0 auto; animation:kvDot 1.5s ease-in-out infinite;}
-  .who-rotor-viewport{position:relative; flex:1; height:100%; overflow:hidden;}
-  .who-rotor-item{
-    position:absolute; inset:0; display:flex; align-items:center;
-    font-size:19px; font-weight:700; color:var(--navy); white-space:nowrap;
-    animation:kvRotate 10.5s ease-in-out infinite;
-  }
-
-  /* ===== HOW IT WORKS ===== */
-  .how{background:var(--cream); padding:40px 24px; border-radius:34px 34px 0 0;}
-  .how h2{margin:0 0 26px; font-size:31px; line-height:1.1; font-weight:800;}
-  .steps{display:flex; flex-direction:column; gap:14px;}
-  .step{background:#fff; border-radius:24px; padding:22px; display:flex; gap:16px; align-items:center;}
-  .step-icon{
-    flex:0 0 52px; width:52px; height:52px; border-radius:999px; background:var(--teal-bright);
-    display:flex; align-items:center; justify-content:center;
-  }
-  .step-icon svg{color:var(--teal-deep); display:block;}
-  .step-eyebrow{font-size:12px; font-weight:800; letter-spacing:.08em; text-transform:uppercase; color:var(--muted-label-grey); margin-bottom:3px;}
-  .step-title{font-size:19px; font-weight:800; line-height:1.2;}
-  .step-body{font-size:16px; font-weight:500; line-height:1.4; color:var(--muted-teal-grey);}
-
-  /* ===== DOES / DOESN'T ===== */
-  .does{padding:40px 24px;}
-  .does h2{margin:0 0 26px; font-size:31px; line-height:1.1; font-weight:800;}
-  .does-phone-wrap{margin:-30px 0 10px; display:flex; justify-content:center;}
-  .does-phone{
-    width:280px; background:#0A0A0C; border-radius:40px 40px 0 0; padding:7px; position:relative;
-    box-shadow:0 20px 44px rgba(20,50,60,.16);
-    -webkit-mask-image:linear-gradient(to bottom, #000 78%, transparent 100%);
-    mask-image:linear-gradient(to bottom, #000 78%, transparent 100%);
-  }
-  .does-phone .phone-screen{border-radius:34px 34px 0 0;}
-  .does-phone .dynamic-island{width:70px; height:19px; top:8px;}
-  .does-phone .phone-statusbar{padding:11px 18px 3px; font-size:11px;}
-  .does-phone .phone-topbar{padding:9px 14px 12px; gap:8px;}
-  .does-phone .phone-topbar .chevron{font-size:26px;}
-  .does-phone .phone-avatar{width:28px; height:28px; flex-basis:28px; font-size:12px;}
-  .does-phone .phone-contact-name{font-size:14px;}
-  .does-phone .phone-contact-status{font-size:11px;}
-  .does-phone .phone-messages{padding:14px 12px 70px; gap:9px;}
-  .does-phone .bubble{font-size:14px; padding:10px 13px;}
-  .does-grid{display:flex; flex-direction:column; gap:14px;}
-  .does-card{border:2px solid var(--navy); border-radius:26px; padding:24px;}
-  .doesnt-card{background:var(--navy); border-radius:26px; padding:24px; color:var(--dark-body);}
-  .badge-does{
-    display:inline-block; background:var(--teal-bright); color:var(--teal-deep); padding:6px 14px;
-    border-radius:999px; font-size:15px; font-weight:800; margin-bottom:16px;
-  }
-  .badge-doesnt{
-    display:inline-block; background:var(--doesnt-badge-bg); color:var(--doesnt-badge-text); padding:6px 14px;
-    border-radius:999px; font-size:15px; font-weight:800; margin-bottom:16px;
-  }
-  .does-list{display:flex; flex-direction:column; gap:11px; font-size:17px; font-weight:600; line-height:1.4;}
-  .does-list .row{display:flex; gap:11px; align-items:flex-start;}
-  .does-list .row svg{flex:0 0 20px; margin-top:2px;}
-  .does-card .row svg{color:var(--teal-bright);}
-  .doesnt-card .row svg{color:var(--doesnt-icon);}
-  .row-icon{opacity:0; transform:scale(.5);}
-  .row-icon.is-visible{animation:iconBounce .5s cubic-bezier(.34,1.56,.64,1) forwards;}
-  @keyframes iconBounce{
-    0%{opacity:0; transform:scale(.5);}
-    60%{opacity:1; transform:scale(1.15);}
-    100%{opacity:1; transform:scale(1);}
-  }
-  .doesnt-note{margin-top:18px; padding-top:18px; border-top:2px solid var(--dark-divider); font-size:17px; font-weight:600; line-height:1.5; color:#fff;}
-
-  /* ===== HOW IT CONNECTS ===== */
-  .connects{padding:36px 24px 44px;}
-  .connects h2{margin:0 0 20px; font-size:22px; line-height:1.2; font-weight:800; color:var(--muted-teal-grey);}
-  .connects-list{display:flex; flex-direction:column; gap:16px;}
-  .connects-item{padding-bottom:16px; border-bottom:1px solid var(--message-bar-bg);}
-  .connects-item:last-child{border-bottom:none; padding-bottom:0;}
-  .connects-item h3{margin:0 0 4px; font-size:16px; font-weight:800; color:var(--navy);}
-  .connects-item p{margin:0; font-size:15px; font-weight:500; line-height:1.5; color:var(--muted-warm-grey);}
-
-  /* ===== WHY KAVEDI ===== */
-  .why{padding:56px 24px 44px;}
-  .why h2{margin:0 0 8px; font-size:31px; line-height:1.1; font-weight:800;}
-  .why p.sub{margin:0 0 22px; font-size:16px; font-weight:500; color:var(--muted-warm-grey);}
-  .why-grid{display:flex; flex-direction:column; gap:16px;}
-  .why-card{background:var(--cream); border-radius:20px; padding:22px;}
-  .why-label{font-size:13px; font-weight:800; letter-spacing:.06em; text-transform:uppercase; color:var(--teal-on-cream); margin-bottom:6px;}
-  .why-card p{margin:0; font-size:16px; font-weight:500; line-height:1.5; color:var(--muted-teal-grey);}
-
-  /* ===== PRICING (HOMEPAGE) ===== */
-  .home-pricing{background:var(--cream); padding:44px 24px 52px;}
-  .home-pricing h2{margin:0 0 6px; font-size:31px; line-height:1.1; font-weight:800;}
-  .home-pricing p.sub{margin:0 0 22px; font-size:16px; font-weight:500; color:var(--muted-warm-grey);}
-  .home-pricing-grid{display:flex; flex-direction:column; gap:16px;}
-  .home-pricing-card{background:#fff; border:2px solid var(--border); border-radius:24px; padding:24px;}
-  .home-pricing-card.pro{background:var(--navy); border:none; color:#fff;}
-  .home-pricing-tier-row{display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:6px;}
-  .home-pricing-tier{font-size:13px; font-weight:800; letter-spacing:.06em; text-transform:uppercase; color:var(--muted-label-grey);}
-  .home-pricing-card.pro .home-pricing-tier{color:#8FC7C2;}
-  .home-pricing-badge{display:none; background:var(--teal-bright); color:var(--teal-deep); font-size:12px; font-weight:800; padding:4px 11px; border-radius:999px; white-space:nowrap;}
-  .home-pricing-price{display:flex; align-items:baseline; gap:6px; margin-bottom:12px;}
-  .home-pricing-price .amount{font-size:30px; font-weight:800;}
-  .home-pricing-price .period{font-size:14px; font-weight:600; color:var(--muted-warm-grey);}
-  .home-pricing-card.pro .home-pricing-price .period{color:var(--footer-secondary);}
-  .home-pricing-list{display:flex; flex-direction:column; gap:8px; font-size:15px; font-weight:600; line-height:1.4;}
-  .home-pricing-list div{display:flex; gap:8px;}
-  .home-pricing-list span.check{color:var(--teal-bright);}
-  .home-pricing-plus{margin-top:12px; display:flex; gap:8px; font-size:14px; font-weight:600; color:#8FC7C2;}
-  .home-pricing-note{margin-top:16px; font-size:14px; font-weight:500; color:var(--muted-warm-grey);}
-  .home-pricing-note a{color:var(--teal-on-cream); font-weight:700;}
-
-  /* ===== FEATURES ===== */
-  .features{background:var(--cream); padding:40px 24px;}
-  .features h2{margin:0 0 24px; font-size:31px; line-height:1.1; font-weight:800;}
-  .features-grid{display:flex; flex-direction:column; gap:14px;}
-  .feature-card{
-    background:#fff; border:2px solid transparent; border-radius:24px; padding:22px;
-    transition:background .18s ease, border-color .18s ease;
-  }
-  .feature-card:hover{border-color:var(--teal); background:var(--hover-tint);}
-  .feature-illustration{width:64px; height:auto; float:right; margin:0 0 12px 16px; transition:transform .18s ease;}
-  .feature-card:hover .feature-illustration{transform:translateY(-4px) scale(1.06);}
-  .feature-title{font-size:19px; font-weight:800; line-height:1.2; margin-bottom:8px;}
-  .feature-body{font-size:16px; font-weight:500; line-height:1.5; color:var(--muted-teal-grey); margin-bottom:14px;}
-  .feature-tags{display:flex; flex-wrap:wrap; gap:8px; clear:both;}
-  .feature-tag{
-    font-size:13px; font-weight:700; color:var(--teal); background:var(--light-teal);
-    padding:5px 12px; border-radius:999px; display:inline-block;
-    transition:transform .15s ease, background .15s ease;
-  }
-  .feature-tag:hover{transform:scale(1.05); background:var(--teal-bright); color:var(--teal-deep);}
-
-  /* ===== TEAM ===== */
-  .team{padding:56px 24px 44px;}
-  .team h2{margin:0 0 6px; font-size:31px; line-height:1.1; font-weight:800;}
-  .team p.sub{margin:0 0 22px; font-size:16px; font-weight:500; color:var(--muted-warm-grey);}
-  .team-grid{display:grid; grid-template-columns:1fr 1fr; gap:20px;}
-  .team-member{display:flex; flex-direction:column; align-items:center; text-align:center; gap:8px;}
-  .team-member img{width:64px; height:64px; border-radius:50%; object-fit:cover; display:block;}
-  .team-name{font-size:15px; font-weight:800;}
-  .team-role{font-size:13px; font-weight:600; color:var(--muted-warm-grey);}
-  .team-contact{margin-top:22px; font-size:14px; font-weight:600; color:var(--muted-warm-grey); text-align:center;}
-  .team-contact a{color:var(--teal);}
-
-  /* ===== FINAL CTA ===== */
-  .final-cta{background:var(--teal-bright); padding:44px 24px; text-align:center;}
-  .final-cta h2{margin:0 0 10px; font-size:34px; line-height:1.08; font-weight:800; color:var(--teal-deep);}
-  .final-cta p.sub{margin:0 auto 12px; max-width:540px; font-size:17px; font-weight:600; line-height:1.5; color:var(--teal-deep);}
-  .final-cta .first-ten-badge{margin:0 0 22px;}
-  .final-cta .waitlist-form{max-width:560px; margin:0 auto;}
-
-  /* ===== FOOTER ===== */
-  .site-footer{background:var(--navy); padding:34px 24px 36px; color:var(--dark-body);}
-  .footer-brand{display:flex; align-items:center; gap:8px; margin-bottom:22px;}
-  .footer-brand img{width:30px; height:30px; display:block;}
-  .footer-brand-name{font-size:20px; font-weight:800; color:#fff;}
-  .footer-blurb{font-size:16px; font-weight:500; line-height:1.5; color:var(--footer-secondary); margin-bottom:24px; max-width:480px;}
-  .footer-links{display:grid; grid-template-columns:1fr 1fr; gap:14px 18px; font-size:16px; font-weight:600; margin-bottom:24px;}
-  .footer-links a{color:#fff;}
-  .footer-cols{display:none;}
-  .footer-disclaimer{font-size:14px; font-weight:400; line-height:1.5; color:var(--footer-secondary);}
-  .footer-copyright{font-size:14px; color:var(--footer-copyright);}
-  .footer-bottom{padding-top:28px; border-top:1px solid var(--dark-divider); display:flex; justify-content:space-between; align-items:flex-end; gap:28px; flex-wrap:wrap;}
-  .footer-meta{display:flex; align-items:center; gap:20px; flex-wrap:wrap;}
-  .footer-social{display:flex; align-items:center; gap:14px;}
-  .footer-social a{color:var(--footer-secondary); display:flex; transition:color .15s ease;}
-  .footer-social a:hover{color:#fff;}
-  .footer-social svg{display:block; width:20px; height:20px;}
-
-  /* ===== DESKTOP (>=1280px) ===== */
-  @media (min-width:768px){
-    .nav{padding:24px 80px;}
-    .hero-inner{padding:0 80px 46px;}
-    .hero h1{font-size:48px;}
-    .hero p.lede{max-width:480px;}
-    .who, .does{padding-left:80px; padding-right:80px;}
-    .how{padding-left:80px; padding-right:80px;}
-    .final-cta{padding-left:80px; padding-right:80px;}
-    .site-footer{padding-left:80px; padding-right:80px;}
-  }
-
-  @media (min-width:1280px){
-    .nav{padding:24px 64px;}
-    .nav-links{gap:32px; font-size:17px;}
-    .nav-cta{height:50px; padding:0 26px; font-size:17px;}
-    .brand-name{font-size:25px;}
-
-    .hero-inner{
-      padding:70px 64px 200px; display:grid; grid-template-columns:1.05fr .95fr; gap:64px; align-items:center;
-    }
-    .hero h1{font-size:72px; line-height:1.0; letter-spacing:-.03em;}
-    .hero p.lede{font-size:20px; max-width:520px;}
-    .hero .channel-toggle{max-width:540px;}
-    .hero .waitlist-fields{flex-direction:row; gap:12px; max-width:540px;}
-    .hero .field-row{flex:1;}
-    .hero .waitlist-input{height:64px; font-size:17px; padding:0 26px;}
-    .hero .btn-primary{height:64px; padding:0 30px; font-size:18px; white-space:nowrap;}
-    .hero .early-access{flex-direction:row; flex-wrap:wrap; align-items:center; gap:12px; margin-top:16px;}
-    .hero .early-access-text{text-align:left; font-size:15px;}
-    .hero .first-ten-badge{font-size:13px; padding:6px 14px;}
-    .hero .waitlist-success{align-items:flex-start; text-align:left;}
-
-    .phone-wrap{margin-top:0; padding-bottom:0;}
-    .phone{max-width:340px; box-shadow:0 26px 60px rgba(20,50,60,.18);}
-
-
-    .problem{padding:84px 64px;}
-    .problem-inner{max-width:760px; margin-bottom:40px;}
-    .problem h2{font-size:48px; line-height:1.06; letter-spacing:-.02em; margin-bottom:10px;}
-    .problem p.sub{font-size:20px; margin-bottom:0;}
-    .problem-cards{display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:20px;}
-    .problem-card{border-radius:28px; padding:34px; font-size:31px;}
-
-    .who{padding:70px 64px 84px;}
-    .who-head{gap:40px;}
-    .who h2{font-size:48px; line-height:1.06; letter-spacing:-.02em; max-width:900px; margin-bottom:34px;}
-    .who-illustration{width:150px;}
-    .who-rotor{height:60px; gap:16px; max-width:640px;}
-    .who-dot{width:10px; height:10px;}
-    .who-rotor-item{font-size:26px;}
-
-    .how{padding:84px 64px 170px; border-radius:44px 44px 0 0;}
-    .how h2{font-size:48px; line-height:1.06; letter-spacing:-.02em; margin-bottom:44px;}
-    .steps{display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:24px;}
-    .step{flex-direction:column; align-items:flex-start; border-radius:30px; padding:34px;}
-    .step-icon{width:64px; height:64px; flex-basis:64px; margin-bottom:22px;}
-    .step-eyebrow{font-size:13px; margin-bottom:6px;}
-    .step-title{font-size:24px; margin-bottom:8px;}
-    .step-body{font-size:18px; line-height:1.45;}
-
-    .does{padding:56px 64px 96px; position:relative;}
-    .does h2{font-size:48px; line-height:1.06; letter-spacing:-.02em; margin-bottom:44px; position:relative; z-index:1;}
-    .does-grid{display:grid; grid-template-columns:1fr 1fr; gap:24px; position:relative; z-index:1;}
-    .does-card{border-radius:32px; padding:38px; position:relative; z-index:1; background:#FBF8F2;}
-    .doesnt-card{border-radius:32px; padding:38px; position:relative; z-index:1;}
-    .badge-does, .badge-doesnt{font-size:17px; padding:8px 18px; margin-bottom:22px;}
-    .does-list{font-size:19px; gap:14px;}
-    .doesnt-note{font-size:19px; margin-top:24px; padding-top:24px;}
-
-    .does-phone-wrap{position:absolute; top:-120px; right:6%; margin:0; z-index:0; display:block;}
-    .does-phone{
-      width:300px; border-radius:46px 46px 0 0; box-shadow:0 24px 52px rgba(20,50,60,.18);
-      -webkit-mask-image:none; mask-image:none;
-    }
-    .does-phone .phone-screen{border-radius:39px 39px 0 0;}
-    .does-phone .dynamic-island{width:78px; height:22px; top:9px;}
-    .does-phone .phone-statusbar{padding:13px 20px 3px; font-size:12px;}
-    .does-phone .phone-topbar{padding:11px 16px 14px; gap:9px;}
-    .does-phone .phone-topbar .chevron{font-size:28px;}
-    .does-phone .phone-avatar{width:32px; height:32px; flex-basis:32px; font-size:13px;}
-    .does-phone .phone-contact-name{font-size:15px;}
-    .does-phone .phone-contact-status{font-size:12px;}
-    .does-phone .phone-messages{padding:16px 13px 76px; gap:10px;}
-    .does-phone .bubble{font-size:15px; padding:11px 14px;}
-
-    .connects{padding:64px 64px 80px;}
-    .connects h2{font-size:28px; max-width:640px; margin-bottom:36px;}
-    .connects-list{display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:36px 48px; max-width:960px;}
-    .connects-item{border-bottom:none; padding-bottom:0;}
-    .connects-item h3{font-size:18px; margin-bottom:6px;}
-    .connects-item p{font-size:16px; line-height:1.55;}
-
-    .why{padding:90px 64px 70px;}
-    .why h2{font-size:40px; line-height:1.08; letter-spacing:-.02em; max-width:640px;}
-    .why p.sub{font-size:19px; margin-bottom:36px;}
-    .why-grid{display:grid; grid-template-columns:repeat(4, minmax(0,1fr)); gap:24px;}
-    .why-card{border-radius:24px; padding:28px;}
-    .why-label{font-size:14px; margin-bottom:10px;}
-    .why-card p{font-size:17px;}
-
-    .home-pricing{padding:70px 64px 84px;}
-    .home-pricing h2{font-size:40px; line-height:1.08; letter-spacing:-.02em;}
-    .home-pricing p.sub{font-size:19px; margin-bottom:32px;}
-    .home-pricing-grid{display:grid; grid-template-columns:1fr 1fr; gap:24px; max-width:820px;}
-    .home-pricing-card{border-radius:28px; padding:32px;}
-    .home-pricing-badge{display:inline-block;}
-    .home-pricing-price .amount{font-size:36px;}
-    .home-pricing-price .period{font-size:15px;}
-    .home-pricing-list{font-size:16px; gap:10px;}
-    .home-pricing-plus{margin-top:14px; font-size:15px;}
-    .home-pricing-note{margin-top:20px; font-size:15px;}
-
-    .features{padding:84px 64px;}
-    .features h2{font-size:48px; line-height:1.06; letter-spacing:-.02em; margin-bottom:40px;}
-    .features-grid{display:grid; grid-template-columns:1fr 1fr; gap:24px;}
-    .feature-card{border-radius:30px; padding:34px;}
-    .feature-illustration{width:100px; margin:0 0 16px 20px;}
-    .feature-card:hover .feature-illustration{transform:translateY(-5px) scale(1.06);}
-    .feature-title{font-size:24px; margin-bottom:10px;}
-    .feature-body{font-size:18px; margin-bottom:16px;}
-    .feature-tags{gap:10px;}
-    .feature-tag{font-size:14px; padding:6px 14px;}
-
-    .team{padding:110px 64px 90px;}
-    .team h2{font-size:40px; line-height:1.08; letter-spacing:-.02em; margin-bottom:8px;}
-    .team p.sub{font-size:19px; margin-bottom:36px;}
-    .team-grid{grid-template-columns:repeat(4, minmax(0,1fr)); gap:28px;}
-    .team-member img{width:88px; height:88px;}
-    .team-name{font-size:18px;}
-    .team-role{font-size:15px;}
-
-    .final-cta{padding:90px 64px;}
-    .final-cta h2{font-size:54px; line-height:1.04; letter-spacing:-.02em; margin-bottom:12px;}
-    .final-cta p.sub{font-size:20px; margin-bottom:16px;}
-    .final-cta .first-ten-badge{margin-bottom:26px; font-size:14px; padding:7px 16px;}
-    .final-cta .channel-toggle{max-width:560px; margin-left:auto; margin-right:auto;}
-    .final-cta .waitlist-fields{flex-direction:row; gap:12px;}
-    .final-cta .field-row{flex:1;}
-    .final-cta .waitlist-input{height:64px; font-size:17px; padding:0 26px;}
-    .final-cta .btn-primary{height:64px; padding:0 30px; font-size:18px; white-space:nowrap;}
-    .final-cta .waitlist-success{align-items:center; text-align:center;}
-
-    .site-footer{padding:56px 64px;}
-    .footer-top{display:grid; grid-template-columns:1.4fr 1fr 1fr 1fr; gap:40px; margin-bottom:42px;}
-    .footer-brand-name{font-size:21px;}
-    .footer-blurb{font-size:16px;}
-    .footer-links{display:none;}
-    .footer-cols{display:flex; flex-direction:column; gap:12px; font-size:16px; font-weight:600;}
-    .footer-cols .col-head{font-weight:800; color:#fff;}
-    .footer-cols a{color:var(--dark-body);}
-    .footer-social{gap:16px;}
-    .footer-social svg{width:22px; height:22px;}
-  }
-  /* ===== Beta calls to action (replaced the waitlist forms) ===== */
-  .hero-beta{display:flex; flex-direction:column; align-items:center; gap:14px; margin-top:6px;}
-  .hero-beta .btn-primary, .join-beta .btn-primary{display:flex; align-items:center; justify-content:center;}
-  .hero-beta .btn-primary:hover, .join-beta .btn-primary:hover{color:#fff;}
-  .hero-beta .btn-primary{width:100%; max-width:360px; text-decoration:none;}
-  .hero-beta-demo{font-size:16px; font-weight:800; color:var(--teal-on-cream);}
-  .join-beta{display:flex; flex-direction:column; gap:14px; align-items:flex-start;}
-  .join-beta h3{margin:0; font-size:22px; font-weight:800; line-height:1.2;}
-  .join-beta p{margin:0; font-size:16px; line-height:1.55; color:var(--muted-teal-grey);}
-  .join-beta .btn-primary{width:100%; text-decoration:none;}
-  @media (min-width:900px){ .hero-beta{flex-direction:row; justify-content:flex-start;} .hero-beta .btn-primary{width:auto; padding:0 34px;} }
-</style>
 <meta name="theme-color" content="#F5F1E9">
 <script>
   (function () {
@@ -702,534 +49,449 @@
     } catch (e) {}
   })();
 </script>
-<link rel="stylesheet" href="/assets/site.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/kv.css">
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 
-<header class="site-header">
-  <nav class="nav" aria-label="Primary">
-    <a href="/" class="brand" aria-label="Kavedi home">
-      <picture>
-        <source srcset="assets/mark.webp" type="image/webp">
-        <img src="assets/mark.png" alt="Kavedi" width="38" height="38">
-      </picture>
-      <span class="brand-text">
-        <span class="brand-name">Kavedi</span>
-      </span>
+<header class="site-head">
+  <div class="wrap">
+    <a class="brand" href="/" aria-label="Kavedi, home">
+      <picture><source srcset="/assets/mark.webp" type="image/webp"><img src="/assets/mark.png" alt="" width="30" height="30"></picture>
+      Kavedi
     </a>
-    <div class="nav-right">
-      <div class="nav-links" id="site-nav-links">
-        <a href="#see-it">The app</a>
-        <a href="#honest">Straight answers</a>
-        <a href="/pricing">Pricing</a>
-      </div>
-      <a href="/beta" class="nav-cta">Join the beta</a>
-    </div>
+    <nav class="nav" aria-label="Main">
+      <a href="#how-it-works">How it works</a>
+      <a href="#features">Features</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <a class="btn btn-primary btn-sm" href="/beta">Join the beta</a>
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="menu" aria-label="Open menu">
+      <svg class="when-closed" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 8h16M4 16h16"/></svg>
+      <svg class="when-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
+    </button>
+  </div>
+  <nav class="menu" id="menu" aria-label="Main">
+    <ul>
+      <li><a href="#how-it-works">How it works</a></li>
+      <li><a href="#features">Features</a></li>
+      <li><a href="#pricing">Pricing</a></li>
+      <li><a href="#faq">FAQ</a></li>
+      <li><a href="/beta">The beta</a></li>
+    </ul>
   </nav>
 </header>
 
-<div class="scroll-bar" data-scroll-bar aria-hidden="true"></div>
+<main id="main">
 
-<main>
-
-  <!-- ===== HERO ===== -->
+  <!-- ============ HERO ============ -->
   <section class="hero">
-    <div class="hero-inner">
-      <div class="hero-copy">
-        <p class="hero-kicker">Your AI operator for WhatsApp</p>
-        <h1>Wake up to one question,<br>not forty unread chats.</h1>
-        <p class="lede">Kavedi answers what you&rsquo;ve taught it on the WhatsApp number you already use, books the appointment, sends the reminder &mdash; and hands you anything it shouldn&rsquo;t be guessing at.</p>
-
-        <div class="hero-beta">
-          <a class="btn-primary" href="/beta">Apply to test Kavedi</a>
-          <a class="hero-beta-demo" href="/beta#demo">Try the demo first &rarr;</a>
+    <div class="wrap">
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <p class="kicker">Your AI operator for WhatsApp</p>
+          <h1 class="h1">Wake up to one question, not forty unread chats.</h1>
+          <p class="lede">Kavedi works on the WhatsApp number you already use. It answers what you&rsquo;ve taught it, books appointments and sends reminders. Anything it wasn&rsquo;t taught, it leaves for you.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary btn-lg" href="/beta">Join the beta</a>
+            <a class="btn btn-secondary btn-lg" href="/beta#demo">Try the demo</a>
+          </div>
+          <p class="hero-note">Free while you test. The first 10 testers get two months of Pro free.</p>
         </div>
-        <div class="early-access">
-          <div class="early-access-text">Private beta &mdash; we&rsquo;re letting testers in a few at a time.</div>
-          <div class="first-ten-badge">First 10 testers: personal set up + 2 months of Pro free</div>
-        </div>
-      </div>
 
-      <div class="hero-visual">
-        <div class="phone-wrap">
-          <div class="phone">
-            <div class="phone-screen">
-              <div class="dynamic-island" aria-hidden="true"></div>
-              <div class="phone-statusbar">
-                <span>9:41</span>
-                <span class="phone-status-icons" aria-hidden="true">
-                  <svg width="18" height="12" viewBox="0 0 18 12" fill="currentColor"><rect x="0" y="8" width="3" height="4" rx="1"></rect><rect x="4.7" y="5.6" width="3" height="6.4" rx="1"></rect><rect x="9.4" y="3" width="3" height="9" rx="1"></rect><rect x="14.1" y="0" width="3" height="12" rx="1"></rect></svg>
-                  <svg width="17" height="12" viewBox="0 0 17 12" fill="none" stroke="currentColor" stroke-linecap="round"><path d="M1.2 4.2a11 11 0 0 1 14.6 0" stroke-width="2.1"></path><path d="M4.2 7.5a6.6 6.6 0 0 1 8.6 0" stroke-width="2.1"></path><circle cx="8.5" cy="10.4" r="1.5" fill="currentColor" stroke="none"></circle></svg>
-                  <svg width="25" height="12" viewBox="0 0 25 12"><rect x="0.5" y="0.5" width="21" height="11" rx="3.4" fill="none" stroke="currentColor" stroke-width="1" opacity=".4"></rect><rect x="2" y="2" width="18" height="8" rx="2.2" fill="currentColor"></rect><rect x="22.8" y="4.1" width="1.7" height="3.8" rx="0.85" fill="currentColor" opacity=".4"></rect></svg>
-                </span>
+        <div class="hero-visual plays" role="img" aria-label="Sarah messages at 11:41 PM asking the price of a tote. Kavedi answers with the price you taught it. When she asks for a discount, Kavedi sends nothing and puts her question in your Waiting for you list.">
+          <div class="device">
+            <div class="screen">
+              <div class="wa-top">
+                <div class="ios-status">
+                  <span class="ios-time">11:44</span>
+                  <span class="ios-island"></span>
+                  <span class="ios-icons">
+                    <svg viewBox="0 0 18 12" fill="currentColor"><rect x="0" y="8" width="3" height="4" rx=".8"/><rect x="5" y="5.5" width="3" height="6.5" rx=".8"/><rect x="10" y="3" width="3" height="9" rx=".8"/><rect x="15" y="0" width="3" height="12" rx=".8"/></svg>
+                    <svg viewBox="0 0 16 12" fill="currentColor"><path d="M8 2.4c2.3 0 4.4.9 6 2.4l1.1-1.1A10 10 0 0 0 8 .8 10 10 0 0 0 .9 3.7L2 4.8a8.4 8.4 0 0 1 6-2.4Zm0 3.3c1.4 0 2.7.5 3.7 1.4l1.1-1.1A7 7 0 0 0 8 4.1 7 7 0 0 0 3.2 6l1.1 1.1c1-.9 2.3-1.4 3.7-1.4Zm0 3.3c.6 0 1.1.2 1.5.6L8 11.1 6.5 9.6c.4-.4.9-.6 1.5-.6Z"/></svg>
+                    <svg class="ios-battery" viewBox="0 0 27 13"><rect x=".5" y=".5" width="23" height="12" rx="3.6" fill="none" stroke="currentColor" opacity=".4"/><rect x="2" y="2" width="20" height="9" rx="2.2" fill="currentColor"/><path d="M25 4.5v4a2.2 2.2 0 0 0 0-4Z" fill="currentColor" opacity=".45"/></svg>
+                  </span>
+                </div>
+                <div class="wa-nav">
+                  <span class="wa-back"><svg viewBox="0 0 12 21" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M10.5 1.5 1.5 10.5l9 9"/></svg></span>
+                  <span class="wa-avatar">SM</span>
+                  <span class="wa-who"><b>Sarah M.</b><small>online</small></span>
+                  <span class="wa-actions">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m16 13 5.2 3.5a.5.5 0 0 0 .8-.4V7.9a.5.5 0 0 0-.8-.4L16 10.5"/><rect x="2" y="6" width="14" height="12" rx="2.5"/></svg>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"/></svg>
+                  </span>
+                </div>
               </div>
-              <div class="phone-topbar">
-                <span class="chevron" aria-hidden="true">&#8249;</span>
-                <span class="phone-avatar">A</span>
-                <div class="phone-contact-info">
-                  <span class="phone-contact-name" style="display:block;">Sarah M.</span>
-                  <span class="phone-contact-status" style="display:block;">online</span>
-                </div>
-                <span class="phone-video-btn" aria-hidden="true"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m16 13 5.223 3.482a.5.5 0 0 0 .777-.416V7.87a.5.5 0 0 0-.752-.432L16 10.5"></path><rect x="2" y="6" width="14" height="12" rx="2"></rect></svg></span>
+              <div class="wa-thread">
+                <span class="wa-day">Today</span>
+                <p class="wa-msg in tail" data-i style="--i:0">Hi! How much is the black tote?<span class="wa-meta">11:41 PM</span></p>
+                <p class="wa-msg out tail" data-i style="--i:1">It&rsquo;s $45, and there are 4 left. Delivery is $6 anywhere in the city.<span class="wa-meta">11:41 PM <svg class="tick-read" viewBox="0 0 16 11" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M1 5.8 4.2 9 10.5 1.5"/><path d="M7.4 8.3 8.2 9 14.5 1.5"/></svg></span></p>
+                <p class="wa-msg in" data-i style="--i:2">Nice, I love it</p>
+                <p class="wa-msg in tail" data-i style="--i:3">Can you do $38 each if I take three?<span class="wa-meta">11:43 PM</span></p>
               </div>
-              <div class="phone-messages">
-                <div class="bubble in">How much for the black one?</div>
-                <div class="bubble out">The black tote is $45. Four left. Delivery is $6 &mdash; should I hold one for you?
-                  <div class="bubble-meta">11:42 <span aria-hidden="true">&#10003;&#10003;</span></div>
-                </div>
-                <div class="bubble in">Can you do $38 if I take three?</div>
-                <div class="phone-inputbar">
-                  <div class="field">Message</div>
-                  <div class="send" aria-hidden="true"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M3.4 20.4 21.9 12 3.4 3.6 3.4 10l13.2 2-13.2 2z"/></svg></div>
-                </div>
+              <div class="wa-compose">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+                <span class="wa-field"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15.5 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.5L15.5 3Z"/><path d="M15 3v4a2 2 0 0 0 2 2h4"/><path d="M8.5 13h.01M15.5 13h.01M9.5 16.5s1 1 2.5 1 2.5-1 2.5-1"/></svg></span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3Z"/><circle cx="12" cy="13" r="3"/></svg>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2M12 19v3"/></svg>
+              </div>
+              <span class="ios-home"></span>
+            </div>
+          </div>
+
+          <div class="app-card" data-i style="--i:4.6">
+            <div class="app-card-head">Waiting for you <span class="count">1</span></div>
+            <div class="wait-row">
+              <span class="avatar">SM</span>
+              <div>
+                <div class="wait-name">Sarah M. <span>11:43 PM</span></div>
+                <p class="wait-q">Can you do $38 each if I take three?</p>
+                <span class="chip-warn">Kavedi didn&rsquo;t know the answer</span>
               </div>
             </div>
-            <div class="notif-card">
-              <picture>
-                <source srcset="assets/mark.webp" type="image/webp">
-                <img src="assets/mark.png" alt="" width="36" height="36">
-              </picture>
-              <div class="notif-body">
-                <div class="notif-head">
-                  <span class="name">Kavedi</span>
-                  <span class="time">now</span>
-                </div>
-                <div class="notif-pill">
-                  <span class="dot" aria-hidden="true"></span>
-                  <span class="label">Needs your attention</span>
-                </div>
-                <div class="notif-text">Sarah is asking for $38 for three. I won&rsquo;t guess &mdash; it&rsquo;s waiting for you.</div>
-              </div>
+            <div class="app-card-actions">
+              <span class="btn btn-primary">Reply</span>
+              <span class="btn btn-secondary">Add an answer</span>
             </div>
           </div>
         </div>
       </div>
+
+      <p class="for-line"><strong>For anyone whose work arrives as messages:</strong> shop owners, freelancers, tutors, secretaries, school and church offices, group admins, event coordinators and sales reps.</p>
     </div>
   </section>
 
-  <!-- ===== WHO IT'S FOR ===== -->
-  <section class="roles">
-    <div class="roles-inner">
-      <p class="roles-lead reveal">If your work arrives as messages, Kavedi is for you.</p>
-      <ul class="roles-list reveal">
-        <li>Shop owners</li><li>Freelancers</li><li>Tutors</li><li>Secretaries</li>
-        <li>School &amp; church admins</li><li>Group admins</li><li>Event coordinators</li><li>Sales reps</li>
+  <!-- ============ THE RULE ============ -->
+  <section class="section section-sunken" id="how-it-works">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="kicker">How it works</p>
+        <h2 class="h2">It answers what you taught it. The rest waits for you.</h2>
+        <p class="lede">Kavedi never makes up a price, a date or a promise. If you didn&rsquo;t tell it, it doesn&rsquo;t say it.</p>
+      </div>
+      <ol class="rules">
+        <li class="rule">
+          <div class="wa-panel" aria-hidden="true">
+            <p class="wa-msg in tail">Are you open on Saturday?<span class="wa-meta">9:12 AM</span></p>
+            <p class="wa-msg out tail">Yes, 9am to 7pm on Saturdays. Walk-ins are welcome until 5.<span class="wa-meta">9:12 AM <svg class="tick-read" viewBox="0 0 16 11" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M1 5.8 4.2 9 10.5 1.5"/><path d="M7.4 8.3 8.2 9 14.5 1.5"/></svg></span></p>
+          </div>
+          <span class="rule-step">When it was taught</span>
+          <h3 class="h3">It answers, in seconds</h3>
+          <p>From the answer you wrote once, in the language they wrote in. Mark an answer word for word and it goes out exactly as you typed it.</p>
+        </li>
+        <li class="rule">
+          <div class="wa-panel" aria-hidden="true">
+            <p class="wa-msg in tail">Do you do braids?<span class="wa-meta">9:20 AM</span></p>
+            <span class="kv-note"><img src="/assets/mark.png" alt="" width="16" height="16">Passed to you. Nothing sent.</span>
+          </div>
+          <span class="rule-step">When it wasn&rsquo;t</span>
+          <h3 class="h3">It waits for you</h3>
+          <p>No guessing and no &ldquo;let me check&rdquo; unless you ask for one. The question goes to your Waiting list with the person&rsquo;s name.</p>
+        </li>
+        <li class="rule">
+          <div class="wa-panel" aria-hidden="true">
+            <p class="wa-msg in tail">Can you do it for $20?<span class="wa-meta">9:31 AM</span></p>
+            <p class="wa-msg out tail">For you, $25. See you Thursday!<span class="wa-meta">9:40 AM <svg class="tick-read" viewBox="0 0 16 11" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M1 5.8 4.2 9 10.5 1.5"/><path d="M7.4 8.3 8.2 9 14.5 1.5"/></svg></span></p>
+          </div>
+          <span class="rule-step">When you reply</span>
+          <h3 class="h3">It steps back</h3>
+          <p>Answer from Kavedi or your phone and it stays out of that chat for a while. One tap saves your reply as an answer for next time.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ============ FEATURES ============ -->
+  <section class="section" id="features">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="kicker">What it does</p>
+        <h2 class="h2">Replies, bookings, reminders and broadcasts, in one place.</h2>
+      </div>
+
+      <div class="features" data-tabs>
+        <div class="tab-list" role="tablist" aria-label="Kavedi&rsquo;s screens">
+          <button class="tab" role="tab" type="button" id="tab-waiting" aria-controls="panel-waiting" aria-selected="true">
+            <span class="tab-title">Waiting for you</span>
+            <span class="tab-desc">Every question Kavedi couldn&rsquo;t answer, with who asked. Reply from here or from your phone.</span>
+          </button>
+          <button class="tab" role="tab" type="button" id="tab-answers" aria-controls="panel-answers" aria-selected="false" tabindex="-1">
+            <span class="tab-title">Answers</span>
+            <span class="tab-desc">Type the answers you repeat all day, or upload a price list. Try it shows the reply before anyone gets it.</span>
+          </button>
+          <button class="tab" role="tab" type="button" id="tab-bookings" aria-controls="panel-bookings" aria-selected="false" tabindex="-1">
+            <span class="tab-title">Bookings</span>
+            <span class="tab-desc">It offers the times you really have free and books them into your week, with a reminder before each one.</span>
+          </button>
+          <button class="tab" role="tab" type="button" id="tab-broadcast" aria-controls="panel-broadcast" aria-selected="false" tabindex="-1">
+            <span class="tab-title">Broadcast</span>
+            <span class="tab-desc">Pick people from your contacts. It sends one at a time with each name in it, never at night, and skips anyone who said STOP.</span>
+          </button>
+        </div>
+
+        <div class="tab-panels">
+          <div class="tab-panel" role="tabpanel" id="panel-waiting" aria-labelledby="tab-waiting">
+            <p class="panel-desc">Every question Kavedi couldn&rsquo;t answer, with who asked. Reply from here or from your phone.</p>
+            <figure class="shot">
+              <picture class="only-light"><source media="(max-width: 699px)" srcset="/assets/screens/phone-home-light.webp"><img src="/assets/screens/home-light.webp" alt="Kavedi's home screen: three questions waiting for you, today's numbers and what's coming up" width="1600" height="1000" loading="lazy" decoding="async"></picture>
+              <picture class="only-dark"><source media="(max-width: 699px)" srcset="/assets/screens/phone-home-dark.webp"><img src="/assets/screens/home-dark.webp" alt="Kavedi's home screen: three questions waiting for you, today's numbers and what's coming up" width="1600" height="1000" loading="lazy" decoding="async"></picture>
+            </figure>
+          </div>
+          <div class="tab-panel" role="tabpanel" id="panel-answers" aria-labelledby="tab-answers" hidden>
+            <p class="panel-desc">Type the answers you repeat all day, or upload a price list. Try it shows the reply before anyone gets it.</p>
+            <figure class="shot">
+              <picture class="only-light"><source media="(max-width: 699px)" srcset="/assets/screens/phone-autoreply-light.webp"><img src="/assets/screens/autoreply-light.webp" alt="The answers screen, with Try it showing the reply Kavedi would send" width="1600" height="1000" loading="lazy" decoding="async"></picture>
+              <picture class="only-dark"><source media="(max-width: 699px)" srcset="/assets/screens/phone-autoreply-dark.webp"><img src="/assets/screens/autoreply-dark.webp" alt="The answers screen, with Try it showing the reply Kavedi would send" width="1600" height="1000" loading="lazy" decoding="async"></picture>
+            </figure>
+          </div>
+          <div class="tab-panel" role="tabpanel" id="panel-bookings" aria-labelledby="tab-bookings" hidden>
+            <p class="panel-desc">It offers the times you really have free and books them into your week, with a reminder before each one.</p>
+            <figure class="shot">
+              <picture class="only-light"><source media="(max-width: 699px)" srcset="/assets/screens/phone-bookings-light.webp"><img src="/assets/screens/bookings-light.webp" alt="A week in the bookings diary, with appointments, a walk-in and blocked time" width="1600" height="1000" loading="lazy" decoding="async"></picture>
+              <picture class="only-dark"><source media="(max-width: 699px)" srcset="/assets/screens/phone-bookings-dark.webp"><img src="/assets/screens/bookings-dark.webp" alt="A week in the bookings diary, with appointments, a walk-in and blocked time" width="1600" height="1000" loading="lazy" decoding="async"></picture>
+            </figure>
+          </div>
+          <div class="tab-panel" role="tabpanel" id="panel-broadcast" aria-labelledby="tab-broadcast" hidden>
+            <p class="panel-desc">Pick people from your contacts. It sends one at a time with each name in it, never at night, and skips anyone who said STOP.</p>
+            <figure class="shot">
+              <picture class="only-light"><source media="(max-width: 699px)" srcset="/assets/screens/phone-broadcast-light.webp"><img src="/assets/screens/broadcast-light.webp" alt="The broadcast screen: three people picked, the message with a first name filled in, and when it will finish" width="1600" height="1000" loading="lazy" decoding="async"></picture>
+              <picture class="only-dark"><source media="(max-width: 699px)" srcset="/assets/screens/phone-broadcast-dark.webp"><img src="/assets/screens/broadcast-dark.webp" alt="The broadcast screen: three people picked, the message with a first name filled in, and when it will finish" width="1600" height="1000" loading="lazy" decoding="async"></picture>
+            </figure>
+          </div>
+        </div>
+      </div>
+
+      <ul class="also">
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.9 1.9 0 0 0 3.4 0"/></svg>
+          <h3>Reminders</h3>
+          <p>Before every booking, and cancelled with it.</p>
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>
+          <h3>Follow-ups</h3>
+          <p>One check-in for someone who went quiet. Never twice.</p>
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+          <h3>Scheduled messages</h3>
+          <p>To a person or a group, at the time you pick.</p>
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M2 10v3M6 6v11M10 3v18M14 8v7M18 5v13M22 10v3"/></svg>
+          <h3>Voice notes</h3>
+          <p>Passed to you, and written out when you tap Transcribe.</p>
+        </li>
       </ul>
     </div>
   </section>
 
-  <!-- ===== ONE MESSAGE, START TO FINISH ===== -->
-  <section class="story" id="story" data-story>
-    <div class="story-rail">
-      <div class="story-stage">
-        <div class="story-copy">
-          <span class="eyebrow">11:42pm, Tuesday</span>
-          <h2>One message, start to finish.</h2>
-          <div class="story-steps">
-            <p class="story-step is-on" data-story-step="0">Someone asks a price while you&rsquo;re asleep.</p>
-            <p class="story-step" data-story-step="1">Kavedi answers it &mdash; from the price you typed in once.</p>
-            <p class="story-step" data-story-step="2">They push for a discount. That&rsquo;s not Kavedi&rsquo;s to give, so it stops.</p>
-            <p class="story-step" data-story-step="3">You wake up to one question, not forty unread chats.</p>
+  <!-- ============ GETTING STARTED ============ -->
+  <section class="section section-line">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="kicker">Getting started</p>
+        <h2 class="h2">Three steps, and in the beta we do them with you.</h2>
+      </div>
+      <ol class="steps">
+        <li>
+          <span class="step-n">Step 1</span>
+          <h3 class="h3">Connect your number</h3>
+          <p>Type a code into WhatsApp on your phone. Kavedi links the way WhatsApp Web does, and your chats stay where they are.</p>
+        </li>
+        <li>
+          <span class="step-n">Step 2</span>
+          <h3 class="h3">Teach it your answers</h3>
+          <p>Prices, hours, how to book. Type them in, or upload the price list or flyer you already have and check what it read.</p>
+        </li>
+        <li>
+          <span class="step-n">Step 3</span>
+          <h3 class="h3">Switch on what you want</h3>
+          <p>Replies, bookings and check-ins each have their own switch. Turn any of them off whenever you like.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ============ STRAIGHT ANSWERS ============ -->
+  <section class="section section-sunken" id="straight-answers">
+    <div class="wrap straight">
+      <div class="straight-side">
+        <p class="kicker">Straight answers</p>
+        <h2 class="h2">What it won&rsquo;t do, and who&rsquo;s behind it.</h2>
+        <div class="team">
+          <div class="faces">
+            <picture><source srcset="/assets/team-kelvin.webp" type="image/webp"><img src="/assets/team-kelvin.png" alt="Kelvin A." width="48" height="48" loading="lazy"></picture>
+            <picture><source srcset="/assets/team-ada.webp" type="image/webp"><img src="/assets/team-ada.png" alt="Ada D." width="48" height="48" loading="lazy"></picture>
+            <picture><source srcset="/assets/team-wakil.webp" type="image/webp"><img src="/assets/team-wakil.png" alt="Abdulwakil O." width="48" height="48" loading="lazy"></picture>
+            <picture><source srcset="/assets/team-chidera.webp" type="image/webp"><img src="/assets/team-chidera.png" alt="Chidera E." width="48" height="48" loading="lazy"></picture>
           </div>
-          <div class="story-progress" aria-hidden="true">
-            <span class="is-on"></span><span></span><span></span><span></span>
-          </div>
+          <p><strong>Kelvin A., Ada D., Abdulwakil O. and Chidera E.</strong> build Kavedi. Write to <a class="link" href="mailto:support@kavedi.com.ng">support@kavedi.com.ng</a> and one of us replies.</p>
         </div>
+      </div>
+      <ul class="plain-list">
+        <li>
+          <h3 class="h3">It won&rsquo;t guess</h3>
+          <p>No price, time or rule you didn&rsquo;t give it. If it wasn&rsquo;t taught the answer, it says nothing and passes the message to you.</p>
+        </li>
+        <li>
+          <h3 class="h3">It won&rsquo;t pretend to be you</h3>
+          <p>Asked outright, it says it&rsquo;s an assistant. It won&rsquo;t agree to a discount, a delivery or a date you didn&rsquo;t set.</p>
+        </li>
+        <li>
+          <h3 class="h3">It doesn&rsquo;t keep your chats</h3>
+          <p>It reads a message to answer it and doesn&rsquo;t store it. What it keeps: the questions it passes to you, what you taught it, and your contacts, encrypted.</p>
+        </li>
+        <li>
+          <h3 class="h3">It stops when you say</h3>
+          <p>Every part has its own switch. Disconnecting removes Kavedi from your number, and we delete your data when you ask.</p>
+        </li>
+        <li>
+          <h3 class="h3">The risk, plainly</h3>
+          <p>WhatsApp doesn&rsquo;t offer this officially, so a linked device carries some risk. Kavedi only answers people who wrote first, sends anything outbound slowly and only between 8am and 8pm, and warns you before messaging someone new. Use a work number if you have one.</p>
+        </li>
+      </ul>
+    </div>
+  </section>
 
-        <div class="story-phone">
-          <div class="phone">
-            <div class="phone-screen">
-              <div class="dynamic-island" aria-hidden="true"></div>
-              <div class="phone-statusbar">
-                <span>23:42</span>
-                <span class="phone-status-icons" aria-hidden="true">
-                  <svg width="18" height="12" viewBox="0 0 18 12" fill="currentColor"><rect x="0" y="8" width="3" height="4" rx="1"></rect><rect x="4.7" y="5.6" width="3" height="6.4" rx="1"></rect><rect x="9.4" y="3" width="3" height="9" rx="1"></rect><rect x="14.1" y="0" width="3" height="12" rx="1"></rect></svg>
-                  <svg width="17" height="12" viewBox="0 0 17 12" fill="none" stroke="currentColor" stroke-linecap="round"><path d="M1.2 4.2a11 11 0 0 1 14.6 0" stroke-width="2.1"></path><path d="M4.2 7.5a6.6 6.6 0 0 1 8.6 0" stroke-width="2.1"></path><circle cx="8.5" cy="10.4" r="1.5" fill="currentColor" stroke="none"></circle></svg>
-                  <svg width="25" height="12" viewBox="0 0 25 12"><rect x="0.5" y="0.5" width="21" height="11" rx="3.4" fill="none" stroke="currentColor" stroke-width="1" opacity=".4"></rect><rect x="2" y="2" width="18" height="8" rx="2.2" fill="currentColor"></rect><rect x="22.8" y="4.1" width="1.7" height="3.8" rx="0.85" fill="currentColor" opacity=".4"></rect></svg>
-                </span>
-              </div>
-              <div class="phone-topbar">
-                <span class="chevron" aria-hidden="true">&#8249;</span>
-                <span class="phone-avatar">A</span>
-                <div class="phone-contact-info">
-                  <span class="phone-contact-name" style="display:block;">Sarah M.</span>
-                  <span class="phone-contact-status" style="display:block;">online</span>
-                </div>
-                <span class="phone-video-btn" aria-hidden="true"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m16 13 5.223 3.482a.5.5 0 0 0 .777-.416V7.87a.5.5 0 0 0-.752-.432L16 10.5"></path><rect x="2" y="6" width="14" height="12" rx="2"></rect></svg></span>
-              </div>
-              <div class="phone-messages">
-                <div class="bubble in" data-story-at="0">How much for the black one?</div>
-                <div class="bubble out" data-story-at="1">The black tote is $45. Four left. Delivery is $6 &mdash; should I hold one for you?
-                  <div class="bubble-meta">23:42 <span aria-hidden="true">&#10003;&#10003;</span></div>
-                </div>
-                <div class="bubble in" data-story-at="2">Can you do $38 if I take three?</div>
-                <div class="bubble out" data-story-at="3">Morning! Three for $38 each works. I&rsquo;ll put them aside &mdash; what time suits for pickup?
-                  <div class="bubble-meta">07:10 <span aria-hidden="true">&#10003;&#10003;</span></div>
-                </div>
-                <div class="phone-inputbar">
-                  <div class="field">Message</div>
-                  <div class="send" aria-hidden="true"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M3.4 20.4 21.9 12 3.4 3.6 3.4 10l13.2 2-13.2 2z"/></svg></div>
-                </div>
-              </div>
-            </div>
-            <div class="notif-card" data-story-at="3">
-              <picture>
-                <source srcset="assets/mark.webp" type="image/webp">
-                <img src="assets/mark.png" alt="" width="36" height="36">
-              </picture>
-              <div class="notif-body">
-                <div class="notif-head"><span class="name">Kavedi</span><span class="time">now</span></div>
-                <div class="notif-pill"><span class="dot" aria-hidden="true"></span><span class="label">Waiting for you</span></div>
-                <div class="notif-text">Sarah is asking for $38 for three. I won&rsquo;t guess &mdash; it&rsquo;s yours to answer.</div>
-              </div>
-            </div>
-          </div>
+  <!-- ============ PRICING ============ -->
+  <section class="section" id="pricing">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="kicker">Pricing</p>
+        <h2 class="h2">One price a month. Nothing per message.</h2>
+        <p class="lede">Testers use it free. These prices are what we expect to charge after launch.</p>
+      </div>
+      <div class="plans">
+        <div class="plan">
+          <div class="plan-top"><h3 class="plan-name">Free</h3></div>
+          <p class="plan-price"><b data-price="free">$0</b> <span>/ month</span></p>
+          <p class="plan-for">To see it answer your real messages.</p>
+          <ul>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>100 AI replies a month</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Answers, uploads and hand-over</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>30 scheduled messages a month</li>
+          </ul>
         </div>
+        <div class="plan is-featured">
+          <div class="plan-top"><h3 class="plan-name">Pro</h3><span class="badge">Most people</span></div>
+          <p class="plan-price"><b data-price="pro">$9</b> <span>/ month</span></p>
+          <p class="plan-for">For when it&rsquo;s doing real work every day.</p>
+          <ul>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>1,500 AI replies a month</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Bookings, reminders and check-ins</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Scheduling and broadcasts, no limit</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Word-for-word answers</li>
+          </ul>
+        </div>
+        <div class="plan">
+          <div class="plan-top"><h3 class="plan-name">Business</h3></div>
+          <p class="plan-price"><b data-price="business">$24</b> <span>/ month</span></p>
+          <p class="plan-for">Busy numbers, set up with us.</p>
+          <ul>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>5,000 AI replies a month</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Voice notes transcribed on request</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Your answers written with you</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Priority support</li>
+          </ul>
+        </div>
+      </div>
+      <div class="plans-foot">
+        <p>An AI reply is one message Kavedi answers with AI. Run out and it passes messages to you instead. It never bills you for more.</p>
+        <a class="more" href="/pricing">Compare plans</a>
       </div>
     </div>
   </section>
 
-  <!-- ===== THE APP ===== -->
-  <section class="app-section" id="see-it">
-    <div class="app-head reveal">
-      <span class="eyebrow">The app</span>
-      <h2>Everything it couldn&rsquo;t answer,<br>in one place.</h2>
-      <p>Kavedi replies to what you&rsquo;ve taught it and puts the rest in front of you &mdash; the question, who sent it, and a box to answer from.</p>
-    </div>
-    <div class="app-wide shot-reveal">
-      <div class="shot-frame">
-        <div class="shot-chrome" aria-hidden="true"><span class="shot-dot"></span><span class="shot-dot"></span><span class="shot-dot"></span></div>
-        <img class="shot-light" src="assets/screens/home-light.webp" alt="Kavedi's home screen: questions waiting for you, today's numbers, and what Kavedi did lately" width="1600" height="1000" loading="lazy" decoding="async">
-        <img class="shot-dark" src="assets/screens/home-dark.webp" alt="Kavedi's home screen, dark" width="1600" height="1000" loading="lazy" decoding="async">
+  <!-- ============ FAQ ============ -->
+  <section class="section section-line" id="faq">
+    <div class="wrap faq">
+      <div class="faq-side">
+        <h2 class="h2">Questions</h2>
+        <p>Something else? Email <a class="link" href="mailto:support@kavedi.com.ng">support@kavedi.com.ng</a>.</p>
       </div>
-    </div>
-
-    <div class="showcase">
-    <div class="showcase-row reveal">
-      <div class="showcase-text">
-        <span class="eyebrow">Answers</span>
-        <h3>Type it once. Hear it back before anyone else does.</h3>
-        <p>Write the answers you repeat all day, or upload the price list you already have. <strong>Try it</strong> shows you the reply Kavedi would send, without sending it.</p>
-      </div>
-      <div class="shot-frame">
-        <div class="shot-chrome" aria-hidden="true"><span class="shot-dot"></span><span class="shot-dot"></span><span class="shot-dot"></span></div>
-        <img class="shot-light" src="assets/screens/autoreply-light.webp" alt="The answers screen, with Try it showing the reply Kavedi would send" width="1600" height="1000" loading="lazy" decoding="async">
-        <img class="shot-dark" src="assets/screens/autoreply-dark.webp" alt="The answers screen, with Try it showing the reply Kavedi would send" width="1600" height="1000" loading="lazy" decoding="async">
-      </div>
-    </div>
-    <div class="showcase-row is-flipped reveal">
-      <div class="showcase-text">
-        <span class="eyebrow">Bookings</span>
-        <h3>&ldquo;Are you free Thursday?&rdquo; &mdash; answered, and booked.</h3>
-        <p>Kavedi offers the times you really have open, takes the reply, and puts it in your week. Walk-ins and time you&rsquo;re blocking off go in by hand.</p>
-      </div>
-      <div class="shot-frame">
-        <div class="shot-chrome" aria-hidden="true"><span class="shot-dot"></span><span class="shot-dot"></span><span class="shot-dot"></span></div>
-        <img class="shot-light" src="assets/screens/bookings-light.webp" alt="A week in the bookings diary, with appointments, a walk-in and blocked time" width="1600" height="1000" loading="lazy" decoding="async">
-        <img class="shot-dark" src="assets/screens/bookings-dark.webp" alt="A week in the bookings diary, with appointments, a walk-in and blocked time" width="1600" height="1000" loading="lazy" decoding="async">
-      </div>
-    </div>
-    </div>
-
-    <div class="showcase">
-    <div class="showcase-row reveal">
-      <div class="showcase-text">
-        <span class="eyebrow">Broadcast</span>
-        <h3>Tell fifty people something, without sounding like a blast.</h3>
-        <p>You tick names off your own list. Kavedi sends them one at a time, at the speed a person types, each with their own name in it. Nothing goes out at 3am, and anyone who replied STOP is left out for good.</p>
-      </div>
-      <div class="shot-frame">
-        <div class="shot-chrome" aria-hidden="true"><span class="shot-dot"></span><span class="shot-dot"></span><span class="shot-dot"></span></div>
-        <img class="shot-light" src="assets/screens/broadcast-light.webp" alt="The broadcast screen: people picked, the message with a name filled in, and the limits it sends under" width="1600" height="1000" loading="lazy" decoding="async">
-        <img class="shot-dark" src="assets/screens/broadcast-dark.webp" alt="The broadcast screen: people picked, the message with a name filled in, and the limits it sends under" width="1600" height="1000" loading="lazy" decoding="async">
-      </div>
-    </div>
-    </div>
-
-  </section>
-
-  <!-- ===== HOW IT WORKS ===== -->
-  <section class="how" id="how-it-works">
-    <h2 class="reveal">Three steps.</h2>
-    <div class="steps reveal-group">
-      <div class="step reveal">
-        <div class="step-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="20" x="5" y="2" rx="2" ry="2"></rect><path d="M12 18h.01"></path></svg></div>
-        <div>
-          <div class="step-eyebrow">Step 1</div>
-          <div class="step-title">Connect your number</div>
-          <div class="step-body">One code. Same number, same chats.</div>
-        </div>
-      </div>
-      <div class="step reveal">
-        <div class="step-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v16"></path><path d="M20.001 19A2 2 0 0022 17V5a2 2 0 00-1.999-2L16 3.002A5 5 0 0012 5a5 5 0 00-4-2H4a2 2 0 00-2 2v12a2 2 0 001.999 2H8a5 5 0 014 2 5 5 0 014-2z"></path></svg></div>
-        <div>
-          <div class="step-eyebrow">Step 2</div>
-          <div class="step-title">Tell Kavedi what it needs to know</div>
-          <div class="step-body">Prices, times, details &mdash; type them in, or upload your price list.</div>
-        </div>
-      </div>
-      <div class="step reveal">
-        <div class="step-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719"></path></svg></div>
-        <div>
-          <div class="step-eyebrow">Step 3</div>
-          <div class="step-title">It handles the repetitive half</div>
-          <div class="step-body">You keep the ones that need a person.</div>
-        </div>
+      <div>
+        <details class="qa">
+          <summary>Is my number safe?</summary>
+          <div><p>There&rsquo;s a real risk and we won&rsquo;t pretend otherwise. Kavedi links to your number the way WhatsApp Web does, and WhatsApp doesn&rsquo;t offer this officially. So Kavedi only replies to people who wrote to you first, sends anything outbound one message at a time between 8am and 8pm, up to 50 a day, and warns you before it messages someone you&rsquo;ve never chatted with. Use a work number rather than your personal one if you can.</p></div>
+        </details>
+        <details class="qa">
+          <summary>What happens when it doesn&rsquo;t know the answer?</summary>
+          <div><p>It says nothing. The question turns up in Kavedi with the person&rsquo;s name, and you answer it there or on your phone. After that, Kavedi stays out of that chat for a while. One tap turns your reply into an answer, so the next person gets it straight away.</p><p>If you&rsquo;d rather it said &ldquo;let me check&rdquo; in the meantime, write that line once in Settings.</p></div>
+        </details>
+        <details class="qa">
+          <summary>Will it sound like a bot?</summary>
+          <div><p>It writes each reply from what you taught it, in the tone you pick: friendly, short or formal. Anything that must go out exactly as written, like account details, you mark word for word. Asked outright whether it&rsquo;s a person, it says it&rsquo;s an assistant.</p></div>
+        </details>
+        <details class="qa">
+          <summary>Does it work where I am?</summary>
+          <div><p>Anywhere WhatsApp works. It replies in the language people write to you in, times follow your time zone, and prices show in your currency.</p></div>
+        </details>
+        <details class="qa">
+          <summary>Does it work with WhatsApp Business?</summary>
+          <div><p>Most numbers link fine. Some Business accounts that are tied to Meta&rsquo;s Business Platform don&rsquo;t link yet. Tell us which WhatsApp you use when you apply, and we&rsquo;ll check before you connect anything.</p></div>
+        </details>
+        <details class="qa">
+          <summary>Is anyone reading my chats?</summary>
+          <div><p>No. Kavedi doesn&rsquo;t keep conversations. It keeps the questions it passes to you, what you taught it, and your contacts, encrypted. The <a class="link" href="/privacy">privacy policy</a> lists everything.</p></div>
+        </details>
       </div>
     </div>
   </section>
 
-  <!-- ===== THE HONEST PART ===== -->
-  <section class="honest" id="honest">
-    <div class="honest-grid">
-      <div class="honest-side reveal">
-        <span class="eyebrow">Straight answers</span>
-        <h2>What it won&rsquo;t do, and who you&rsquo;re dealing with.</h2>
-        <div class="honest-team">
-          <p class="honest-team-label">The team behind Kavedi</p>
-          <div class="honest-faces">
-          <figure>
-            <picture><source srcset="assets/team-kelvin.webp" type="image/webp"><img src="assets/team-kelvin.png" alt="Kelvin A." width="48" height="48" loading="lazy"></picture>
-            <figcaption>Kelvin A.</figcaption>
-          </figure>
-          <figure>
-            <picture><source srcset="assets/team-ada.webp" type="image/webp"><img src="assets/team-ada.png" alt="Ada D." width="48" height="48" loading="lazy"></picture>
-            <figcaption>Ada D.</figcaption>
-          </figure>
-          <figure>
-            <picture><source srcset="assets/team-wakil.webp" type="image/webp"><img src="assets/team-wakil.png" alt="Abdulwakil O." width="48" height="48" loading="lazy"></picture>
-            <figcaption>Abdulwakil O.</figcaption>
-          </figure>
-          <figure>
-            <picture><source srcset="assets/team-chidera.webp" type="image/webp"><img src="assets/team-chidera.png" alt="Chidera E." width="48" height="48" loading="lazy"></picture>
-            <figcaption>Chidera E.</figcaption>
-          </figure>
-          </div>
-        </div>
-      </div>
-
-      <div class="honest-list">
-        <div class="honest-item reveal">
-          <h3>It never guesses</h3>
-          <p>No price, time or rule it wasn&rsquo;t given. If it wasn&rsquo;t taught the answer, it says nothing and passes the message to you.</p>
-        </div>
-        <div class="honest-item reveal">
-          <h3>It doesn&rsquo;t pretend to be you</h3>
-          <p>Asked outright, it says it&rsquo;s an assistant. It won&rsquo;t promise a discount, a delivery or a date you didn&rsquo;t authorise.</p>
-        </div>
-        <div class="honest-item reveal">
-          <h3>Your chats stay yours</h3>
-          <p>Kavedi connects like WhatsApp Web and keeps no conversations &mdash; only the questions it hands you, what you taught it, and your contacts, encrypted.</p>
-        </div>
-        <div class="honest-item reveal">
-          <h3>You can stop it dead</h3>
-          <p>Replies, bookings and check-ins are three switches. Disconnecting removes Kavedi from the number entirely, and we&rsquo;ll delete your data on request.</p>
-        </div>
-        <div class="honest-item reveal">
-          <h3>The risk, stated plainly</h3>
-          <p>WhatsApp doesn&rsquo;t offer this officially, so a linked device carries some risk. Kavedi answers people who wrote first, paces anything outbound, sends nothing outside 8am&ndash;8pm, and warns you before messaging a stranger. Use a work number.</p>
-        </div>
+  <!-- ============ CLOSING ============ -->
+  <section class="section section-sunken closing">
+    <div class="wrap">
+      <h2 class="h2">Try it on your own number.</h2>
+      <p class="lede">The beta is free, and we set it up with you.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary btn-lg" href="/beta">Join the beta</a>
+        <a class="btn btn-secondary btn-lg" href="/beta#demo">Try the demo</a>
       </div>
     </div>
   </section>
-
-  <!-- ===== PRICING (HOMEPAGE) ===== -->
-  <section class="home-pricing reveal-group">
-    <h2 class="reveal">Pricing</h2>
-    <p class="sub reveal">One price a month. Nothing per message.</p>
-    <div class="home-pricing-grid">
-      <div class="home-pricing-card reveal">
-        <div class="home-pricing-tier">Free</div>
-        <div class="home-pricing-price"><span class="amount" data-price="free">$0</span><span class="period">/month</span></div>
-        <div class="home-pricing-list">
-          <div><span class="check">&#10003;</span><span>1 WhatsApp number</span></div>
-          <div><span class="check">&#10003;</span><span>100 AI replies a month</span></div>
-          <div><span class="check">&#10003;</span><span>Answers, uploads, hand-over</span></div>
-          <div><span class="check">&#10003;</span><span>30 scheduled messages</span></div>
-        </div>
-      </div>
-      <div class="home-pricing-card pro reveal">
-        <div class="home-pricing-tier-row">
-          <div class="home-pricing-tier">Pro</div>
-          <span class="home-pricing-badge">Most people</span>
-        </div>
-        <div class="home-pricing-price"><span class="amount" data-price="pro">$9</span><span class="period">/month</span></div>
-        <div class="home-pricing-list">
-          <div><span class="check">&#10003;</span><span>1,500 AI replies a month</span></div>
-          <div><span class="check">&#10003;</span><span>Bookings, reminders, check-ins</span></div>
-          <div><span class="check">&#10003;</span><span>Scheduling and broadcasts</span></div>
-        </div>
-      </div>
-    </div>
-    <div class="home-pricing-plus reveal"><span class="plus-sign">+</span><span>Business at <span data-price="business">$24</span> &mdash; 5,000 replies, voice notes, and we set it up with you</span></div>
-    <div class="home-pricing-note reveal">Indicative prices. Change the currency on the <a href="/pricing">pricing page &rarr;</a></div>
-  </section>
-
-  <!-- ===== FAQ AND JOIN ===== -->
-  <section class="join reveal-group" id="join">
-    <div class="join-inner">
-      <div class="join-left">
-        <div class="join-head reveal">
-          <span class="eyebrow">Private beta</span>
-          <h2>Test it before anyone else</h2>
-          <p>We connect every tester&rsquo;s number ourselves, so the beta moves in small groups.</p>
-        </div>
-        <div class="first-ten-badge reveal">First 10 testers: personal set up + 2 months of Pro free</div>
-        <div class="join-steps reveal">
-          <div class="join-step"><b>1</b><div>You apply<small>Three quick questions, about a minute.</small></div></div>
-          <div class="join-step"><b>2</b><div>We email you when it&rsquo;s your turn<small>The link signs you straight into Kavedi.</small></div></div>
-          <div class="join-step"><b>3</b><div>We connect your number with you<small>One code, and your first answers written on the call.</small></div></div>
-        </div>
-      </div>
-
-      <div class="join-faq">
-      <details class="faq-item reveal">
-        <summary>Is my number safe?</summary>
-        <p>There&rsquo;s a real risk and we won&rsquo;t pretend otherwise: Kavedi links to your number the way WhatsApp Web does, and WhatsApp doesn&rsquo;t offer this officially. So Kavedi replies to people who wrote to you first, sends anything outbound one message at a time between 8am and 8pm, up to 50 a day, and warns you before it messages someone you&rsquo;ve never chatted with. Use a work number rather than your personal one.</p>
-      </details>
-      <details class="faq-item reveal">
-        <summary>What happens when it doesn&rsquo;t know?</summary>
-        <p>It says nothing. The question turns up in Kavedi with the person&rsquo;s name and you answer it there or on your phone, after which Kavedi stays out of that chat. One tap turns your answer into the answer, so the next person gets it straight away. If you&rsquo;d rather it said &ldquo;let me check&rdquo; in the meantime, write that line once.</p>
-      </details>
-      <details class="faq-item reveal">
-        <summary>Will it sound like a bot?</summary>
-        <p>It writes each reply from what you taught it, in the tone you picked, and it never invents a price or a time. Anything that has to go out exactly as written &mdash; a price list, account details &mdash; you mark word for word. Asked outright whether it&rsquo;s a person, it says it&rsquo;s an assistant.</p>
-      </details>
-      <details class="faq-item reveal">
-        <summary>Which countries?</summary>
-        <p>Anywhere WhatsApp works. Times follow your time zone, prices show in your currency, and it replies in English.</p>
-      </details>
-      <details class="faq-item reveal">
-        <summary>Can I switch it off?</summary>
-        <p>Instantly, and in pieces: replies, bookings and check-ins are three separate switches. Disconnecting takes Kavedi off your number altogether.</p>
-      </details>
-      <details class="faq-item reveal">
-        <summary>Is anyone reading my chats?</summary>
-        <p>No. Kavedi doesn&rsquo;t keep conversations &mdash; only the questions it passes to you, what you taught it, and your contacts, encrypted. The <a href="/privacy">privacy policy</a> lists every last thing.</p>
-      </details>
-      </div>
-
-      <div class="join-card reveal">
-        <div class="join-beta">
-          <h3>Three questions, then we&rsquo;ll be in touch.</h3>
-          <p>Try the demo on the beta page &mdash; ask Kavedi something it wasn&rsquo;t taught and watch it hand the question to you instead of guessing.</p>
-          <a class="btn-primary" href="/beta">Apply to test Kavedi</a>
-          <p class="join-small">Free while you test. <a href="/privacy">Privacy</a></p>
-        </div>
-      </div>
-    </div>
-  </section>
-
 </main>
 
-<footer class="site-footer">
-  <div class="footer-top">
-    <div>
-      <div class="footer-brand">
-        <picture>
-          <source srcset="assets/mark.webp" type="image/webp">
-          <img src="assets/mark.png" alt="Kavedi" width="30" height="30" loading="lazy">
-        </picture>
-        <span class="footer-brand-name">Kavedi</span>
+<footer class="site-foot">
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="foot-brand">
+        <a class="brand" href="/" aria-label="Kavedi, home"><picture><source srcset="/assets/mark.webp" type="image/webp"><img src="/assets/mark.png" alt="" width="30" height="30" loading="lazy"></picture>Kavedi</a>
+        <p>WhatsApp automation for people who run on messages.</p>
       </div>
-      <div class="footer-blurb">WhatsApp automation for people who run on messages, wherever they are.</div>
-    </div>
-    <div class="footer-cols">
-      <div class="col-head">Product</div>
-      <a href="#how-it-works">How it works</a>
-      <a href="/pricing">Pricing</a>
-    </div>
-    <div class="footer-cols">
-      <div class="col-head">Company</div>
-      <a href="/privacy">Privacy</a>
-      <a href="/terms">Terms</a>
-    </div>
-    <div class="footer-cols">
-      <div class="col-head">Contact</div>
-      <a href="mailto:support@kavedi.com.ng">support@kavedi.com.ng</a>
-    </div>
-  </div>
-
-  <div class="footer-links">
-    <a href="#how-it-works">How it works</a>
-    <a href="/pricing">Pricing</a>
-    <a href="/beta">Beta</a>
-    <a href="/privacy">Privacy</a>
-    <a href="/terms">Terms</a>
-    <a href="mailto:support@kavedi.com.ng">support@kavedi.com.ng</a>
-  </div>
-
-  <div class="footer-bottom">
-    <div class="footer-disclaimer">Kavedi connects to your existing WhatsApp number, like WhatsApp Web. Not affiliated with WhatsApp or Meta.</div>
-    <div class="footer-meta">
-      <div class="footer-theme">
-        <div data-theme-switch></div>
+      <div class="foot-cols">
+        <div class="foot-col">
+          <h2>Product</h2>
+          <ul><li><a href="/#how-it-works">How it works</a></li><li><a href="/#features">Features</a></li><li><a href="/pricing">Pricing</a></li><li><a href="/beta">The beta</a></li></ul>
+        </div>
+        <div class="foot-col">
+          <h2>Company</h2>
+          <ul><li><a href="/privacy">Privacy</a></li><li><a href="/terms">Terms</a></li></ul>
+        </div>
+        <div class="foot-col">
+          <h2>Contact</h2>
+          <ul><li><a href="mailto:support@kavedi.com.ng">support@kavedi.com.ng</a></li></ul>
+          <div class="foot-social">
+            <a href="https://instagram.com/kavedihq" target="_blank" rel="noopener" aria-label="Kavedi on Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1" fill="currentColor" stroke="none"/></svg></a>
+            <a href="https://x.com/kavedihq" target="_blank" rel="noopener" aria-label="Kavedi on X"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.9 2H22l-7.6 8.7L23 22h-6.6l-5.2-6.8L5 22H2l8.1-9.3L1.6 2h6.7l4.7 6.2L18.9 2Zm-2.3 18h1.8L7.5 4H5.6l11 16Z"/></svg></a>
+            <a href="https://youtube.com/@kavedihq" target="_blank" rel="noopener" aria-label="Kavedi on YouTube"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.5 6.9a3 3 0 0 0-2.1-2.1C19.4 4.3 12 4.3 12 4.3s-7.4 0-9.4.5A3 3 0 0 0 .5 6.9 31.6 31.6 0 0 0 0 12a31.6 31.6 0 0 0 .5 5.1 3 3 0 0 0 2.1 2.1c2 .5 9.4.5 9.4.5s7.4 0 9.4-.5a3 3 0 0 0 2.1-2.1A31.6 31.6 0 0 0 24 12a31.6 31.6 0 0 0-.5-5.1ZM9.6 15.5v-7l6.3 3.5-6.3 3.5Z"/></svg></a>
+            <a href="https://github.com/kavedihq" target="_blank" rel="noopener" aria-label="Kavedi on GitHub"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5a11.5 11.5 0 0 0-3.6 22.4c.6.1.8-.3.8-.6v-2.1c-3.2.7-3.9-1.4-3.9-1.4-.5-1.3-1.3-1.7-1.3-1.7-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.7 1.3 3.4 1 .1-.8.4-1.3.7-1.5-2.6-.3-5.2-1.3-5.2-5.7 0-1.3.4-2.3 1.2-3.1-.1-.3-.5-1.5.1-3 0 0 1-.3 3.2 1.2a11 11 0 0 1 5.8 0c2.2-1.5 3.2-1.2 3.2-1.2.6 1.6.2 2.7.1 3 .7.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.6.4.4.8 1.1.8 2.2v3.2c0 .3.2.7.8.6A11.5 11.5 0 0 0 12 .5Z"/></svg></a>
+          </div>
+        </div>
       </div>
-      <div class="footer-copyright">&copy; 2026 Kavedi</div>
-      <div class="footer-social">
-        <a href="https://instagram.com/kavedihq" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.2" cy="6.8" r="1" fill="currentColor" stroke="none"></circle></svg></a>
-        <a href="https://x.com/kavedihq" target="_blank" rel="noopener" aria-label="X"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.9 2H22l-7.6 8.7L23 22h-6.6l-5.2-6.8L5 22H2l8.1-9.3L1.6 2h6.7l4.7 6.2L18.9 2Zm-2.3 18h1.8L7.5 4H5.6l11 16Z"></path></svg></a>
-        <a href="https://github.com/kavedihq" target="_blank" rel="noopener" aria-label="GitHub"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5a11.5 11.5 0 0 0-3.64 22.42c.58.1.79-.25.79-.56v-2.1c-3.2.7-3.88-1.36-3.88-1.36-.53-1.33-1.28-1.68-1.28-1.68-1.05-.7.08-.69.08-.69 1.16.08 1.77 1.19 1.77 1.19 1.03 1.75 2.7 1.25 3.36.96.1-.74.4-1.25.72-1.54-2.55-.29-5.23-1.27-5.23-5.65 0-1.25.44-2.27 1.18-3.07-.12-.29-.51-1.46.11-3.04 0 0 .97-.31 3.18 1.18a11.1 11.1 0 0 1 5.8 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.58.24 2.75.12 3.04.74.8 1.18 1.82 1.18 3.07 0 4.39-2.69 5.36-5.25 5.64.42.36.78 1.07.78 2.16v3.2c0 .32.21.66.8.56A11.5 11.5 0 0 0 12 .5Z"></path></svg></a>
-        <a href="https://youtube.com/@kavedihq" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.9a3 3 0 0 0-2.1-2.1C19.4 4.3 12 4.3 12 4.3s-7.4 0-9.4.5A3 3 0 0 0 .5 6.9 31.6 31.6 0 0 0 0 12a31.6 31.6 0 0 0 .5 5.1 3 3 0 0 0 2.1 2.1c2 .5 9.4.5 9.4.5s7.4 0 9.4-.5a3 3 0 0 0 2.1-2.1A31.6 31.6 0 0 0 24 12a31.6 31.6 0 0 0-.5-5.1ZM9.6 15.5V8.5l6.3 3.5-6.3 3.5Z"></path></svg></a>
-      </div>
+    </div>
+    <div class="foot-bottom">
+      <p>Kavedi connects to your existing WhatsApp number as a linked device, like WhatsApp Web. Not affiliated with WhatsApp or Meta. &copy; 2026 Kavedi</p>
+      <div data-theme-switch></div>
     </div>
   </div>
 </footer>
 
-<script src="assets/attribution.js"></script>
-<script>
-  var prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  // Does/doesn't icons: bounce in when scrolled into view
-  if ('IntersectionObserver' in window) {
-    var iconObserver = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-visible');
-          iconObserver.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.4 });
-    document.querySelectorAll('.row-icon').forEach(function (el) {
-      iconObserver.observe(el);
-    });
-  } else {
-    document.querySelectorAll('.row-icon').forEach(function (el) {
-      el.classList.add('is-visible');
-    });
-  }
-
-  // Hero phone: chat bubbles scroll up into place one at a time on load
-  if (!prefersReducedMotion) {
-    var heroItems = document.querySelectorAll('.phone-messages .bubble, .notif-card');
-    heroItems.forEach(function (el) { el.classList.add('bubble-hidden'); });
-    heroItems.forEach(function (el, i) {
-      setTimeout(function () {
-        el.classList.remove('bubble-hidden');
-        if (el.classList.contains('notif-card')) {
-          setTimeout(function () { el.classList.add('is-floating'); }, 450);
-        }
-      }, 400 + i * 500);
-    });
-  }
-
-  // Nav: condense after 100px of scroll
-  var siteHeader = document.querySelector('.site-header');
-  if (siteHeader) {
-    var lastCondensed = null;
-    function updateHeaderCondensed() {
-      var condensed = window.scrollY > 100;
-      if (condensed !== lastCondensed) {
-        siteHeader.classList.toggle('is-condensed', condensed);
-        lastCondensed = condensed;
-      }
-    }
-    document.addEventListener('scroll', updateHeaderCondensed, { passive: true });
-    updateHeaderCondensed();
-  }
-
-</script>
-
-<script src="/assets/site.js"></script>
+<script src="/assets/attribution.js"></script>
+<script src="/assets/kv.js"></script>
 </body>
 </html>
