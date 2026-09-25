@@ -78,7 +78,7 @@
     <div class="doc-head">
       <div class="doc-eyebrow">Pre-launch &mdash; plain-language summary below, full policy in effect at launch</div>
       <h1>Privacy Policy</h1>
-      <div class="doc-updated">Last updated September 20, 2026</div>
+      <div class="doc-updated">Last updated September 25, 2026</div>
     </div>
 
     <div class="doc-plain">
@@ -92,7 +92,7 @@
       </ul>
     </div>
 
-    <p class="doc-intro">Kavedi connects to a WhatsApp number you already use and answers messages on your behalf. This policy says exactly what is stored, where it goes, and how to get rid of it. Kavedi is not affiliated with WhatsApp or Meta.</p>
+    <p class="doc-intro">Kavedi connects to a WhatsApp number you already use and does what you set it up to do on your behalf: triggers, replies, bookings, reminders and messages you schedule. This policy says exactly what is stored, where it goes, and how to get rid of it. Kavedi is not affiliated with WhatsApp or Meta.</p>
 
     <section>
       <h2>How Kavedi connects</h2>
@@ -105,6 +105,7 @@
         <li><strong>What you teach it:</strong> the answers you write, and the text read out of any price list, flyer or document you upload. The file itself is not kept &mdash; only the answers you approve. Each answer also gets a numerical &ldquo;embedding&rdquo; so the right one can be found.</li>
         <li><strong>Questions Kavedi couldn&rsquo;t answer:</strong> the text of that one message, so it can reach you under &ldquo;waiting for you&rdquo;. A voice note is kept as a reference that lets Kavedi fetch it from WhatsApp again if you press Transcribe, plus the transcript once you do.</li>
         <li><strong>Your contacts:</strong> names, numbers and when each chat last had a message, taken from the address book WhatsApp syncs to the linked device. Stored encrypted, so contacts survive a restart without being downloaded again. Labels you add and anyone who replied STOP are stored too.</li>
+        <li><strong>Your triggers:</strong> what starts each one, its conditions and its steps, the words it sends, and any picture or file you upload for it to send. Files are kept in private storage until no trigger uses them. Each time a trigger runs we record when, for which chat or group, and whether it worked &mdash; not what was said.</li>
         <li><strong>Messages you schedule:</strong> the text, who it goes to and when, until it is sent, and whether it was delivered or read.</li>
         <li><strong>Appointments:</strong> the time, what was booked and the name of whoever booked it.</li>
         <li><strong>Settings and profile:</strong> your name, what you do, address, phone and website if you fill them in, your time zone and how you want Kavedi to reply.</li>
@@ -112,7 +113,7 @@
         <li><strong>Your account:</strong> the email address you sign in with (and your name and picture if you use Google).</li>
         <li><strong>Beta applications:</strong> your email address, and whatever you chose to tell us &mdash; your name, what you do, where you are, how you use WhatsApp and what you&rsquo;d want Kavedi to handle &mdash; plus whether we let you in.</li>
       </ul>
-      <p><strong>What we don&rsquo;t store:</strong> the conversations themselves. An incoming message is read to answer it and is not written down; the only message text kept is a question that was passed to you. Kavedi never reads or answers anything in a group, a broadcast list, a status or a Channel &mdash; those are dropped before they are even decrypted.</p>
+      <p><strong>What we don&rsquo;t store:</strong> the conversations themselves. An incoming message is read to answer it and is not written down; the only message text kept is a question that was passed to you. Kavedi never reads a broadcast list, a status or a Channel, and never reads a group unless you pick it for a trigger (up to three). Messages in a group you picked are checked against your triggers and not stored; every other group is dropped before it is even decrypted. Kavedi never replies in a group with AI.</p>
     </section>
 
     <section>
@@ -129,17 +130,17 @@
 
     <section>
       <h2>The people who message you</h2>
-      <p>They are messaging you, not us, and their messages stay in your WhatsApp. Kavedi passes a message to an AI provider in order to answer it, keeps the question if it couldn&rsquo;t, and records that a reply happened. If someone replies STOP, that is stored permanently so nothing automatic ever reaches them again. If someone asks you to remove their details, email us and we will.</p>
+      <p>They are messaging you, not us, and their messages stay in your WhatsApp. If you use auto-reply, Kavedi passes a message to an AI provider in order to answer it, keeps the question if it couldn&rsquo;t, and records that a reply happened. Triggers only check a message&rsquo;s words and kind against the ones you set; nothing is sent to an AI provider for them. A &ldquo;random cat or dog&rdquo; step fetches a picture from The Cat API or Dog CEO and sends them nothing about you or anyone else. If someone replies STOP, that is stored permanently so nothing automatic ever reaches them again. If someone asks you to remove their details, email us and we will.</p>
     </section>
 
     <section>
       <h2>How long we keep it</h2>
-      <p>What you teach it, your contacts, appointments and settings stay until you delete them or delete your account. Questions waiting for you stay until they are resolved or deleted. Scheduled messages are kept after sending so you can see what went out. Server logs hold no message text &mdash; only counts, numbers and errors &mdash; and are kept by our hosting provider for a short period.</p>
+      <p>What you teach it, your contacts, appointments and settings stay until you delete them or delete your account. Questions waiting for you stay until they are resolved or deleted. Scheduled messages are kept after sending so you can see what went out. Records of trigger runs are deleted after 30 days. Server logs hold no message text &mdash; only counts, numbers and errors &mdash; and are kept by our hosting provider for a short period.</p>
     </section>
 
     <section>
       <h2>Your choices</h2>
-      <p>Disconnect your number at any time in Settings &rarr; WhatsApp: Kavedi unlinks the device and forgets the stored login and address book. <strong>Delete account</strong> in the same place removes everything above &mdash; answers, questions, contacts, labels, appointments, queued messages, settings and your sign-in &mdash; and cannot be undone. You can also email <a class="link" href="mailto:support@kavedi.com.ng">support@kavedi.com.ng</a> to ask for a copy of your data, a correction, or deletion.</p>
+      <p>Disconnect your number at any time in Settings &rarr; WhatsApp: Kavedi unlinks the device and forgets the stored login and address book. <strong>Delete account</strong> in the same place removes everything above &mdash; answers, triggers and their files, questions, contacts, labels, appointments, queued messages, settings and your sign-in &mdash; and cannot be undone. You can also email <a class="link" href="mailto:support@kavedi.com.ng">support@kavedi.com.ng</a> to ask for a copy of your data, a correction, or deletion.</p>
     </section>
 
     <section>

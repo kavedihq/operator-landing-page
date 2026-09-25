@@ -384,6 +384,23 @@ button, input, textarea, select { font: inherit; color: inherit; }
 .wa-msg.out .wa-meta { color: var(--wa-out-meta); }
 .wa-meta svg { width: auto; height: calc(11 * var(--pt)); }
 .wa-meta .tick-read { color: var(--wa-tick); }
+/* A photo with a caption under it, as WhatsApp draws one. */
+.wa-msg.is-pic { width: 72%; padding: calc(3 * var(--pt)) calc(3 * var(--pt)) calc(7 * var(--pt)); }
+.wa-msg.is-pic img { display: block; width: 100%; height: auto; border-radius: calc(14 * var(--pt)); }
+.wa-msg.out.is-pic.tail img { border-bottom-right-radius: calc(4 * var(--pt)); }
+.wa-msg.in.is-pic.tail img { border-bottom-left-radius: calc(4 * var(--pt)); }
+/* A photo with no caption: the time sits on the picture. */
+.wa-msg.is-pic > .wa-meta { position: absolute; right: calc(10 * var(--pt)); bottom: calc(9 * var(--pt)); margin: 0; color: #fff; text-shadow: 0 1px 2px rgba(0, 0, 0, .5); }
+.wa-msg.is-pic:has(> .wa-meta) { padding-bottom: calc(3 * var(--pt)); }
+/* A file, as WhatsApp shows a PDF. */
+.wa-msg.is-doc { width: 72%; padding: calc(3 * var(--pt)) calc(3 * var(--pt)) calc(7 * var(--pt)); }
+.wa-doc { display: flex; align-items: center; gap: calc(10 * var(--pt)); padding: calc(10 * var(--pt)); border-radius: calc(12 * var(--pt)); background: rgba(11, 20, 26, .06); }
+.wa-doc svg { flex: none; width: calc(30 * var(--pt)); height: calc(30 * var(--pt)); color: #E5484D; }
+.wa-doc b { display: block; font-weight: 600; }
+.wa-doc small { display: block; font-size: calc(12 * var(--pt)); color: var(--wa-meta); }
+.wa-msg.is-doc > .wa-meta { margin-right: calc(4 * var(--pt)); }
+.wa-caption { display: flow-root; padding: calc(6 * var(--pt)) calc(7 * var(--pt)) 0; }
+.wa-msg.is-pic.is-small { width: 62%; }
 
 .wa-compose {
   flex: none; display: flex; align-items: center; gap: calc(12 * var(--pt));
@@ -431,6 +448,24 @@ button, input, textarea, select { font: inherit; color: inherit; }
 .chip-warn::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--warn-dot); }
 .app-card-actions { display: flex; gap: 8px; margin-top: 12px; }
 .app-card-actions .btn { min-height: 36px; padding: 0 14px; font-size: .875rem; }
+.app-card-head .bolt { width: 18px; height: 18px; color: var(--accent-ink); }
+/* A trigger, as it looks in the app's Triggers tab. */
+.trg-card { display: grid; gap: 8px; padding: 12px; border-radius: 12px; background: var(--bg); }
+.trg-card-top { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.trg-card-top b { font-weight: 800; }
+.trg-line { display: flex; align-items: baseline; gap: 8px; color: var(--ink-2); font-size: .875rem; line-height: 1.4; }
+.trg-tag {
+  flex: none; min-width: 42px; padding: 1px 0; border-radius: 999px; background: var(--accent); color: var(--on-accent);
+  font-size: .625rem; font-weight: 800; letter-spacing: .06em; text-align: center; text-transform: uppercase;
+}
+.trg-tag.is-do { background: var(--ink); color: var(--bg); }
+.mini-switch { position: relative; flex: none; width: 34px; height: 20px; border-radius: 999px; background: var(--accent); }
+.mini-switch::after { content: ''; position: absolute; top: 3px; right: 3px; width: 14px; height: 14px; border-radius: 50%; background: #fff; }
+.chip-ok {
+  justify-self: start; display: inline-flex; align-items: center; gap: 5px; padding: 3px 9px; border-radius: 999px;
+  background: var(--accent-soft); color: var(--accent-ink); font-size: .75rem; font-weight: 800; line-height: 1.5; white-space: nowrap;
+}
+.chip-ok::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
 
 /* ============================== SCREENSHOTS ============================== */
 .shot { overflow: hidden; border: 1px solid var(--line); border-radius: 14px; background: var(--bg-raised); box-shadow: var(--shadow-lg); }
@@ -445,17 +480,19 @@ button, input, textarea, select { font: inherit; color: inherit; }
 .hero-note { margin-top: 20px; font-size: .9375rem; color: var(--ink-3); }
 .hero-visual { position: relative; display: flex; justify-content: center; }
 .hero-visual .device { --w: min(272px, 74vw); }
-.hero-visual .app-card { position: absolute; top: 14.5%; left: 0; width: min(318px, calc(100% - 12px)); }
+/* Under the phone on smaller screens, overlapping only its bottom edge; beside it, over the wallpaper, on a computer. */
+.hero-visual { flex-direction: column; align-items: center; }
+.hero-visual .app-card { position: relative; z-index: 1; margin-top: -56px; width: min(318px, calc(100% - 12px)); }
 .for-line { margin-top: 64px; padding-block: 24px; border-top: 1px solid var(--line); color: var(--ink-2); }
 .for-line strong { color: var(--ink); }
 @media (max-width: 479px) { .hero-actions .btn { flex: 1 1 100%; } }
-@media (min-width: 560px) and (max-width: 959px) { .hero-visual .app-card { left: calc(50% - 310px); } }
 @media (min-width: 960px) {
   .hero { padding-top: 64px; }
   .hero-grid { grid-template-columns: minmax(0, 1.08fr) minmax(0, .92fr); gap: 48px; }
   .hero-visual { justify-content: flex-end; }
   .hero-visual .device { --w: 300px; }
-  .hero-visual .app-card { top: 13%; }
+  .hero-visual { flex-direction: row; align-items: center; }
+  .hero-visual .app-card { position: absolute; bottom: 14%; left: -24px; margin-top: 0; }
   .for-line { margin-top: 80px; }
 }
 
@@ -478,7 +515,16 @@ button, input, textarea, select { font: inherit; color: inherit; }
   background: var(--bg-raised); color: var(--ink); font-family: var(--font); font-size: .8125rem; font-weight: 800; box-shadow: var(--shadow-sm);
 }
 .kv-note img { width: 16px; height: 16px; }
-@media (min-width: 900px) { .rules { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px; } }
+.rules-more { margin-top: 40px; max-width: 46em; color: var(--ink-2); }
+.rules-more strong { color: var(--ink); }
+code { padding: 1px 6px; border-radius: 6px; background: var(--bg-sunken); color: var(--ink); font: 700 .9em/1.2 ui-monospace, 'SF Mono', Consolas, monospace; }
+.section-sunken code { background: var(--bg-raised); }
+.rule .wa-panel { margin-bottom: 18px; }
+/* Side by side, the three examples share their rows, so the labels and headings line up whatever each chat holds. */
+@media (min-width: 900px) {
+  .rules { grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: 32px; row-gap: 0; }
+  .rule { display: grid; grid-row: span 4; grid-template-rows: subgrid; }
+}
 
 /* ============================== LANDING: FEATURES ============================== */
 .features { display: grid; gap: 28px; }
@@ -656,6 +702,16 @@ button, input, textarea, select { font: inherit; color: inherit; }
 .wait-list .wait-row.is-new { animation: kv-flash 1.4s ease-out; }
 @keyframes kv-flash { 0% { box-shadow: 0 0 0 2px var(--warn-dot); } 100% { box-shadow: 0 0 0 2px transparent; } }
 .empty { margin-top: 14px; padding: 16px; border: 1px dashed var(--line-strong); border-radius: 12px; font-size: .9375rem; color: var(--ink-3); text-align: center; }
+.panel-title .bolt { width: 18px; height: 18px; color: var(--accent-ink); }
+.trg-list { margin-top: 12px; display: grid; gap: 6px; }
+.trg-item { display: grid; gap: 4px; padding: 10px 12px; border: 1px solid var(--line); border-radius: 12px; background: var(--bg); }
+.trg-item .trg-line { font-size: .8125rem; }
+.trg-item-top { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.trg-item-top b { font-weight: 800; }
+.trg-ran { font-size: .75rem; font-weight: 800; color: var(--accent-ink); font-variant-numeric: tabular-nums; }
+.trg-item.is-new { animation: kv-in .4s ease both; }
+.trg-item.is-running { animation: kv-ran 1.6s ease-out; }
+@keyframes kv-ran { 0%, 30% { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); } }
 .known { margin-top: 12px; display: grid; }
 .known li { padding-block: 10px; border-top: 1px solid var(--line); font-size: .9375rem; line-height: 1.45; }
 .known li:first-child { border-top: 0; }
@@ -670,7 +726,11 @@ button, input, textarea, select { font: inherit; color: inherit; }
   .demo-phone { position: sticky; top: calc(var(--head-h) + 24px); }
   .demo-phone .device { --w: 300px; }
 }
-@media (min-width: 1100px) { .demo { grid-template-columns: 400px minmax(0, 1fr); } }
+@media (min-width: 1100px) {
+  .demo { grid-template-columns: 400px minmax(0, 1fr); }
+  /* Side by side, so a message no trigger covers is seen landing in Waiting for you. */
+  .demo-side { grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); align-items: start; }
+}
 
 /* Fields */
 .field {

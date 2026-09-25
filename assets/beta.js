@@ -10,49 +10,65 @@
   };
 
   // ============================== THE DEMO ==============================
-  // Runs in the browser. It shows the one rule that matters: answer only from what was taught, and pass everything
-  // else to the owner without guessing. Matching is plain keywords on purpose; the real product uses the owner's
-  // answers and a model, but it follows this rule.
+  // Runs in the browser with made-up businesses. You're the customer; beside the phone are the owner's triggers,
+  // which light up as they run. The same rules as the real thing: someone new gets the welcome, words set off the
+  // trigger that listens for them, and anything no trigger covers is sent nowhere and waits for the owner.
   var OPERATORS = {
     salon: {
       name: 'Studio Nine', avatar: 'SN',
-      taught: [
-        { topic: 'Prices', answer: 'A cut is $35, and a cut and colour is $90.', keys: ['price', 'cost', 'how much', 'cut', 'colour', 'color'] },
-        { topic: 'Opening hours', answer: 'We’re open Tuesday to Saturday, 9am to 6pm. Closed Sunday and Monday.', keys: ['open', 'hours', 'close', 'sunday', 'monday', 'saturday', 'when'] },
-        { topic: 'Booking', answer: 'Send me a day and a time and I’ll check what’s free.', keys: ['book', 'appointment', 'slot', 'available', 'tomorrow', 'space'] }
+      triggers: [
+        { name: 'Welcome', when: 'Someone messages you for the first time', first: true,
+          send: [{ text: 'Hi! Welcome to Studio Nine 👋 Ask for our prices any time, or send a day and a time to book.' }] },
+        { name: 'Price list', when: 'Someone sends “price” or “how much”', keys: ['price', 'prices', 'how much', 'cost'],
+          send: [{ pic: '/assets/sample-price-list.webp' }, { text: 'Here’s our price list. Which one would you like?' }] },
+        { name: 'Opening hours', when: 'Someone sends “open” or “hours”', keys: ['open', 'hours', 'close', 'sunday', 'monday', 'saturday'],
+          send: [{ text: 'We’re open Tuesday to Saturday, 9am to 7pm. Closed Sunday and Monday.' }] },
+        { name: 'Bookings', when: 'Someone sends “book” or “appointment”', keys: ['book', 'appointment', 'slot', 'available', 'tomorrow'],
+          send: [{ text: 'Send me a day and a time and I’ll check what’s free.' }], label: 'Wants to book' }
       ],
-      asks: ['How much is a cut?', 'Are you open on Sunday?', 'Can you do it for $20?', 'Do you do braids?']
+      asks: ['Hi!', 'How much is a silk press?', 'Are you open on Sunday?', 'Can you do it for $20?']
     },
     tutor: {
       name: 'Ms Reyes, Maths', avatar: 'MR',
-      taught: [
-        { topic: 'Fees', answer: 'Lessons are $30 an hour, or $100 for four.', keys: ['fee', 'price', 'cost', 'how much', 'charge'] },
-        { topic: 'Who I teach', answer: 'I teach maths from age 11 up to final-year exams.', keys: ['subject', 'teach', 'maths', 'math', 'level', 'age', 'year old', 'exam'] },
-        { topic: 'Where', answer: 'Online on Zoom, or at the library on Saturdays.', keys: ['where', 'online', 'zoom', 'location', 'library', 'address'] }
+      triggers: [
+        { name: 'Welcome', when: 'Someone messages you for the first time', first: true,
+          send: [{ text: 'Hi! Thanks for getting in touch. Ask about fees or lesson times, or tell me which year your child is in.' }] },
+        { name: 'Fees', when: 'Someone sends “fees” or “how much”', keys: ['fee', 'fees', 'price', 'how much', 'cost', 'charge'],
+          send: [{ doc: 'Fees 2026.pdf' }, { text: 'Here are my fees. The first lesson is free.' }] },
+        { name: 'Where', when: 'Someone sends “where” or “online”', keys: ['where', 'online', 'zoom', 'library', 'address'],
+          send: [{ text: 'Online on Zoom, or at the library on Saturdays.' }] },
+        { name: 'Free lesson', when: 'Someone sends “book” or “trial”', keys: ['book', 'trial', 'start', 'first lesson'],
+          send: [{ text: 'Send me a day and a time for a free first lesson.' }], label: 'Trial lesson' }
       ],
-      asks: ['How much per lesson?', 'Do you teach 12 year olds?', 'Can my son start tonight?', 'Do you do physics too?']
+      asks: ['Hello', 'How much per lesson?', 'Do you teach online?', 'Do you do physics too?']
     },
     church: {
       name: 'Grace Chapel office', avatar: 'GC',
-      taught: [
-        { topic: 'Service times', answer: 'Sunday services are at 9am and 11am. Wednesday prayer is at 7pm.', keys: ['service', 'time', 'sunday', 'wednesday', 'when', 'prayer'] },
-        { topic: 'Address', answer: '14 Hill Road, next to the post office. There’s parking at the back.', keys: ['address', 'where', 'location', 'parking', 'find'] },
-        { topic: 'Youth group', answer: 'Youth group meets on Fridays at 6pm, for ages 12 to 18.', keys: ['youth', 'teen', 'friday', 'kids', 'children'] }
+      triggers: [
+        { name: 'Welcome', when: 'Someone messages you for the first time', first: true,
+          send: [{ text: 'Welcome to Grace Chapel! Ask about service times, where we are, or youth group.' }] },
+        { name: 'Service times', when: 'Someone sends “service” or “Sunday”', keys: ['service', 'services', 'time', 'sunday', 'wednesday', 'prayer'],
+          send: [{ text: 'Sunday services are at 9am and 11am. Wednesday prayer is at 7pm.' }] },
+        { name: 'Directions', when: 'Someone sends “where” or “address”', keys: ['address', 'where', 'location', 'parking', 'find'],
+          send: [{ text: 'We’re at 14 Hill Road, next to the post office. There’s parking at the back.' }] },
+        { name: 'Youth group', when: 'Someone sends “youth” or “kids”', keys: ['youth', 'teen', 'friday', 'kids', 'children'],
+          send: [{ text: 'Youth group meets on Fridays at 6pm, for ages 12 to 18.' }] }
       ],
-      asks: ['What time is the service?', 'Where are you?', 'Can I book the hall for a wedding?', 'Is there a choir?']
+      asks: ['Good morning', 'What time is the service?', 'Where are you?', 'Can I book the hall for a wedding?']
     }
   };
-  // Things that are a decision, not a fact. Even with prices taught, Kavedi never agrees to these.
-  var DECISIONS = /\b(discount|cheaper|deal|lower|less|guarantee|promise|refund|tonight|hall|wedding|special)\b|for \$/i;
+  // A greeting on its own is answered by the welcome and needs nothing from the owner.
+  var GREETING = /^(hi|hello|hey|hiya|good (morning|afternoon|evening)|morning|evening)\b[\s!.,]*$/i;
 
   var TICK = '<svg viewBox="0 0 12 11" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 5.8 4.2 9 10.5 1.5"/></svg>';
   var TICKS = '<svg viewBox="0 0 16 11" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 5.8 4.2 9 10.5 1.5"/><path d="M7.4 8.3 8.2 9 14.5 1.5"/></svg>';
+  var DOC_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8l-5-5Z"/><path d="M14 3v5h5M9 13h6M9 17h4"/></svg>';
 
   var demo = document.querySelector('.demo');
   if (demo) {
     var thread = demo.querySelector('[data-thread]');
     var asksEl = demo.querySelector('[data-asks]');
-    var knownEl = demo.querySelector('[data-known]');
+    var trigEl = demo.querySelector('[data-triggers]');
     var waitEl = demo.querySelector('[data-wait]');
     var waitEmpty = demo.querySelector('[data-wait-empty]');
     var waitCount = demo.querySelector('[data-wait-count]');
@@ -64,6 +80,7 @@
     var who = 'salon';
     var busy = false;
     var waiting = 0;
+    var spoken = false;
 
     var clock = function () {
       try { return new Date().toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' }); } catch (e) { return ''; }
@@ -74,16 +91,50 @@
     var scrollDown = function () { thread.scrollTop = thread.scrollHeight; };
 
     // A new message takes the tail from the one before it when the same person sent both.
-    var addMessage = function (dir, text, metaHtml) {
+    var addBubble = function (dir, extraClass) {
       var last = thread.querySelector('.wa-msg:last-of-type');
       if (last && last.classList.contains(dir)) last.classList.remove('tail');
-      var msg = el('p', 'wa-msg tail is-new ' + dir, text);
-      var meta = el('span', 'wa-meta');
-      meta.innerHTML = metaHtml;
-      msg.appendChild(meta);
+      var msg = el('p', 'wa-msg tail is-new ' + dir + (extraClass ? ' ' + extraClass : ''));
       thread.appendChild(msg);
+      return msg;
+    };
+    var addMeta = function (msg, html) {
+      var meta = el('span', 'wa-meta');
+      meta.innerHTML = html;
+      msg.appendChild(meta);
       scrollDown();
       return meta;
+    };
+
+    // What a trigger sends, drawn as WhatsApp would: a photo, a file, or a message.
+    var addSent = function (item) {
+      if (item.pic) {
+        var pic = addBubble('in', 'is-pic');
+        var img = el('img');
+        img.src = item.pic;
+        img.alt = 'A price list';
+        img.width = 480;
+        img.height = 576;
+        img.addEventListener('load', scrollDown);
+        pic.appendChild(img);
+        addMeta(pic, clock());
+        return;
+      }
+      if (item.doc) {
+        var doc = addBubble('in', 'is-doc');
+        var card = el('span', 'wa-doc');
+        card.innerHTML = DOC_ICON;
+        var name = el('span');
+        name.appendChild(el('b', null, item.doc));
+        name.appendChild(el('small', null, 'PDF · 2 pages'));
+        card.appendChild(name);
+        doc.appendChild(card);
+        addMeta(doc, clock());
+        return;
+      }
+      var msg = addBubble('in');
+      msg.appendChild(document.createTextNode(item.text));
+      addMeta(msg, clock());
     };
 
     var setBusy = function (on) {
@@ -91,14 +142,40 @@
       asksEl.querySelectorAll('button').forEach(function (b) { b.disabled = on; });
     };
 
-    var drawKnown = function (latest) {
-      knownEl.innerHTML = '';
-      OPERATORS[who].taught.forEach(function (t) {
-        var li = el('li', t === latest ? 'is-new' : null);
-        li.appendChild(el('b', null, t.topic));
-        li.appendChild(el('span', null, t.answer));
-        knownEl.appendChild(li);
+    var drawTriggers = function (latest) {
+      trigEl.innerHTML = '';
+      OPERATORS[who].triggers.forEach(function (t, i) {
+        var li = el('li', 'trg-item' + (t === latest ? ' is-new' : ''));
+        li.setAttribute('data-trigger', String(i));
+        var top = el('div', 'trg-item-top');
+        top.appendChild(el('b', null, t.name));
+        var ran = el('span', 'trg-ran', t.runs ? 'Ran ' + t.runs + '×' : '');
+        top.appendChild(ran);
+        li.appendChild(top);
+        var when = el('p', 'trg-line');
+        when.appendChild(el('span', 'trg-tag', 'When'));
+        when.appendChild(document.createTextNode(t.when));
+        li.appendChild(when);
+        var does = el('p', 'trg-line');
+        does.appendChild(el('span', 'trg-tag is-do', 'Do'));
+        var steps = t.send.map(function (s) {
+          return s.pic ? 'send the price list' : s.doc ? 'send ' + s.doc : 'send a message';
+        }).join(', then ') + (t.label ? ', and label them “' + t.label + '”' : '');
+        does.appendChild(document.createTextNode(steps.charAt(0).toUpperCase() + steps.slice(1)));
+        li.appendChild(does);
+        trigEl.appendChild(li);
       });
+    };
+
+    var flash = function (t) {
+      t.runs = (t.runs || 0) + 1;
+      var i = OPERATORS[who].triggers.indexOf(t);
+      var li = trigEl.querySelector('[data-trigger="' + i + '"]');
+      if (!li) return;
+      li.querySelector('.trg-ran').textContent = 'Ran ' + t.runs + '×';
+      li.classList.remove('is-running');
+      void li.offsetWidth;
+      li.classList.add('is-running');
     };
 
     var addAsk = function (q, first) {
@@ -111,6 +188,8 @@
     var choose = function (next) {
       who = next;
       var op = OPERATORS[who];
+      op.triggers.forEach(function (t) { t.runs = 0; });
+      spoken = false;
       demo.querySelectorAll('[data-who]').forEach(function (b) { b.setAttribute('aria-pressed', String(b.getAttribute('data-who') === who)); });
       demo.querySelector('[data-name]').textContent = op.name;
       demo.querySelector('[data-avatar]').textContent = op.avatar;
@@ -123,14 +202,27 @@
       statusEl.textContent = '';
       asksEl.innerHTML = '';
       op.asks.forEach(function (q) { addAsk(q); });
-      drawKnown();
+      drawTriggers();
     };
 
-    var answerFor = function (question) {
-      var q = ' ' + question.toLowerCase() + ' ';
-      if (DECISIONS.test(q)) return { decision: true };
-      var hit = OPERATORS[who].taught.find(function (t) { return t.keys.some(function (k) { return q.indexOf(k) !== -1; }); });
-      return hit ? { answer: hit.answer } : {};
+    // Whole words, as the real triggers match: "cat" is not in "catalogue".
+    var said = function (text) { return ' ' + text.toLowerCase().replace(/[^\p{L}\p{N}$]+/gu, ' ').trim() + ' '; };
+    var matchFor = function (question) {
+      var q = said(question);
+      return OPERATORS[who].triggers.find(function (t) {
+        return !t.first && t.keys.some(function (k) { return q.indexOf(' ' + k + ' ') !== -1; });
+      });
+    };
+
+    var run = async function (t) {
+      flash(t);
+      subEl.textContent = 'typing…';
+      await wait(900);
+      subEl.textContent = 'online';
+      for (var i = 0; i < t.send.length; i += 1) {
+        addSent(t.send[i]);
+        if (i < t.send.length - 1) await wait(500);
+      }
     };
 
     var ask = async function (question) {
@@ -140,21 +232,33 @@
       statusEl.textContent = '';
       var op = OPERATORS[who];
       var time = clock();
-      var meta = addMessage('out', question, time + ' ' + TICK);
+      var mine = addBubble('out');
+      mine.appendChild(document.createTextNode(question));
+      var meta = addMeta(mine, time + ' ' + TICK);
       await wait(450);
       meta.innerHTML = time + ' ' + TICKS;
 
-      var result = answerFor(question);
-      if (result.answer) {
+      var ran = [];
+      var welcome = !spoken && op.triggers.find(function (t) { return t.first; });
+      spoken = true;
+      var hit = matchFor(question);
+      if (welcome || hit) {
         await wait(300);
-        subEl.textContent = 'typing…';
-        await wait(1100);
         meta.innerHTML = time + ' ' + TICKS.replace('<svg ', '<svg class="tick-read" ');
-        subEl.textContent = 'online';
-        addMessage('in', result.answer, clock());
-        statusEl.textContent = 'Answered from what ' + op.name + ' taught it.';
+      }
+      if (welcome) { await run(welcome); ran.push(welcome.name); }
+      if (hit) {
+        if (welcome) await wait(600);
+        await run(hit);
+        ran.push(hit.name);
+      }
+
+      if (hit) {
+        statusEl.textContent = ran.map(function (n) { return '“' + n + '”'; }).join(' and ') + ' ran' + (hit.label ? ', and labelled you “' + hit.label + '”.' : '.');
+      } else if (GREETING.test(question)) {
+        statusEl.textContent = welcome ? '“Welcome” ran, because this was your first message.' : 'A hello needs nothing from ' + op.name + '.';
       } else {
-        await wait(900);
+        await wait(welcome ? 300 : 900);
         waiting += 1;
         waitCount.textContent = String(waiting);
         waitEmpty.hidden = true;
@@ -165,12 +269,10 @@
         name.appendChild(el('span', null, 'now'));
         body.appendChild(name);
         body.appendChild(el('p', 'wait-q', question));
-        body.appendChild(el('span', 'chip-warn', 'Kavedi didn’t know the answer'));
+        body.appendChild(el('span', 'chip-warn', 'No trigger for this'));
         row.appendChild(body);
         waitEl.insertBefore(row, waitEl.firstChild);
-        statusEl.textContent = result.decision
-          ? 'Nothing sent. That’s ' + op.name + '’s decision to make, so Kavedi passed it on.'
-          : 'Nothing sent. Nobody taught it that, so Kavedi passed it to ' + op.name + '.';
+        statusEl.textContent = (welcome ? '“Welcome” ran. ' : '') + 'No trigger covers that, so nothing else was sent. It’s waiting for ' + op.name + '.';
       }
       setBusy(false);
     };
@@ -193,29 +295,28 @@
       syncSend();
     });
 
-    demo.querySelector('[data-teach]').addEventListener('submit', function (e) {
+    demo.querySelector('[data-add-trigger]').addEventListener('submit', function (e) {
       e.preventDefault();
       var form = e.currentTarget;
-      var topic = form.topic.value.trim();
-      var answer = form.answer.value.trim();
-      if (!topic || !answer) return;
-      // Words from the topic become what it listens for, so asking about it finds it.
-      var keys = topic.toLowerCase().split(/[^a-z0-9$]+/).filter(function (w) { return w.length > 2; });
-      if (!keys.length) keys = [topic.toLowerCase()];
-      var item = { topic: topic, answer: answer, keys: keys };
-      OPERATORS[who].taught.push(item);
-      drawKnown(item);
+      var word = form.word.value.trim();
+      var reply = form.reply.value.trim();
+      if (!word || !reply) return;
+      var key = said(word).trim();
+      if (!key) return;
+      var item = { name: word.charAt(0).toUpperCase() + word.slice(1), when: 'Someone sends “' + word + '”', keys: [key], send: [{ text: reply }] };
+      OPERATORS[who].triggers.push(item);
+      drawTriggers(item);
       form.reset();
-      addAsk('What about ' + topic.toLowerCase() + '?', true);
-      statusEl.textContent = 'Taught. Now ask about ' + topic.toLowerCase() + '.';
+      addAsk('Is there ' + key + '?', true);
+      statusEl.textContent = 'Added. Now send “' + word + '”.';
     });
 
     choose('salon');
 
-    // The first question plays by itself the first time the phone comes into view, so it never sits there empty.
+    // The first message plays by itself the first time the phone comes into view, so it never sits there empty.
     var phone = demo.querySelector('.demo-phone .device');
     var playFirst = function () {
-      if (!busy && !thread.querySelector('.wa-msg')) ask(OPERATORS[who].asks[0]);
+      if (!busy && !thread.querySelector('.wa-msg')) ask(OPERATORS[who].asks[1]);
     };
     if ('IntersectionObserver' in window) {
       var seen = new IntersectionObserver(function (entries) {

@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Kavedi private beta — Test it on your own WhatsApp</title>
-<meta name="description" content="Kavedi is letting testers in a few at a time. Try the demo: ask it something it wasn't taught and watch it pass the question to the owner instead of guessing. Then apply.">
+<meta name="description" content="Kavedi is letting testers in a few at a time. Try the demo: send a message and watch the triggers send a price list, welcome you and pass on anything they don't cover. Then apply.">
 <link rel="canonical" href="https://kavedi.com.ng/beta">
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/assets/favicon-32x32.png" sizes="32x32" type="image/png">
@@ -12,7 +12,7 @@
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
 
 <meta property="og:title" content="Kavedi private beta">
-<meta property="og:description" content="Test Kavedi on your own WhatsApp. It answers what you've taught it and hands you everything else.">
+<meta property="og:description" content="Test Kavedi on your own WhatsApp: triggers, bookings, reminders and broadcasts on the number you already use.">
 <meta property="og:image" content="https://kavedi.com.ng/assets/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -22,7 +22,7 @@
 <meta property="og:locale" content="en_US">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Kavedi private beta">
-<meta name="twitter:description" content="Test Kavedi on your own WhatsApp. It answers what you've taught it and hands you everything else.">
+<meta name="twitter:description" content="Test Kavedi on your own WhatsApp: triggers, bookings, reminders and broadcasts on the number you already use.">
 <meta name="twitter:image" content="https://kavedi.com.ng/assets/og.png">
 
 <meta name="theme-color" content="#F5F1E9">
@@ -93,7 +93,7 @@
         <ol>
           <li><b>1</b><strong>You apply</strong><span>Tell us how you use WhatsApp.</span></li>
           <li><b>2</b><strong>We email you when it&rsquo;s your turn</strong><span>The link opens Kavedi and signs you straight in.</span></li>
-          <li><b>3</b><strong>We connect your number together</strong><span>One code, then your first answers, on a short call.</span></li>
+          <li><b>3</b><strong>We connect your number together</strong><span>One code, then your first triggers, on a short call.</span></li>
         </ol>
         <p class="path-foot"><strong>First 10 testers:</strong> two months of Pro free when pricing starts.</p>
       </aside>
@@ -105,13 +105,13 @@
     <div class="wrap">
       <div class="section-head">
         <p class="kicker">Demo</p>
-        <h2 class="h2">Ask it something it wasn&rsquo;t taught.</h2>
-        <p class="lede">You&rsquo;re the one asking. Beside the phone is what the owner sees in Kavedi. It runs in your browser with made-up answers, and the real Kavedi follows the same rule.</p>
+        <h2 class="h2">Send a message. Watch the triggers run.</h2>
+        <p class="lede">You&rsquo;re the customer. Beside the phone are the owner&rsquo;s triggers, lighting up as they run. Anything they don&rsquo;t cover goes to Waiting for you, and nothing is sent. It runs in your browser with made-up businesses.</p>
       </div>
 
       <div class="demo">
         <div class="demo-picker">
-          <span class="picker-label" id="picker-label">Kavedi is answering for</span>
+          <span class="picker-label" id="picker-label">You&rsquo;re messaging</span>
           <div class="segmented" role="group" aria-labelledby="picker-label">
             <button type="button" data-who="salon" aria-pressed="true">Hair salon</button>
             <button type="button" data-who="tutor" aria-pressed="false">Maths tutor</button>
@@ -145,7 +145,7 @@
               <div class="wa-thread" data-thread role="log" aria-live="polite" aria-label="Your chat with the business"><span class="wa-day">Today</span></div>
               <form class="wa-compose" data-ask>
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
-                <label class="sr-only" for="ask-input">Ask the business a question</label>
+                <label class="sr-only" for="ask-input">Message the business</label>
                 <input class="wa-input" id="ask-input" maxlength="140" autocomplete="off" enterkeyhint="send" placeholder="Message">
                 <svg class="wa-mic" data-mic viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2M12 19v3"/></svg>
                 <button class="wa-send" type="submit" aria-label="Send" data-send hidden><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3.4 20.4 21.9 12 3.4 3.6v6.4l13.2 2-13.2 2z"/></svg></button>
@@ -154,31 +154,31 @@
             </div>
           </div>
           <p class="demo-status" data-status role="status"></p>
-          <div class="asks" data-asks role="group" aria-label="Questions to try"></div>
+          <div class="asks" data-asks role="group" aria-label="Messages to try"></div>
         </div>
 
         <div class="demo-side">
+          <section class="panel" aria-labelledby="triggers-title">
+            <h3 class="panel-title" id="triggers-title"><svg class="bolt" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M13.2 2.5 4.8 13.4a.6.6 0 0 0 .5 1h5.9l-1.3 7.1 8.4-10.9a.6.6 0 0 0-.5-1h-5.9l1.3-7.1Z"/></svg>Triggers</h3>
+            <p class="panel-sub">What <span data-owner>Studio Nine</span> set up in Kavedi.</p>
+            <ul class="trg-list" data-triggers></ul>
+            <form class="teach" data-add-trigger>
+              <p class="teach-title">Add a trigger</p>
+              <label class="sr-only" for="trigger-word">When someone sends</label>
+              <input class="field" id="trigger-word" name="word" maxlength="30" placeholder="When someone sends, e.g. parking" required>
+              <div class="row">
+                <label class="sr-only" for="trigger-reply">Kavedi sends</label>
+                <input class="field" id="trigger-reply" name="reply" maxlength="160" placeholder="Kavedi sends, e.g. Free parking at the back" required>
+                <button class="btn btn-primary" type="submit">Add</button>
+              </div>
+              <p class="fine">Then send that word. Nothing leaves your browser.</p>
+            </form>
+          </section>
           <section class="panel" id="waiting" aria-labelledby="waiting-title">
             <h3 class="panel-title" id="waiting-title">Waiting for you <span class="count" data-wait-count>0</span></h3>
-            <p class="panel-sub">What <span data-owner>Studio Nine</span> sees when Kavedi doesn&rsquo;t answer.</p>
-            <p class="empty" data-wait-empty>Nothing yet. Ask something it wasn&rsquo;t taught.</p>
+            <p class="panel-sub">What <span data-owner>Studio Nine</span> sees when no trigger covers a message.</p>
+            <p class="empty" data-wait-empty>Nothing yet. Send something no trigger covers.</p>
             <ul class="wait-list" data-wait></ul>
-          </section>
-          <section class="panel" aria-labelledby="known-title">
-            <h3 class="panel-title" id="known-title">What it knows</h3>
-            <p class="panel-sub">The answers <span data-owner>Studio Nine</span> typed in.</p>
-            <ul class="known" data-known></ul>
-            <form class="teach" data-teach>
-              <p class="teach-title">Teach it something</p>
-              <label class="sr-only" for="teach-topic">What it&rsquo;s about</label>
-              <input class="field" id="teach-topic" name="topic" maxlength="40" placeholder="What it&rsquo;s about, e.g. Parking" required>
-              <div class="row">
-                <label class="sr-only" for="teach-answer">The answer</label>
-                <input class="field" id="teach-answer" name="answer" maxlength="160" placeholder="The answer, e.g. Free parking at the back" required>
-                <button class="btn btn-primary" type="submit">Teach</button>
-              </div>
-              <p class="fine">Then ask about it. Nothing leaves your browser.</p>
-            </form>
           </section>
         </div>
       </div>
@@ -197,7 +197,7 @@
           <h3 class="h3">You get</h3>
           <ul class="ticks">
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><strong>Kavedi, free while you test</strong><span>No card and no trial clock.</span></li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><strong>Us, setting it up with you</strong><span>We connect your number and write your first answers together.</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><strong>Us, setting it up with you</strong><span>We connect your number and set up your first triggers together.</span></li>
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><strong>A direct line to the four of us</strong><span>When something breaks, you tell a person, not a form.</span></li>
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><strong>A say in what we build next</strong><span>Testers tell us what&rsquo;s missing.</span></li>
           </ul>
@@ -221,7 +221,7 @@
         </div>
         <div>
           <h3 class="h3">There is some risk</h3>
-          <p>WhatsApp doesn&rsquo;t offer this officially, so a linked device carries some risk. Kavedi only answers people who wrote first, sends slowly, and sends nothing overnight.</p>
+          <p>WhatsApp doesn&rsquo;t offer this officially, so a linked device carries some risk. Kavedi only replies to people who wrote first, reads only the groups you pick, sends slowly, and sends nothing overnight.</p>
         </div>
         <div>
           <h3 class="h3">WhatsApp Business</h3>
@@ -328,8 +328,8 @@
         <details class="qa"><summary>Where does it work?</summary><div><p>Anywhere WhatsApp works. It replies in the language people write to you in, and runs on your time zone.</p></div></details>
         <details class="qa"><summary>What does it cost?</summary><div><p>Nothing while you&rsquo;re testing. The <a class="link" href="/pricing">pricing page</a> shows what it will cost afterwards. Those prices can still change before launch.</p></div></details>
         <details class="qa"><summary>How long does the beta last?</summary><div><p>As long as it takes to get right. We ask testers for two weeks of real use, and you&rsquo;re welcome to keep going after that.</p></div></details>
-        <details class="qa"><summary>What happens to my messages?</summary><div><p>Kavedi reads a message to answer it and doesn&rsquo;t keep it. The only message text stored is a question it passed to you. The <a class="link" href="/privacy">privacy policy</a> has the details.</p></div></details>
-        <details class="qa"><summary>Can I stop it?</summary><div><p>Any time. Replies, bookings and check-ins each have their own switch, and disconnecting removes Kavedi from your number entirely.</p></div></details>
+        <details class="qa"><summary>What happens to my messages?</summary><div><p>Kavedi reads a message to act on it and doesn&rsquo;t keep it. The only message text stored is a question it passed to you. The <a class="link" href="/privacy">privacy policy</a> has the details.</p></div></details>
+        <details class="qa"><summary>Can I stop it?</summary><div><p>Any time. Every trigger, replies, bookings and check-ins each have their own switch, and disconnecting removes Kavedi from your number entirely.</p></div></details>
       </div>
     </div>
   </section>
