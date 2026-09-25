@@ -305,9 +305,25 @@
     if (next) next.click();
   });
 
-  // Where they came from: ?utm_source=instagram becomes "beta:instagram".
+  // Where they came from: ?utm_source=instagram becomes "beta:instagram". Without a tag, the site that sent them to the
+  // first Kavedi page they opened in this tab, so a plain kavedi.com.ng/beta in a bio is still counted.
+  var REFERRERS = [
+    [/(^|\.)instagram\.com$/, 'instagram'], [/^t\.co$|(^|\.)(x|twitter)\.com$/, 'x'], [/(^|\.)youtube\.com$|^youtu\.be$/, 'youtube'],
+    [/(^|\.)facebook\.com$|^fb\.me$/, 'facebook'], [/(^|\.)linkedin\.com$|^lnkd\.in$/, 'linkedin'], [/(^|\.)tiktok\.com$/, 'tiktok'],
+    [/(^|\.)google\.[a-z.]+$/, 'google']
+  ];
+  var fromReferrer = function (url) {
+    var host = '';
+    try { host = new URL(url).hostname; } catch (e) { return ''; }
+    for (var i = 0; i < REFERRERS.length; i++) if (REFERRERS[i][0].test(host)) return REFERRERS[i][1];
+    return '';
+  };
   var source = function () {
     var utm = new URLSearchParams(location.search).get('utm_source');
+    if (!utm && window.kvGetAttribution) {
+      var seen = window.kvGetAttribution();
+      utm = seen.utm_source || fromReferrer(seen.referrer || '');
+    }
     return utm ? 'beta:' + utm.replace(/[^a-z0-9_-]/gi, '').slice(0, 30) : 'beta-page';
   };
   var application = function () {
