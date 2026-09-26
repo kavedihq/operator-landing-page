@@ -79,7 +79,7 @@
     <div class="doc-head">
       <div class="doc-eyebrow">Pre-launch &mdash; plain-language summary below, full policy in effect at launch</div>
       <h1>Privacy Policy</h1>
-      <div class="doc-updated">Last updated September 25, 2026</div>
+      <div class="doc-updated">Last updated September 26, 2026</div>
     </div>
 
     <div class="doc-plain">
@@ -106,7 +106,7 @@
         <li><strong>What you teach it:</strong> the answers you write, and the text read out of any price list, flyer or document you upload. The file itself is not kept &mdash; only the answers you approve. Each answer also gets a numerical &ldquo;embedding&rdquo; so the right one can be found.</li>
         <li><strong>Questions Kavedi couldn&rsquo;t answer:</strong> the text of that one message, so it can reach you under &ldquo;waiting for you&rdquo;. A voice note is kept as a reference that lets Kavedi fetch it from WhatsApp again if you press Transcribe, plus the transcript once you do.</li>
         <li><strong>Your contacts:</strong> names, numbers and when each chat last had a message, taken from the address book WhatsApp syncs to the linked device. Stored encrypted, so contacts survive a restart without being downloaded again. Labels you add and anyone who replied STOP are stored too.</li>
-        <li><strong>Your triggers:</strong> what starts each one, its conditions and its steps, the words it sends, and any picture or file you upload for it to send. Files are kept in private storage until no trigger uses them. Each time a trigger runs we record when, for which chat or group, and whether it worked &mdash; not what was said.</li>
+        <li><strong>Your triggers:</strong> what starts each one, its conditions and its steps, the words it sends, and any picture or file you upload for it to send. Files are kept in private storage until no trigger uses them. Each time a trigger runs we record when, for which chat or group, and whether it worked &mdash; not what was said. A trigger that asks someone a question and waits for their reply keeps what it has so far &mdash; their message, anything it fetched, earlier replies &mdash; encrypted, until they reply or the wait runs out, an hour at most.</li>
         <li><strong>Messages you schedule:</strong> the text, who it goes to and when, until it is sent, and whether it was delivered or read.</li>
         <li><strong>Appointments:</strong> the time, what was booked and the name of whoever booked it.</li>
         <li><strong>Settings and profile:</strong> your name, what you do, address, phone and website if you fill them in, your time zone and how you want Kavedi to reply.</li>
@@ -114,7 +114,7 @@
         <li><strong>Your account:</strong> the email address you sign in with (and your name and picture if you use Google).</li>
         <li><strong>Beta applications:</strong> your email address, and whatever you chose to tell us &mdash; your name, what you do, where you are, how you use WhatsApp and what you&rsquo;d want Kavedi to handle &mdash; plus whether we let you in.</li>
       </ul>
-      <p><strong>What we don&rsquo;t store:</strong> the conversations themselves. An incoming message is read to answer it and is not written down; the only message text kept is a question that was passed to you. Kavedi never reads a broadcast list, a status or a Channel, and never reads a group unless you pick it for a trigger (up to three). Messages in a group you picked are checked against your triggers and not stored; every other group is dropped before it is even decrypted. Kavedi never replies in a group with AI.</p>
+      <p><strong>What we don&rsquo;t store:</strong> the conversations themselves. An incoming message is read to answer it and is not written down; the only message text kept is a question that was passed to you, and what a trigger waiting for a reply has so far. Kavedi never reads a broadcast list, a status or a Channel, and never reads a group unless you pick it for a trigger (up to three). Messages in a group you picked are checked against your triggers and not stored; every other group is dropped before it is even decrypted. Kavedi never replies in a group with AI.</p>
     </section>
 
     <section>
@@ -131,12 +131,12 @@
 
     <section>
       <h2>The people who message you</h2>
-      <p>They are messaging you, not us, and their messages stay in your WhatsApp. If you use auto-reply, Kavedi passes a message to an AI provider in order to answer it, keeps the question if it couldn&rsquo;t, and records that a reply happened. Triggers only check a message&rsquo;s words and kind against the ones you set; nothing is sent to an AI provider for them. A &ldquo;random cat or dog&rdquo; step fetches a picture from The Cat API or Dog CEO and sends them nothing about you or anyone else. If someone replies STOP, that is stored permanently so nothing automatic ever reaches them again. If someone asks you to remove their details, email us and we will.</p>
+      <p>They are messaging you, not us, and their messages stay in your WhatsApp. If you use auto-reply, Kavedi passes a message to an AI provider in order to answer it, keeps the question if it couldn&rsquo;t, and records that a reply happened. Triggers only check a message&rsquo;s words and kind against the ones you set; nothing is sent to an AI provider for them. A step that gets something from the internet fetches the web address you typed, from Kavedi&rsquo;s server. If you put someone&rsquo;s words in that address (a word after your trigger word, say), those words go to that site; nothing else about you or them does. What a site does with a request is up to that site, so only use addresses you trust. If someone replies STOP, that is stored permanently so nothing automatic ever reaches them again. If someone asks you to remove their details, email us and we will.</p>
     </section>
 
     <section>
       <h2>How long we keep it</h2>
-      <p>What you teach it, your contacts, appointments and settings stay until you delete them or delete your account. Questions waiting for you stay until they are resolved or deleted. Scheduled messages are kept after sending so you can see what went out. Records of trigger runs are deleted after 30 days. Server logs hold no message text &mdash; only counts, numbers and errors &mdash; and are kept by our hosting provider for a short period.</p>
+      <p>What you teach it, your contacts, appointments and settings stay until you delete them or delete your account. Questions waiting for you stay until they are resolved or deleted. Scheduled messages are kept after sending so you can see what went out. Records of trigger runs are deleted after 30 days. What a trigger keeps while it waits for a reply is deleted when the reply comes, or within minutes of the wait running out. Server logs hold no message text &mdash; only counts, numbers and errors &mdash; and are kept by our hosting provider for a short period.</p>
     </section>
 
     <section>
