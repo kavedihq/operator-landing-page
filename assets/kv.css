@@ -16,6 +16,10 @@
   --accent-hover: #086A66;
   --accent-ink: #08756E;
   --accent-soft: #E0F0ED;
+  --pop: #E35F12;
+  --pop-ink: #B84A0E;
+  --pop-soft: #FCE7D8;
+  --swoosh: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 14' preserveAspectRatio='none'%3E%3Cpath d='M3 9.5C46 4.2 108 2.6 197 6.8' fill='none' stroke='%23E35F12' stroke-width='4.6' stroke-linecap='round'/%3E%3C/svg%3E");
   --on-accent: #FFFFFF;
   --warn-bg: #FBEFD9;
   --warn-ink: #7C4606;
@@ -67,6 +71,10 @@
     --accent-hover: #5AD8D2;
     --accent-ink: #5FD9CF;
     --accent-soft: rgba(42, 201, 194, .12);
+    --pop: #FF8C4B;
+    --pop-ink: #FFA36B;
+    --pop-soft: rgba(255, 140, 75, .14);
+    --swoosh: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 14' preserveAspectRatio='none'%3E%3Cpath d='M3 9.5C46 4.2 108 2.6 197 6.8' fill='none' stroke='%23FF8C4B' stroke-width='4.6' stroke-linecap='round'/%3E%3C/svg%3E");
     --on-accent: #06252A;
     --warn-bg: #36280F;
     --warn-ink: #F1C98D;
@@ -108,6 +116,10 @@
   --accent-hover: #5AD8D2;
   --accent-ink: #5FD9CF;
   --accent-soft: rgba(42, 201, 194, .12);
+  --pop: #FF8C4B;
+  --pop-ink: #FFA36B;
+  --pop-soft: rgba(255, 140, 75, .14);
+  --swoosh: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 14' preserveAspectRatio='none'%3E%3Cpath d='M3 9.5C46 4.2 108 2.6 197 6.8' fill='none' stroke='%23FF8C4B' stroke-width='4.6' stroke-linecap='round'/%3E%3C/svg%3E");
   --on-accent: #06252A;
   --warn-bg: #36280F;
   --warn-ink: #F1C98D;
@@ -858,3 +870,41 @@ fieldset.form-step { min-width: 0; margin: 0; padding: 0; border: 0; }
 .lost-art path[fill='rgb(0,0,0)'] { fill: var(--ink); }
 .lost-art path[fill='rgb(255,255,255)'] { fill: var(--bg); }
 .lost { padding-top: 40px; }
+
+/* ============================== POP (27 Sep 2026) ==============================
+   Kelvin: "make it look juicy, sweeten up the words" — after a carousel that sells with one warm word per headline.
+   The warm colour marks the words that sell: one phrase per headline in mango with a hand-drawn underline, uppercase
+   kickers, and numbers you can read from across a room. Teal stays the brand and every button; mango is only ever a
+   highlight. --pop is for large type (3:1 on cream), --pop-ink for small text (4.6:1). */
+.kicker { text-transform: uppercase; letter-spacing: .09em; font-size: .8125rem; font-weight: 900; color: var(--pop-ink); }
+.h1, .h2 { font-weight: 900; }
+.h1-hero { font-size: clamp(2.75rem, 1.4rem + 5vw, 5rem); line-height: .98; letter-spacing: -.045em; }
+.pop-word {
+  color: var(--pop);
+  padding-bottom: .06em;
+  background: var(--swoosh) no-repeat 0 100% / 100% .3em;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+.aside { margin-top: 16px; font-size: clamp(1.25rem, 1rem + .9vw, 1.625rem); font-weight: 800; letter-spacing: -.012em; color: var(--ink-3); }
+.hero .aside + .lede { margin-top: 12px; }
+.stat-row { display: grid; grid-template-columns: repeat(3, auto); justify-content: start; gap: 20px clamp(22px, 5vw, 52px); margin-top: 40px; }
+.stat-row li { display: flex; flex-direction: column; }
+@media (max-width: 639px) { .stat-row { grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: 14px; } }
+.stat-row b { font-size: clamp(2rem, 1.4rem + 1.8vw, 2.75rem); font-weight: 900; letter-spacing: -.035em; line-height: 1; color: var(--pop); }
+.stat-row span { margin-top: 8px; font-size: .9375rem; font-weight: 700; line-height: 1.35; color: var(--ink-2); }
+.rule-step, .steps .step-n { text-transform: uppercase; letter-spacing: .08em; font-size: .75rem; font-weight: 900; color: var(--pop-ink); }
+.steps li:first-child { border-top-color: var(--pop); }
+.closing .kicker { margin-bottom: 14px; }
+.closing .h2 { max-width: 13em; font-size: clamp(2.25rem, 1.3rem + 3.6vw, 3.875rem); }
+/* A little grid of dots by the phone, like the corner of a good slide. */
+.hero-visual::before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  right: 2%;
+  width: 112px;
+  height: 112px;
+  background: radial-gradient(circle, var(--line-strong) 1.6px, transparent 2px) 0 0 / 16px 16px;
+  pointer-events: none;
+}
