@@ -1,4 +1,4 @@
-// kavedi.com.ng is a Cloudflare Worker serving this folder as static assets, deployed on every push to main.
+// kavedi.com is a Cloudflare Worker serving this folder as static assets, deployed on every push to main.
 // This file started as the one Cloudflare generates when a repo has none; the name must stay "operator-landing-page",
 // or the build fails. Headers are in _headers; files that must never be published are in .assetsignore.
 {

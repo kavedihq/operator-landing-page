@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://kavedi.com.ng/sitemap.xml
+Sitemap: https://kavedi.com/sitemap.xml

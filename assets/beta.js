@@ -334,7 +334,7 @@
   var form = document.querySelector('[data-apply]');
   if (!form) return;
   var LOCAL = /^(localhost|127\.0\.0\.1)$/.test(location.hostname);
-  var ENDPOINT = LOCAL ? 'http://localhost:3001/api/beta/apply' : 'https://app.kavedi.com.ng/api/beta/apply';
+  var ENDPOINT = LOCAL ? 'http://localhost:3001/api/beta/apply' : 'https://app.kavedi.com/api/beta/apply';
   var WEB3FORMS_KEY = 'f04060d7-7b1b-4650-860a-60f03e66933a';
   var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
@@ -407,7 +407,7 @@
   });
 
   // Where they came from: ?utm_source=instagram becomes "beta:instagram". Without a tag, the site that sent them to the
-  // first Kavedi page they opened in this tab, so a plain kavedi.com.ng/beta in a bio is still counted.
+  // first Kavedi page they opened in this tab, so a plain kavedi.com/beta in a bio is still counted.
   var REFERRERS = [
     [/(^|\.)instagram\.com$/, 'instagram'], [/^t\.co$|(^|\.)(x|twitter)\.com$/, 'x'], [/(^|\.)youtube\.com$|^youtu\.be$/, 'youtube'],
     [/(^|\.)facebook\.com$|^fb\.me$/, 'facebook'], [/(^|\.)linkedin\.com$|^lnkd\.in$/, 'linkedin'], [/(^|\.)tiktok\.com$/, 'tiktok'],
@@ -499,7 +499,7 @@
     }).catch(function () {
       return viaWeb3Forms(data).then(function () { done(data.email); });
     }).catch(function () {
-      reset('That didn’t go through. Try again, or email support@kavedi.com.ng and we’ll add you by hand.');
+      reset('That didn’t go through. Try again, or email support@kavedi.com and we’ll add you by hand.');
     });
   });
 })();
