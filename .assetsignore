@@ -7,3 +7,4 @@ wrangler.jsonc
 .claude
 node_modules
 *.zip
+worker.js

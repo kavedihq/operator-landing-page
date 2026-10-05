@@ -8,8 +8,12 @@
   "observability": {
     "enabled": true
   },
+  // kavedi.com/sign-in and what that page needs come from the app (worker.js); everything else is this folder.
+  "main": "worker.js",
   "assets": {
     "directory": ".",
+    "binding": "ASSETS",
+    "run_worker_first": ["/sign-in", "/sign-in/*", "/sign-up", "/sign-up/*", "/reset-password", "/reset-password/*", "/app-assets/*", "/api/*", "/kavedi-mark.png"],
     // An address that matches no file gets 404.html, with a real 404 status, instead of an empty page.
     "not_found_handling": "404-page"
   }
