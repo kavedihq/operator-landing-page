@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Kavedi beta — Try it free on your own WhatsApp</title>
-<meta name="description" content="Kavedi is letting testers in a few at a time. Try the demo: send a message and watch the triggers send a price list, welcome you and pass on anything they don't cover. Then apply.">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Kavedi beta · Try it free on your own WhatsApp</title>
+<meta name="description" content="Kavedi is letting testers in a few at a time. Try the demo: send a message and watch the agents send a price list, welcome you and pass on anything they don't cover. Then apply.">
 <link rel="canonical" href="https://kavedi.com/beta">
 <link rel="icon" href="/assets/favicon.ico" sizes="48x48">
 <link rel="icon" href="/assets/favicon-96.png" sizes="96x96" type="image/png">
@@ -12,8 +12,8 @@
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
 
-<meta property="og:title" content="Kavedi beta — Try it free on your own WhatsApp">
-<meta property="og:description" content="Test Kavedi on your own WhatsApp: triggers, bookings, reminders and broadcasts on the number you already use.">
+<meta property="og:title" content="Kavedi beta · Try it free on your own WhatsApp">
+<meta property="og:description" content="Test Kavedi on your own WhatsApp: agents that reply, book, remind and send payment links on the number you already use.">
 <meta property="og:image" content="https://kavedi.com/assets/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -23,355 +23,303 @@
 <meta property="og:locale" content="en_US">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Kavedi private beta">
-<meta name="twitter:description" content="Test Kavedi on your own WhatsApp: triggers, bookings, reminders and broadcasts on the number you already use.">
+<meta name="twitter:description" content="Test Kavedi on your own WhatsApp: agents that reply, book, remind and send payment links on the number you already use.">
 <meta name="twitter:image" content="https://kavedi.com/assets/og.png">
 
-<meta name="theme-color" content="#F5F1E9">
+<meta name="theme-color" content="#7d8fb0">
 <script>
+  document.documentElement.classList.add('js');
   (function () {
     try {
       var choice = localStorage.getItem('kv-theme');
       if (choice === 'dark' || choice === 'light') document.documentElement.setAttribute('data-theme', choice);
-      var dark = choice === 'dark' || (choice !== 'light' && window.matchMedia('(prefers-color-scheme: dark)').matches);
-      document.querySelector('meta[name="theme-color"]').setAttribute('content', dark ? '#0E1A1F' : '#F5F1E9');
     } catch (e) {}
   })();
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/kv.css">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/home.css">
+<link rel="stylesheet" href="/assets/beta.css">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 
-<header class="site-head">
-  <div class="wrap">
-    <a class="brand" href="/" aria-label="Kavedi, home">
-      <picture><source srcset="/assets/mark.webp" type="image/webp"><img src="/assets/mark.png" alt="" width="30" height="30"></picture>
-      Kavedi
-    </a>
-    <nav class="nav" aria-label="Main">
-      <a href="/#how-it-works">How it works</a>
-      <a href="/#features">Features</a>
-      <a href="/pricing">Pricing</a>
-      <a href="/beta" aria-current="page">Beta</a>
+<!-- Icons (Lucide's drawings, ISC licence). -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+  <symbol id="i-bot" viewBox="0 0 24 24"><path d="M12 8V4H8"/><rect width="16" height="12" x="4" y="8" rx="2"/><path d="M2 14h2M20 14h2M15 13v2M9 13v2"/></symbol>
+  <symbol id="i-inbox" viewBox="0 0 24 24"><path d="M22 12h-6l-2 3h-4l-2-3H2"/><path d="M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></symbol>
+  <symbol id="i-link" viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></symbol>
+  <symbol id="i-pen" viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.38 3.62a1 1 0 0 1 3 3L7.37 18.64a2 2 0 0 1-.86.5l-2.87.84a.5.5 0 0 1-.62-.62l.84-2.87a2 2 0 0 1 .5-.86z"/></symbol>
+  <symbol id="i-gift" viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7"/><path d="M7.5 8a2.5 2.5 0 0 1 0-5A4.8 8 0 0 1 12 8a4.8 8 0 0 1 4.5-5 2.5 2.5 0 0 1 0 5"/></symbol>
+</svg>
+
+<header class="nav" id="nav">
+  <div class="nav-in">
+    <a class="logo" href="/" aria-label="Kavedi, home"><img src="/assets/mark.webp" alt="" width="24" height="24">Kavedi</a>
+    <nav class="nav-links" aria-label="Main">
+      <a href="#demo">Demo</a><a href="#deal">The deal</a><a href="#questions">Questions</a>
     </nav>
-    <a class="btn btn-primary btn-sm" href="#apply">Apply</a>
-    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="menu" aria-label="Open menu">
-      <svg class="when-closed" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 8h16M4 16h16"/></svg>
-      <svg class="when-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
-    </button>
+    <a class="nav-sign" href="/sign-in">Sign in</a>
+    <a class="btn" href="#apply">Apply</a>
   </div>
-  <nav class="menu" id="menu" aria-label="Main">
-    <ul>
-      <li><a href="/#how-it-works">How it works</a></li>
-      <li><a href="/#features">Features</a></li>
-      <li><a href="/pricing">Pricing</a></li>
-      <li><a href="#demo">Try the demo</a></li>
-      <li><a href="#apply">Apply</a></li>
-    </ul>
-  </nav>
 </header>
 
 <main id="main">
 
-  <!-- ============ HERO ============ -->
-  <section class="beta-hero">
-    <div class="wrap beta-hero-grid">
-      <div>
-        <p class="kicker"><span class="live-dot" aria-hidden="true"></span>Private beta</p>
-        <h1 class="h1">Try Kavedi on your own WhatsApp, <span class="pop-word">free.</span></h1>
-        <p class="lede">We&rsquo;re letting people in a few at a time, and we set up every number with you. Stop whenever you like.</p>
-        <div class="hero-actions">
-          <a class="btn btn-primary btn-lg" href="#apply">Apply now</a>
-          <a class="btn btn-secondary btn-lg" href="#demo">Try the demo</a>
-        </div>
-        <p class="hero-note">Three questions. About a minute.</p>
-      </div>
-      <aside class="path" aria-labelledby="path-title">
-        <h2 id="path-title">How it goes</h2>
-        <ol>
-          <li><b>1</b><strong>You apply</strong><span>Tell us how you use WhatsApp.</span></li>
-          <li><b>2</b><strong>We email you when it&rsquo;s your turn</strong><span>The link opens Kavedi and signs you straight in.</span></li>
-          <li><b>3</b><strong>We connect your number together</strong><span>One code, then your first triggers, on a short call.</span></li>
-        </ol>
-        <p class="path-foot"><strong>First 10 testers:</strong> two months of Pro free when pricing starts.</p>
-      </aside>
+  <!-- The hero: a photo, the headline written out, and how it goes in three steps. -->
+  <section class="bhero">
+    <img class="bhero-photo" src="/assets/photos/agent.webp" alt="" fetchpriority="high">
+    <div class="bhero-in wrap">
+      <p class="beta-pill"><span class="live-dot" aria-hidden="true"></span>Private beta</p>
+      <h1 id="beta-title" data-typed aria-label="Try Kavedi on your own WhatsApp, free."><span aria-hidden="true">Try Kavedi on your own WhatsApp, <span class="grad">free</span>.</span></h1>
+      <script>
+        // Wrapped before the first paint so the headline never flashes in whole before it's written out.
+        (function () {
+          var h = document.getElementById('beta-title');
+          if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+          var holder = h.firstElementChild;
+          [holder].concat(Array.prototype.slice.call(holder.querySelectorAll('*'))).forEach(function (el) {
+            Array.prototype.slice.call(el.childNodes).forEach(function (node) {
+              if (node.nodeType !== 3) return;
+              var frag = document.createDocumentFragment();
+              node.textContent.split('').forEach(function (c) { var s = document.createElement('span'); s.className = 'ch'; s.textContent = c; frag.appendChild(s); });
+              node.replaceWith(frag);
+            });
+          });
+          h.classList.add('typing-on');
+          setTimeout(function () { if (!h.dataset.started) { h.classList.add('done'); document.querySelectorAll('.rise').forEach(function (el) { el.classList.add('is-in'); }); } }, 2500);
+        })();
+      </script>
+      <p class="hero-sub rise">We’re letting people in a few at a time, and we set up every number with you. Stop whenever you like.</p>
+      <div class="cta rise"><a class="btn white" href="#apply">Apply now <svg class="ic"><use href="#i-arrow"/></svg></a><a class="btn glass" href="#demo">Try the demo</a></div>
+      <p class="small rise">Three questions. About a minute.</p>
+
+      <ol class="howto rise" aria-label="How it goes">
+        <li><b>1</b><strong>You apply</strong><span>Tell us how you use WhatsApp.</span></li>
+        <li><b>2</b><strong>We email you when it’s your turn</strong><span>The link opens Kavedi and signs you straight in.</span></li>
+        <li><b>3</b><strong>We connect your number together</strong><span>One code, then your first agents, on a short call.</span></li>
+      </ol>
     </div>
   </section>
 
-  <!-- ============ DEMO ============ -->
-  <section class="section section-sunken" id="demo">
+  <!-- The demo: you're the one messaging. Beside the chat, what the owner sees in Kavedi. -->
+  <section class="sec" id="demo">
     <div class="wrap">
-      <div class="section-head">
-        <p class="kicker">Demo</p>
-        <h2 class="h2">Send a message. <span class="pop-word">Watch it work.</span></h2>
-        <p class="lede">You&rsquo;re the one messaging. Beside the phone, the owner&rsquo;s triggers light up as they run. Nothing is really sent: it all happens in your browser.</p>
+      <div class="sec-head up">
+        <h2>Send a message. Watch it work.</h2>
+        <p class="lede">You’re the one messaging. Beside the chat, the owner’s agents light up as they run. Nothing is really sent, it all happens in your browser.</p>
       </div>
 
-      <div class="demo">
-        <div class="demo-picker">
-          <span class="picker-label" id="picker-label">You&rsquo;re messaging</span>
-          <div class="segmented" role="group" aria-labelledby="picker-label">
-            <button type="button" data-who="salon" aria-pressed="true">Hair salon</button>
-            <button type="button" data-who="tutor" aria-pressed="false">Maths tutor</button>
-            <button type="button" data-who="church" aria-pressed="false">Church office</button>
+      <div class="photo-frame demo-frame up" style="--img:url(/assets/photos/pieces.webp)">
+        <div class="demo">
+          <div class="demo-picker">
+            <span class="picker-label" id="picker-label">You’re messaging</span>
+            <div class="segmented" role="group" aria-labelledby="picker-label">
+              <button type="button" data-who="salon" aria-pressed="true">Hair salon</button>
+              <button type="button" data-who="tutor" aria-pressed="false">Maths tutor</button>
+              <button type="button" data-who="church" aria-pressed="false">Church office</button>
+            </div>
           </div>
-        </div>
 
-        <div class="demo-phone">
-          <div class="device">
-            <div class="screen">
+          <div class="demo-phone">
+            <div class="device chat">
               <div class="wa-top">
-                <div class="ios-status" aria-hidden="true">
-                  <span class="ios-time" data-clock>9:41</span>
-                  <span class="ios-island"></span>
-                  <span class="ios-icons">
-                    <svg viewBox="0 0 18 12" fill="currentColor"><rect x="0" y="8" width="3" height="4" rx=".8"/><rect x="5" y="5.5" width="3" height="6.5" rx=".8"/><rect x="10" y="3" width="3" height="9" rx=".8"/><rect x="15" y="0" width="3" height="12" rx=".8"/></svg>
-                    <svg viewBox="0 0 16 12" fill="currentColor"><path d="M8 2.4c2.3 0 4.4.9 6 2.4l1.1-1.1A10 10 0 0 0 8 .8 10 10 0 0 0 .9 3.7L2 4.8a8.4 8.4 0 0 1 6-2.4Zm0 3.3c1.4 0 2.7.5 3.7 1.4l1.1-1.1A7 7 0 0 0 8 4.1 7 7 0 0 0 3.2 6l1.1 1.1c1-.9 2.3-1.4 3.7-1.4Zm0 3.3c.6 0 1.1.2 1.5.6L8 11.1 6.5 9.6c.4-.4.9-.6 1.5-.6Z"/></svg>
-                    <svg class="ios-battery" viewBox="0 0 27 13"><rect x=".5" y=".5" width="23" height="12" rx="3.6" fill="none" stroke="currentColor" opacity=".4"/><rect x="2" y="2" width="20" height="9" rx="2.2" fill="currentColor"/><path d="M25 4.5v4a2.2 2.2 0 0 0 0-4Z" fill="currentColor" opacity=".45"/></svg>
-                  </span>
-                </div>
-                <div class="wa-nav">
-                  <span class="wa-back" aria-hidden="true"><svg viewBox="0 0 12 21" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M10.5 1.5 1.5 10.5l9 9"/></svg></span>
-                  <span class="wa-avatar" aria-hidden="true" data-avatar>SN</span>
-                  <span class="wa-who"><b data-name>Studio Nine</b><small data-sub>online</small></span>
-                  <span class="wa-actions" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m16 13 5.2 3.5a.5.5 0 0 0 .8-.4V7.9a.5.5 0 0 0-.8-.4L16 10.5"/><rect x="2" y="6" width="14" height="12" rx="2.5"/></svg>
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"/></svg>
-                  </span>
-                </div>
+                <span class="wa-avatar" aria-hidden="true" data-avatar>SN</span>
+                <span class="wa-who"><b data-name>Studio Nine</b><small data-sub>online</small></span>
               </div>
               <div class="wa-thread" data-thread role="log" aria-live="polite" aria-label="Your chat with the business"><span class="wa-day">Today</span></div>
               <form class="wa-compose" data-ask>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
                 <label class="sr-only" for="ask-input">Message the business</label>
                 <input class="wa-input" id="ask-input" maxlength="140" autocomplete="off" enterkeyhint="send" placeholder="Message">
                 <svg class="wa-mic" data-mic viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2M12 19v3"/></svg>
                 <button class="wa-send" type="submit" aria-label="Send" data-send hidden><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3.4 20.4 21.9 12 3.4 3.6v6.4l13.2 2-13.2 2z"/></svg></button>
               </form>
-              <span class="ios-home" aria-hidden="true"></span>
             </div>
+            <p class="demo-status" data-status role="status"></p>
+            <div class="asks" data-asks role="group" aria-label="Messages to try"></div>
           </div>
-          <p class="demo-status" data-status role="status"></p>
-          <div class="asks" data-asks role="group" aria-label="Messages to try"></div>
-        </div>
 
-        <div class="demo-side">
-          <section class="panel" aria-labelledby="triggers-title">
-            <h3 class="panel-title" id="triggers-title"><svg class="bolt" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M13.2 2.5 4.8 13.4a.6.6 0 0 0 .5 1h5.9l-1.3 7.1 8.4-10.9a.6.6 0 0 0-.5-1h-5.9l1.3-7.1Z"/></svg>Triggers</h3>
-            <p class="panel-sub">What <span data-owner>Studio Nine</span> set up in Kavedi.</p>
-            <ul class="trg-list" data-triggers></ul>
-            <form class="teach" data-add-trigger>
-              <p class="teach-title">Add a trigger</p>
-              <label class="sr-only" for="trigger-word">When someone sends</label>
-              <input class="field" id="trigger-word" name="word" maxlength="30" placeholder="When someone sends, e.g. parking" required>
-              <div class="row">
-                <label class="sr-only" for="trigger-reply">Kavedi sends</label>
-                <input class="field" id="trigger-reply" name="reply" maxlength="160" placeholder="Kavedi sends, e.g. Free parking at the back" required>
-                <button class="btn btn-primary" type="submit">Add</button>
-              </div>
-              <p class="fine">Then send that word. Nothing leaves your browser.</p>
-            </form>
-          </section>
-          <section class="panel" id="waiting" aria-labelledby="waiting-title">
-            <h3 class="panel-title" id="waiting-title">Waiting for you <span class="count" data-wait-count>0</span></h3>
-            <p class="panel-sub">What <span data-owner>Studio Nine</span> sees when no trigger covers a message.</p>
-            <p class="empty" data-wait-empty>Nothing yet. Send something no trigger covers.</p>
-            <ul class="wait-list" data-wait></ul>
-          </section>
+          <div class="demo-side">
+            <section class="panel" aria-labelledby="triggers-title">
+              <h3 class="panel-title" id="triggers-title"><i class="tile"><svg class="ic"><use href="#i-bot"/></svg></i>Agents</h3>
+              <p class="panel-sub">What <span data-owner>Studio Nine</span> set up in Kavedi.</p>
+              <ul class="trg-list" data-triggers></ul>
+              <form class="teach" data-add-trigger>
+                <p class="teach-title">Add an agent</p>
+                <label class="sr-only" for="trigger-word">When someone sends</label>
+                <input class="field" id="trigger-word" name="word" maxlength="30" placeholder="When someone sends, e.g. parking" required>
+                <div class="row">
+                  <label class="sr-only" for="trigger-reply">It sends</label>
+                  <input class="field" id="trigger-reply" name="reply" maxlength="160" placeholder="It sends, e.g. Free parking at the back" required>
+                  <button class="btn dark" type="submit">Add</button>
+                </div>
+                <p class="fine">Then send that word. Nothing leaves your browser.</p>
+              </form>
+            </section>
+            <section class="panel" id="waiting" aria-labelledby="waiting-title">
+              <h3 class="panel-title" id="waiting-title"><i class="tile red"><svg class="ic"><use href="#i-inbox"/></svg></i>Inbox <span class="count" data-wait-count>0</span></h3>
+              <p class="panel-sub">What <span data-owner>Studio Nine</span> sees when no agent covers a message.</p>
+              <p class="empty" data-wait-empty>Nothing yet. Send something no agent covers.</p>
+              <ul class="wait-list" data-wait></ul>
+            </section>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ============ THE DEAL ============ -->
-  <section class="section">
+  <!-- The deal. -->
+  <section class="sec" id="deal">
     <div class="wrap">
-      <div class="section-head">
-        <p class="kicker">The deal</p>
-        <h2 class="h2">What you get, and <span class="pop-word">what we ask.</span></h2>
+      <div class="sec-head up">
+        <h2>What you get, and what we ask.</h2>
       </div>
       <div class="deal">
-        <div class="deal-col">
-          <h3 class="h3">You get</h3>
+        <div class="card-big up">
+          <h3>You get</h3>
           <ul class="ticks">
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><strong>Kavedi, free while you test</strong><span>No card and no trial clock.</span></li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><strong>Us, setting it up with you</strong><span>We connect your number and set up your first triggers together.</span></li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><strong>A direct line to the four of us</strong><span>When something breaks, you tell a person, not a form.</span></li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><strong>A say in what we build next</strong><span>Testers tell us what&rsquo;s missing.</span></li>
+            <li><svg class="ic"><use href="#i-check"/></svg><strong>Kavedi, free while you test</strong><span>No card and no trial clock.</span></li>
+            <li><svg class="ic"><use href="#i-check"/></svg><strong>Us, setting it up with you</strong><span>We connect your number and set up your first agents together.</span></li>
+            <li><svg class="ic"><use href="#i-check"/></svg><strong>A direct line to the four of us</strong><span>When something breaks, you tell a person, not a form.</span></li>
+            <li><svg class="ic"><use href="#i-check"/></svg><strong>A say in what we build next</strong><span>Testers tell us what’s missing.</span></li>
           </ul>
-          <p class="first-ten">The first 10 testers get two months of Pro free when pricing starts.</p>
+          <p class="first-ten"><svg class="ic"><use href="#i-gift"/></svg>The first 10 testers get two months of Pro free when pricing starts.</p>
         </div>
-        <div class="deal-col">
-          <h3 class="h3">We ask</h3>
-          <ul class="ticks">
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg><strong>Two weeks of real use</strong><span>On the messages you actually get.</span></li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg><strong>Tell us what breaks or confuses you</strong><span>Short messages are fine.</span></li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg><strong>One short call at the end</strong><span>Twenty minutes, whenever suits you.</span></li>
+        <div class="card-big up">
+          <h3>We ask</h3>
+          <ul class="ticks ask">
+            <li><svg class="ic"><use href="#i-arrow"/></svg><strong>Two weeks of real use</strong><span>On the messages you actually get.</span></li>
+            <li><svg class="ic"><use href="#i-arrow"/></svg><strong>Tell us what breaks or confuses you</strong><span>Short messages are fine.</span></li>
+            <li><svg class="ic"><use href="#i-arrow"/></svg><strong>One short call at the end</strong><span>Twenty minutes, whenever suits you.</span></li>
           </ul>
         </div>
       </div>
 
-      <div class="notes">
-        <div>
-          <h3 class="h3">It connects like WhatsApp Web</h3>
-          <p>Kavedi is a linked device on the number you already use, and you keep using WhatsApp as normal. It isn&rsquo;t affiliated with WhatsApp or Meta.</p>
+      <div class="notes up">
+        <div><svg class="ic"><use href="#i-link"/></svg><h3>It connects like WhatsApp Web</h3><p>Kavedi is a linked device on the number you already use, and you keep using WhatsApp as normal. It isn’t affiliated with WhatsApp or Meta.</p></div>
+        <div><svg class="ic"><use href="#i-check"/></svg><h3>Careful by design</h3><p>Kavedi only replies to people who wrote first, sends slowly, and sends nothing overnight.</p></div>
+        <div><svg class="ic"><use href="#i-mail"/></svg><h3>WhatsApp Business</h3><p>Some Business accounts don’t link yet. Tell us which WhatsApp you use when you apply, and we’ll check before you connect anything.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- The application. -->
+  <section class="sec wrap" id="apply">
+    <div class="photo-frame apply-frame up" style="--img:url(/assets/photos/hero.webp)">
+      <div class="apply">
+        <div class="apply-side">
+          <h2>Three quick questions. That’s it.</h2>
+          <p class="lede">We read every one. When it’s your turn, an email brings you straight in.</p>
+          <ul>
+            <li><svg class="ic"><use href="#i-check"/></svg>Free while you test. No card.</li>
+            <li><svg class="ic"><use href="#i-check"/></svg>We set it up with you on a short call.</li>
+            <li><svg class="ic"><use href="#i-check"/></svg>Stop whenever you like. Disconnecting removes Kavedi from your number.</li>
+          </ul>
         </div>
-        <div>
-          <h3 class="h3">Careful by design</h3>
-          <p>Kavedi only replies to people who wrote first, reads only the groups you pick, sends slowly, and sends nothing overnight.</p>
-        </div>
-        <div>
-          <h3 class="h3">WhatsApp Business</h3>
-          <p>Some Business accounts don&rsquo;t link yet. Tell us which WhatsApp you use when you apply, and we&rsquo;ll check before you connect anything.</p>
+
+        <div class="form-card" data-form-card>
+          <form data-apply novalidate>
+            <div class="progress">
+              <span data-step-label>Step 1 of 3</span>
+              <span class="progress-bar" aria-hidden="true"><span class="is-on"></span><span></span><span></span></span>
+            </div>
+            <p class="form-error" data-error role="alert" hidden></p>
+
+            <div class="hp" aria-hidden="true">
+              <label for="website">Leave this empty</label>
+              <input id="website" name="website" tabindex="-1" autocomplete="off">
+            </div>
+
+            <fieldset class="form-step" data-step="1">
+              <legend class="sr-only">Where we reach you</legend>
+              <h3>Where do we reach you?</h3>
+              <p class="step-sub">Your invitation goes here.</p>
+              <div class="q">
+                <label class="label" for="email">Email</label>
+                <input class="field" type="email" id="email" name="email" autocomplete="email" inputmode="email" placeholder="you@example.com" required>
+              </div>
+              <div class="q">
+                <label class="label" for="name">First name <span class="opt">(optional)</span></label>
+                <input class="field" id="name" name="name" autocomplete="given-name" maxlength="80">
+              </div>
+              <div class="form-actions"><span></span><button class="btn dark" type="button" data-next>Next</button></div>
+            </fieldset>
+
+            <fieldset class="form-step" data-step="2" hidden>
+              <legend class="sr-only">How you use WhatsApp</legend>
+              <h3>How do you use WhatsApp?</h3>
+              <p class="step-sub">So we can set it up for the way you work.</p>
+              <div class="q">
+                <span class="label" id="role-label">What do you do?</span>
+                <div class="choices" role="radiogroup" aria-labelledby="role-label" data-choices="role">
+                  <button type="button" role="radio" aria-checked="false" data-value="Shop or seller">Shop or seller</button>
+                  <button type="button" role="radio" aria-checked="false" data-value="Salon or beauty">Salon or beauty</button>
+                  <button type="button" role="radio" aria-checked="false" data-value="Tutor or school">Tutor or school</button>
+                  <button type="button" role="radio" aria-checked="false" data-value="Church or community">Church or community</button>
+                  <button type="button" role="radio" aria-checked="false" data-value="Freelancer">Freelancer</button>
+                  <button type="button" role="radio" aria-checked="false" data-value="Events">Events</button>
+                  <button type="button" role="radio" aria-checked="false" data-value="Something else">Something else</button>
+                </div>
+              </div>
+              <div class="q">
+                <span class="label" id="wa-label">Which WhatsApp?</span>
+                <div class="choices" role="radiogroup" aria-labelledby="wa-label" data-choices="whatsapp">
+                  <button type="button" role="radio" aria-checked="false" data-value="personal">WhatsApp</button>
+                  <button type="button" role="radio" aria-checked="false" data-value="business">WhatsApp Business</button>
+                  <button type="button" role="radio" aria-checked="true" data-value="unsure">Not sure</button>
+                </div>
+              </div>
+              <div class="q">
+                <label class="label" for="country">Where are you based?</label>
+                <input class="field" id="country" name="country" maxlength="60" autocomplete="country-name" placeholder="City, country">
+              </div>
+              <div class="form-actions"><button class="btn light" type="button" data-back>Back</button><button class="btn dark" type="button" data-next>Next</button></div>
+            </fieldset>
+
+            <fieldset class="form-step" data-step="3" hidden>
+              <legend class="sr-only">Anything else</legend>
+              <h3>Anything we should know?</h3>
+              <p class="step-sub">How many messages you get, what you’d hand over first, anything you’re worried about. Optional.</p>
+              <label class="sr-only" for="about">Anything we should know</label>
+              <textarea class="field" id="about" name="about" maxlength="600" placeholder="e.g. About 60 messages a day, mostly prices and opening hours. I use WhatsApp Business on my shop phone."></textarea>
+              <div class="form-actions"><button class="btn light" type="button" data-back>Back</button><button class="btn dark" type="submit" data-submit><span data-submit-label>Send application</span></button></div>
+            </fieldset>
+          </form>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ============ APPLY ============ -->
-  <section class="section section-sunken" id="apply">
-    <div class="wrap apply">
-      <div class="apply-side">
-        <p class="kicker">Apply</p>
-        <h2 class="h2">Three quick questions. <span class="pop-word">That&rsquo;s it.</span></h2>
-        <p class="lede">We read every one. When it&rsquo;s your turn, an email brings you straight in.</p>
-        <ul>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Free while you test. No card.</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>We set it up with you on a short call.</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Stop whenever you like. Disconnecting removes Kavedi from your number.</li>
-        </ul>
+  <!-- Questions. -->
+  <section class="sec" id="questions">
+    <div class="wrap sec-head">
+      <h2>Questions?</h2>
+      <div class="faq">
+        <details><summary>Where does it work?<i></i></summary><div class="ans"><p>Anywhere WhatsApp works. It replies in the language people write to you in, and runs on your time zone.</p></div></details>
+        <details><summary>What does it cost?<i></i></summary><div class="ans"><p>Nothing while you’re testing. We’ll tell you before anything changes.</p></div></details>
+        <details><summary>How long does the beta last?<i></i></summary><div class="ans"><p>As long as it takes to get right. We ask testers for two weeks of real use, and you’re welcome to keep going after that.</p></div></details>
+        <details><summary>Is anyone reading my chats?<i></i></summary><div class="ans"><p>No. Message text is kept encrypted for 2 days, then deleted. Only conversations handed to you are kept, for 90 days. The <a href="/privacy">privacy policy</a> has the details.</p></div></details>
+        <details><summary>Can I stop it?<i></i></summary><div class="ans"><p>Any time. Every agent has its own switch, and disconnecting removes Kavedi from your number entirely.</p></div></details>
       </div>
-
-      <div class="form-card" data-form-card>
-        <form data-apply novalidate>
-          <div class="progress">
-            <span data-step-label>Step 1 of 3</span>
-            <span class="progress-bar" aria-hidden="true"><span class="is-on"></span><span></span><span></span></span>
-          </div>
-          <p class="form-error" data-error role="alert" hidden></p>
-
-          <div class="hp" aria-hidden="true">
-            <label for="website">Leave this empty</label>
-            <input id="website" name="website" tabindex="-1" autocomplete="off">
-          </div>
-
-          <fieldset class="form-step" data-step="1">
-            <legend class="sr-only">Where we reach you</legend>
-            <h3 class="h3">Where do we reach you?</h3>
-            <p class="step-sub">Your invitation goes here.</p>
-            <div class="q">
-              <label class="label" for="email">Email</label>
-              <input class="field" type="email" id="email" name="email" autocomplete="email" inputmode="email" placeholder="you@example.com" required>
-            </div>
-            <div class="q">
-              <label class="label" for="name">First name <span class="opt">(optional)</span></label>
-              <input class="field" id="name" name="name" autocomplete="given-name" maxlength="80">
-            </div>
-            <div class="form-actions"><span></span><button class="btn btn-primary" type="button" data-next>Next</button></div>
-          </fieldset>
-
-          <fieldset class="form-step" data-step="2" hidden>
-            <legend class="sr-only">How you use WhatsApp</legend>
-            <h3 class="h3">How do you use WhatsApp?</h3>
-            <p class="step-sub">So we can set it up for the way you work.</p>
-            <div class="q">
-              <span class="label" id="role-label">What do you do?</span>
-              <div class="choices" role="radiogroup" aria-labelledby="role-label" data-choices="role">
-                <button type="button" role="radio" aria-checked="false" data-value="Shop or seller">Shop or seller</button>
-                <button type="button" role="radio" aria-checked="false" data-value="Salon or beauty">Salon or beauty</button>
-                <button type="button" role="radio" aria-checked="false" data-value="Tutor or school">Tutor or school</button>
-                <button type="button" role="radio" aria-checked="false" data-value="Church or community">Church or community</button>
-                <button type="button" role="radio" aria-checked="false" data-value="Freelancer">Freelancer</button>
-                <button type="button" role="radio" aria-checked="false" data-value="Events">Events</button>
-                <button type="button" role="radio" aria-checked="false" data-value="Something else">Something else</button>
-              </div>
-            </div>
-            <div class="q">
-              <span class="label" id="wa-label">Which WhatsApp?</span>
-              <div class="choices" role="radiogroup" aria-labelledby="wa-label" data-choices="whatsapp">
-                <button type="button" role="radio" aria-checked="false" data-value="personal">WhatsApp</button>
-                <button type="button" role="radio" aria-checked="false" data-value="business">WhatsApp Business</button>
-                <button type="button" role="radio" aria-checked="true" data-value="unsure">Not sure</button>
-              </div>
-            </div>
-            <div class="q">
-              <label class="label" for="country">Where are you based?</label>
-              <input class="field" id="country" name="country" maxlength="60" autocomplete="country-name" placeholder="City, country">
-            </div>
-            <div class="form-actions"><button class="btn btn-quiet" type="button" data-back>Back</button><button class="btn btn-primary" type="button" data-next>Next</button></div>
-          </fieldset>
-
-          <fieldset class="form-step" data-step="3" hidden>
-            <legend class="sr-only">Anything else</legend>
-            <h3 class="h3">Anything we should know?</h3>
-            <p class="step-sub">How many messages you get, what you&rsquo;d hand over first, anything you&rsquo;re worried about. Optional.</p>
-            <label class="sr-only" for="about">Anything we should know</label>
-            <textarea class="field" id="about" name="about" maxlength="600" placeholder="e.g. About 60 messages a day, mostly prices and opening hours. I use WhatsApp Business on my shop phone."></textarea>
-            <div class="form-actions"><button class="btn btn-quiet" type="button" data-back>Back</button><button class="btn btn-primary" type="submit" data-submit><span data-submit-label>Send application</span></button></div>
-          </fieldset>
-        </form>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ FAQ ============ -->
-  <section class="section" id="faq">
-    <div class="wrap faq">
-      <div class="faq-side">
-        <h2 class="h2">Good questions</h2>
-        <p>Something else? Email <a class="link" href="mailto:support@kavedi.com">support@kavedi.com</a>.</p>
-      </div>
-      <div>
-        <details class="qa"><summary>Where does it work?</summary><div><p>Anywhere WhatsApp works. It replies in the language people write to you in, and runs on your time zone.</p></div></details>
-        <details class="qa"><summary>What does it cost?</summary><div><p>Nothing while you&rsquo;re testing. The <a class="link" href="/pricing">pricing page</a> shows what it will cost afterwards. Those prices can still change before launch.</p></div></details>
-        <details class="qa"><summary>How long does the beta last?</summary><div><p>As long as it takes to get right. We ask testers for two weeks of real use, and you&rsquo;re welcome to keep going after that.</p></div></details>
-        <details class="qa"><summary>What happens to my messages?</summary><div><p>Kavedi reads a message to act on it and doesn&rsquo;t keep it. The only message text stored is a question it passed to you. The <a class="link" href="/privacy">privacy policy</a> has the details.</p></div></details>
-        <details class="qa"><summary>Can I stop it?</summary><div><p>Any time. Every trigger, replies, bookings and check-ins each have their own switch, and disconnecting removes Kavedi from your number entirely.</p></div></details>
-      </div>
+      <p class="small faq-more">Something else? Email <a href="mailto:support@kavedi.com">support@kavedi.com</a>.</p>
     </div>
   </section>
 </main>
 
-<footer class="site-foot">
-  <div class="wrap">
-    <div class="foot-top">
-      <div class="foot-brand">
-        <a class="brand" href="/" aria-label="Kavedi, home"><picture><source srcset="/assets/mark.webp" type="image/webp"><img src="/assets/mark.png" alt="" width="30" height="30" loading="lazy"></picture>Kavedi</a>
-        <p>WhatsApp automation for people who run on messages.</p>
-      </div>
-      <div class="foot-cols">
-        <div class="foot-col">
-          <h2>Product</h2>
-          <ul><li><a href="/#how-it-works">How it works</a></li><li><a href="/#features">Features</a></li><li><a href="/pricing">Pricing</a></li><li><a href="/beta">The beta</a></li></ul>
-        </div>
-        <div class="foot-col">
-          <h2>Company</h2>
-          <ul><li><a href="/privacy">Privacy</a></li><li><a href="/terms">Terms</a></li></ul>
-        </div>
-        <div class="foot-col">
-          <h2>Contact</h2>
-          <ul><li><a href="mailto:support@kavedi.com">support@kavedi.com</a></li></ul>
-          <div class="foot-social">
-            <a href="https://instagram.com/kavedihq" target="_blank" rel="noopener" aria-label="Kavedi on Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1" fill="currentColor" stroke="none"/></svg></a>
-            <a href="https://x.com/kavedihq" target="_blank" rel="noopener" aria-label="Kavedi on X"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.9 2H22l-7.6 8.7L23 22h-6.6l-5.2-6.8L5 22H2l8.1-9.3L1.6 2h6.7l4.7 6.2L18.9 2Zm-2.3 18h1.8L7.5 4H5.6l11 16Z"/></svg></a>
-            <a href="https://youtube.com/@kavedihq" target="_blank" rel="noopener" aria-label="Kavedi on YouTube"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.5 6.9a3 3 0 0 0-2.1-2.1C19.4 4.3 12 4.3 12 4.3s-7.4 0-9.4.5A3 3 0 0 0 .5 6.9 31.6 31.6 0 0 0 0 12a31.6 31.6 0 0 0 .5 5.1 3 3 0 0 0 2.1 2.1c2 .5 9.4.5 9.4.5s7.4 0 9.4-.5a3 3 0 0 0 2.1-2.1A31.6 31.6 0 0 0 24 12a31.6 31.6 0 0 0-.5-5.1ZM9.6 15.5v-7l6.3 3.5-6.3 3.5Z"/></svg></a>
-            <a href="https://github.com/kavedihq" target="_blank" rel="noopener" aria-label="Kavedi on GitHub"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5a11.5 11.5 0 0 0-3.6 22.4c.6.1.8-.3.8-.6v-2.1c-3.2.7-3.9-1.4-3.9-1.4-.5-1.3-1.3-1.7-1.3-1.7-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.7 1.3 3.4 1 .1-.8.4-1.3.7-1.5-2.6-.3-5.2-1.3-5.2-5.7 0-1.3.4-2.3 1.2-3.1-.1-.3-.5-1.5.1-3 0 0 1-.3 3.2 1.2a11 11 0 0 1 5.8 0c2.2-1.5 3.2-1.2 3.2-1.2.6 1.6.2 2.7.1 3 .7.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.6.4.4.8 1.1.8 2.2v3.2c0 .3.2.7.8.6A11.5 11.5 0 0 0 12 .5Z"/></svg></a>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="foot-bottom">
-      <p>Kavedi connects to your existing WhatsApp number as a linked device, like WhatsApp Web. Not affiliated with WhatsApp or Meta. &copy; 2026 Kavedi</p>
-      <div data-theme-switch></div>
-    </div>
-  </div>
-</footer>
+<div class="wrap">
+  <footer class="foot">
+    <a class="logo" href="/" style="font-size:15px"><img src="/assets/mark.webp" alt="" width="20" height="20" style="width:20px;height:20px">Kavedi</a>
+    <nav aria-label="Footer"><a href="/">Home</a><a href="/privacy">Privacy</a><a href="/terms">Terms</a><a href="https://x.com/kavedihq">X</a><a href="mailto:support@kavedi.com">support@kavedi.com</a></nav>
+    <span>Not affiliated with WhatsApp or Meta. © 2026 Kavedi · Photos from Unsplash</span>
+  </footer>
+</div>
 
 <script src="/assets/attribution.js"></script>
-<script src="/assets/kv.js"></script>
+<script src="/assets/page.js"></script>
 <script src="/assets/beta.js"></script>
 </body>
 </html>

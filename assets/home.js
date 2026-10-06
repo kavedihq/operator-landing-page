@@ -44,10 +44,9 @@
     restShown = true;
     rest.forEach(function (el, i) { setTimeout(function () { el.classList.add('is-in'); }, i * 120); });
   }
-  // Writes out a heading letter by letter; a word drawn in ASCII is written in a few strokes. The cursor stays at the
-  // end, blinking, for good.
+  // Writes out a heading letter by letter. The cursor stays at the end, blinking, for good.
   function typeOut(heading, onNearlyDone, onDone) {
-    var parts = $$('.ch, .word-img', heading);
+    var parts = $$('.ch', heading);
     var caret = document.createElement('span');
     caret.className = 'caret';
     caret.setAttribute('aria-hidden', 'true');
@@ -64,11 +63,10 @@
       part.classList.add('on');
       part.after(caret);
       if (onNearlyDone && i > parts.length * 0.7) onNearlyDone();
-      var img = part.tagName === 'IMG';
-      setTimeout(tick, img ? 560 : /[,.]/.test(part.textContent) ? 280 : 30 + Math.random() * 45);
+      setTimeout(tick, /[,.]/.test(part.textContent) ? 280 : 30 + Math.random() * 45);
     })();
   }
-  // Splits a heading's words into letters, leaving any ASCII word whole.
+  // Splits a heading's words into letters.
   function wrapLetters(heading) {
     var holder = $('[data-type]', heading);
     $$('*', holder).concat([holder]).forEach(function (el) {
@@ -81,6 +79,18 @@
     });
     heading.classList.add('typing-on');
   }
+  // A green word split into letters: each letter shows its own slice of the word's gradient, so it reads as one.
+  function paintGrads() {
+    $$('.typing-on .grad').forEach(function (word) {
+      var box = word.getBoundingClientRect();
+      word.style.setProperty('--gw', box.width.toFixed(1) + 'px');
+      $$('.ch', word).forEach(function (ch) { ch.style.setProperty('--gx', (ch.getBoundingClientRect().left - box.left).toFixed(1) + 'px'); });
+    });
+  }
+  paintGrads();
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(paintGrads);
+  addEventListener('resize', paintGrads);
+
   if (title.classList.contains('typing-on')) {
     title.dataset.started = '1';
     setTimeout(function () { typeOut(title, showRest); }, 350);
@@ -92,6 +102,7 @@
   var endTitle = $('#end-title');
   if (endTitle && !reduce && 'IntersectionObserver' in window) {
     wrapLetters(endTitle);
+    paintGrads();
     var endWatch = new IntersectionObserver(function (entries) {
       if (!entries[entries.length - 1].isIntersecting) return;
       endWatch.disconnect();
@@ -292,8 +303,109 @@
     b.addEventListener('click', function () {
       var range = pinRange();
       var k = Number(b.getAttribute('data-i'));
-      scrollTo({ top: range.top + (range.total * (k + 0.05)) / count, behavior: reduce ? 'auto' : 'smooth' });
+      if (reduce) { scrollTo({ top: range.top + (range.total * (k + 0.05)) / count, behavior: 'auto' }); return; }
+      heldBack = false;
+      if (!playing) setPlaying(true);
+      seekTo = k + 0.02;
     });
+  });
+
+  // ---------- The pieces play themselves: reach them and the page scrolls on for you, slowly ----------
+  // Any scroll of yours (wheel, touch, keys, a click) takes it back; the round button plays or pauses it.
+  var PIECE_MS = 7000;
+  var playBtn = $('.pin-play', pin);
+  var playing = false;
+  var heldBack = false; // you took over in this visit; it waits for the button until you leave the pieces
+  var autoX = 0;
+  var lastFrame = 0;
+  var seekTo = null;
+  function pinX() {
+    var range = pinRange();
+    return ((scrollY - range.top) / range.total) * count;
+  }
+  var loop = 0;
+  var expectedY = null;
+  function setPlaying(on) {
+    playing = on;
+    loop++;
+    expectedY = null;
+    playBtn.classList.toggle('is-playing', on);
+    playBtn.setAttribute('aria-label', on ? 'Pause the pieces' : 'Play the pieces');
+    if (on) {
+      autoX = clamp(pinX(), 0, count);
+      lastFrame = 0;
+      var mine = loop;
+      requestAnimationFrame(function (t) { step(t, mine); });
+    }
+  }
+  function step(now, mine) {
+    if (!playing || mine !== loop) return;
+    // Moved by something other than this (a key, the find bar, a link): hand it back.
+    if (expectedY != null && Math.abs(scrollY - expectedY) > 40) { setPlaying(false); heldBack = true; return; }
+    var dt = lastFrame ? Math.min(50, now - lastFrame) : 16;
+    lastFrame = now;
+    if (seekTo != null) {
+      // A jump to a piece glides there quickly, then plays on from it.
+      autoX += (seekTo - autoX) * Math.min(1, dt / 120);
+      if (Math.abs(seekTo - autoX) < 0.01) { autoX = seekTo; seekTo = null; }
+    } else {
+      autoX += dt / PIECE_MS;
+    }
+    if (autoX >= count - 0.001) {
+      autoX = count;
+      setPlaying(false);
+      heldBack = true;
+    }
+    var range = pinRange();
+    expectedY = range.top + (Math.min(autoX, count) / count) * range.total;
+    scrollTo({ top: expectedY, behavior: 'instant' });
+    if (playing) requestAnimationFrame(function (t) { step(t, mine); });
+  }
+  function takeBack() {
+    if (playing) { setPlaying(false); heldBack = true; }
+  }
+  addEventListener('wheel', takeBack, { passive: true });
+  addEventListener('touchstart', takeBack, { passive: true });
+  addEventListener('keydown', function (e) {
+    if (/^(ArrowUp|ArrowDown|PageUp|PageDown|Home|End| )$/.test(e.key) && !e.target.closest('input, textarea')) takeBack();
+  });
+  var mouseHeld = false;
+  addEventListener('mousedown', function (e) {
+    if (e.target.closest('.pin-play, .pin-list button')) return;
+    mouseHeld = true;
+    takeBack();
+  });
+  addEventListener('mouseup', function () { mouseHeld = false; });
+  // Called on every scroll. Once you've reached the pieces and your own scrolling has settled (a fling's glide
+  // included), it plays on from where you are.
+  var idleTimer = 0;
+  function maybePlay() {
+    if (reduce) return;
+    var x = pinX();
+    playBtn.hidden = !(x > -0.6 && x < count + 0.2);
+    if (x < -0.6 || x > count + 0.2) heldBack = false;
+    if (playing) return;
+    clearTimeout(idleTimer);
+    var y = scrollY;
+    idleTimer = setTimeout(function () {
+      // Still moving (a smooth scroll whose events came slowly): wait for it to settle.
+      if (Math.abs(scrollY - y) > 2 || Date.now() < passingUntil) { maybePlay(); return; }
+      var at = pinX();
+      if (playing || heldBack || mouseHeld || document.hidden) return;
+      if (at > -0.02 && at < count - 0.05) setPlaying(true);
+    }, 400);
+  }
+  // A link to somewhere else on the page passes through the pieces without stopping to play them.
+  var passingUntil = 0;
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest('a[href^="#"]');
+    if (a && a.getAttribute('href') !== '#pieces') passingUntil = Date.now() + 1800;
+  });
+  playBtn.addEventListener('click', function () {
+    if (playing) { setPlaying(false); heldBack = true; return; }
+    heldBack = false;
+    if (pinX() >= count - 0.05) { setPlaying(true); seekTo = 0; return; }
+    setPlaying(true);
   });
 
   var queued = false;
@@ -305,6 +417,7 @@
       updateNav();
       updateScene();
       updatePin();
+      maybePlay();
     });
   }
   addEventListener('scroll', onScroll, { passive: true });

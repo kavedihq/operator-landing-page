@@ -79,6 +79,8 @@
   <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></symbol>
   <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
   <symbol id="i-up" viewBox="0 0 24 24"><path d="M12 19V5M5 12l7-7 7 7"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><path d="M7 4.5v15a1 1 0 0 0 1.5.86l12.5-7.5a1 1 0 0 0 0-1.72L8.5 3.64A1 1 0 0 0 7 4.5Z"/></symbol>
+  <symbol id="i-pause" viewBox="0 0 24 24"><rect x="6" y="4" width="4" height="16" rx="1.2"/><rect x="14" y="4" width="4" height="16" rx="1.2"/></symbol>
   <symbol id="i-down" viewBox="0 0 24 24"><path d="M12 5v14M19 12l-7 7-7-7"/></symbol>
   <symbol id="i-wifi" viewBox="0 0 24 24"><path d="M5 12.55a11 11 0 0 1 14.08 0M1.42 9a16 16 0 0 1 21.16 0M8.53 16.11a6 6 0 0 1 6.95 0M12 20h.01"/></symbol>
   <symbol id="i-battery" viewBox="0 0 24 24"><rect width="16" height="10" x="2" y="7" rx="2"/><path d="M22 11v2M6 11v2"/></symbol>
@@ -105,18 +107,20 @@
         <img class="desk-blur" src="/assets/photos/hero-blur.webp" alt="">
 
         <div class="hero">
-          <h1 id="hero-title" aria-label="Your WhatsApp, handled by agents."><span aria-hidden="true" data-type>Your <img class="word-img" src="/assets/photos/ascii-whatsapp.webp" alt="" width="1200" height="243">,<br>handled by agents.</span></h1>
+          <h1 id="hero-title" aria-label="Your WhatsApp, handled by agents."><span aria-hidden="true" data-type>Your WhatsApp,<br>handled by <span class="grad">agents</span>.</span></h1>
           <script>
             // Wrapped before the first paint so the headline never flashes in whole before it's written out.
             (function () {
               var h = document.getElementById('hero-title');
               if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
               var holder = h.firstElementChild;
-              Array.prototype.slice.call(holder.childNodes).forEach(function (node) {
-                if (node.nodeType !== 3) return;
-                var frag = document.createDocumentFragment();
-                node.textContent.split('').forEach(function (c) { var s = document.createElement('span'); s.className = 'ch'; s.textContent = c; frag.appendChild(s); });
-                node.replaceWith(frag);
+              [holder].concat(Array.prototype.slice.call(holder.querySelectorAll('*'))).forEach(function (el) {
+                Array.prototype.slice.call(el.childNodes).forEach(function (node) {
+                  if (node.nodeType !== 3) return;
+                  var frag = document.createDocumentFragment();
+                  node.textContent.split('').forEach(function (c) { var s = document.createElement('span'); s.className = 'ch'; s.textContent = c; frag.appendChild(s); });
+                  node.replaceWith(frag);
+                });
               });
               h.classList.add('typing-on');
               // If the page's script never arrives, show the headline anyway.
@@ -219,6 +223,7 @@
           </ol>
         </div>
 
+        <div class="pin-stage">
         <div class="pin-frame photo-frame" style="--img:url(/assets/photos/pieces.webp)" aria-hidden="true">
           <!-- 01 Agents: + New agent, and the builder opens. -->
           <div class="scr on" data-i="0"><div class="win">
@@ -320,6 +325,8 @@
 
           <div class="pcursor" data-t="cursor"><svg viewBox="0 0 24 24"><path d="M4 2.5 19.5 11l-6.8 1.9-3.6 6.6z" fill="#fff" stroke="#141414" stroke-width="1.5" stroke-linejoin="round"/></svg></div>
         </div>
+        <button class="pin-play" type="button" aria-label="Play the pieces" hidden><svg class="ic i-play"><use href="#i-play"/></svg><svg class="ic i-pause"><use href="#i-pause"/></svg></button>
+        </div>
       </div>
     </div>
   </section>
@@ -340,7 +347,7 @@
 
   <section class="end wrap" id="join">
     <div class="photo-frame" style="--img:url(/assets/photos/hero.webp)">
-      <h2 id="end-title" aria-label="If people message you all day, Kavedi is for you."><span aria-hidden="true" data-type>If people message you all day,<br><img class="word-img" src="/assets/photos/ascii-kavedi.webp" alt="" width="1100" height="283" loading="lazy"> is for you.</span></h2>
+      <h2 id="end-title" aria-label="If people message you all day, Kavedi is for you."><span aria-hidden="true" data-type>If people message you all day,<br><span class="grad">Kavedi</span> is for you.</span></h2>
       <div class="cta"><a class="btn white" href="/beta">Join the beta <svg class="ic"><use href="#i-arrow"/></svg></a></div>
       <p class="small">Free while we test it with the first people.</p>
     </div>

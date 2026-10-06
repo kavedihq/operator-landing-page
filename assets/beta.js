@@ -269,10 +269,10 @@
         name.appendChild(el('span', null, 'now'));
         body.appendChild(name);
         body.appendChild(el('p', 'wait-q', question));
-        body.appendChild(el('span', 'chip-warn', 'No trigger for this'));
+        body.appendChild(el('span', 'chip-warn', 'No agent for this'));
         row.appendChild(body);
         waitEl.insertBefore(row, waitEl.firstChild);
-        statusEl.textContent = (welcome ? '“Welcome” ran. ' : '') + 'No trigger covers that, so nothing else was sent. It’s waiting for ' + op.name + '.';
+        statusEl.textContent = (welcome ? '“Welcome” ran. ' : '') + 'No agent covers that, so nothing else was sent. It’s in the inbox for ' + op.name + '.';
       }
       setBusy(false);
     };
