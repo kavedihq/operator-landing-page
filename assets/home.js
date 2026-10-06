@@ -44,29 +44,60 @@
     restShown = true;
     rest.forEach(function (el, i) { setTimeout(function () { el.classList.add('is-in'); }, i * 120); });
   }
-  if (title.classList.contains('is-typing')) {
-    title.dataset.started = '1';
-    var chars = $$('.ch', title);
+  // Writes out a heading letter by letter; a word drawn in ASCII is written in a few strokes. The cursor stays at the
+  // end, blinking, for good.
+  function typeOut(heading, onNearlyDone, onDone) {
+    var parts = $$('.ch, .word-img', heading);
     var caret = document.createElement('span');
     caret.className = 'caret';
-    chars[0].before(caret);
-    var ci = 0;
-    var tick = function () {
-      if (ci >= chars.length) {
-        title.classList.add('done');
-        showRest();
-        setTimeout(function () { caret.classList.add('is-gone'); }, 1800);
+    caret.setAttribute('aria-hidden', 'true');
+    parts[0].before(caret);
+    var i = 0;
+    (function tick() {
+      if (i >= parts.length) {
+        heading.classList.add('done');
+        if (onNearlyDone) onNearlyDone();
+        if (onDone) onDone();
         return;
       }
-      var c = chars[ci++];
-      c.classList.add('on');
-      c.after(caret);
-      if (ci > chars.length * 0.7) showRest();
-      setTimeout(tick, /[,.]/.test(c.textContent) ? 280 : 30 + Math.random() * 45);
-    };
-    setTimeout(tick, 350);
+      var part = parts[i++];
+      part.classList.add('on');
+      part.after(caret);
+      if (onNearlyDone && i > parts.length * 0.7) onNearlyDone();
+      var img = part.tagName === 'IMG';
+      setTimeout(tick, img ? 560 : /[,.]/.test(part.textContent) ? 280 : 30 + Math.random() * 45);
+    })();
+  }
+  // Splits a heading's words into letters, leaving any ASCII word whole.
+  function wrapLetters(heading) {
+    var holder = $('[data-type]', heading);
+    $$('*', holder).concat([holder]).forEach(function (el) {
+      Array.prototype.slice.call(el.childNodes).forEach(function (node) {
+        if (node.nodeType !== 3) return;
+        var frag = document.createDocumentFragment();
+        node.textContent.split('').forEach(function (c) { var s = document.createElement('span'); s.className = 'ch'; s.textContent = c; frag.appendChild(s); });
+        node.replaceWith(frag);
+      });
+    });
+    heading.classList.add('typing-on');
+  }
+  if (title.classList.contains('typing-on')) {
+    title.dataset.started = '1';
+    setTimeout(function () { typeOut(title, showRest); }, 350);
   } else {
     showRest();
+  }
+
+  // The closing line is written out when it comes into view, once.
+  var endTitle = $('#end-title');
+  if (endTitle && !reduce && 'IntersectionObserver' in window) {
+    wrapLetters(endTitle);
+    var endWatch = new IntersectionObserver(function (entries) {
+      if (!entries[entries.length - 1].isIntersecting) return;
+      endWatch.disconnect();
+      typeOut(endTitle);
+    }, { threshold: 0.6 });
+    endWatch.observe(endTitle);
   }
 
   // ---------- The hero folds into a desktop as you scroll (computers only) ----------
@@ -128,14 +159,135 @@
     var seg = Math.min(1, x - at);
     lis[at].style.setProperty('--seg', seg.toFixed(3));
     bars.forEach(function (b, k) { b.style.setProperty('--f', k < at ? 1 : k === at ? seg.toFixed(3) : 0); });
-    if (at === current) return;
-    current = at;
-    lis.forEach(function (li, k) { li.classList.toggle('on', k === at); });
-    screens.forEach(function (s, k) {
-      s.classList.toggle('on', k === at);
-      s.classList.toggle('was', k < at);
-    });
+    if (at !== current) {
+      current = at;
+      lis.forEach(function (li, k) { li.classList.toggle('on', k === at); });
+      screens.forEach(function (s, k) {
+        s.classList.toggle('on', k === at);
+        s.classList.toggle('was', k < at);
+      });
+    }
+    // Each piece plays out with the scroll: the ones before are finished, the ones after not started.
+    screens.forEach(function (s, k) { PIECES[k].apply(k < at ? 1 : k > at ? 0 : seg, s); });
+    moveCursor(PIECES[at], screens[at], seg);
   }
+
+  // ---------- The pieces, played by the scroll: a cursor goes to work on each one ----------
+  var frame = $('.pin-frame', pin);
+  var pcursor = $('[data-t="cursor"]', frame);
+  var T = function (scr, name) { return $('[data-t="' + name + '"]', scr); };
+  var smooth = function (t) { return t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2; };
+  var phase = function (seg, a, b) { return clamp((seg - a) / (b - a), 0, 1); };
+  var within = function (seg, a, b) { return seg >= a && seg < b; };
+  // Where something is, inside the frame. 'out' is just off its bottom right corner.
+  function spot(scr, name, dx, dy) {
+    return function () {
+      var f = frame.getBoundingClientRect();
+      if (name === 'out') return [f.width + 30, f.height * 0.82];
+      var el = T(scr, name);
+      if (!el) return [f.width + 30, f.height * 0.82];
+      var r = el.getBoundingClientRect();
+      return [r.left - f.left + r.width * (dx == null ? 0.5 : dx), r.top - f.top + r.height * (dy == null ? 0.55 : dy)];
+    };
+  }
+  function moveCursor(piece, scr, seg) {
+    var keys = piece.keys(scr);
+    var p = keys[keys.length - 1][1]();
+    if (seg <= keys[0][0]) p = keys[0][1]();
+    else {
+      for (var i = 0; i < keys.length - 1; i++) {
+        if (seg <= keys[i + 1][0]) {
+          var t = smooth(phase(seg, keys[i][0], keys[i + 1][0]));
+          var a = keys[i][1](), b = keys[i + 1][1]();
+          p = [a[0] + (b[0] - a[0]) * t, a[1] + (b[1] - a[1]) * t];
+          break;
+        }
+      }
+    }
+    pcursor.style.setProperty('--x', Math.round(p[0]) + 'px');
+    pcursor.style.setProperty('--y', Math.round(p[1]) + 'px');
+    pcursor.classList.toggle('is-down', piece.down.some(function (d) { return within(seg, d[0], d[1]); }));
+  }
+  var KNOW = 'Yes, we deliver on Sundays, 10 to 2.';
+  var PIECES = [
+    { // Agents: + New agent, the builder slides in, its steps arrive, then it's switched on.
+      down: [[0.3, 0.36], [0.86, 0.9]],
+      keys: function (s) { return [[0, spot(s, 'out')], [0.28, spot(s, 'new')], [0.4, spot(s, 'new')], [0.8, spot(s, 'sw')], [0.92, spot(s, 'sw')], [1, spot(s, 'sw')]]; },
+      apply: function (seg, s) {
+        T(s, 'new').classList.toggle('is-pressed', within(seg, 0.3, 0.36));
+        T(s, 'sheet').classList.toggle('open', seg > 0.36);
+        ['s0', 's1', 's2', 's3'].forEach(function (n, k) { T(s, n).classList.toggle('show', seg > 0.45 + k * 0.09); });
+        T(s, 'sw').classList.toggle('on', seg > 0.9);
+      },
+    },
+    { // Bookings: Ben's booking picked up and dropped on a free slot; Ben is told.
+      down: [[0.26, 0.72]],
+      keys: function (s) { return [[0, spot(s, 'out')], [0.22, spot(s, 'ben', 0.35, 0.5)], [0.72, spot(s, 'ben', 0.35, 0.5)], [0.95, spot(s, 'out')]]; },
+      apply: function (seg, s) {
+        var ben = T(s, 'ben');
+        var dy = T(s, 'to').offsetTop - T(s, 'from').offsetTop;
+        ben.style.transform = 'translateY(' + Math.round(smooth(phase(seg, 0.32, 0.66)) * dy) + 'px)';
+        ben.classList.toggle('lift', within(seg, 0.28, 0.72));
+        T(s, 'left').style.opacity = phase(seg, 0.3, 0.4);
+        T(s, 'free').style.opacity = 1 - phase(seg, 0.58, 0.66);
+        T(s, 'bensub').textContent = seg > 0.72 ? 'Moved · Ben was told' : 'Booked on WhatsApp';
+        T(s, 'toast').classList.toggle('show', seg > 0.74);
+      },
+    },
+    { // Knowledge: an answer typed in and taught; the question three people asked is answered.
+      down: [[0.16, 0.2], [0.69, 0.74]],
+      keys: function (s) { return [[0, spot(s, 'out')], [0.14, spot(s, 'box', 0.2, 0.5)], [0.2, spot(s, 'box', 0.2, 0.5)], [0.62, spot(s, 'box', 0.55, 0.6)], [0.69, spot(s, 'teach')], [0.76, spot(s, 'teach')], [0.96, spot(s, 'out')]]; },
+      apply: function (seg, s) {
+        var taught = seg > 0.74;
+        T(s, 'typed').textContent = taught ? '' : KNOW.slice(0, Math.round(KNOW.length * phase(seg, 0.2, 0.6)));
+        T(s, 'teach').classList.toggle('is-pressed', within(seg, 0.69, 0.74));
+        T(s, 'ans').classList.toggle('show', taught);
+        T(s, 'q').classList.toggle('done', taught);
+        T(s, 'qsub').textContent = taught ? 'Answered · sent to all 3' : 'Asked by 3 people · it didn’t know';
+      },
+    },
+    { // Inbox: Priya's messages arrive, it's handed to you, and you take it to WhatsApp.
+      down: [[0.84, 0.9]],
+      keys: function (s) { return [[0, spot(s, 'out')], [0.66, spot(s, 'out')], [0.8, spot(s, 'wa', 0.4)], [1, spot(s, 'wa', 0.4)]]; },
+      apply: function (seg, s) {
+        ['m0', 'm1', 'm2', 'm3'].forEach(function (n, k) { T(s, n).classList.toggle('show', seg > 0.08 + k * 0.15); });
+        T(s, 'wa').classList.toggle('is-pressed', within(seg, 0.84, 0.9));
+      },
+    },
+    { // Messages: Broadcast pressed, the bar fills as you scroll, then it's sent.
+      down: [[0.11, 0.16]],
+      keys: function (s) { return [[0, spot(s, 'out')], [0.1, spot(s, 'send')], [0.17, spot(s, 'send')], [0.32, spot(s, 'out')]]; },
+      apply: function (seg, s) {
+        var done = phase(seg, 0.18, 0.85);
+        T(s, 'send').classList.toggle('is-pressed', within(seg, 0.11, 0.16));
+        T(s, 'bar').style.width = (done * 100).toFixed(1) + '%';
+        T(s, 'count').textContent = Math.round(done * 50) + ' of 50 sent' + (done < 1 ? ' · ' + (50 - Math.round(done * 50)) + ' still to go' : '');
+        T(s, 'state').textContent = done >= 1 ? 'Sent' : 'Sending';
+        T(s, 'toast').classList.toggle('show', seg > 0.87);
+      },
+    },
+    { // Connected apps: switched on one by one.
+      down: [0, 1, 2, 3, 4].map(function (k) { return [0.08 + k * 0.17, 0.12 + k * 0.17]; }),
+      keys: function (s) {
+        var keys = [[0, spot(s, 'out')]];
+        [0, 1, 2, 3, 4].forEach(function (k) {
+          keys.push([0.06 + k * 0.17, spot(s, 'a' + k, 0.86, 0.5)]);
+          keys.push([0.13 + k * 0.17, spot(s, 'a' + k, 0.86, 0.5)]);
+        });
+        keys.push([1, spot(s, 'out')]);
+        return keys;
+      },
+      apply: function (seg, s) {
+        [0, 1, 2, 3, 4].forEach(function (k) {
+          var tile = T(s, 'a' + k);
+          var on = seg > 0.12 + k * 0.17;
+          tile.classList.toggle('on', on);
+          tile.querySelector('.sw').classList.toggle('on', on);
+          tile.querySelector('small').textContent = on ? 'Connected' : 'Off';
+        });
+      },
+    },
+  ];
   $$('.pin-list button', pin).forEach(function (b) {
     b.addEventListener('click', function () {
       var range = pinRange();
@@ -258,6 +410,7 @@
   }
   function reset() {
     stage.classList.remove('is-blurred');
+    cursor.classList.remove('is-gone');
     list.innerHTML = '';
     say('it', 'What should your agent do?');
     askText.textContent = '';
@@ -385,26 +538,35 @@
     }
     await run.wait(1100);
 
-    // The window steps back, and the chat comes up over it.
+    // Its work done, the cursor leaves; the window steps back, and the chat comes up over it.
+    if (live) {
+      var box = stage.getBoundingClientRect();
+      cursor.style.setProperty('--x', Math.round(box.width + 60) + 'px');
+      cursor.style.setProperty('--y', Math.round(box.height * 0.7) + 'px');
+      cursor.classList.add('is-gone');
+    }
+    await run.wait(500);
     if (live) {
       mood('');
       toast.classList.remove('is-in');
       stage.classList.add('is-blurred');
     }
-    await run.move(stage, 0.97, 0.97);
+    await run.wait(500);
+    // Every message is typed first: dots on their side, then the words.
     for (var m = 0; m < s.chat.length; m++) {
       var line = s.chat[m];
-      if (line[0] === 'them' || line[0] === 'note') {
-        await run.wait(line[0] === 'note' ? 500 : 800);
+      if (line[0] === 'note') {
+        await run.wait(500);
         if (live) bubble(line[0], line[1], line[2]);
-      } else {
-        await run.wait(450);
-        var dots = live ? chat.appendChild(el('div', 'wa out typing pop', '<b></b><b></b><b></b>')) : null;
-        await run.wait(1150);
-        if (live) {
-          dots.remove();
-          bubble(line[0], line[1], line[2]);
-        }
+        continue;
+      }
+      var ours = line[0] !== 'them';
+      await run.wait(350);
+      var dots = live ? chat.appendChild(el('div', 'wa typing pop' + (ours ? ' out' : ''), '<b></b><b></b><b></b>')) : null;
+      await run.wait(ours ? 1150 : 900);
+      if (live) {
+        dots.remove();
+        bubble(line[0], line[1], line[2]);
       }
     }
     await run.wait(3000);

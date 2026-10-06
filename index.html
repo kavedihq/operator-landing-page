@@ -105,40 +105,32 @@
         <img class="desk-blur" src="/assets/photos/hero-blur.webp" alt="">
 
         <div class="hero">
-          <h1 id="hero-title" aria-label="Your WhatsApp, handled by agents."><span aria-hidden="true">Your WhatsApp,<br>handled by agents.</span></h1>
+          <h1 id="hero-title" aria-label="Your WhatsApp, handled by agents."><span aria-hidden="true" data-type>Your <img class="word-img" src="/assets/photos/ascii-whatsapp.webp" alt="" width="1200" height="243">,<br>handled by agents.</span></h1>
           <script>
             // Wrapped before the first paint so the headline never flashes in whole before it's written out.
             (function () {
               var h = document.getElementById('hero-title');
               if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
               var holder = h.firstElementChild;
-              holder.childNodes.forEach(function (node) {
+              Array.prototype.slice.call(holder.childNodes).forEach(function (node) {
                 if (node.nodeType !== 3) return;
                 var frag = document.createDocumentFragment();
                 node.textContent.split('').forEach(function (c) { var s = document.createElement('span'); s.className = 'ch'; s.textContent = c; frag.appendChild(s); });
                 node.replaceWith(frag);
               });
-              h.classList.add('is-typing');
+              h.classList.add('typing-on');
               // If the page's script never arrives, show the headline anyway.
               setTimeout(function () { if (!h.dataset.started) { h.classList.add('done'); document.querySelectorAll('.rise').forEach(function (el) { el.classList.add('is-in'); }); } }, 2500);
             })();
           </script>
-          <p class="hero-sub rise">They reply, book, remind and get you paid on the number you already use. Anything they can’t handle comes to you.</p>
+          <p class="hero-sub rise">Replies, bookings, reminders and payments, all on the number you already use. Anything that needs you comes to you.</p>
           <div class="cta rise"><a class="btn white" href="/beta">Join the beta <svg class="ic"><use href="#i-arrow"/></svg></a><a class="btn glass" href="#agents">See how it works</a></div>
           <p class="small rise">Free during the beta · Connects in 2 minutes</p>
         </div>
-        <a class="scroll-hint" href="#agents" aria-hidden="true" tabindex="-1">Scroll <svg class="ic"><use href="#i-down"/></svg></a>
+        <a class="scroll-hint" href="#agents" aria-label="Scroll down"><svg class="ic"><use href="#i-down"/></svg></a>
 
         <div class="os">
-          <div class="menubar" aria-hidden="true">
-            <img src="/assets/mark.webp" alt=""><b>Kavedi</b><span>File</span><span>Edit</span><span>View</span><span>Window</span><span>Help</span>
-            <span class="mb-right"><svg class="ic"><use href="#i-battery"/></svg><svg class="ic"><use href="#i-wifi"/></svg><svg class="ic"><use href="#i-search"/></svg><span>Sat 02:13</span></span>
-          </div>
-          <div class="float photo-card pc-1" aria-hidden="true"><img src="/assets/photos/cakes.webp" alt="" loading="lazy"></div>
-          <div class="float photo-card pc-2" aria-hidden="true"><img src="/assets/photos/cake.webp" alt="" loading="lazy"></div>
-
           <div class="float window w-demo">
-            <div class="titlebar" aria-hidden="true"><i></i><i></i><i></i><span>Kavedi · Inbox</span></div>
             <!-- The demo video goes here: set data-video="/assets/video/hero.mp4" (16:10, muted, loops). Until then, the app drawn. -->
             <div class="slot" data-video="" data-video-label="Kavedi's inbox while agents answer on WhatsApp">
               <div class="app" aria-hidden="true">
@@ -168,20 +160,9 @@
             </div>
           </div>
 
-          <div class="float w-ascii" aria-hidden="true">
-            <img src="/assets/photos/ascii-phone.webp" alt="" loading="lazy">
-            <span class="ascii-chip">replying on WhatsApp</span>
-          </div>
+          <div class="float wa-logo" aria-hidden="true"><img src="/assets/photos/ascii-wa-logo.webp" alt="" width="640" height="652" loading="lazy"></div>
           <div class="float bubble-float bf-1" aria-hidden="true">Do you have anything this Saturday?<small>02:13</small></div>
           <div class="float bubble-float bf-2" aria-hidden="true">Yes! 11:30 or 14:00. Which works? 🙂<small>02:13 ✓✓</small></div>
-
-          <div class="float dock" aria-hidden="true">
-            <span style="--c:#0A7F7A"><img src="/assets/mark.webp" alt=""></span>
-            <span style="--c:#25A55F"><svg class="ic"><use href="#i-chat"/></svg></span>
-            <span style="--c:#D9443A"><svg class="ic"><use href="#i-cal"/></svg></span>
-            <span style="--c:#635BFF"><svg class="ic"><use href="#i-card"/></svg></span>
-            <span style="--c:#C98200"><svg class="ic"><use href="#i-book"/></svg></span>
-          </div>
         </div>
       </div>
     </div>
@@ -198,7 +179,6 @@
         <div class="studio-tabs" role="tablist" aria-label="Examples"></div>
         <div class="stage" id="stage" aria-hidden="true">
           <div class="window build">
-            <div class="titlebar"><i></i><i></i><i></i><span>Agents · New agent</span></div>
             <div class="build-body">
               <div class="ask-pane">
                 <div class="ask-head">
@@ -219,6 +199,7 @@
     </div>
   </section>
 
+  <!-- The pieces: the page holds still while the list moves on, and a cursor works on each one as you scroll. -->
   <section class="pin" id="pieces" style="--n:6">
     <div class="pin-stick">
       <div class="wrap pin-grid">
@@ -239,66 +220,77 @@
         </div>
 
         <div class="pin-frame photo-frame" style="--img:url(/assets/photos/pieces.webp)" aria-hidden="true">
-          <!-- 01 Agents -->
+          <!-- 01 Agents: + New agent, and the builder opens. -->
           <div class="scr on" data-i="0"><div class="win">
-            <div class="win-top"><h5 style="--c:#7A5AF8"><svg class="ic"><use href="#i-bot"/></svg>Agents</h5><span class="app-search"><svg class="ic"><use href="#i-search"/></svg>Search</span></div>
+            <div class="win-top"><h5 style="--c:#7A5AF8"><svg class="ic"><use href="#i-bot"/></svg>Agents</h5><span class="go" data-t="new" style="margin-left:auto">+ New agent</span></div>
             <div class="win-body">
-              <div class="box">Describe what you want<span class="go">Build</span></div>
-              <div>
-                <div class="rowx"><span class="tile" style="--c:#0A7F7A"><svg class="ic"><use href="#i-chat"/></svg></span><div><strong>Receptionist</strong><small>Answers from what you taught it</small></div><span class="sw on"></span></div>
-                <div class="rowx"><span class="tile" style="--c:#D9443A"><svg class="ic"><use href="#i-cal"/></svg></span><div><strong>Booker</strong><small>Books, moves and cancels</small></div><span class="sw on"></span></div>
-                <div class="rowx"><span class="tile" style="--c:#7A5AF8"><svg class="ic"><use href="#i-bell"/></svg></span><div><strong>Reminder</strong><small>The day before each booking</small></div><span class="sw on"></span></div>
-                <div class="rowx"><span class="tile" style="--c:#C98200"><svg class="ic"><use href="#i-tag"/></svg></span><div><strong>Price list</strong><small>Sends it when someone asks</small></div><span class="sw on"></span></div>
-                <div class="rowx"><span class="tile" style="--c:#2F6FDE"><svg class="ic"><use href="#i-loop"/></svg></span><div><strong>Follow-up</strong><small>When someone goes quiet for 3 days</small></div><span class="sw"></span></div>
-              </div>
+              <div class="rowx"><span class="tile" style="--c:#0A7F7A"><svg class="ic"><use href="#i-chat"/></svg></span><div><strong>Receptionist</strong><small>Answers from what you taught it</small></div><span class="sw on"></span></div>
+              <div class="rowx"><span class="tile" style="--c:#D9443A"><svg class="ic"><use href="#i-cal"/></svg></span><div><strong>Booker</strong><small>Books, moves and cancels</small></div><span class="sw on"></span></div>
+              <div class="rowx"><span class="tile" style="--c:#7A5AF8"><svg class="ic"><use href="#i-bell"/></svg></span><div><strong>Reminder</strong><small>The day before each booking</small></div><span class="sw on"></span></div>
+              <div class="rowx"><span class="tile" style="--c:#2F6FDE"><svg class="ic"><use href="#i-loop"/></svg></span><div><strong>Follow-up</strong><small>When someone goes quiet for 3 days</small></div><span class="sw"></span></div>
+            </div>
+            <div class="sheet" data-t="sheet">
+              <div class="sheet-top"><span class="tile" style="--c:#C98200"><svg class="ic"><use href="#i-tag"/></svg></span><strong>Price list</strong><span class="sw" data-t="sw"></span></div>
+              <div class="when-card reveal" data-t="s0"><b>When to use it</b>They ask about prices, in any words</div>
+              <ol class="steps">
+                <li class="reveal" data-t="s1"><b>1</b><span>Send <span class="tag">price-list.jpg</span><small>with “Here you go, {first name}!”</small></span></li>
+                <li class="reveal" data-t="s2"><b>2</b><span>Answer from <span class="tag">Prices</span><small>Only what you taught it</small></span></li>
+                <li class="reveal" data-t="s3"><b>3</b><span>Hand over to you<small>when they ask for a discount</small></span></li>
+              </ol>
             </div>
           </div></div>
-          <!-- 02 Bookings -->
+
+          <!-- 02 Bookings: Ben's booking dragged to a free slot. -->
           <div class="scr" data-i="1"><div class="win">
             <div class="win-top"><h5 style="--c:#D9443A"><svg class="ic"><use href="#i-cal"/></svg>Bookings</h5><span class="app-search"><svg class="ic"><use href="#i-search"/></svg>Search</span></div>
-            <div class="win-body">
+            <div class="win-body bk">
               <div class="lab">Saturday 4 Oct · 3 bookings</div>
               <div class="slot-row"><time>11:30</time><div class="b" style="--c:#0A7F7A"><div><strong>Cake tasting · Maya Reyes</strong><small>Booked on WhatsApp</small></div><span class="pill ok">Reminder sent</span></div></div>
               <div class="slot-row"><time>13:00</time><div class="b off"><div><strong>Lunch</strong></div></div></div>
-              <div class="now"><span>13:40</span></div>
-              <div class="slot-row"><time>14:00</time><div class="b" style="--c:#2F6FDE"><div><strong>Consultation · Ben Carter</strong><small>Booked on WhatsApp</small></div><span class="pill">New</span></div></div>
+              <div class="slot-row" data-t="from"><time>14:00</time><div class="b free" data-t="left" style="position:absolute;inset:0 0 0 52px;opacity:0"><div><small>Free</small></div></div><div class="b drag" data-t="ben" style="--c:#2F6FDE"><div><strong>Consultation · Ben Carter</strong><small data-t="bensub">Booked on WhatsApp</small></div></div></div>
+              <div class="slot-row" data-t="to"><time>15:30</time><div class="b free" data-t="free"><div><small>Free</small></div></div></div>
               <div class="slot-row"><time>16:15</time><div class="b" style="--c:#7A5AF8"><div><strong>Collection · Sofia Duarte</strong><small>Added by you</small></div></div></div>
-              <div class="rowx" style="margin-top:auto"><span class="tile solid" style="--c:#4285F4">G</span><div><strong>Google Calendar</strong><small>Every booking goes in as it’s made</small></div><span class="pill ok">On</span></div>
             </div>
+            <div class="mini-toast" data-t="toast"><svg class="ic"><use href="#i-check"/></svg>Moved to 15:30. Ben was told.</div>
           </div></div>
-          <!-- 03 Knowledge -->
+
+          <!-- 03 Knowledge: typed in, taught, and the question answered. -->
           <div class="scr" data-i="2"><div class="win">
             <div class="win-top"><h5 style="--c:#C98200"><svg class="ic"><use href="#i-book"/></svg>Knowledge</h5><span class="app-search"><svg class="ic"><use href="#i-search"/></svg>Search</span></div>
             <div class="win-body">
-              <div class="box">Teach the answer for next time<svg class="ic" style="margin-left:auto;color:var(--muted)"><use href="#i-mic"/></svg></div>
-              <div class="card"><strong style="font-size:13px">Do you deliver on Sundays?</strong><small class="small">Asked by 3 people · it didn’t know</small></div>
+              <div class="box teach" data-t="box"><span class="typed" data-t="typed"></span><span class="go" data-t="teach">Teach</span></div>
+              <div class="card q" data-t="q"><strong style="font-size:13px">Do you deliver on Sundays?</strong><small class="small" data-t="qsub">Asked by 3 people · it didn’t know</small></div>
+              <div class="lab">Delivery</div>
+              <div class="rowx reveal" data-t="ans"><div><strong>Do you deliver on Sundays?</strong><small>Yes, Sundays 10 to 2.</small></div><span class="pill ok">New</span></div>
               <div class="lab">Prices</div>
               <div class="rowx"><div><strong>How much is a birthday cake?</strong><small>From $38 for 8 people.</small></div><span class="pill">Used 41×</span></div>
               <div class="rowx"><div><strong>Can it be vegan?</strong><small>Yes, any cake, for $6 more.</small></div><span class="pill">Used 12×</span></div>
-              <div class="lab">Hours</div>
-              <div class="rowx"><div><strong>When are you open?</strong><small>Tuesday to Saturday, 9 to 6.</small></div><span class="pill">Used 27×</span></div>
             </div>
           </div></div>
-          <!-- 04 Inbox -->
+
+          <!-- 04 Inbox: their messages arrive as you scroll. -->
           <div class="scr" data-i="3"><div class="win">
             <div class="win-top"><h5 style="--c:#2F6FDE"><svg class="ic"><use href="#i-inbox"/></svg>Inbox</h5><span class="app-search"><svg class="ic"><use href="#i-search"/></svg>Search</span></div>
-            <div class="win-body">
+            <div class="win-body ib">
               <div class="who"><i>PN</i><div><strong>Priya Nair</strong><small>+44 7700 900123</small></div></div>
-              <div class="div">Today, 23:58 · they want a refund</div>
-              <div class="msg">Hi, my order came squashed 😩<small>23:57</small></div>
-              <div class="msg me">So sorry Priya! I’ve passed this to Nina, she’ll sort it first thing.<small>Receptionist · 23:58</small></div>
-              <div class="msg">Ok thanks, I want a refund please<small>23:58</small></div>
-              <div class="app-bar"><span>Handle in WhatsApp</span><span>Request payment</span><span>Done</span></div>
+              <div class="talk">
+                <div class="msg reveal" data-t="m0">Hi, my order came squashed 😩<small>23:57</small></div>
+                <div class="msg me reveal" data-t="m1">So sorry Priya! I’ve passed this to Nina, she’ll sort it first thing.<small>Receptionist · 23:58</small></div>
+                <div class="msg reveal" data-t="m2">Ok thanks, I want a refund please<small>23:58</small></div>
+                <div class="div reveal" data-t="m3">Handed to you · they want a refund</div>
+              </div>
+              <div class="app-bar"><span data-t="wa">Handle in WhatsApp</span><span>Request payment</span><span>Done</span></div>
             </div>
           </div></div>
-          <!-- 05 Messages -->
+
+          <!-- 05 Messages: the broadcast's bar fills as you scroll, then it's sent. -->
           <div class="scr" data-i="4"><div class="win">
-            <div class="win-top"><h5 style="--c:#7A5AF8"><svg class="ic"><use href="#i-send"/></svg>Messages</h5><span class="app-search"><svg class="ic"><use href="#i-search"/></svg>Search</span></div>
+            <div class="win-top"><h5 style="--c:#7A5AF8"><svg class="ic"><use href="#i-send"/></svg>Messages</h5><span class="go" data-t="send" style="margin-left:auto">Broadcast</span></div>
             <div class="win-body">
               <div class="card">
-                <div style="display:flex;justify-content:space-between;gap:8px"><strong style="font-size:13px">Saturday menu</strong><span class="pill ok">Sending</span></div>
-                <div class="bar"><i></i></div>
-                <small class="small">23 of 50 sent · 27 still to go · done about 11:40</small>
+                <div style="display:flex;justify-content:space-between;gap:8px"><strong style="font-size:13px">Saturday menu</strong><span class="pill ok" data-t="state">Sending</span></div>
+                <div class="bar"><i data-t="bar"></i></div>
+                <small class="small" data-t="count">0 of 50 sent</small>
               </div>
               <div class="lab">Repeating</div>
               <div class="rowx"><span class="tile" style="--c:#7A5AF8"><svg class="ic"><use href="#i-loop"/></svg></span><div><strong>This week’s specials</strong><small>Every Friday, 09:00 · Regulars (23)</small></div></div>
@@ -306,27 +298,27 @@
               <div class="rowx"><span class="tile" style="--c:#D9443A"><svg class="ic"><use href="#i-bell"/></svg></span><div><strong>Reminder · Ben Carter</strong><small>Tomorrow, 09:00</small></div></div>
               <div class="rowx"><span class="tile" style="--c:#2F6FDE"><svg class="ic"><use href="#i-chat"/></svg></span><div><strong>Follow-up · Emma Clarke</strong><small>Monday, 10:00</small></div></div>
             </div>
+            <div class="mini-toast" data-t="toast"><svg class="ic"><use href="#i-check"/></svg>Broadcast sent to 50 people</div>
           </div></div>
-          <!-- 06 Connected apps -->
+
+          <!-- 06 Connected apps: switched on one by one. -->
           <div class="scr" data-i="5"><div class="win">
             <div class="win-top"><h5 style="--c:#0A7F7A"><svg class="ic"><use href="#i-plug"/></svg>Connected apps</h5><span class="app-search"><svg class="ic"><use href="#i-search"/></svg>Search</span></div>
             <div class="win-body">
-              <div class="grid3">
-                <div class="appt"><span class="tile solid" style="--c:#25D366">W</span><strong>WhatsApp</strong><span class="pill ok">Connected</span></div>
-                <div class="appt"><span class="tile solid" style="--c:#4285F4">G</span><strong>Google Calendar</strong><span class="pill ok">Connected</span></div>
-                <div class="appt"><span class="tile solid" style="--c:#635BFF">S</span><strong>Stripe</strong><span class="pill ok">Connected</span></div>
-                <div class="appt"><span class="tile solid" style="--c:#0BA4DB">P</span><strong>Paystack</strong><span class="pill">Connect</span></div>
-                <div class="appt"><span class="tile solid" style="--c:#555">A</span><strong>Apple Calendar</strong><span class="pill">Connect</span></div>
-                <div class="appt"><span class="tile solid" style="--c:#0078D4">O</span><strong>Outlook</strong><span class="pill">Connect</span></div>
+              <div class="apps">
+                <div class="app-tile on"><img src="/assets/apps/whatsapp.svg" alt=""><div><strong>WhatsApp</strong><small>Connected</small></div><span class="sw on"></span></div>
+                <div class="app-tile" data-t="a0"><img src="/assets/apps/gcal.svg" alt=""><div><strong>Google Calendar</strong><small>Off</small></div><span class="sw"></span></div>
+                <div class="app-tile" data-t="a1"><img src="/assets/apps/stripe.svg" alt=""><div><strong>Stripe</strong><small>Off</small></div><span class="sw"></span></div>
+                <div class="app-tile" data-t="a2"><span class="tile solid" style="--c:#0BA4DB">P</span><div><strong>Paystack</strong><small>Off</small></div><span class="sw"></span></div>
+                <div class="app-tile" data-t="a3"><img src="/assets/apps/acal.svg" alt=""><div><strong>Apple Calendar</strong><small>Off</small></div><span class="sw"></span></div>
+                <div class="app-tile" data-t="a4"><img src="/assets/apps/outlook.svg" alt=""><div><strong>Outlook</strong><small>Off</small></div><span class="sw"></span></div>
               </div>
               <div class="lab">Coming soon</div>
-              <div class="grid3">
-                <div class="appt soon"><span class="tile solid" style="--c:#0F9D58">S</span><strong>Google Sheets</strong></div>
-                <div class="appt soon"><span class="tile solid" style="--c:#1A73E8">D</span><strong>Google Drive</strong></div>
-                <div class="appt soon"><span class="tile solid" style="--c:#111">N</span><strong>Notion</strong></div>
-              </div>
+              <div class="soon-row"><span><img src="/assets/apps/sheets.svg" alt="">Sheets</span><span><img src="/assets/apps/gdrive.svg" alt="">Drive</span><span><img src="/assets/apps/notion.svg" alt="">Notion</span></div>
             </div>
           </div></div>
+
+          <div class="pcursor" data-t="cursor"><svg viewBox="0 0 24 24"><path d="M4 2.5 19.5 11l-6.8 1.9-3.6 6.6z" fill="#fff" stroke="#141414" stroke-width="1.5" stroke-linejoin="round"/></svg></div>
         </div>
       </div>
     </div>
@@ -348,7 +340,7 @@
 
   <section class="end wrap" id="join">
     <div class="photo-frame" style="--img:url(/assets/photos/hero.webp)">
-      <h2>If people message you all day,<br>Kavedi is for you.</h2>
+      <h2 id="end-title" aria-label="If people message you all day, Kavedi is for you."><span aria-hidden="true" data-type>If people message you all day,<br><img class="word-img" src="/assets/photos/ascii-kavedi.webp" alt="" width="1100" height="283" loading="lazy"> is for you.</span></h2>
       <div class="cta"><a class="btn white" href="/beta">Join the beta <svg class="ic"><use href="#i-arrow"/></svg></a></div>
       <p class="small">Free while we test it with the first people.</p>
     </div>
