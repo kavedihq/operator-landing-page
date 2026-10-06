@@ -39,7 +39,7 @@
 }
 </script>
 
-<meta name="theme-color" content="#FBFBFA">
+<meta name="theme-color" content="#7d8fb0">
 <script>
   document.documentElement.classList.add('js');
   (function () {
@@ -47,7 +47,7 @@
       var choice = localStorage.getItem('kv-theme');
       if (choice === 'dark' || choice === 'light') document.documentElement.setAttribute('data-theme', choice);
       var dark = choice === 'dark' || (choice !== 'light' && window.matchMedia('(prefers-color-scheme: dark)').matches);
-      document.querySelector('meta[name="theme-color"]').setAttribute('content', dark ? '#111110' : '#FBFBFA');
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#7d8fb0');
     } catch (e) {}
   })();
 </script>
@@ -78,97 +78,142 @@
   <symbol id="i-hand" viewBox="0 0 24 24"><path d="M18 11V6a2 2 0 0 0-4 0M14 10V4a2 2 0 0 0-4 0v2M10 10.5V6a2 2 0 0 0-4 0v8"/><path d="M18 8a2 2 0 1 1 4 0v6a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15"/></symbol>
   <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></symbol>
   <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+  <symbol id="i-up" viewBox="0 0 24 24"><path d="M12 19V5M5 12l7-7 7 7"/></symbol>
+  <symbol id="i-down" viewBox="0 0 24 24"><path d="M12 5v14M19 12l-7 7-7-7"/></symbol>
+  <symbol id="i-wifi" viewBox="0 0 24 24"><path d="M5 12.55a11 11 0 0 1 14.08 0M1.42 9a16 16 0 0 1 21.16 0M8.53 16.11a6 6 0 0 1 6.95 0M12 20h.01"/></symbol>
+  <symbol id="i-battery" viewBox="0 0 24 24"><rect width="16" height="10" x="2" y="7" rx="2"/><path d="M22 11v2M6 11v2"/></symbol>
 </svg>
 
 <header class="nav" id="nav">
   <div class="nav-in">
     <a class="logo" href="/" aria-label="Kavedi, home"><img src="/assets/mark.webp" alt="" width="24" height="24">Kavedi</a>
     <nav class="nav-links" aria-label="Main">
-      <a href="#agents">Agents</a><a href="#pieces">The pieces</a><a href="#practice">In practice</a><a href="#questions">Questions</a>
+      <a href="#agents">Agents</a><a href="#pieces">The pieces</a><a href="#questions">Questions</a>
     </nav>
     <a class="nav-sign" href="/sign-in">Sign in</a>
-    <a class="btn dark" href="/beta">Join the beta</a>
+    <a class="btn" href="/beta">Join the beta</a>
   </div>
 </header>
 
 <main id="main">
 
-  <section class="hero wrap">
-    <h1 id="hero-title" aria-label="Your WhatsApp, handled by agents."><span aria-hidden="true">Your WhatsApp,<br>handled by agents.</span></h1>
-    <script>
-      // Wrapped before the first paint so the headline never flashes in whole before it's written out.
-      (function () {
-        var h = document.getElementById('hero-title');
-        if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-        var holder = h.firstElementChild;
-        holder.childNodes.forEach(function (node) {
-          if (node.nodeType !== 3) return;
-          var frag = document.createDocumentFragment();
-          node.textContent.split('').forEach(function (c) { var s = document.createElement('span'); s.className = 'ch'; s.textContent = c; frag.appendChild(s); });
-          node.replaceWith(frag);
-        });
-        h.classList.add('is-typing');
-        // If the page's script never arrives, show the headline anyway.
-        setTimeout(function () { if (!h.dataset.started) { h.classList.add('done'); document.querySelectorAll('.rise').forEach(function (el) { el.classList.add('is-in'); }); } }, 2500);
-      })();
-    </script>
-    <p class="hero-sub rise">They reply, book, remind and get you paid on the number you already use. Anything they can’t handle comes to you.</p>
-    <div class="cta rise"><a class="btn dark" href="/beta">Join the beta <svg class="ic"><use href="#i-arrow"/></svg></a><a class="btn light" href="#agents">See how it works</a></div>
-    <p class="small rise">Free during the beta · Connects in 2 minutes</p>
+  <!-- The hero: a photo that folds into a desktop as you scroll. -->
+  <section class="scene" id="top">
+    <div class="scene-stick">
+      <div class="desk">
+        <img class="desk-photo" src="/assets/photos/hero.webp" srcset="/assets/photos/hero-sm.webp 1200w, /assets/photos/hero.webp 2400w" sizes="100vw" alt="" fetchpriority="high">
+        <img class="desk-blur" src="/assets/photos/hero-blur.webp" alt="">
 
-    <!-- The hero video goes here: set data-video="/assets/video/hero.mp4" (16:10, muted, loops). Until then, the app drawn. -->
-    <div class="stage rise" data-video="" data-video-label="Kavedi's inbox and a WhatsApp chat answered by an agent">
-      <div class="app" aria-hidden="true">
-        <div class="app-side">
-          <div class="app-acct"><i>S</i><span>Studio Nine<small>Nina Park</small></span></div>
-          <div class="app-nav"><svg class="ic"><use href="#i-home"/></svg>Today</div>
-          <div class="app-nav on"><svg class="ic"><use href="#i-inbox"/></svg>Inbox <b>2</b></div>
-          <div class="app-nav"><svg class="ic"><use href="#i-bot"/></svg>Agents</div>
-          <div class="app-nav"><svg class="ic"><use href="#i-cal"/></svg>Bookings</div>
-          <div class="app-nav"><svg class="ic"><use href="#i-send"/></svg>Messages</div>
-          <div class="app-nav"><svg class="ic"><use href="#i-book"/></svg>Knowledge</div>
+        <div class="hero">
+          <h1 id="hero-title" aria-label="Your WhatsApp, handled by agents."><span aria-hidden="true">Your WhatsApp,<br>handled by agents.</span></h1>
+          <script>
+            // Wrapped before the first paint so the headline never flashes in whole before it's written out.
+            (function () {
+              var h = document.getElementById('hero-title');
+              if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+              var holder = h.firstElementChild;
+              holder.childNodes.forEach(function (node) {
+                if (node.nodeType !== 3) return;
+                var frag = document.createDocumentFragment();
+                node.textContent.split('').forEach(function (c) { var s = document.createElement('span'); s.className = 'ch'; s.textContent = c; frag.appendChild(s); });
+                node.replaceWith(frag);
+              });
+              h.classList.add('is-typing');
+              // If the page's script never arrives, show the headline anyway.
+              setTimeout(function () { if (!h.dataset.started) { h.classList.add('done'); document.querySelectorAll('.rise').forEach(function (el) { el.classList.add('is-in'); }); } }, 2500);
+            })();
+          </script>
+          <p class="hero-sub rise">They reply, book, remind and get you paid on the number you already use. Anything they can’t handle comes to you.</p>
+          <div class="cta rise"><a class="btn white" href="/beta">Join the beta <svg class="ic"><use href="#i-arrow"/></svg></a><a class="btn glass" href="#agents">See how it works</a></div>
+          <p class="small rise">Free during the beta · Connects in 2 minutes</p>
         </div>
-        <div class="app-top"><span class="app-search"><svg class="ic"><use href="#i-search"/></svg>Search</span><svg class="ic"><use href="#i-bell"/></svg><span class="app-setup">Setup</span></div>
-        <div class="app-list"><h4>Inbox</h4>
-          <div class="app-row on"><strong>Priya Nair</strong><em>Hand over when: they want a refund</em><span>My order came squashed</span></div>
-          <div class="app-row"><strong>Jonah Lindqvist</strong><em>Didn’t know the answer</em><span>Do you deliver on Sundays?</span></div>
-          <div class="app-row"><strong>Marcus Bell</strong><em>Sent a photo</em><span>This design, but in blue?</span></div>
-        </div>
-        <div class="app-talk">
-          <div class="who"><i>PN</i><div><strong>Priya Nair</strong><small>+44 7700 900123 · handed over once</small></div></div>
-          <div class="div">Today, 23:58 · they want a refund</div>
-          <div class="msg">Hi, my order came squashed 😩<small>23:57</small></div>
-          <div class="msg me">So sorry Priya! I’ve passed this to Nina, she’ll sort it first thing.<small>Receptionist · 23:58</small></div>
-          <div class="msg">Ok thanks, I want a refund please<small>23:58</small></div>
-          <div class="app-bar"><span>Handle in WhatsApp</span><span>Agents reply</span><span>Request payment</span><span>Done</span></div>
+        <a class="scroll-hint" href="#agents" aria-hidden="true" tabindex="-1">Scroll <svg class="ic"><use href="#i-down"/></svg></a>
+
+        <div class="os">
+          <div class="menubar" aria-hidden="true">
+            <img src="/assets/mark.webp" alt=""><b>Kavedi</b><span>File</span><span>Edit</span><span>View</span><span>Window</span><span>Help</span>
+            <span class="mb-right"><svg class="ic"><use href="#i-battery"/></svg><svg class="ic"><use href="#i-wifi"/></svg><svg class="ic"><use href="#i-search"/></svg><span>Sat 02:13</span></span>
+          </div>
+          <div class="float photo-card pc-1" aria-hidden="true"><img src="/assets/photos/cakes.webp" alt="" loading="lazy"></div>
+          <div class="float photo-card pc-2" aria-hidden="true"><img src="/assets/photos/cake.webp" alt="" loading="lazy"></div>
+
+          <div class="float window w-demo">
+            <div class="titlebar" aria-hidden="true"><i></i><i></i><i></i><span>Kavedi · Inbox</span></div>
+            <!-- The demo video goes here: set data-video="/assets/video/hero.mp4" (16:10, muted, loops). Until then, the app drawn. -->
+            <div class="slot" data-video="" data-video-label="Kavedi's inbox while agents answer on WhatsApp">
+              <div class="app" aria-hidden="true">
+                <div class="app-side">
+                  <div class="app-acct"><i>S</i><span>Studio Nine<small>Nina Park</small></span></div>
+                  <div class="app-nav"><svg class="ic"><use href="#i-home"/></svg>Today</div>
+                  <div class="app-nav on"><svg class="ic"><use href="#i-inbox"/></svg>Inbox <b>2</b></div>
+                  <div class="app-nav"><svg class="ic"><use href="#i-bot"/></svg>Agents</div>
+                  <div class="app-nav"><svg class="ic"><use href="#i-cal"/></svg>Bookings</div>
+                  <div class="app-nav"><svg class="ic"><use href="#i-send"/></svg>Messages</div>
+                  <div class="app-nav"><svg class="ic"><use href="#i-book"/></svg>Knowledge</div>
+                </div>
+                <div class="app-list"><h4>Inbox</h4>
+                  <div class="app-row on"><strong>Priya Nair</strong><em>Hand over when: they want a refund</em><span>My order came squashed</span></div>
+                  <div class="app-row"><strong>Jonah Lindqvist</strong><em>Didn’t know the answer</em><span>Do you deliver on Sundays?</span></div>
+                  <div class="app-row"><strong>Marcus Bell</strong><em>Sent a photo</em><span>This design, but in blue?</span></div>
+                </div>
+                <div class="app-talk">
+                  <div class="who"><i>PN</i><div><strong>Priya Nair</strong><small>+44 7700 900123 · handed over once</small></div></div>
+                  <div class="div">Today, 23:58 · they want a refund</div>
+                  <div class="msg">Hi, my order came squashed 😩<small>23:57</small></div>
+                  <div class="msg me">So sorry Priya! I’ve passed this to Nina, she’ll sort it first thing.<small>Receptionist · 23:58</small></div>
+                  <div class="msg">Ok thanks, I want a refund please<small>23:58</small></div>
+                  <div class="app-bar"><span>Handle in WhatsApp</span><span>Agents reply</span><span>Request payment</span><span>Done</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="float w-ascii" aria-hidden="true">
+            <img src="/assets/photos/ascii-phone.webp" alt="" loading="lazy">
+            <span class="ascii-chip">replying on WhatsApp</span>
+          </div>
+          <div class="float bubble-float bf-1" aria-hidden="true">Do you have anything this Saturday?<small>02:13</small></div>
+          <div class="float bubble-float bf-2" aria-hidden="true">Yes! 11:30 or 14:00. Which works? 🙂<small>02:13 ✓✓</small></div>
+
+          <div class="float dock" aria-hidden="true">
+            <span style="--c:#0A7F7A"><img src="/assets/mark.webp" alt=""></span>
+            <span style="--c:#25A55F"><svg class="ic"><use href="#i-chat"/></svg></span>
+            <span style="--c:#D9443A"><svg class="ic"><use href="#i-cal"/></svg></span>
+            <span style="--c:#635BFF"><svg class="ic"><use href="#i-card"/></svg></span>
+            <span style="--c:#C98200"><svg class="ic"><use href="#i-book"/></svg></span>
+          </div>
         </div>
       </div>
-      <div class="phone" aria-hidden="true"><div class="phone-in">
-        <div class="phone-top"><i>SN</i><div><strong>Studio Nine</strong><small>online</small></div></div>
-        <div class="chat">
-          <div class="wa out">Hiii how much is a birthday cake?<time>02:13</time></div>
-          <div class="wa">Hi Maya! Birthday cakes start at $38 for 8 people. Want me to book a tasting?<time>02:13</time></div>
-          <div class="wa out">Yes Saturday pls<time>02:14</time></div>
-          <div class="wa">Saturday I have 11:30 or 14:00. Which works?<time>02:14</time></div>
-        </div>
-      </div></div>
     </div>
   </section>
 
+  <!-- Make it an agent: say it, watch Blink build it, then see it answer on WhatsApp. -->
   <section class="sec" id="agents">
-    <div class="wrap">
+    <div class="wrap sec-head">
       <h2>Make it an agent.</h2>
-      <p class="lede">Say what you want in plain words. It’s put together in front of you, step by step, and you can change any of it.</p>
-      <!-- The agent video goes here: set data-video="/assets/video/agent.mp4". Until then, the document builds itself. -->
-      <div class="frame" data-video="" data-video-label="An agent being described in plain words and built step by step">
-        <div class="doc" id="agent-doc">
-          <div class="doc-ask"><span class="typed" data-text="When someone asks for prices, send the price list">When someone asks for prices, send the price list</span><span class="doc-go">Build</span></div>
-          <ol>
-            <li><b>1</b><span>Someone asks about prices, in any words<small>“how much”, “cuánto cuesta”, “price list pls”</small></span></li>
-            <li><b>2</b><span>Send <span class="tag">price-list.jpg</span> with “Here you go, {first name}!”</span></li>
-            <li><b>3</b><span>Answer follow-ups from <span class="tag">Prices</span><small>Only what you taught it. It never makes up a price.</small></span></li>
-            <li><b>4</b><span>Hand over to you when they ask for a discount</span></li>
-          </ol>
+      <p class="lede">Say what you want in plain words. Kavedi builds it in front of you, and it starts answering.</p>
+    </div>
+    <div class="wrap">
+      <div class="photo-frame studio" style="--img:url(/assets/photos/agent.webp)">
+        <div class="studio-tabs" role="tablist" aria-label="Examples"></div>
+        <div class="stage" id="stage" aria-hidden="true">
+          <div class="window build">
+            <div class="titlebar"><i></i><i></i><i></i><span>Agents · New agent</span></div>
+            <div class="build-body">
+              <div class="ask-pane">
+                <div class="ask-head">
+                  <svg class="blink" data-p="blink" viewBox="0 0 24 24"><g class="b-body"><rect x="3" y="4" width="18" height="16" rx="6.5" fill="none" stroke="currentColor" stroke-width="2"/><g class="b-look"><g class="b-eyes"><rect x="8" y="9.8" width="2.4" height="4.4" rx="1.2" fill="currentColor"/><rect x="13.6" y="9.8" width="2.4" height="4.4" rx="1.2" fill="currentColor"/></g><g class="b-arcs" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><path d="M7.9 12.8Q9.2 10.4 10.5 12.8"/><path d="M13.5 12.8Q14.8 10.4 16.1 12.8"/></g></g><path class="b-smile" d="M9.8 15.9Q12 17.8 14.2 15.9" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></g></svg>
+                  Kavedi
+                </div>
+                <div class="ask-list" data-p="list"></div>
+                <div class="ask-box" data-p="ask"><span class="typed"></span><span class="send" data-p="send"><svg class="ic"><use href="#i-up"/></svg></span></div>
+              </div>
+              <div class="doc-pane" data-p="doc"></div>
+            </div>
+            <div class="toast" data-p="toast"></div>
+          </div>
+          <div class="chat-over" data-p="chat"></div>
+          <div class="cursor" data-p="cursor"><svg viewBox="0 0 24 24"><path d="M4 2.5 19.5 11l-6.8 1.9-3.6 6.6z" fill="#fff" stroke="#141414" stroke-width="1.5" stroke-linejoin="round"/></svg></div>
         </div>
       </div>
     </div>
@@ -193,12 +238,12 @@
           </ol>
         </div>
 
-        <div class="pin-frame" aria-hidden="true">
+        <div class="pin-frame photo-frame" style="--img:url(/assets/photos/pieces.webp)" aria-hidden="true">
           <!-- 01 Agents -->
           <div class="scr on" data-i="0"><div class="win">
             <div class="win-top"><h5 style="--c:#7A5AF8"><svg class="ic"><use href="#i-bot"/></svg>Agents</h5><span class="app-search"><svg class="ic"><use href="#i-search"/></svg>Search</span></div>
             <div class="win-body">
-              <div class="box">Describe what you want<span class="doc-go">Build</span></div>
+              <div class="box">Describe what you want<span class="go">Build</span></div>
               <div>
                 <div class="rowx"><span class="tile" style="--c:#0A7F7A"><svg class="ic"><use href="#i-chat"/></svg></span><div><strong>Receptionist</strong><small>Answers from what you taught it</small></div><span class="sw on"></span></div>
                 <div class="rowx"><span class="tile" style="--c:#D9443A"><svg class="ic"><use href="#i-cal"/></svg></span><div><strong>Booker</strong><small>Books, moves and cancels</small></div><span class="sw on"></span></div>
@@ -213,11 +258,11 @@
             <div class="win-top"><h5 style="--c:#D9443A"><svg class="ic"><use href="#i-cal"/></svg>Bookings</h5><span class="app-search"><svg class="ic"><use href="#i-search"/></svg>Search</span></div>
             <div class="win-body">
               <div class="lab">Saturday 4 Oct · 3 bookings</div>
-              <div class="slot"><time>11:30</time><div class="b" style="--c:#0A7F7A"><div><strong>Cake tasting · Maya Reyes</strong><small>Booked on WhatsApp</small></div><span class="pill ok">Reminder sent</span></div></div>
-              <div class="slot"><time>13:00</time><div class="b off"><div><strong>Lunch</strong></div></div></div>
+              <div class="slot-row"><time>11:30</time><div class="b" style="--c:#0A7F7A"><div><strong>Cake tasting · Maya Reyes</strong><small>Booked on WhatsApp</small></div><span class="pill ok">Reminder sent</span></div></div>
+              <div class="slot-row"><time>13:00</time><div class="b off"><div><strong>Lunch</strong></div></div></div>
               <div class="now"><span>13:40</span></div>
-              <div class="slot"><time>14:00</time><div class="b" style="--c:#2F6FDE"><div><strong>Consultation · Ben Carter</strong><small>Booked on WhatsApp</small></div><span class="pill">New</span></div></div>
-              <div class="slot"><time>16:15</time><div class="b" style="--c:#7A5AF8"><div><strong>Collection · Sofia Duarte</strong><small>Added by you</small></div></div></div>
+              <div class="slot-row"><time>14:00</time><div class="b" style="--c:#2F6FDE"><div><strong>Consultation · Ben Carter</strong><small>Booked on WhatsApp</small></div><span class="pill">New</span></div></div>
+              <div class="slot-row"><time>16:15</time><div class="b" style="--c:#7A5AF8"><div><strong>Collection · Sofia Duarte</strong><small>Added by you</small></div></div></div>
               <div class="rowx" style="margin-top:auto"><span class="tile solid" style="--c:#4285F4">G</span><div><strong>Google Calendar</strong><small>Every booking goes in as it’s made</small></div><span class="pill ok">On</span></div>
             </div>
           </div></div>
@@ -287,34 +332,8 @@
     </div>
   </section>
 
-  <section class="sec" id="practice">
-    <div class="wrap">
-      <h2>In practice.</h2>
-      <p class="lede">Say it in plain words, then watch it work.</p>
-      <div class="play" id="play">
-        <div class="play-tabs" role="tablist" aria-label="Examples"></div>
-        <div class="play-stage" aria-live="off">
-          <div class="win">
-            <div class="win-top"><h5 style="--c:#7A5AF8"><svg class="ic"><use href="#i-bot"/></svg>New agent</h5></div>
-            <div class="win-body">
-              <div class="doc-ask" data-p="ask"><span class="typed"></span><span class="doc-go" data-p="build">Build</span></div>
-              <ol data-p="steps"></ol>
-              <div class="play-on" data-p="onrow">Turn it on<span class="sw" data-p="switch"></span></div>
-            </div>
-            <div class="toast" data-p="toast"></div>
-          </div>
-          <div class="phone"><div class="phone-in">
-            <div class="phone-top"><i>SN</i><div><strong>Studio Nine</strong><small data-p="status">online</small></div></div>
-            <div class="chat" data-p="chat"></div>
-          </div></div>
-          <div class="cursor" data-p="cursor" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 2.5 19.5 11l-6.8 1.9-3.6 6.6z" fill="#fff" stroke="#141414" stroke-width="1.5" stroke-linejoin="round"/></svg></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <section class="sec" id="questions">
-    <div class="wrap">
+    <div class="wrap sec-head">
       <h2>Questions?</h2>
       <div class="faq">
         <details><summary>Do I need a new number?<i></i></summary><div class="ans"><p>No. Kavedi links to the number you already use, the same way WhatsApp Web does. Your phone keeps working as normal.</p></div></details>
@@ -328,9 +347,11 @@
   </section>
 
   <section class="end wrap" id="join">
-    <h2>If people message you all day,<br>Kavedi is for you.</h2>
-    <div class="cta"><a class="btn dark" href="/beta">Join the beta <svg class="ic"><use href="#i-arrow"/></svg></a></div>
-    <p class="small">Free while we test it with the first people.</p>
+    <div class="photo-frame" style="--img:url(/assets/photos/hero.webp)">
+      <h2>If people message you all day,<br>Kavedi is for you.</h2>
+      <div class="cta"><a class="btn white" href="/beta">Join the beta <svg class="ic"><use href="#i-arrow"/></svg></a></div>
+      <p class="small">Free while we test it with the first people.</p>
+    </div>
   </section>
 </main>
 
@@ -338,7 +359,7 @@
   <footer class="foot">
     <a class="logo" href="/" style="font-size:15px"><img src="/assets/mark.webp" alt="" width="20" height="20" style="width:20px;height:20px">Kavedi</a>
     <nav aria-label="Footer"><a href="/beta">The beta</a><a href="/privacy">Privacy</a><a href="/terms">Terms</a><a href="https://x.com/kavedihq">X</a><a href="mailto:support@kavedi.com">support@kavedi.com</a></nav>
-    <span>Not affiliated with WhatsApp or Meta. © 2026 Kavedi</span>
+    <span>Not affiliated with WhatsApp or Meta. © 2026 Kavedi · Photos from Unsplash</span>
   </footer>
 </div>
 
