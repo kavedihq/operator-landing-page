@@ -35,25 +35,15 @@
   "logo": "https://kavedi.com/assets/logo-512.png",
   "description": "WhatsApp automation: agents that answer, book, remind and send payment links on the number you already use, and hand anything else to you.",
   "areaServed": "Worldwide",
-  "sameAs": ["https://x.com/kavedihq", "https://instagram.com/kavedihq", "https://github.com/kavedihq", "https://youtube.com/@kavedihq"]
+  "sameAs": ["https://x.com/kavedihq", "https://instagram.com/kavedihq", "https://www.tiktok.com/@kavedihq"]
 }
 </script>
 
-<meta name="theme-color" content="#7d8fb0">
-<script>
-  document.documentElement.classList.add('js');
-  (function () {
-    try {
-      var choice = localStorage.getItem('kv-theme');
-      if (choice === 'dark' || choice === 'light') document.documentElement.setAttribute('data-theme', choice);
-      var dark = choice === 'dark' || (choice !== 'light' && window.matchMedia('(prefers-color-scheme: dark)').matches);
-      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#7d8fb0');
-    } catch (e) {}
-  })();
-</script>
+<meta name="theme-color" content="#0E0E0D">
+<script>document.documentElement.classList.add('js');</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600&family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/assets/home.css">
 </head>
 <body>
@@ -175,7 +165,7 @@
   <!-- Make it an agent: say it, watch Blink build it, then see it answer on WhatsApp. -->
   <section class="sec" id="agents">
     <div class="wrap sec-head">
-      <h2>Make it an agent.</h2>
+      <h2>Got a task? Make it an agent.</h2>
       <p class="lede">Say what you want in plain words. Kavedi builds it in front of you, and it starts answering.</p>
     </div>
     <div class="wrap">
@@ -348,17 +338,22 @@
   <section class="end wrap" id="join">
     <div class="photo-frame" style="--img:url(/assets/photos/hero.webp)">
       <h2 id="end-title" aria-label="If people message you all day, Kavedi is for you."><span aria-hidden="true" data-type>If people message you all day,<br><span class="grad">Kavedi</span> is for you.</span></h2>
-      <div class="cta"><a class="btn white" href="/beta">Join the beta <svg class="ic"><use href="#i-arrow"/></svg></a></div>
-      <p class="small">Free while we test it with the first people.</p>
+      <div class="cta"><span class="hand-anchor"><a class="btn white" href="/beta">Join the beta <svg class="ic"><use href="#i-arrow"/></svg></a>
+        <span class="hand end-hand"><svg class="curl" viewBox="0 0 90 60" aria-hidden="true"><path d="M88 36C74 46 58 44 56 32 54 20 70 18 68 30 66 42 40 46 8 26"/><path d="M8 26l11-1M8 26l5 10"/></svg>Free while we test it<br>with the first people</span></span></div>
     </div>
   </section>
 </main>
 
 <div class="wrap">
   <footer class="foot">
-    <a class="logo" href="/" style="font-size:15px"><img src="/assets/mark.webp" alt="" width="20" height="20" style="width:20px;height:20px">Kavedi</a>
-    <nav aria-label="Footer"><a href="/beta">The beta</a><a href="/privacy">Privacy</a><a href="/terms">Terms</a><a href="https://x.com/kavedihq">X</a><a href="mailto:support@kavedi.com">support@kavedi.com</a></nav>
-    <span>Not affiliated with WhatsApp or Meta. © 2026 Kavedi · Photos from Unsplash</span>
+    <a class="logo" href="/"><img src="/assets/mark.webp" alt="" width="20" height="20">Kavedi</a>
+    <nav aria-label="Footer"><a href="/beta">The beta</a><a href="/pricing">Pricing</a><a href="/privacy">Privacy</a><a href="/terms">Terms</a><a href="mailto:support@kavedi.com">support@kavedi.com</a></nav>
+    <div class="socials">
+      <a href="https://x.com/kavedihq" target="_blank" rel="noopener" aria-label="Kavedi on X"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.9 2H22l-7.6 8.7L23 22h-6.6l-5.2-6.8L5 22H2l8.1-9.3L1.6 2h6.7l4.7 6.2L18.9 2Zm-2.3 18h1.8L7.5 4H5.6l11 16Z"/></svg></a>
+      <a href="https://instagram.com/kavedihq" target="_blank" rel="noopener" aria-label="Kavedi on Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1" fill="currentColor" stroke="none"/></svg></a>
+      <a href="https://www.tiktok.com/@kavedihq" target="_blank" rel="noopener" aria-label="Kavedi on TikTok"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.6 2h-3.4v13.4a2.9 2.9 0 1 1-2.9-2.9c.3 0 .6 0 .9.1V9.1a6.4 6.4 0 1 0 5.4 6.3V8.6a8.1 8.1 0 0 0 4.4 1.4V6.6A4.5 4.5 0 0 1 16.6 2Z"/></svg></a>
+    </div>
+    <span class="foot-fine">Not affiliated with WhatsApp or Meta. © 2026 Kavedi · Photos from Unsplash</span>
   </footer>
 </div>
 

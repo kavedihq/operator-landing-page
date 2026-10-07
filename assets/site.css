@@ -1,0 +1,81 @@
+/* The site's quieter pages (pricing, privacy, terms, 404) in the home page's look, on top of home.css: the same dark
+   theme and type, no photos behind the page. Only the plan most people pick has a picture behind it (Kelvin, 7 Oct). */
+main { padding-top: 130px; }
+.page-head { text-align: center; }
+.page-head h1 { font-size: clamp(38px, 6vw, 68px); line-height: 1.04; letter-spacing: -0.045em; font-weight: 600; }
+.page-head .lede { max-width: 520px; margin: 16px auto 0; color: var(--body); font-size: 18px; }
+.live-dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #3EDB98; box-shadow: 0 0 0 4px rgba(62, 219, 152, .2); flex-shrink: 0; }
+
+/* ---------- Pricing ---------- */
+.pricing-bar { margin: 34px auto 0; max-width: 880px; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 12px 12px 12px 18px; border-radius: 18px; background: var(--card); box-shadow: 0 0 0 1px var(--line); text-align: left; }
+.notice { display: flex; align-items: center; gap: 12px; font-size: 14px; color: var(--body); }
+.currency { display: flex; align-items: center; gap: 10px; flex-shrink: 0; font-size: 13.5px; color: var(--muted); }
+.currency select { height: 38px; padding: 0 30px 0 12px; border: 1px solid var(--line); border-radius: 12px; background: var(--chip) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%239A9993' stroke-width='2' stroke-linecap='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") right 9px center / 14px no-repeat; color: var(--ink); font: 500 14px var(--sans); appearance: none; -webkit-appearance: none; cursor: pointer; }
+.currency select:focus-visible { outline: 2px solid var(--teal); outline-offset: 2px; }
+
+.plans { margin-top: 28px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; align-items: stretch; }
+.plan { display: flex; flex-direction: column; padding: 28px; border-radius: 26px; background: var(--card); box-shadow: 0 0 0 1px var(--line); }
+.plan h2 { display: flex; align-items: center; gap: 10px; font-size: 20px; font-weight: 600; letter-spacing: -0.02em; }
+.price { margin-top: 14px; display: flex; align-items: baseline; gap: 6px; }
+.price b { font-size: 52px; font-weight: 600; letter-spacing: -0.05em; line-height: 1; font-variant-numeric: tabular-nums; }
+.price span { color: var(--muted); font-size: 15px; }
+.for { margin-top: 10px; color: var(--body); font-size: 15px; min-height: 3em; }
+.plan ul { list-style: none; margin: 22px 0 26px; padding: 22px 0 0; border-top: 1px solid var(--line); display: grid; gap: 12px; font-size: 14.5px; color: var(--body); }
+.plan li { display: grid; grid-template-columns: 18px minmax(0, 1fr); gap: 10px; align-items: start; }
+.plan li .ic { margin-top: 3px; font-size: 16px; color: var(--teal); }
+.plan li strong { color: var(--ink); font-weight: 600; }
+.plan .btn { margin-top: auto; justify-content: center; }
+/* The plan most people pick: a picture behind it, white words on it. */
+.plan.is-featured { background: #6f7f9c var(--img) center / cover no-repeat; color: #fff; box-shadow: 0 30px 70px -24px rgba(0, 0, 0, .7), 0 0 0 1px rgba(255, 255, 255, .12); transform: translateY(-10px); }
+.plan.is-featured::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(rgba(8, 12, 22, .12), rgba(8, 12, 22, .55) 55%, rgba(8, 12, 22, .78)); }
+.plan.is-featured .for, .plan.is-featured ul, .plan.is-featured .price span { color: rgba(255, 255, 255, .86); }
+.plan.is-featured ul { border-top-color: rgba(255, 255, 255, .22); }
+.plan.is-featured li strong { color: #fff; }
+.plan.is-featured li .ic { color: #8FF0C4; }
+.badge { padding: 3px 10px; border-radius: 12px; background: rgba(255, 255, 255, .18); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .3); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); font-size: 12px; font-weight: 500; letter-spacing: 0; }
+.pricing-note { max-width: 720px; margin: 36px auto 0; text-align: center; color: var(--muted); font-size: 14.5px; }
+.pricing-note strong { color: var(--ink); font-weight: 600; }
+.closing { margin-top: 110px; padding-block: 64px; text-align: center; border-top: 1px solid var(--line); }
+.closing h2 { font-size: clamp(30px, 4.4vw, 46px); letter-spacing: -0.04em; font-weight: 600; line-height: 1.08; }
+.closing .lede { margin-top: 12px; color: var(--body); font-size: 17px; }
+
+/* ---------- Privacy and terms ---------- */
+.doc { max-width: 720px; margin: 0 auto; }
+.doc-head { text-align: center; padding-bottom: 36px; border-bottom: 1px solid var(--line); }
+.doc-eyebrow { display: inline-block; padding: 4px 12px; border-radius: 14px; background: var(--chip); color: var(--muted); font: 500 12.5px var(--mono); }
+.doc-head h1 { margin-top: 16px; font-size: clamp(36px, 5.6vw, 60px); line-height: 1.04; letter-spacing: -0.045em; font-weight: 600; }
+.doc-updated { margin-top: 12px; color: var(--muted); font-size: 14px; }
+.doc-plain { margin-top: 36px; padding: 24px 26px; border-radius: 22px; background: var(--teal-soft); box-shadow: 0 0 0 1px color-mix(in srgb, var(--teal) 30%, transparent); }
+.doc-plain-label { font: 500 12px var(--mono); text-transform: uppercase; letter-spacing: .08em; color: var(--teal-ink); }
+.doc-plain ul { margin: 12px 0 0; padding-left: 20px; display: grid; gap: 8px; color: var(--ink); }
+.doc-intro { margin-top: 32px; font-size: 18px; color: var(--ink); line-height: 1.6; }
+.doc section { margin-top: 40px; }
+.doc section h2 { font-size: 22px; font-weight: 600; letter-spacing: -0.02em; scroll-margin-top: 100px; }
+.doc section p, .doc section li { color: var(--body); line-height: 1.7; }
+.doc section p { margin-top: 12px; }
+.doc section ul { margin: 12px 0 0; padding-left: 20px; display: grid; gap: 10px; }
+.doc strong { color: var(--ink); font-weight: 600; }
+.doc a { color: var(--teal-ink); text-underline-offset: 3px; }
+.contact-section { padding: 24px 26px; border-radius: 22px; background: var(--card); box-shadow: 0 0 0 1px var(--line); }
+.contact-section p { margin-top: 8px !important; }
+
+/* ---------- 404 ---------- */
+.lost { min-height: 70svh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
+.lost h1 { font-size: clamp(34px, 5vw, 56px); letter-spacing: -0.04em; font-weight: 600; line-height: 1.06; }
+.lost .lede { margin-top: 12px; color: var(--body); font-size: 17px; }
+.lost-art { width: min(220px, 56vw); aspect-ratio: 870 / 810; margin: 0 auto 24px; }
+.lost-art svg { display: block; width: 100% !important; height: 100% !important; }
+.lost-art path[stroke] { stroke: var(--ink); }
+.lost-art path[fill='rgb(0,0,0)'] { fill: var(--ink); }
+.lost-art path[fill='rgb(255,255,255)'] { fill: var(--bg); }
+
+@media (max-width: 900px) {
+  main { padding-top: 104px; }
+  .pricing-bar { flex-direction: column; align-items: stretch; padding: 14px; }
+  .currency { justify-content: space-between; }
+  .plans { grid-template-columns: minmax(0, 1fr); max-width: 460px; margin-inline: auto; }
+  .plan.is-featured { transform: none; order: -1; }
+  .plan { padding: 24px; }
+  .for { min-height: 0; }
+  .doc-plain, .contact-section { padding: 20px; }
+}

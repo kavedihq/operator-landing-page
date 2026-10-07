@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Pricing — Kavedi | Flat monthly plans for WhatsApp</title>
+<title>Pricing · Kavedi | Flat monthly plans for WhatsApp</title>
 <meta name="description" content="Kavedi pricing: a free plan to try it, Pro at $9 a month and Business at $24. One flat price a month, no per-message charges.">
 <meta name="robots" content="noindex">
 <meta property="og:title" content="Pricing — Kavedi">
@@ -25,168 +25,121 @@
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
 
-<meta name="theme-color" content="#F5F1E9">
-<script>
-  (function () {
-    try {
-      var choice = localStorage.getItem('kv-theme');
-      if (choice === 'dark' || choice === 'light') document.documentElement.setAttribute('data-theme', choice);
-      var dark = choice === 'dark' || (choice !== 'light' && window.matchMedia('(prefers-color-scheme: dark)').matches);
-      document.querySelector('meta[name="theme-color"]').setAttribute('content', dark ? '#0E1A1F' : '#F5F1E9');
-    } catch (e) {}
-  })();
-</script>
+<meta name="theme-color" content="#0E0E0D">
+<script>document.documentElement.classList.add('js');</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/kv.css">
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600&family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/home.css">
+<link rel="stylesheet" href="/assets/site.css">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 
-<header class="site-head">
-  <div class="wrap">
-    <a class="brand" href="/" aria-label="Kavedi, home">
-      <picture><source srcset="/assets/mark.webp" type="image/webp"><img src="/assets/mark.png" alt="" width="30" height="30"></picture>
-      Kavedi
-    </a>
-    <nav class="nav" aria-label="Main">
-      <a href="/#how-it-works">How it works</a>
-      <a href="/#features">Features</a>
-      <a href="/pricing" aria-current="page">Pricing</a>
-      <a href="/#faq">FAQ</a>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+</svg>
+
+<header class="nav is-small" id="nav" data-solid>
+  <div class="nav-in">
+    <a class="logo" href="/" aria-label="Kavedi, home"><img src="/assets/mark.webp" alt="" width="24" height="24">Kavedi</a>
+    <nav class="nav-links" aria-label="Main">
+      <a href="/#agents">Agents</a><a href="/#pieces">The pieces</a><a href="/pricing">Pricing</a>
     </nav>
-    <a class="btn btn-primary btn-sm" href="/beta">Join the beta</a>
-    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="menu" aria-label="Open menu">
-      <svg class="when-closed" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 8h16M4 16h16"/></svg>
-      <svg class="when-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
-    </button>
+    <a class="nav-sign" href="/sign-in">Sign in</a>
+    <a class="btn" href="/beta">Join the beta</a>
   </div>
-  <nav class="menu" id="menu" aria-label="Main">
-    <ul>
-      <li><a href="/#how-it-works">How it works</a></li>
-      <li><a href="/#features">Features</a></li>
-      <li><a href="/pricing">Pricing</a></li>
-      <li><a href="/#faq">FAQ</a></li>
-      <li><a href="/beta">The beta</a></li>
-    </ul>
-  </nav>
 </header>
 
 <main id="main">
-  <section class="section pricing-page">
-    <div class="wrap">
-      <div class="section-head">
-        <p class="kicker">Pricing</p>
-        <h1 class="h1">Simple, <span class="pop-word">flat pricing.</span></h1>
-        <p class="lede">One price a month, in your currency. Nothing per message, and no surprise bills.</p>
-      </div>
-      <div class="pricing-bar">
-        <p class="notice">Kavedi is in private beta, and testers use it free. These prices are what we expect to charge after launch, and can still change.</p>
-        <label class="currency">Prices in
-          <select class="field" data-currency>
-            <option value="USD">$ USD</option>
-            <option value="EUR">€ EUR</option>
-            <option value="GBP">£ GBP</option>
-            <option value="NGN">₦ NGN</option>
-          </select>
-        </label>
-      </div>
-      <div class="plans">
-        <div class="plan">
-          <div class="plan-top"><h2 class="plan-name">Free</h2></div>
-          <p class="plan-price"><b data-price="free">$0</b> <span>/ month</span></p>
-          <p class="plan-for">Enough to connect your number and see it work on your real messages.</p>
-          <ul>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>1 WhatsApp number</span></li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span><strong>Triggers</strong> in your chats: price lists, welcomes, away messages, shortcuts</span></li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span><strong>100 AI replies</strong> a month</span></li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Teach it by typing, or upload a price list</span></li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Hands you anything nothing covers</span></li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Reply from Kavedi, and exceptions</span></li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Scheduled messages, 30 a month</span></li>
-          </ul>
-        </div>
-        <div class="plan is-featured">
-          <div class="plan-top"><h2 class="plan-name">Pro</h2><span class="badge">Most people</span></div>
-          <p class="plan-price"><b data-price="pro">$9</b> <span>/ month</span></p>
-          <p class="plan-for">For when Kavedi is doing real work every day.</p>
-          <ul>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Everything in Free</span></li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span><strong>Triggers in up to 3 groups</strong> you pick</span></li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span><strong>1,500 AI replies</strong> a month</span></li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Appointment booking in the chat</span></li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Reminders and check-ins</span></li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Scheduled messages, no limit</span></li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Broadcasts to people and groups</span></li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Word-for-word answers</span></li>
-          </ul>
-        </div>
-        <div class="plan">
-          <div class="plan-top"><h2 class="plan-name">Business</h2></div>
-          <p class="plan-price"><b data-price="business">$24</b> <span>/ month</span></p>
-          <p class="plan-for">Busy numbers, and help getting it right from day one.</p>
-          <ul>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Everything in Pro</span></li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Triggers and answers set up with you</span></li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span><strong>5,000 AI replies</strong> a month</span></li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Voice notes transcribed on request</span></li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Answers written from your documents</span></li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Priority support</span></li>
-          </ul>
-        </div>
-      </div>
-      <p class="pricing-note">An <strong>AI reply</strong> is one message Kavedi reads and answers from what you taught it. Triggers, scheduled messages, reminders, broadcasts and replies you send yourself use none. Run out and Kavedi doesn&rsquo;t stop: it passes messages to you instead of answering, and never bills you for more.</p>
+  <section class="page-head wrap">
+    <h1>Simple, flat pricing.</h1>
+    <p class="lede">One price a month, in your currency. Nothing per message, and no surprise bills.</p>
+    <div class="pricing-bar">
+      <p class="notice"><span class="live-dot" aria-hidden="true"></span>In private beta, testers use it free. These are the prices we expect after launch, and they can still change.</p>
+      <label class="currency">Prices in
+        <select data-currency>
+          <option value="USD">$ USD</option>
+          <option value="EUR">€ EUR</option>
+          <option value="GBP">£ GBP</option>
+          <option value="NGN">₦ NGN</option>
+        </select>
+      </label>
     </div>
   </section>
 
-  <section class="section section-sunken closing">
-    <div class="wrap">
-      <h2 class="h2">Use it free while it&rsquo;s in beta.</h2>
-      <p class="lede">The first 10 testers get two months of Pro free when pricing starts.</p>
-      <div class="hero-actions">
-        <a class="btn btn-primary btn-lg" href="/beta">Join the beta</a>
-        <a class="btn btn-secondary btn-lg" href="/beta#demo">Try the demo</a>
-      </div>
+  <section class="wrap plans">
+    <div class="plan">
+      <h2>Free</h2>
+      <p class="price"><b data-price="free">$0</b> <span>/ month</span></p>
+      <p class="for">Enough to connect your number and see it work on your real messages.</p>
+      <ul>
+        <li><svg class="ic"><use href="#i-check"/></svg>1 WhatsApp number</li>
+        <li><svg class="ic"><use href="#i-check"/></svg><span><strong>Agents</strong> in your chats: price lists, welcomes, away messages</span></li>
+        <li><svg class="ic"><use href="#i-check"/></svg><span><strong>100 AI replies</strong> a month</span></li>
+        <li><svg class="ic"><use href="#i-check"/></svg>Teach it by typing, or upload a price list</li>
+        <li><svg class="ic"><use href="#i-check"/></svg>An inbox for anything handed to you</li>
+        <li><svg class="ic"><use href="#i-check"/></svg>Scheduled messages, 30 a month</li>
+      </ul>
+      <a class="btn light" href="/beta">Join the beta</a>
     </div>
+    <div class="plan is-featured photo-frame" style="--img:url(/assets/photos/agent.webp)">
+      <h2>Pro <span class="badge">Most people</span></h2>
+      <p class="price"><b data-price="pro">$9</b> <span>/ month</span></p>
+      <p class="for">For when Kavedi is doing real work every day.</p>
+      <ul>
+        <li><svg class="ic"><use href="#i-check"/></svg>Everything in Free</li>
+        <li><svg class="ic"><use href="#i-check"/></svg><span><strong>Agents in up to 3 groups</strong> you pick</span></li>
+        <li><svg class="ic"><use href="#i-check"/></svg><span><strong>1,500 AI replies</strong> a month</span></li>
+        <li><svg class="ic"><use href="#i-check"/></svg>Bookings in the chat, with reminders</li>
+        <li><svg class="ic"><use href="#i-check"/></svg>Follow-ups for people who went quiet</li>
+        <li><svg class="ic"><use href="#i-check"/></svg>Scheduled messages, no limit</li>
+        <li><svg class="ic"><use href="#i-check"/></svg>Broadcasts to people and groups</li>
+        <li><svg class="ic"><use href="#i-check"/></svg>Word-for-word answers</li>
+      </ul>
+      <a class="btn white" href="/beta">Join the beta <svg class="ic"><use href="#i-arrow"/></svg></a>
+    </div>
+    <div class="plan">
+      <h2>Business</h2>
+      <p class="price"><b data-price="business">$24</b> <span>/ month</span></p>
+      <p class="for">Busy numbers, and help getting it right from day one.</p>
+      <ul>
+        <li><svg class="ic"><use href="#i-check"/></svg>Everything in Pro</li>
+        <li><svg class="ic"><use href="#i-check"/></svg>Agents and answers set up with you</li>
+        <li><svg class="ic"><use href="#i-check"/></svg><span><strong>5,000 AI replies</strong> a month</span></li>
+        <li><svg class="ic"><use href="#i-check"/></svg>Voice notes transcribed on request</li>
+        <li><svg class="ic"><use href="#i-check"/></svg>Answers written from your documents</li>
+        <li><svg class="ic"><use href="#i-check"/></svg>Priority support</li>
+      </ul>
+      <a class="btn light" href="/beta">Join the beta</a>
+    </div>
+  </section>
+
+  <section class="wrap">
+    <p class="pricing-note">An <strong>AI reply</strong> is one message Kavedi reads and answers from what you taught it. Words you wrote yourself, scheduled messages, reminders and broadcasts use none. Run out and Kavedi doesn’t stop: it passes messages to you instead of answering, and never bills you for more.</p>
+  </section>
+
+  <section class="wrap closing">
+    <h2>Use it free while it’s in beta.</h2>
+    <p class="lede">The first 10 testers get two months of Pro free when pricing starts.</p>
+    <div class="cta"><a class="btn white" href="/beta">Join the beta <svg class="ic"><use href="#i-arrow"/></svg></a><a class="btn light" href="/beta#demo">Try the demo</a></div>
   </section>
 </main>
 
-<footer class="site-foot">
-  <div class="wrap">
-    <div class="foot-top">
-      <div class="foot-brand">
-        <a class="brand" href="/" aria-label="Kavedi, home"><picture><source srcset="/assets/mark.webp" type="image/webp"><img src="/assets/mark.png" alt="" width="30" height="30" loading="lazy"></picture>Kavedi</a>
-        <p>WhatsApp automation for people who run on messages.</p>
-      </div>
-      <div class="foot-cols">
-        <div class="foot-col">
-          <h2>Product</h2>
-          <ul><li><a href="/#how-it-works">How it works</a></li><li><a href="/#features">Features</a></li><li><a href="/pricing">Pricing</a></li><li><a href="/beta">The beta</a></li></ul>
-        </div>
-        <div class="foot-col">
-          <h2>Company</h2>
-          <ul><li><a href="/privacy">Privacy</a></li><li><a href="/terms">Terms</a></li></ul>
-        </div>
-        <div class="foot-col">
-          <h2>Contact</h2>
-          <ul><li><a href="mailto:support@kavedi.com">support@kavedi.com</a></li></ul>
-          <div class="foot-social">
-            <a href="https://instagram.com/kavedihq" target="_blank" rel="noopener" aria-label="Kavedi on Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1" fill="currentColor" stroke="none"/></svg></a>
-            <a href="https://x.com/kavedihq" target="_blank" rel="noopener" aria-label="Kavedi on X"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.9 2H22l-7.6 8.7L23 22h-6.6l-5.2-6.8L5 22H2l8.1-9.3L1.6 2h6.7l4.7 6.2L18.9 2Zm-2.3 18h1.8L7.5 4H5.6l11 16Z"/></svg></a>
-            <a href="https://youtube.com/@kavedihq" target="_blank" rel="noopener" aria-label="Kavedi on YouTube"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.5 6.9a3 3 0 0 0-2.1-2.1C19.4 4.3 12 4.3 12 4.3s-7.4 0-9.4.5A3 3 0 0 0 .5 6.9 31.6 31.6 0 0 0 0 12a31.6 31.6 0 0 0 .5 5.1 3 3 0 0 0 2.1 2.1c2 .5 9.4.5 9.4.5s7.4 0 9.4-.5a3 3 0 0 0 2.1-2.1A31.6 31.6 0 0 0 24 12a31.6 31.6 0 0 0-.5-5.1ZM9.6 15.5v-7l6.3 3.5-6.3 3.5Z"/></svg></a>
-            <a href="https://github.com/kavedihq" target="_blank" rel="noopener" aria-label="Kavedi on GitHub"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5a11.5 11.5 0 0 0-3.6 22.4c.6.1.8-.3.8-.6v-2.1c-3.2.7-3.9-1.4-3.9-1.4-.5-1.3-1.3-1.7-1.3-1.7-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.7 1.3 3.4 1 .1-.8.4-1.3.7-1.5-2.6-.3-5.2-1.3-5.2-5.7 0-1.3.4-2.3 1.2-3.1-.1-.3-.5-1.5.1-3 0 0 1-.3 3.2 1.2a11 11 0 0 1 5.8 0c2.2-1.5 3.2-1.2 3.2-1.2.6 1.6.2 2.7.1 3 .7.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.6.4.4.8 1.1.8 2.2v3.2c0 .3.2.7.8.6A11.5 11.5 0 0 0 12 .5Z"/></svg></a>
-          </div>
-        </div>
-      </div>
+<div class="wrap">
+  <footer class="foot">
+    <a class="logo" href="/"><img src="/assets/mark.webp" alt="" width="20" height="20">Kavedi</a>
+    <nav aria-label="Footer"><a href="/beta">The beta</a><a href="/pricing">Pricing</a><a href="/privacy">Privacy</a><a href="/terms">Terms</a><a href="mailto:support@kavedi.com">support@kavedi.com</a></nav>
+    <div class="socials">
+      <a href="https://x.com/kavedihq" target="_blank" rel="noopener" aria-label="Kavedi on X"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.9 2H22l-7.6 8.7L23 22h-6.6l-5.2-6.8L5 22H2l8.1-9.3L1.6 2h6.7l4.7 6.2L18.9 2Zm-2.3 18h1.8L7.5 4H5.6l11 16Z"/></svg></a>
+      <a href="https://instagram.com/kavedihq" target="_blank" rel="noopener" aria-label="Kavedi on Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1" fill="currentColor" stroke="none"/></svg></a>
+      <a href="https://www.tiktok.com/@kavedihq" target="_blank" rel="noopener" aria-label="Kavedi on TikTok"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.6 2h-3.4v13.4a2.9 2.9 0 1 1-2.9-2.9c.3 0 .6 0 .9.1V9.1a6.4 6.4 0 1 0 5.4 6.3V8.6a8.1 8.1 0 0 0 4.4 1.4V6.6A4.5 4.5 0 0 1 16.6 2Z"/></svg></a>
     </div>
-    <div class="foot-bottom">
-      <p>Kavedi connects to your existing WhatsApp number as a linked device, like WhatsApp Web. Not affiliated with WhatsApp or Meta. &copy; 2026 Kavedi</p>
-      <div data-theme-switch></div>
-    </div>
-  </div>
-</footer>
+    <span class="foot-fine">Not affiliated with WhatsApp or Meta. © 2026 Kavedi · Photos from Unsplash</span>
+  </footer>
+</div>
 
-<script src="/assets/kv.js"></script>
+<script src="/assets/page.js"></script>
 </body>
 </html>

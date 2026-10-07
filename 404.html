@@ -3,68 +3,59 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Page not found — Kavedi</title>
+<title>Page not found · Kavedi</title>
 <meta name="robots" content="noindex">
 <link rel="icon" href="/assets/favicon.ico" sizes="48x48">
 <link rel="icon" href="/assets/favicon-96.png" sizes="96x96" type="image/png">
 <link rel="icon" href="/assets/favicon-192.png" sizes="192x192" type="image/png">
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
-<meta name="theme-color" content="#F5F1E9">
-<script>
-  (function () {
-    try {
-      var choice = localStorage.getItem('kv-theme');
-      if (choice === 'dark' || choice === 'light') document.documentElement.setAttribute('data-theme', choice);
-      var dark = choice === 'dark' || (choice !== 'light' && window.matchMedia('(prefers-color-scheme: dark)').matches);
-      document.querySelector('meta[name="theme-color"]').setAttribute('content', dark ? '#0E1A1F' : '#F5F1E9');
-    } catch (e) {}
-  })();
-</script>
+<meta name="theme-color" content="#0E0E0D">
+<script>document.documentElement.classList.add('js');</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/kv.css">
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600&family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/home.css">
+<link rel="stylesheet" href="/assets/site.css">
 </head>
 <body>
-<header class="site-head">
-  <div class="wrap">
-    <a class="brand" href="/" aria-label="Kavedi, home">
-      <picture><source srcset="/assets/mark.webp" type="image/webp"><img src="/assets/mark.png" alt="" width="30" height="30"></picture>
-      Kavedi
-    </a>
-    <nav class="nav" aria-label="Main">
-      <a href="/#how-it-works">How it works</a>
-      <a href="/#features">Features</a>
-      <a href="/pricing">Pricing</a>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+</svg>
+
+<header class="nav is-small" id="nav" data-solid>
+  <div class="nav-in">
+    <a class="logo" href="/" aria-label="Kavedi, home"><img src="/assets/mark.webp" alt="" width="24" height="24">Kavedi</a>
+    <nav class="nav-links" aria-label="Main">
+      <a href="/#agents">Agents</a><a href="/#pieces">The pieces</a><a href="/pricing">Pricing</a>
     </nav>
-    <a class="btn btn-primary btn-sm" href="/beta">Join the beta</a>
+    <a class="nav-sign" href="/sign-in">Sign in</a>
+    <a class="btn" href="/beta">Join the beta</a>
   </div>
 </header>
 
-<main id="main" class="lost">
-  <div class="wrap">
+<main id="main" class="lost wrap">
     <!-- "cat walking" from LottieFiles (Lottie Simple License), drawn in the page's own ink. -->
     <div class="lost-art" aria-hidden="true" data-lottie="/assets/anim/cat-walk.json"></div>
-    <p class="kicker">Page not found</p>
-    <h1 class="h1">That page isn&rsquo;t here.</h1>
+    <h1>That page isn’t here.</h1>
     <p class="lede">The link may be old, or it may have a typo in it.</p>
-    <div class="hero-actions">
-      <a class="btn btn-primary btn-lg" href="/">Go to the home page</a>
-      <a class="btn btn-secondary btn-lg" href="/beta">See the beta</a>
-    </div>
-  </div>
+    <div class="cta"><a class="btn white" href="/">Go to the home page</a><a class="btn light" href="/beta">See the beta</a></div>
 </main>
 
-<footer class="site-foot">
-  <div class="wrap">
-    <div class="foot-bottom is-only">
-      <p>Kavedi connects to your existing WhatsApp number as a linked device, like WhatsApp Web. Not affiliated with WhatsApp or Meta. &copy; 2026 Kavedi</p>
-      <div data-theme-switch></div>
+<div class="wrap">
+  <footer class="foot">
+    <a class="logo" href="/"><img src="/assets/mark.webp" alt="" width="20" height="20">Kavedi</a>
+    <nav aria-label="Footer"><a href="/beta">The beta</a><a href="/pricing">Pricing</a><a href="/privacy">Privacy</a><a href="/terms">Terms</a><a href="mailto:support@kavedi.com">support@kavedi.com</a></nav>
+    <div class="socials">
+      <a href="https://x.com/kavedihq" target="_blank" rel="noopener" aria-label="Kavedi on X"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.9 2H22l-7.6 8.7L23 22h-6.6l-5.2-6.8L5 22H2l8.1-9.3L1.6 2h6.7l4.7 6.2L18.9 2Zm-2.3 18h1.8L7.5 4H5.6l11 16Z"/></svg></a>
+      <a href="https://instagram.com/kavedihq" target="_blank" rel="noopener" aria-label="Kavedi on Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1" fill="currentColor" stroke="none"/></svg></a>
+      <a href="https://www.tiktok.com/@kavedihq" target="_blank" rel="noopener" aria-label="Kavedi on TikTok"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.6 2h-3.4v13.4a2.9 2.9 0 1 1-2.9-2.9c.3 0 .6 0 .9.1V9.1a6.4 6.4 0 1 0 5.4 6.3V8.6a8.1 8.1 0 0 0 4.4 1.4V6.6A4.5 4.5 0 0 1 16.6 2Z"/></svg></a>
     </div>
-  </div>
-</footer>
-<script src="/assets/kv.js"></script>
+    <span class="foot-fine">Not affiliated with WhatsApp or Meta. © 2026 Kavedi · Photos from Unsplash</span>
+  </footer>
+</div>
+<script src="/assets/page.js"></script>
 <script src="/assets/vendor/lottie_light.min.js" defer></script>
 <script src="/assets/lost.js" defer></script>
 </body>

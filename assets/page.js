@@ -9,8 +9,9 @@
   // ---------- The menu springs into a pill once you scroll ----------
   var nav = $('#nav');
   var small = null;
+  var solid = nav.hasAttribute('data-solid'); // pages without a photo on top keep the pill from the start
   function updateNav() {
-    var now = scrollY > 40;
+    var now = solid || scrollY > 40;
     if (now === small) return;
     var first = small === null;
     small = now;
@@ -96,6 +97,43 @@
       }
     });
   });
+
+  // ---------- Prices follow the currency last picked. Set per currency, not converted ----------
+  var PRICES = {
+    USD: { symbol: '$', free: '0', pro: '9', business: '24' },
+    NGN: { symbol: '₦', free: '0', pro: '7,500', business: '19,500' },
+    GBP: { symbol: '£', free: '0', pro: '7', business: '19' },
+    EUR: { symbol: '€', free: '0', pro: '8', business: '22' }
+  };
+  // Until someone picks, the currency follows the device's time zone: naira in Nigeria, pounds in the UK, euros in the
+  // eurozone, dollars everywhere else. A choice made on the pricing page sticks.
+  function guessCurrency() {
+    var zone = '';
+    try { zone = Intl.DateTimeFormat().resolvedOptions().timeZone || ''; } catch (e) {}
+    if (zone === 'Africa/Lagos') return 'NGN';
+    if (zone === 'Europe/London' || zone === 'Europe/Belfast') return 'GBP';
+    var euro = ['Amsterdam', 'Athens', 'Berlin', 'Bratislava', 'Brussels', 'Dublin', 'Helsinki', 'Lisbon', 'Ljubljana',
+      'Luxembourg', 'Madrid', 'Malta', 'Monaco', 'Paris', 'Riga', 'Rome', 'Tallinn', 'Vienna', 'Vilnius', 'Zagreb'];
+    if (zone.indexOf('Europe/') === 0 && euro.indexOf(zone.slice(7)) !== -1) return 'EUR';
+    return 'USD';
+  }
+  if ($('[data-price]')) {
+    var code = guessCurrency();
+    try { if (PRICES[localStorage.getItem('kv-currency')]) code = localStorage.getItem('kv-currency'); } catch (e) {}
+    var drawPrices = function () {
+      $$('[data-price]').forEach(function (el) { el.textContent = PRICES[code].symbol + PRICES[code][el.getAttribute('data-price')]; });
+    };
+    var picker = $('[data-currency]');
+    if (picker) {
+      picker.value = code;
+      picker.addEventListener('change', function () {
+        code = PRICES[picker.value] ? picker.value : 'USD';
+        try { localStorage.setItem('kv-currency', code); } catch (e) {}
+        drawPrices();
+      });
+    }
+    drawPrices();
+  }
 
   // ---------- Sections rise in as they come into view ----------
   var ups = $$('.up');

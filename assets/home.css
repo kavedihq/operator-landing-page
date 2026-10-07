@@ -1,43 +1,31 @@
 /* kavedi.com's home page. Rebuilt 5 Oct 2026 from direction A, then on 6 Oct after getone.one (Kelvin): a real photo
    behind the hero that folds into a desktop as you scroll, a menu that springs into a pill, real photos behind every
    frame, and "Make it an agent" played out with Blink and a cursor. Geist, one teal accent, springy motion.
-   The product is drawn in HTML so it follows light and dark. Photos: Unsplash (free licence), in assets/photos. */
+   The product is drawn in HTML, in the one dark theme. Photos: Unsplash (free licence), in assets/photos. */
+/* One theme: dark (Kelvin, 7 Oct: "delete light mode completely"). */
 :root {
-  --bg: #FBFBFA;
-  --ink: #141414;
-  --body: #3A3A38;
-  --muted: #6E6E69;
-  --line: #E7E6E1;
-  --card: #FFFFFF;
-  --chip: #F1F0EC;
-  --teal: #0A7F7A;
-  --teal-ink: #08635F;
-  --teal-soft: #E3F2F0;
+  --bg: #0E0E0D;
+  --ink: #F1F0EC;
+  --body: #D2D1CC;
+  --muted: #9A9993;
+  --line: #2A2A28;
+  --card: #1B1B1A;
+  --chip: #242422;
+  --teal: #35BDB4;
+  --teal-ink: #6FD6CE;
+  --teal-soft: #12302D;
   --red: #E5484D;
-  --wa: #EFEAE2;
-  --wa-out: #D9FDD3;
-  --wa-in: #FFFFFF;
-  --glass: rgba(255, 255, 255, .72);
-  --shadow: 0 30px 60px -20px rgba(0, 0, 0, .3), 0 0 0 1px rgba(0, 0, 0, .05);
+  --wa: #0B141A;
+  --wa-out: #005C4B;
+  --wa-in: #202C33;
+  --glass: rgba(30, 30, 28, .7);
+  --shadow: 0 30px 60px -20px rgba(0, 0, 0, .7), 0 0 0 1px rgba(255, 255, 255, .07);
   --sans: "Geist", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
   --mono: "Geist Mono", ui-monospace, "SF Mono", Consolas, monospace;
+  --hand: "Caveat", "Segoe Print", cursive;
   --ease: cubic-bezier(.3, .7, 0, 1);
   --spring: cubic-bezier(.34, 1.56, .64, 1);
-  color-scheme: light;
-}
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --bg: #0E0E0D; --ink: #F1F0EC; --body: #D2D1CC; --muted: #9A9993; --line: #2A2A28; --card: #1B1B1A; --chip: #242422;
-    --teal: #35BDB4; --teal-ink: #6FD6CE; --teal-soft: #12302D; --wa: #0B141A; --wa-out: #005C4B; --wa-in: #202C33;
-    --glass: rgba(30, 30, 28, .7); color-scheme: dark;
-    --shadow: 0 30px 60px -20px rgba(0, 0, 0, .7), 0 0 0 1px rgba(255, 255, 255, .07);
-  }
-}
-:root[data-theme="dark"] {
-  --bg: #0E0E0D; --ink: #F1F0EC; --body: #D2D1CC; --muted: #9A9993; --line: #2A2A28; --card: #1B1B1A; --chip: #242422;
-  --teal: #35BDB4; --teal-ink: #6FD6CE; --teal-soft: #12302D; --wa: #0B141A; --wa-out: #005C4B; --wa-in: #202C33;
-  --glass: rgba(30, 30, 28, .7); color-scheme: dark;
-  --shadow: 0 30px 60px -20px rgba(0, 0, 0, .7), 0 0 0 1px rgba(255, 255, 255, .07);
+  color-scheme: dark;
 }
 
 * { box-sizing: border-box; }
@@ -302,8 +290,8 @@ p { margin: 0; }
 .pin-stage { position: relative; min-width: 0; }
 .pin-frame { padding: 36px; aspect-ratio: 5 / 4; }
 /* Plays the pieces for you: it takes over the scroll when you reach them, and any scroll of yours takes it back. */
-.pin-play { position: absolute; left: 50%; bottom: 4px; translate: -50% 0; z-index: 9; width: 28px; height: 28px; padding: 0; border: 0; border-radius: 50%; display: grid; place-items: center; cursor: pointer; color: #fff; background: rgba(20, 24, 34, .26); box-shadow: inset 0 0 0 1.5px rgba(255, 255, 255, .5); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); transition: transform .35s var(--spring), background .2s; }
-.pin-play:hover { background: rgba(20, 24, 34, .4); }
+.pin-play { position: absolute; right: 8px; top: 8px; z-index: 9; width: 28px; height: 28px; padding: 0; border: 0; border-radius: 50%; display: grid; place-items: center; cursor: pointer; color: rgba(255, 255, 255, .85); background: rgba(20, 24, 34, .12); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .32); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); transition: transform .35s var(--spring), background .2s; }
+.pin-play:hover { background: rgba(20, 24, 34, .3); color: #fff; }
 .pin-play:active { transform: scale(.88); transition-duration: .1s; }
 .pin-play .ic { grid-area: 1 / 1; font-size: 11px; fill: currentColor; stroke: none; transition: opacity .2s, transform .35s var(--spring); }
 .pin-play .i-pause, .pin-play.is-playing .i-play { opacity: 0; transform: scale(.5); }
@@ -413,8 +401,22 @@ p { margin: 0; }
 .end .photo-frame { padding: 110px 24px; text-align: center; color: #fff; }
 .end h2 { font-size: clamp(34px, 5.6vw, 62px); letter-spacing: -0.04em; font-weight: 600; line-height: 1.12; text-shadow: 0 2px 30px rgba(20, 30, 60, .25); min-height: 2.3em; }
 .end .small { margin-top: 14px; color: rgba(255, 255, 255, .8); }
+/* A handwritten note, leaning down to the right, with a curly arrow to what it's about. */
+.hand { font-family: var(--hand); font-weight: 500; line-height: 1.05; letter-spacing: 0; color: #fff; text-shadow: 0 1px 12px rgba(10, 20, 40, .35); }
+.hand .curl { flex-shrink: 0; fill: none; stroke: currentColor; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; overflow: visible; }
+.hand-anchor { position: relative; display: inline-flex; }
+.end-hand { position: absolute; left: calc(100% + 6px); top: 18px; display: flex; align-items: flex-start; gap: 2px; width: max-content; font-size: 25px; text-align: left; rotate: 7deg; transform-origin: 0 0; }
+.end-hand .curl { width: 84px; height: 56px; margin: -18px 2px 0 0; }
+.end .photo-frame { padding-bottom: 130px; }
 .foot { margin-top: 40px; border-top: 1px solid var(--line); padding-block: 28px 40px; display: flex; flex-wrap: wrap; gap: 14px 28px; align-items: center; justify-content: space-between; font-size: 13.5px; color: var(--muted); }
 .foot nav { display: flex; gap: 20px; flex-wrap: wrap; }
+.foot .logo img { width: 20px; height: 20px; }
+.foot .logo { font-size: 15px; }
+.socials { display: flex; gap: 6px; }
+.socials a { width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; background: var(--chip); color: var(--muted); transition: color .2s, transform .35s var(--spring); }
+.socials a:hover { color: var(--ink); transform: translateY(-2px); }
+.socials svg { width: 16px; height: 16px; }
+.foot-fine { flex-basis: 100%; font-size: 12.5px; }
 .foot a { text-decoration: none; }
 .foot a:hover { color: var(--ink); }
 
@@ -434,6 +436,10 @@ p { margin: 0; }
 .is-static .wa-logo { width: 62%; max-width: 280px; justify-self: center; }
 
 @media (max-width: 900px) {
+  .hand-anchor { flex-direction: column; align-items: center; }
+  .end-hand { position: relative; left: 28px; top: 10px; font-size: 23px; rotate: 5deg; }
+  .end-hand .curl { rotate: 58deg; width: 54px; margin: -14px 0 0; }
+  .end .photo-frame { padding-bottom: 90px; }
   .nav { padding: 10px 12px; }
   .nav-links { display: none; }
   .nav-in { gap: 12px; padding-left: 12px; }
@@ -470,9 +476,9 @@ p { margin: 0; }
   .pin-list button span { width: auto; }
   .pin-stage { height: 100%; min-height: 0; }
   .pin-frame { aspect-ratio: auto; height: 100%; padding: 14px; border-radius: 20px; }
-  .scr { inset: 14px 14px 40px; }
-  .pin-frame { padding-bottom: 40px; }
-  .pin-play { bottom: 6px; }
+  .scr { inset: 40px 14px 14px; }
+  .pin-frame { padding-top: 40px; }
+  .pin-play { top: 6px; right: 10px; }
   .win-top .app-search { display: none; }
   .grid3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .end .photo-frame { padding: 80px 20px; border-radius: 22px; }
