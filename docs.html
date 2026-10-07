@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How Kavedi works · Technical docs</title>
+<meta name="description" content="The technical documentation for Kavedi: architecture, the WhatsApp connection, agents, AI, data and encryption, security and limits.">
+<meta property="og:title" content="How Kavedi works">
+<meta property="og:description" content="The technical documentation for Kavedi: architecture, the WhatsApp connection, agents, AI, data and encryption, security and limits.">
+<meta property="og:image" content="https://kavedi.com/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:url" content="https://kavedi.com/docs">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Kavedi">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="How Kavedi works">
+<meta name="twitter:description" content="The technical documentation for Kavedi: architecture, the WhatsApp connection, agents, AI, data and encryption, security and limits.">
+<meta name="twitter:image" content="https://kavedi.com/assets/og.png">
+<link rel="icon" href="/assets/favicon.ico" sizes="48x48">
+<link rel="icon" href="/assets/favicon-96.png" sizes="96x96" type="image/png">
+<link rel="icon" href="/assets/favicon-192.png" sizes="192x192" type="image/png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+
+<meta name="theme-color" content="#0E0E0D">
+<script>document.documentElement.classList.add('js');</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600&family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/home.css">
+<link rel="stylesheet" href="/assets/site.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+</svg>
+
+<header class="nav is-small" id="nav" data-solid>
+  <div class="nav-in">
+    <a class="logo" href="/" aria-label="Kavedi, home"><img src="/assets/mark.webp" alt="" width="24" height="24">Kavedi</a>
+    <nav class="nav-links" aria-label="Main">
+      <a href="/#agents">Agents</a><a href="/#pieces">The pieces</a><a href="/pricing">Pricing</a>
+    </nav>
+    <a class="nav-sign" href="/sign-in">Sign in</a>
+    <a class="btn" href="/beta">Join the beta</a>
+  </div>
+</header>
+
+<main id="main">
+<div class="wrap"><article class="doc">
+
+    <div class="doc-head">
+      <h1>How Kavedi works</h1>
+      <div class="doc-updated">The technical documentation. Updated October 7, 2026</div>
+    </div>
+
+    <div class="doc-plain">
+      <div class="doc-plain-label">At a glance</div>
+      <ul>
+        <li>A Node.js server holds one linked-device WhatsApp connection per account and runs every engine: agents, bookings, scheduling, notifications.</li>
+        <li>A React web app (computer and phone) is served by the same server, on the same address as its API.</li>
+        <li>All state lives in Postgres. Sessions, contacts and message text are encrypted with AES-256-GCM.</li>
+        <li>AI answers come from open-weight models, only from what the account was taught, and hand over instead of guessing.</li>
+      </ul>
+    </div>
+
+    <nav class="doc-toc" aria-label="On this page">
+      <a href="#arch">Architecture</a><a href="#whatsapp">The WhatsApp connection</a><a href="#pipeline">What happens to a message</a><a href="#agents">Agents</a><a href="#ai">AI</a><a href="#knowledge">Knowledge and retrieval</a><a href="#handover">Handovers and the Inbox</a><a href="#clock">Things on the clock</a><a href="#bookings">Bookings</a><a href="#apps">Connected apps</a><a href="#notify">Notifications</a><a href="#data">Data and encryption</a><a href="#security">Security</a><a href="#limits">Limits and rails</a><a href="#reliability">Reliability</a>
+    </nav>
+
+    <section id="arch">
+      <h2>Architecture</h2>
+      <table>
+        <thead><tr><th>Part</th><th>What it is</th></tr></thead>
+        <tbody>
+          <tr><td>Server</td><td>Node.js and Express, one long-running process. WhatsApp needs a persistent connection, so it can&rsquo;t run serverless.</td></tr>
+          <tr><td>Web app</td><td>Vite and React, built into the server&rsquo;s static files. The API is on the same origin, so there is no cross-origin traffic.</td></tr>
+          <tr><td>Database</td><td>Postgres (Supabase), in Frankfurt. Row level security is on for every table with no public policies: only the server reads and writes.</td></tr>
+          <tr><td>Sign-in</td><td>Supabase Auth: Google, email and password, or an email link. Every API request carries a session token that the server verifies. The account is the signed-in user.</td></tr>
+          <tr><td>Website</td><td>kavedi.com is a static site on Cloudflare. Its sign-in pages are passed through to the app.</td></tr>
+        </tbody>
+      </table>
+      <p>The code is split by what each part is. The WhatsApp channel is the only place that knows the WhatsApp protocol. Platform (storage, encryption, time zones, settings), AI, conversation, automation, booking and agents sit on top, and dependencies only point downwards. That boundary is what would let an official WhatsApp Cloud API connection replace the linked device later without touching the rest.</p>
+    </section>
+
+    <section id="whatsapp">
+      <h2>The WhatsApp connection</h2>
+      <ul>
+        <li><strong>Linked device.</strong> Kavedi uses an open-source implementation of the WhatsApp Web multi-device protocol, pinned to an exact version. It pairs with a phone-number pairing code, so the owner never has to scan their own screen.</li>
+        <li><strong>Session storage.</strong> The device&rsquo;s keys and credentials are stored in Postgres, encrypted. Routine key changes are saved in 15 second batches and flushed on shutdown, and new keys and credentials are saved at once. A restart reconnects without pairing again.</li>
+        <li><strong>One connection per number.</strong> A Postgres lease, renewed every 20 seconds, means only one server ever holds a number, deploys included. A number can belong to one account only.</li>
+        <li><strong>Groups, statuses, broadcast lists and Channels</strong> are acknowledged and dropped before decryption, unless an agent picked that group (three at most).</li>
+        <li><strong>Presence.</strong> Not shown online on connect. Online and typing only when replying to someone who just wrote, then offline again. No typing indicator before scheduled or automatic messages.</li>
+        <li><strong>Reconnects</strong> back off from 5 seconds, doubling to 10 minutes with jitter, and stop when the device was logged out, replaced or refused.</li>
+        <li><strong>No buttons or list messages.</strong> They aren&rsquo;t available on the linked-device protocol, so choices are numbered and read back from &ldquo;1&rdquo;, &ldquo;the second one&rdquo; or the words.</li>
+      </ul>
+    </section>
+
+    <section id="pipeline">
+      <h2>What happens to a message</h2>
+      <p>In this order. The first step that applies decides.</p>
+      <ol>
+        <li>Duplicates are dropped by message id (WhatsApp sometimes delivers twice).</li>
+        <li>A group message goes to group agents only, on exact words, at most once a minute and 10 runs an hour per group.</li>
+        <li>A message the owner sent marks the chat as theirs for the pause time, and only agents set to start on the owner&rsquo;s words can run.</li>
+        <li>STOP and other opt-out words are recorded and end there.</li>
+        <li>A team-wide kill switch, a chat set to Only you reply, or text that matches something a Kavedi wrote in the last day (another bot answering) all stop here. The last goes to the owner.</li>
+        <li>A reply to a question an agent asked goes to that agent.</li>
+        <li>A person with an open handover inside the quiet window is left alone by agents that answer anything.</li>
+        <li>A welcome agent for someone new, then at most one other agent, oldest first: exact matches are checked first, then one small-model call picks among the agents started by meaning.</li>
+        <li>One reply per message. If an agent sent something, that is the answer.</li>
+        <li>Otherwise the first agent set to take whatever is left (the Receptionist), after the owner&rsquo;s head start, and only if they haven&rsquo;t replied within the pause time.</li>
+      </ol>
+      <p>Every reply counts against a per-chat cap (6 in 3 minutes, 10 in 10). Over it, agents stop in that chat and it is handed to the owner with the reason.</p>
+    </section>
+
+    <section id="agents">
+      <h2>Agents</h2>
+      <p>An agent is a start, numbered steps of eight kinds, what it knows, and its rules.</p>
+      <ul>
+        <li><strong>Starts:</strong> a message that means something (a purpose sentence plus examples), certain words (sent by them, the owner or anyone), a kind of media, someone new, before or after a booking, someone quiet for N days, a handover from another agent, or whatever nothing else took.</li>
+        <li><strong>Steps:</strong> Instructions, Say, Ask, If, Do, Run, Hand over, End. A run keeps named values (<code>{service}</code>, <code>{times}</code>, <code>{reply}</code>) for later steps. Up to 20 steps, 3 questions, 3 nested runs, and never an If inside an If.</li>
+        <li><strong>Instructions</strong> run in one of two modes. With no tools and nothing to find out, one answer from the reply engine. With @mentioned tools (free times, book, move or cancel, send later, label) or values to collect, a conversation loop: up to 4 tool rounds per message, one message out per turn, the state kept encrypted between messages, and two ways out (done, or stuck, which hands over or runs the exception steps). It can only book a time a free-times lookup returned, and the slot is checked again before booking.</li>
+        <li><strong>Do</strong> includes web requests: https only, port 443, every resolved address checked public, redirects followed by hand and checked again, 8 second and 5 MB limits, 500 a day per account. API keys are encrypted and only ever sent to the host they were saved for.</li>
+        <li>The four agents every account starts with are built from these same pieces. Their switches are the settings they always had (AI replies, booking, reminders, follow-ups), so the rest of the system reads one source of truth.</li>
+        <li>Agents can be shared as a compact code or a file. Shared agents arrive switched off, without anything that belongs to an account (groups, keys, ids), and say who they would talk to.</li>
+      </ul>
+    </section>
+
+    <section id="ai">
+      <h2>AI</h2>
+      <ul>
+        <li><strong>Models.</strong> Replies are written by open-weight models (gpt-oss 120b, then smaller ones) on Groq. When those are unavailable, the same request can go to backup providers. Models with built-in web search are deliberately not used, so an answer can&rsquo;t come from the internet instead of the owner.</li>
+        <li><strong>Grounded answers.</strong> The model gets the owner&rsquo;s profile, the closest knowledge entries and the agent&rsquo;s rules, and answers in JSON. It must say when it doesn&rsquo;t know, and may never invent a price, a time, a date, an address or a rule. A model failure is treated as &ldquo;didn&rsquo;t know&rdquo;, never as an answer.</li>
+        <li><strong>Language.</strong> It replies in the language the person wrote in, and understands Pidgin, slang and typos.</li>
+        <li><strong>Matching by meaning</strong> is a small, temperature 0 call that returns one agent or none, and leans to none when unsure.</li>
+        <li><strong>Embeddings and document reading</strong> use Gemini. Documents become draft answers the owner checks before anything is saved.</li>
+        <li><strong>Voice notes</strong> are only transcribed when the owner presses Transcribe (Whisper).</li>
+        <li><strong>Usage</strong> is counted per account and per purpose, in credits of 1,000 tokens, with an hourly limit per account.</li>
+      </ul>
+    </section>
+
+    <section id="knowledge">
+      <h2>Knowledge and retrieval</h2>
+      <p>Each answer is stored with its label, content, topic and other ways people ask it, and embedded on write. Retrieval is cosine similarity in Postgres (pgvector), the top few entries per question. An agent can read all of Knowledge, some topics (every answer in them), or only its own notes. Answers can be sent word for word, with names filled in, or in the agent&rsquo;s own words. Each answer counts how often it was used.</p>
+    </section>
+
+    <section id="handover">
+      <h2>Handovers and the Inbox</h2>
+      <ul>
+        <li>A handover records who, the question, and why, and keeps an encrypted copy of the conversation that led to it.</li>
+        <li>An agent that doesn&rsquo;t know asks &ldquo;want me to pass this on?&rdquo; and remembers the question for 30 minutes. A plain yes hands it over. Asking for a person, or one of the owner&rsquo;s own cases, hands over at once.</li>
+        <li>While a handover is open, agents that answer anything leave that person alone for the account&rsquo;s quiet window (12 hours by default, or until Done).</li>
+        <li>Replies from the app go out as WhatsApp replies quoting the exact message.</li>
+      </ul>
+    </section>
+
+    <section id="clock">
+      <h2>Things on the clock</h2>
+      <ul>
+        <li><strong>The queue.</strong> Scheduled messages, reminders, follow-ups and broadcasts are rows in one Postgres queue, polled every 30 seconds and claimed atomically, so a message is never sent twice, even while two servers overlap during a deploy. Anything more than 2 hours late is skipped, not sent late.</li>
+        <li><strong>Repeating messages</strong> queue each occurrence through the same checks as one sent by hand. A label is read when it sends, so people added later get the next one.</li>
+        <li><strong>Broadcasts</strong> go one message at a time in bursts of 10 to 15, 20 to 75 seconds apart, with 2 to 5 minute pauses, between 8am and 8pm, 50 a day, only to people who have messaged the number, never to anyone who opted out.</li>
+        <li><strong>Follow-ups</strong> go once per quiet spell, 9am to 7pm, never to someone with a question waiting, a booking coming up, something already queued or an opt-out.</li>
+      </ul>
+    </section>
+
+    <section id="bookings">
+      <h2>Bookings</h2>
+      <p>Availability is a pure function of services, weekly hours, breaks, time off, rules and existing bookings, given a clock rather than reading one, so it is fully tested, daylight saving included. Time zones are IANA names per account, handled with the platform&rsquo;s own Intl data. Double booking is refused by a database constraint rather than checked first. Who added each booking (a chat, the owner, the assistant) is recorded. Connected calendars add their busy times.</p>
+    </section>
+
+    <section id="apps">
+      <h2>Connected apps</h2>
+      <ul>
+        <li><strong>Calendar link:</strong> a private iCalendar feed (180 days ahead, no phone numbers). The secret is stored hashed to find the account and encrypted to show it again, and can be replaced.</li>
+        <li><strong>Google Calendar:</strong> OAuth with the single <code>calendar.events</code> scope. Bookings are written as events tagged with the booking&rsquo;s id, busy times are read before offering slots, and access is revoked with Google on disconnect or account deletion.</li>
+        <li><strong>Stripe and Paystack:</strong> payment links for a fixed amount, stored in minor units, never floats. Paid is learned from signed webhooks, with a check against the provider when the page opens in case a webhook was missed. Keys are encrypted. Money goes directly to the owner&rsquo;s account.</li>
+      </ul>
+    </section>
+
+    <section id="notify">
+      <h2>Notifications</h2>
+      <p>Web push (VAPID) to every device the owner turned on, and email through Resend: someone waiting (gathered 20 seconds into one), new bookings, a payment, and WhatsApp going down for 10 minutes and coming back. These go outside WhatsApp, so a dropped connection still reaches the owner. The app installs as a progressive web app, and its icon shows how many people are waiting.</p>
+    </section>
+
+    <section id="data">
+      <h2>Data and encryption</h2>
+      <table>
+        <thead><tr><th>Data</th><th>How it&rsquo;s kept</th><th>How long</th></tr></thead>
+        <tbody>
+          <tr><td>WhatsApp session</td><td>Encrypted, AES-256-GCM</td><td>Until disconnect</td></tr>
+          <tr><td>Contacts</td><td>Encrypted</td><td>Until disconnect</td></tr>
+          <tr><td>Message text</td><td>Encrypted</td><td>2 days</td></tr>
+          <tr><td>Handed-over conversations</td><td>Encrypted</td><td>90 days</td></tr>
+          <tr><td>An agent&rsquo;s paused conversation</td><td>Encrypted</td><td>Until it finishes, an hour at most</td></tr>
+          <tr><td>Assistant chats</td><td>Encrypted</td><td>90 days unopened</td></tr>
+          <tr><td>Photos, voice notes, files people send</td><td>Never stored</td><td>&nbsp;</td></tr>
+        </tbody>
+      </table>
+      <p>The encryption key is never stored in the database. Deleting an account removes every row for it and the sign-in itself. The full detail is in the <a href="/privacy">privacy policy</a>.</p>
+    </section>
+
+    <section id="security">
+      <h2>Security</h2>
+      <ul>
+        <li>Every app request is checked against a verified session. During the beta, only approved emails can use the app.</li>
+        <li>Strict headers on every response: no framing, no sniffing, HSTS, a tight permissions policy, no caching of API responses.</li>
+        <li>Rate limits on sign-in, pairing codes (30 seconds apart, 5 per 15 minutes), dictation, tests and public endpoints.</li>
+        <li>No third-party &ldquo;anti-ban&rdquo; packages, which have been caught stealing WhatsApp sessions.</li>
+        <li>Found a problem? Email <a href="mailto:support@kavedi.com">support@kavedi.com</a>.</li>
+      </ul>
+    </section>
+
+    <section id="limits">
+      <h2>Limits and rails</h2>
+      <table>
+        <thead><tr><th>What</th><th>Limit</th></tr></thead>
+        <tbody>
+          <tr><td>AI per account</td><td>30 credits an hour during the beta</td></tr>
+          <tr><td>Replies per chat</td><td>6 in 3 minutes, 10 in 10</td></tr>
+          <tr><td>Broadcast</td><td>50 a day, 8am to 8pm, paced</td></tr>
+          <tr><td>Groups agents can read</td><td>3 across all agents</td></tr>
+          <tr><td>Pictures sent by agents</td><td>300 a day</td></tr>
+          <tr><td>Web requests by agents</td><td>500 a day</td></tr>
+          <tr><td>Steps in an agent</td><td>20</td></tr>
+        </tbody>
+      </table>
+      <p>Some things are not settings: never inventing an answer, handing over to a person, never answering a group with AI, and never starting a chat on its own.</p>
+    </section>
+
+    <section id="reliability">
+      <h2>Reliability</h2>
+      <ul>
+        <li>Each account&rsquo;s connection is isolated: one failing never takes down the process.</li>
+        <li>On start, stored sessions reconnect staggered, so a restart is not a reconnect storm.</li>
+        <li>A failed read never makes Kavedi louder: if settings or agents can&rsquo;t be read, it stays quiet rather than guessing.</li>
+        <li>Missed webhooks, expired questions and old messages are cleaned up on timers.</li>
+        <li>Kavedi is in beta. Expect changes, and tell us what breaks.</li>
+      </ul>
+    </section>
+
+</article></div>
+</main>
+
+<div class="wrap">
+  <footer class="foot">
+    <a class="logo" href="/"><img src="/assets/mark.webp" alt="" width="20" height="20">Kavedi</a>
+    <nav aria-label="Footer"><a href="/beta">The beta</a><a href="/pricing">Pricing</a><a href="/guide">Guide</a><a href="/docs">Docs</a><a href="/privacy">Privacy</a><a href="/terms">Terms</a><a href="mailto:support@kavedi.com">support@kavedi.com</a></nav>
+    <div class="socials">
+      <a href="https://x.com/kavedihq" target="_blank" rel="noopener" aria-label="Kavedi on X"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.9 2H22l-7.6 8.7L23 22h-6.6l-5.2-6.8L5 22H2l8.1-9.3L1.6 2h6.7l4.7 6.2L18.9 2Zm-2.3 18h1.8L7.5 4H5.6l11 16Z"/></svg></a>
+      <a href="https://instagram.com/kavedihq" target="_blank" rel="noopener" aria-label="Kavedi on Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1" fill="currentColor" stroke="none"/></svg></a>
+      <a href="https://www.tiktok.com/@kavedihq" target="_blank" rel="noopener" aria-label="Kavedi on TikTok"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.6 2h-3.4v13.4a2.9 2.9 0 1 1-2.9-2.9c.3 0 .6 0 .9.1V9.1a6.4 6.4 0 1 0 5.4 6.3V8.6a8.1 8.1 0 0 0 4.4 1.4V6.6A4.5 4.5 0 0 1 16.6 2Z"/></svg></a>
+    </div>
+    <span class="foot-fine">Not affiliated with WhatsApp or Meta. © 2026 Kavedi · Photos from Unsplash (Thanks!)</span>
+  </footer>
+</div>
+
+<script src="/assets/page.js"></script>
+</body>
+</html>

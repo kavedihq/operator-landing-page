@@ -84,3 +84,16 @@ main { padding-top: 130px; }
   .lost-hand { position: relative; left: 18px; top: -8px; margin-bottom: 30px; font-size: 23px; }
   .lost-hand .curl { rotate: 58deg; width: 54px; margin: -14px 0 0; }
 }
+
+/* Guide and docs (7 Oct): a contents list, tables, numbered lists, sub-headings and code inside a doc. */
+.doc-toc { margin-top: 32px; display: flex; flex-wrap: wrap; gap: 8px; }
+.doc-toc a { padding: 6px 12px; border-radius: 16px; background: var(--chip); color: var(--body); font-size: 13.5px; text-decoration: none; }
+.doc-toc a:hover { color: var(--ink); }
+.doc section h3 { margin-top: 24px; font-size: 17px; font-weight: 600; color: var(--ink); }
+.doc section ol { margin: 12px 0 0; padding-left: 22px; display: grid; gap: 10px; }
+.doc section ol li { color: var(--body); line-height: 1.7; }
+.doc table { width: 100%; margin-top: 14px; border-collapse: collapse; font-size: 15px; }
+.doc th, .doc td { padding: 10px 12px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; line-height: 1.55; }
+.doc th { color: var(--ink); font-weight: 600; font-size: 13.5px; }
+.doc td { color: var(--body); }
+.doc code { font: 500 0.88em var(--mono); padding: 1px 6px; border-radius: 6px; background: var(--chip); color: var(--ink); }
