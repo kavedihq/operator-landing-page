@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Agents · Kavedi Docs</title>
+<meta name="description" content="An agent is a worker with one job. It has a start, steps, what it knows, and its rules.">
+<meta property="og:title" content="Agents · Kavedi Docs">
+<meta property="og:description" content="An agent is a worker with one job. It has a start, steps, what it knows, and its rules.">
+<meta property="og:image" content="https://kavedi.com/assets/og.png">
+<meta property="og:url" content="https://kavedi.com/docs/agents">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/assets/favicon.ico" sizes="48x48">
+<link rel="icon" href="/assets/favicon-192.png" sizes="192x192" type="image/png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0E0E0D" media="(prefers-color-scheme: dark)">
+<script>try{var t=localStorage.getItem('kavedi.docs.theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/docs/docs.css">
+</head>
+<body>
+<header class="d-top">
+  <button class="d-icon-btn d-menu" id="d-menu" type="button" aria-label="Menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16"/><path d="M4 12h16"/><path d="M4 18h16"/></svg></button>
+  <a class="d-brand" href="/docs/"><img src="/assets/mark.webp" alt="" width="24" height="24">Kavedi <span>Docs</span></a>
+  <button class="d-search" type="button" data-search aria-label="Search the docs"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg><span class="d-q">Search the docs</span><kbd>Ctrl K</kbd></button>
+  <div class="d-top-right">
+    <a class="d-link d-hide-sm" href="/">kavedi.com</a>
+    <a class="d-link d-hide-sm" href="/sign-in">Sign in</a>
+    <button class="d-icon-btn" id="d-theme" type="button" aria-label="Light or dark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg></button>
+    <a class="d-btn" href="/beta">Join the beta</a>
+  </div>
+</header>
+<div class="d-layout">
+  <nav class="d-side" aria-label="Docs"><div class="d-group"><div class="d-group-title">Getting started</div><a href="/docs/">Introduction</a><a href="/docs/quickstart">Quickstart</a><a href="/docs/connect-whatsapp">Connect WhatsApp</a></div><div class="d-group"><div class="d-group-title">Core concepts</div><a href="/docs/agents" aria-current="page">Agents</a><a href="/docs/how-agents-decide">How agents decide</a><a href="/docs/knowledge">Teach Kavedi</a></div><div class="d-group"><div class="d-group-title">Build agents</div><a href="/docs/create-an-agent">Create an agent</a><a href="/docs/when-to-use-it">When to use it</a><a href="/docs/steps">Steps</a><a href="/docs/knowledge-and-rules">Knowledge and rules</a><a href="/docs/handing-over">Hand over to me when</a><a href="/docs/test-an-agent">Test an agent</a></div><div class="d-group"><div class="d-group-title">Using Kavedi</div><a href="/docs/inbox">Your Inbox</a><a href="/docs/bookings">Bookings</a><a href="/docs/messages">Messages</a><a href="/docs/connected-apps">Connected apps</a><a href="/docs/assistant">The assistant</a></div><div class="d-group"><div class="d-group-title">Account</div><a href="/docs/settings">Settings</a><a href="/docs/notifications">Notifications and the app</a><a href="/docs/credits-and-limits">Credits and limits</a><a href="/docs/number-safety">Keeping your number safe</a></div><div class="d-group"><div class="d-group-title">Help</div><a href="/docs/troubleshooting">Troubleshooting</a><a href="/docs/faq">FAQ</a></div></nav>
+  <main class="d-main" id="main">
+    <article class="d-page">
+      <div class="d-eyebrow">Core concepts</div>
+      <h1>Agents</h1>
+      <p class="d-lead">An agent is a worker with one job. It has a start, steps, what it knows, and its rules.</p>
+      <div class="d-body">
+<h2 id="the-four-that-come-with-kavedi"><a class="d-anchor" href="#the-four-that-come-with-kavedi">The four that come with Kavedi<span class="d-hash">#</span></a></h2>
+<table><thead><tr><th>Agent</th><th>Its job</th><th>Starts</th></tr></thead><tbody><tr><td><strong>Receptionist</strong></td><td>Answers questions from what you taught it</td><td>Any message no other agent took</td></tr><tr><td><strong>Booker</strong></td><td>Books, moves and cancels appointments</td><td>When someone wants a booking</td></tr><tr><td><strong>Reminder</strong></td><td>Reminds people before their booking</td><td>24 hours before, or when you choose</td></tr><tr><td><strong>Follow-up</strong></td><td>Checks in with people who went quiet</td><td>After a number of quiet days</td></tr></tbody></table>
+<p>Switch each one on or off on the <strong>Agents</strong> page. Open one to change how it works.</p>
+<div class="d-callout is-warn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg><div><p>While the Receptionist is on, every question someone sends gets an answer. If you only want some things answered, switch it off and build agents just for those.</p></div></div>
+<h2 id="your-own-agents"><a class="d-anchor" href="#your-own-agents">Your own agents<span class="d-hash">#</span></a></h2>
+<p>Describe what you want (“when someone asks how to pay, send my account details”) and press <strong>Build</strong>, start from a template, or start from scratch. See <a href="/docs/create-an-agent">Create an agent</a>.</p>
+<h2 id="deleting-one-of-the-four"><a class="d-anchor" href="#deleting-one-of-the-four">Deleting one of the four<span class="d-hash">#</span></a></h2>
+<p>Deleting the Receptionist, Booker, Reminder or Follow-up switches its setting off. <strong>Add back</strong> on the Agents page brings it back as it started.</p>
+      </div>
+      <nav class="d-pager" aria-label="Previous and next"><a href="/docs/connect-whatsapp"><small>Previous</small><b>Connect WhatsApp</b></a><a class="is-next" href="/docs/how-agents-decide"><small>Next</small><b>How agents decide</b></a></nav>
+      <footer class="d-foot"><span>© 2026 Kavedi. Not affiliated with WhatsApp or Meta.</span><nav><a href="/privacy">Privacy</a><a href="/terms">Terms</a><a href="mailto:support@kavedi.com">support@kavedi.com</a></nav></footer>
+    </article>
+  </main>
+  <aside class="d-toc" aria-label="On this page"><div class="d-toc-title">On this page</div><nav><a href="#the-four-that-come-with-kavedi">The four that come with Kavedi</a><a href="#your-own-agents">Your own agents</a><a href="#deleting-one-of-the-four">Deleting one of the four</a></nav></aside>
+</div>
+<div class="d-dialog" id="d-dialog" role="dialog" aria-modal="true" aria-label="Search the docs">
+  <div class="d-find">
+    <div class="d-find-bar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg><input id="d-find" type="search" placeholder="Search the docs" autocomplete="off" spellcheck="false"><kbd>Esc</kbd></div>
+    <div class="d-results" id="d-results"></div>
+  </div>
+</div>
+<script src="/docs/docs.js" defer></script>
+</body>
+</html>

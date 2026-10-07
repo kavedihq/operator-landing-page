@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hand over to me when · Kavedi Docs</title>
+<meta name="description" content="When an agent sends a chat to you instead of answering.">
+<meta property="og:title" content="Hand over to me when · Kavedi Docs">
+<meta property="og:description" content="When an agent sends a chat to you instead of answering.">
+<meta property="og:image" content="https://kavedi.com/assets/og.png">
+<meta property="og:url" content="https://kavedi.com/docs/handing-over">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/assets/favicon.ico" sizes="48x48">
+<link rel="icon" href="/assets/favicon-192.png" sizes="192x192" type="image/png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0E0E0D" media="(prefers-color-scheme: dark)">
+<script>try{var t=localStorage.getItem('kavedi.docs.theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/docs/docs.css">
+</head>
+<body>
+<header class="d-top">
+  <button class="d-icon-btn d-menu" id="d-menu" type="button" aria-label="Menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16"/><path d="M4 12h16"/><path d="M4 18h16"/></svg></button>
+  <a class="d-brand" href="/docs/"><img src="/assets/mark.webp" alt="" width="24" height="24">Kavedi <span>Docs</span></a>
+  <button class="d-search" type="button" data-search aria-label="Search the docs"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg><span class="d-q">Search the docs</span><kbd>Ctrl K</kbd></button>
+  <div class="d-top-right">
+    <a class="d-link d-hide-sm" href="/">kavedi.com</a>
+    <a class="d-link d-hide-sm" href="/sign-in">Sign in</a>
+    <button class="d-icon-btn" id="d-theme" type="button" aria-label="Light or dark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg></button>
+    <a class="d-btn" href="/beta">Join the beta</a>
+  </div>
+</header>
+<div class="d-layout">
+  <nav class="d-side" aria-label="Docs"><div class="d-group"><div class="d-group-title">Getting started</div><a href="/docs/">Introduction</a><a href="/docs/quickstart">Quickstart</a><a href="/docs/connect-whatsapp">Connect WhatsApp</a></div><div class="d-group"><div class="d-group-title">Core concepts</div><a href="/docs/agents">Agents</a><a href="/docs/how-agents-decide">How agents decide</a><a href="/docs/knowledge">Teach Kavedi</a></div><div class="d-group"><div class="d-group-title">Build agents</div><a href="/docs/create-an-agent">Create an agent</a><a href="/docs/when-to-use-it">When to use it</a><a href="/docs/steps">Steps</a><a href="/docs/knowledge-and-rules">Knowledge and rules</a><a href="/docs/handing-over" aria-current="page">Hand over to me when</a><a href="/docs/test-an-agent">Test an agent</a></div><div class="d-group"><div class="d-group-title">Using Kavedi</div><a href="/docs/inbox">Your Inbox</a><a href="/docs/bookings">Bookings</a><a href="/docs/messages">Messages</a><a href="/docs/connected-apps">Connected apps</a><a href="/docs/assistant">The assistant</a></div><div class="d-group"><div class="d-group-title">Account</div><a href="/docs/settings">Settings</a><a href="/docs/notifications">Notifications and the app</a><a href="/docs/credits-and-limits">Credits and limits</a><a href="/docs/number-safety">Keeping your number safe</a></div><div class="d-group"><div class="d-group-title">Help</div><a href="/docs/troubleshooting">Troubleshooting</a><a href="/docs/faq">FAQ</a></div></nav>
+  <main class="d-main" id="main">
+    <article class="d-page">
+      <div class="d-eyebrow">Build agents</div>
+      <h1>Hand over to me when</h1>
+      <p class="d-lead">When an agent sends a chat to you instead of answering.</p>
+      <div class="d-body">
+<table><thead><tr><th>Case</th><th>What happens</th></tr></thead><tbody><tr><td>They ask for a person</td><td>Always comes to your Inbox at once. This can’t be switched off.</td></tr><tr><td>It doesn’t know</td><td>It asks “want me to pass this on?” and only a yes comes to you. Or choose <strong>Hand over straight away</strong>.</td></tr><tr><td>Your own cases</td><td>Write them in plain words, like “they want a refund”. Any one that’s true hands it over, and your Inbox says which.</td></tr></tbody></table>
+<h2 id="hellos-and-small-talk"><a class="d-anchor" href="#hellos-and-small-talk">Hellos and small talk<span class="d-hash">#</span></a></h2>
+<p>By default an agent stays quiet for messages that ask nothing: “good morning”, “thanks”, “ok”, an emoji. They aren’t answered and don’t come to your Inbox. A greeting with a question in it still gets an answer.</p>
+<p>Choose <strong>Reply</strong> if you want it to say hello back and answer chit-chat.</p>
+<h2 id="what-they-re-told"><a class="d-anchor" href="#what-they-re-told">What they’re told<span class="d-hash">#</span></a></h2>
+<p>When a chat comes to you, Kavedi sends your holding message, or nothing if it’s blank. Change it in Settings, AI replies, When a chat comes to you.</p>
+      </div>
+      <nav class="d-pager" aria-label="Previous and next"><a href="/docs/knowledge-and-rules"><small>Previous</small><b>Knowledge and rules</b></a><a class="is-next" href="/docs/test-an-agent"><small>Next</small><b>Test an agent</b></a></nav>
+      <footer class="d-foot"><span>© 2026 Kavedi. Not affiliated with WhatsApp or Meta.</span><nav><a href="/privacy">Privacy</a><a href="/terms">Terms</a><a href="mailto:support@kavedi.com">support@kavedi.com</a></nav></footer>
+    </article>
+  </main>
+  <aside class="d-toc" aria-label="On this page"><div class="d-toc-title">On this page</div><nav><a href="#hellos-and-small-talk">Hellos and small talk</a><a href="#what-they-re-told">What they’re told</a></nav></aside>
+</div>
+<div class="d-dialog" id="d-dialog" role="dialog" aria-modal="true" aria-label="Search the docs">
+  <div class="d-find">
+    <div class="d-find-bar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg><input id="d-find" type="search" placeholder="Search the docs" autocomplete="off" spellcheck="false"><kbd>Esc</kbd></div>
+    <div class="d-results" id="d-results"></div>
+  </div>
+</div>
+<script src="/docs/docs.js" defer></script>
+</body>
+</html>

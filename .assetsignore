@@ -8,3 +8,4 @@ wrangler.jsonc
 node_modules
 *.zip
 worker.js
+_docs
