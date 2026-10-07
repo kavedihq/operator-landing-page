@@ -15,8 +15,7 @@ html:not(.js) .up { opacity: 1; transform: none; }
 .bhero-in { display: flex; flex-direction: column; align-items: center; text-align: center; padding-top: 120px; padding-bottom: 48px; }
 .bhero h1 { max-width: 960px; margin-top: 18px; font-size: clamp(38px, 6.4vw, 80px); line-height: 1.03; letter-spacing: -0.045em; font-weight: 600; text-shadow: 0 2px 30px rgba(20, 30, 60, .25); }
 .beta-pill { display: inline-flex; align-items: center; gap: 8px; height: 32px; padding: 0 14px 0 12px; border-radius: 16px; font-size: 13.5px; font-weight: 500; background: rgba(255, 255, 255, .16); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .3); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
-.live-dot { width: 8px; height: 8px; border-radius: 50%; background: #3EDB98; box-shadow: 0 0 0 4px rgba(62, 219, 152, .25); animation: live 2s ease-in-out infinite; }
-@keyframes live { 50% { box-shadow: 0 0 0 7px rgba(62, 219, 152, 0); } }
+.live-dot { width: 8px; height: 8px; border-radius: 50%; background: #3EDB98; box-shadow: 0 0 0 4px rgba(62, 219, 152, .25); }
 .bhero .small { margin-top: 16px; color: rgba(255, 255, 255, .75); }
 
 /* How it goes: three glass cards on the photo. */
@@ -149,8 +148,6 @@ textarea.field { min-height: 120px; resize: vertical; }
 .apply-frame { padding: 56px; }
 .apply { display: grid; grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); gap: 56px; align-items: center; }
 .apply-side { color: #fff; }
-.apply-hand { display: flex; align-items: flex-end; gap: 4px; margin: 0 0 22px 6px; font-size: 32px; rotate: 6deg; transform-origin: 0 100%; }
-.apply-hand .curl { width: 92px; height: 58px; margin-bottom: -22px; }
 .apply-side h2 { font-size: clamp(32px, 4.4vw, 48px); letter-spacing: -0.04em; font-weight: 600; line-height: 1.06; text-shadow: 0 2px 30px rgba(20, 30, 60, .25); }
 .apply-side .lede { margin-top: 14px; font-size: 17px; color: rgba(255, 255, 255, .88); }
 .apply-side ul { list-style: none; margin: 26px 0 0; padding: 0; display: grid; gap: 12px; color: rgba(255, 255, 255, .92); }
@@ -208,11 +205,22 @@ textarea.field { min-height: 120px; resize: vertical; }
   .apply-frame { margin-inline: -8px; padding: 28px 12px 12px; border-radius: 22px; }
   .apply { grid-template-columns: 1fr; gap: 28px; }
   .apply-side { padding-inline: 8px; }
-  .apply-hand { margin-bottom: 58px; font-size: 29px; }
-  .apply-hand .curl { rotate: 78deg; width: 64px; height: 40px; margin: 0 0 -40px 2px; }
   .form-card { padding: 24px 18px; border-radius: 18px; }
   .wa-msg { font-size: 15px; }
 }
 @media (prefers-reduced-motion: reduce) {
   .up, .wa-msg.is-new, .trg-item, .wait-row, .form-step, .done, .live-dot, .wa-send { animation: none !important; transition: none !important; opacity: 1; transform: none; }
+}
+
+/* Handwritten notes on the beta (7 Oct): "Apply here" on the black, pointing down into the photo box; "You can't resist"
+   under the first-10 offer, pointing up at it. */
+.apply-hand { position: relative; z-index: 2; display: flex; align-items: flex-start; gap: 4px; width: max-content; margin: 0 14% -22px auto; font-size: 34px; rotate: 6deg; transform-origin: 0 0; }
+.apply-hand .curl { width: 54px; height: 70px; margin-top: 16px; }
+.card-big { position: relative; }
+.resist-hand { position: absolute; right: 22px; bottom: -70px; display: flex; align-items: flex-end; gap: 2px; font-size: 27px; rotate: 6deg; transform-origin: 0 0; }
+.resist-hand .curl { width: 44px; height: 52px; margin-bottom: 8px; }
+.deal { margin-bottom: 40px; }
+@media (max-width: 900px) {
+  .apply-hand { margin-right: 8%; font-size: 30px; }
+  .deal .card-big:first-child { margin-bottom: 70px; }
 }

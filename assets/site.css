@@ -63,6 +63,9 @@ main { padding-top: 130px; }
 .lost { min-height: 70svh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
 .lost h1 { font-size: clamp(34px, 5vw, 56px); letter-spacing: -0.04em; font-weight: 600; line-height: 1.06; }
 .lost .lede { margin-top: 12px; color: var(--body); font-size: 17px; }
+.lost-wrap { position: relative; }
+.lost-hand { position: absolute; left: calc(100% - 6px); top: 26%; display: flex; align-items: flex-start; gap: 2px; width: max-content; font-size: 25px; text-align: left; rotate: 7deg; transform-origin: 0 0; }
+.lost-hand .curl { width: 80px; height: 54px; margin-top: -14px; }
 .lost-art { width: min(220px, 56vw); aspect-ratio: 870 / 810; margin: 0 auto 24px; }
 .lost-art svg { display: block; width: 100% !important; height: 100% !important; }
 .lost-art path[stroke] { stroke: var(--ink); }
@@ -78,4 +81,6 @@ main { padding-top: 130px; }
   .plan { padding: 24px; }
   .for { min-height: 0; }
   .doc-plain, .contact-section { padding: 20px; }
+  .lost-hand { position: relative; left: 18px; top: -8px; margin-bottom: 30px; font-size: 23px; }
+  .lost-hand .curl { rotate: 58deg; width: 54px; margin: -14px 0 0; }
 }

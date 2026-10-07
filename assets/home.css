@@ -97,6 +97,7 @@ p { margin: 0; }
 .grad .caret { background: #fff; }
 .typing-on .grad { background: none; }
 .typing-on .grad .ch { background: linear-gradient(100deg, #12B76A 0%, #3EDB98 38%, #A8F2CF 70%, #FFFFFF 100%); background-size: var(--gw, 3em) 100%; background-position: calc(var(--gx, 0px) * -1) 0; background-repeat: no-repeat; -webkit-background-clip: text; background-clip: text; color: transparent; }
+.typing-on .w { white-space: nowrap; }
 .typing-on .ch { opacity: 0; }
 .typing-on .ch.on, .typing-on.done .ch { opacity: 1; }
 @keyframes caret { 50% { opacity: 0; } }
@@ -107,8 +108,11 @@ p { margin: 0; }
 .js .rise.is-in { opacity: 1; transform: none; }
 .scroll-hint { position: absolute; bottom: 26px; left: 50%; translate: -50% 0; width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; background: rgba(255, 255, 255, .14); box-shadow: inset 0 0 0 1.5px rgba(255, 255, 255, .55); color: #fff; font-size: 18px; text-decoration: none; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); opacity: calc(1 - var(--p, 0) * 5); transition: transform .4s var(--spring), background .2s; }
 .scroll-hint:hover { transform: translateY(2px); background: rgba(255, 255, 255, .24); }
-.scroll-hint .ic { animation: nudge 1.6s var(--ease) infinite; }
-@keyframes nudge { 50% { transform: translateY(3px); } }
+/* Alive: it points down three times, a little firmer each time, swelling the circle a touch, then rests. */
+.scroll-hint { animation: hint-swell 3.4s var(--ease) infinite; }
+.scroll-hint .ic { animation: hint-point 3.4s var(--ease) infinite; }
+@keyframes hint-point { 0%, 52%, 100% { transform: none; } 6% { transform: translateY(5px); } 12% { transform: translateY(-2px); } 19% { transform: translateY(5px); } 25% { transform: translateY(-2px); } 32% { transform: translateY(6px); } 40% { transform: translateY(-1px); } 46% { transform: none; } }
+@keyframes hint-swell { 0%, 52%, 100% { scale: 1; } 6%, 19%, 32% { scale: 1.07; } 12%, 25%, 40% { scale: .98; } 46% { scale: 1; } }
 
 /* The desktop that appears: a menu bar, the app's window (the video goes here), the phone in ASCII, photos behind, a dock. */
 .os { position: absolute; inset: 0; opacity: var(--q, 0); pointer-events: none; }
@@ -123,10 +127,19 @@ p { margin: 0; }
 .wa-logo { right: 6%; top: 10%; width: 25%; z-index: 3; --turn: 4deg; --rise: 120px; }
 .wa-logo img { display: block; width: 100%; height: auto; filter: drop-shadow(0 24px 40px rgba(10, 20, 40, .35)); animation: bob 5s ease-in-out infinite; }
 @keyframes bob { 50% { transform: translateY(-10px) rotate(-2deg); } }
-.bubble-float { position: absolute; z-index: 4; max-width: 230px; padding: 8px 12px 6px; border-radius: 12px; font-size: 13px; line-height: 1.35; box-shadow: 0 14px 30px -10px rgba(0, 0, 0, .45); }
-.bubble-float small { display: block; text-align: right; font-size: 10px; opacity: .6; }
-.bf-1 { right: 17%; top: 64%; background: #fff; color: #141414; border-top-left-radius: 4px; --turn: -2deg; --rise: 100px; }
-.bf-2 { right: 3%; top: 77%; background: #D9FDD3; color: #141414; border-top-right-radius: 4px; --turn: 2deg; --rise: 150px; }
+/* The conversation beside the logo: new messages come in at the bottom, older ones rise and fade away under the logo. */
+.hero-chat { right: 3%; top: 44%; bottom: 4%; width: 30%; z-index: 2; --rise: 140px; display: flex; flex-direction: column; justify-content: flex-end; gap: 6px; padding: 6px 4px; overflow: hidden; -webkit-mask-image: linear-gradient(transparent 0, rgba(0, 0, 0, .25) 18%, #000 42%); mask-image: linear-gradient(transparent 0, rgba(0, 0, 0, .25) 18%, #000 42%); }
+.hero-chat .wa { font-size: 13.5px; max-width: 90%; flex-shrink: 0; }
+.hero-chat .wa.typing { width: 52px; padding: 10px; }
+/* A cursor that wanders the app slowly, like someone reading their inbox. */
+.app { position: relative; }
+.hcursor { position: absolute; left: 0; top: 0; z-index: 6; width: 20px; height: 20px; pointer-events: none; transform: translate(var(--x, 70%), var(--y, 60%)); filter: drop-shadow(0 3px 4px rgba(0, 0, 0, .35)); }
+.hcursor svg { width: 20px; height: 20px; transition: transform .16s var(--spring); transform-origin: 4px 3px; }
+.hcursor.is-down svg { transform: scale(.78); }
+.app .is-hover { background: color-mix(in srgb, var(--chip) 70%, var(--card)); }
+.app-bar span.is-hover { border-color: var(--muted); }
+.app-bar span, .app-row, .app-nav { transition: background .25s, border-color .25s, transform .15s var(--spring); }
+.app .is-press { transform: scale(.95); }
 
 /* The app, drawn, inside the window. */
 .app { display: grid; grid-template-columns: 160px 210px minmax(0, 1fr); height: 100%; background: var(--card); font-size: 12.5px; text-align: left; }
@@ -225,9 +238,12 @@ p { margin: 0; }
 
 /* After it's built: the window blurs and the chat comes up over it. Kavedi on the right, in green; them on the left. */
 .chat-over { position: absolute; inset: 0; z-index: 4; display: flex; flex-direction: column; justify-content: center; gap: 9px; width: min(460px, 92%); margin: 0 auto; pointer-events: none; }
-.wa { max-width: 84%; padding: 7px 10px 5px; border-radius: 12px; background: var(--wa-in); box-shadow: 0 10px 26px -10px rgba(0, 0, 0, .45), 0 1px .5px rgba(0, 0, 0, .12); color: var(--ink); line-height: 1.38; font-size: 15px; overflow-wrap: anywhere; align-self: flex-start; border-top-left-radius: 4px; }
-.wa.out { align-self: flex-end; background: var(--wa-out); border-top-left-radius: 12px; border-top-right-radius: 4px; }
-.wa time { display: block; text-align: right; font: 10.5px var(--sans); color: var(--muted); margin-top: 1px; }
+/* Chat bubbles, the beta demo's: WhatsApp's own dark colours, the time tucked into the last line, the tail corner at the bottom. */
+.wa { position: relative; display: flow-root; max-width: 82%; padding: 6px 9px 7px 10px; border-radius: 16px; border-bottom-left-radius: 4px; background: #202C33; color: #E9EDEF; font: 15px/1.32 -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; overflow-wrap: anywhere; align-self: flex-start; filter: drop-shadow(0 1px .5px rgba(0, 0, 0, .35)); -webkit-font-smoothing: antialiased; }
+.wa.out { align-self: flex-end; background: #005C4B; border-bottom-left-radius: 16px; border-bottom-right-radius: 4px; }
+.wa time { float: right; margin: 8px -2px -5px 10px; font-size: 11px; line-height: 1; color: #8696A0; white-space: nowrap; }
+.wa.out time { color: rgba(233, 237, 239, .62); }
+.wa.out time i { font-style: normal; color: #53BDEB; }
 .wa .pic { display: grid; place-items: center; height: 120px; margin: -3px -6px 6px; border-radius: 8px; background: center / cover url(/assets/photos/cakes.webp); }
 .wa.typing { width: 58px; display: flex; gap: 4px; justify-content: center; padding: 12px; }
 .wa.typing b { width: 6px; height: 6px; border-radius: 3px; background: var(--muted); animation: hop 1s infinite; }
@@ -430,7 +446,7 @@ p { margin: 0; }
 .is-static .scroll-hint { display: none; }
 .is-static .os { position: relative; inset: auto; opacity: 1; pointer-events: auto; display: grid; grid-template-columns: minmax(0, 1fr); gap: 16px; padding: 0 16px; max-width: 760px; margin: 0 auto; }
 .is-static .float { position: relative; inset: auto; transform: none; translate: none; }
-.is-static .bubble-float { display: none; }
+.is-static .hero-chat { position: relative; height: 250px; width: auto; top: auto; bottom: auto; right: auto; }
 .is-static .w-demo { width: auto; height: 420px; }
 .is-static .w-demo .slot::after { display: none; }
 .is-static .wa-logo { width: 62%; max-width: 280px; justify-self: center; }
@@ -485,7 +501,7 @@ p { margin: 0; }
 }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .pop, .spring-in, .wa.typing b, .dots b, .caret, .nav.is-boing .nav-in, .blink *, .wa-logo img, .scroll-hint .ic { animation: none !important; }
+  .pop, .spring-in, .wa.typing b, .dots b, .caret, .nav.is-boing .nav-in, .blink *, .wa-logo img, .scroll-hint, .scroll-hint .ic { animation: none !important; }
   .js .rise, .scr, .pin-more, .toast, .cursor, .build { transition: none !important; }
   .cursor { display: none; }
 }

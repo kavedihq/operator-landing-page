@@ -73,7 +73,7 @@
       Array.prototype.slice.call(el.childNodes).forEach(function (node) {
         if (node.nodeType !== 3) return;
         var frag = document.createDocumentFragment();
-        node.textContent.split('').forEach(function (c) { var s = document.createElement('span'); s.className = 'ch'; s.textContent = c; frag.appendChild(s); });
+        node.textContent.split(/(\s+)/).forEach(function (part) { if (!part) return; var box = /\s/.test(part) ? frag : frag.appendChild(document.createElement('span')); if (box !== frag) box.className = 'w'; part.split('').forEach(function (c) { var s = document.createElement('span'); s.className = 'ch'; s.textContent = c; box.appendChild(s); }); });
         node.replaceWith(frag);
       });
     });
@@ -509,8 +509,8 @@
   function bubble(kind, words, time) {
     var e;
     if (kind === 'note') e = el('div', 'wa note pop', esc(words));
-    else if (kind === 'pic') e = el('div', 'wa out pop', '<div class="pic"></div>' + esc(words) + '<time>' + esc(time) + ' ✓✓</time>');
-    else e = el('div', 'wa pop' + (kind === 'us' ? ' out' : ''), esc(words) + '<time>' + esc(time) + (kind === 'us' ? ' ✓✓' : '') + '</time>');
+    else if (kind === 'pic') e = el('div', 'wa out pop', '<div class="pic"></div>' + esc(words) + '<time>' + esc(time) + ' <i>✓✓</i></time>');
+    else e = el('div', 'wa pop' + (kind === 'us' ? ' out' : ''), esc(words) + '<time>' + esc(time) + (kind === 'us' ? ' <i>✓✓</i>' : '') + '</time>');
     chat.appendChild(e);
     while (chat.children.length > 6) chat.removeChild(chat.firstChild);
     return e;
@@ -740,4 +740,127 @@
       }
     });
   });
+
+  // ---------- The desktop lives: a slow conversation beside the logo, and someone reading their inbox ----------
+  // Both run only while the desktop is on screen (formed, or the static layout on phones), and not for less motion.
+  var desk = $('.os');
+  var deskSeen = false;
+  if (desk && 'IntersectionObserver' in window) {
+    new IntersectionObserver(function (entries) { deskSeen = entries[entries.length - 1].isIntersecting; }, { threshold: 0.2 }).observe(desk);
+  }
+  function deskLive() { return deskSeen && !document.hidden && (isStatic || hero.classList.contains('is-formed')); }
+  var pause = function (ms) { return new Promise(function (r) { setTimeout(r, ms); }); };
+  async function whenLive() { while (!deskLive()) await pause(400); }
+
+  // Studio Nine and Maya, over and over. Kavedi is the number's own side (green, right); Maya is on the left.
+  var TALK = [
+    ['them', 'Hi! Do you have anything this Saturday?'],
+    ['us', 'Yes! 11:30 or 14:00. Which works? 🙂'],
+    ['them', '14:00 please'],
+    ['us', 'Booked: Saturday at 14:00. See you then, Maya!'],
+    ['them', 'How much is a silk press?'],
+    ['us', 'A silk press is $65. Shall I add it to Saturday?'],
+    ['them', 'Yes please 🙏'],
+    ['us', 'Done. I’ll remind you the day before.'],
+    ['them', 'Thank you!!'],
+    ['us', 'Anytime 💚'],
+  ];
+  var heroChat = $('.hero-chat');
+  if (heroChat && !reduce) {
+    (async function () {
+      var minute = 2 * 60 + 13;
+      var clock = function () { minute = (minute + 1) % (24 * 60); return String(Math.floor(minute / 60)).padStart(2, '0') + ':' + String(minute % 60).padStart(2, '0'); };
+      for (var n = 0; ; n = (n + 1) % TALK.length) {
+        await whenLive();
+        var ours = TALK[n][0] === 'us';
+        var dots = heroChat.appendChild(el('div', 'wa typing pop' + (ours ? ' out' : ''), '<b></b><b></b><b></b>'));
+        await pause(ours ? 1700 : 1300);
+        dots.remove();
+        heroChat.appendChild(el('div', 'wa pop' + (ours ? ' out' : ''), esc(TALK[n][1]) + '<time>' + clock() + (ours ? ' <i>✓✓</i>' : '') + '</time>'));
+        while (heroChat.children.length > 8) heroChat.firstElementChild.remove();
+        await pause(ours ? 3600 : 2600);
+      }
+    })();
+  }
+
+  // The cursor: slow curved moves, a rest, sometimes a click. Clicking someone in the inbox opens their conversation.
+  var app = $('.w-demo .app');
+  var hcursor = app && $('.hcursor', app);
+  var PEOPLE = {
+    'Priya Nair': { mark: 'PN', sub: '+44 7700 900123 · handed over once', why: 'Today, 23:58 · they want a refund', talk: [['', 'Hi, my order came squashed 😩', '23:57'], ['me', 'So sorry Priya! I’ve passed this to Nina, she’ll sort it first thing.', 'Receptionist · 23:58'], ['', 'Ok thanks, I want a refund please', '23:58']] },
+    'Jonah Lindqvist': { mark: 'JL', sub: '+46 70 123 45 67 · new', why: 'Today, 01:12 · didn’t know the answer', talk: [['', 'Hey, do you deliver on Sundays?', '01:11'], ['me', 'Good question! I’ve asked Nina and she’ll let you know.', 'Receptionist · 01:12']] },
+    'Marcus Bell': { mark: 'MB', sub: '+1 415 555 0134 · handed over twice', why: 'Yesterday, 18:40 · sent a photo', talk: [['', '📷 Photo', '18:39'], ['', 'This design, but in blue?', '18:40'], ['me', 'Love it! Nina will check the colours and get back to you.', 'Receptionist · 18:40']] },
+  };
+  function openPerson(name) {
+    var p = PEOPLE[name];
+    var talk = app && $('.app-talk', app);
+    if (!p || !talk) return;
+    var bar = $('.app-bar', talk);
+    talk.innerHTML = '<div class="who"><i>' + p.mark + '</i><div><strong>' + esc(name) + '</strong><small>' + esc(p.sub) + '</small></div></div><div class="div">' + esc(p.why) + '</div>' +
+      p.talk.map(function (m) { return '<div class="msg' + (m[0] ? ' me' : '') + '">' + esc(m[1]) + '<small>' + esc(m[2]) + '</small></div>'; }).join('');
+    talk.appendChild(bar);
+  }
+  if (hcursor && !reduce) {
+    var cx = 0, cy = 0;
+    var placed = false;
+    var setAt = function (x, y) { cx = x; cy = y; hcursor.style.setProperty('--x', x.toFixed(1) + 'px'); hcursor.style.setProperty('--y', y.toFixed(1) + 'px'); };
+    // A gentle curve with a soft start and stop, the way a hand moves a mouse.
+    var glide = function (tx, ty) {
+      return new Promise(function (done) {
+        var sx = cx, sy = cy;
+        var dist = Math.hypot(tx - sx, ty - sy);
+        var bend = (Math.random() - 0.5) * Math.min(120, dist * 0.45);
+        var mx = (sx + tx) / 2 - ((ty - sy) / (dist || 1)) * bend, my = (sy + ty) / 2 + ((tx - sx) / (dist || 1)) * bend;
+        var ms = Math.min(3200, 900 + dist * 4.5);
+        var t0 = performance.now();
+        (function frame(now) {
+          var t = Math.min(1, (now - t0) / ms);
+          var e = t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+          var u = 1 - e;
+          setAt(u * u * sx + 2 * u * e * mx + e * e * tx, u * u * sy + 2 * u * e * my + e * e * ty);
+          if (t < 1) requestAnimationFrame(frame); else done();
+        })(t0);
+      });
+    };
+    var spotOf = function (node) {
+      var a = app.getBoundingClientRect(), r = node.getBoundingClientRect();
+      return [r.left - a.left + r.width * (0.25 + Math.random() * 0.5), r.top - a.top + r.height * (0.35 + Math.random() * 0.3)];
+    };
+    (async function () {
+      var hovered = null;
+      for (;;) {
+        await whenLive();
+        if (!placed) { var a0 = app.getBoundingClientRect(); setAt(a0.width * 0.7, a0.height * 0.65); placed = true; }
+        var roll = Math.random();
+        var pool = roll < 0.4 ? $$('.app-row', app) : roll < 0.6 ? $$('.app-talk .msg', app) : roll < 0.8 ? $$('.app-bar span', app) : roll < 0.92 ? $$('.app-nav', app) : null;
+        var target = pool && pool[Math.floor(Math.random() * pool.length)];
+        if (hovered) hovered.classList.remove('is-hover');
+        if (target) {
+          var at = spotOf(target);
+          await glide(at[0], at[1]);
+          hovered = target;
+          if (!target.classList.contains('msg')) target.classList.add('is-hover');
+          await pause(500 + Math.random() * 900);
+          // Opens someone in the inbox now and then; the buttons only get a press.
+          if ((target.classList.contains('app-row') && Math.random() < 0.7) || (target.parentNode.classList.contains('app-bar') && Math.random() < 0.3)) {
+            hcursor.classList.add('is-down');
+            target.classList.add('is-press');
+            await pause(150);
+            hcursor.classList.remove('is-down');
+            target.classList.remove('is-press');
+            if (target.classList.contains('app-row')) {
+              $$('.app-row', app).forEach(function (r) { r.classList.toggle('on', r === target); });
+              openPerson($('strong', target).textContent);
+            }
+          }
+          await pause(900 + Math.random() * 1800);
+        } else {
+          // Somewhere to rest, then a pause, as if reading.
+          var box = app.getBoundingClientRect();
+          await glide(box.width * (0.45 + Math.random() * 0.45), box.height * (0.3 + Math.random() * 0.5));
+          await pause(1800 + Math.random() * 2400);
+        }
+      }
+    })();
+  }
 })();

@@ -78,7 +78,7 @@
             Array.prototype.slice.call(el.childNodes).forEach(function (node) {
               if (node.nodeType !== 3) return;
               var frag = document.createDocumentFragment();
-              node.textContent.split('').forEach(function (c) { var s = document.createElement('span'); s.className = 'ch'; s.textContent = c; frag.appendChild(s); });
+              node.textContent.split(/(\s+)/).forEach(function (part) { if (!part) return; var box = /\s/.test(part) ? frag : frag.appendChild(document.createElement('span')); if (box !== frag) box.className = 'w'; part.split('').forEach(function (c) { var s = document.createElement('span'); s.className = 'ch'; s.textContent = c; box.appendChild(s); }); });
               node.replaceWith(frag);
             });
           });
@@ -180,6 +180,7 @@
             <li><svg class="ic"><use href="#i-check"/></svg><strong>A say in what we build next</strong><span>Testers tell us what’s missing.</span></li>
           </ul>
           <p class="first-ten"><svg class="ic"><use href="#i-gift"/></svg>The first 10 testers get two months of Pro free when pricing starts.</p>
+          <p class="hand resist-hand" aria-hidden="true"><svg class="curl" viewBox="0 0 60 70" aria-hidden="true"><path d="M54 62C32 66 14 56 20 44 25 34 38 40 32 48 24 58 8 40 12 6"/><path d="M12 6l-6 9M12 6l8 8"/></svg>You can’t resist</p>
         </div>
         <div class="card-big up">
           <h3>We ask</h3>
@@ -201,10 +202,10 @@
 
   <!-- The application. -->
   <section class="sec wrap" id="apply">
+    <p class="hand apply-hand" aria-hidden="true">Apply here<svg class="curl" viewBox="0 0 70 90" aria-hidden="true"><path d="M6 10C30 2 52 14 44 28 37 40 22 32 30 24 40 14 58 34 52 82"/><path d="M52 82l-9-8M52 82l4-11"/></svg></p>
     <div class="photo-frame apply-frame up" style="--img:url(/assets/photos/hero.webp)">
       <div class="apply">
         <div class="apply-side">
-          <p class="hand apply-hand">Apply here<svg class="curl" viewBox="0 0 110 70" aria-hidden="true"><path d="M4 20c20-16 44-14 50 2 5 13-10 18-13 8-3-11 18-20 62 14"/><path d="M103 44l-11 1M103 44l-3-10"/></svg></p>
           <h2>Three quick questions. That’s it.</h2>
           <p class="lede">We read every one. When it’s your turn, an email brings you straight in.</p>
           <ul>
@@ -312,7 +313,7 @@
       <a href="https://instagram.com/kavedihq" target="_blank" rel="noopener" aria-label="Kavedi on Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1" fill="currentColor" stroke="none"/></svg></a>
       <a href="https://www.tiktok.com/@kavedihq" target="_blank" rel="noopener" aria-label="Kavedi on TikTok"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.6 2h-3.4v13.4a2.9 2.9 0 1 1-2.9-2.9c.3 0 .6 0 .9.1V9.1a6.4 6.4 0 1 0 5.4 6.3V8.6a8.1 8.1 0 0 0 4.4 1.4V6.6A4.5 4.5 0 0 1 16.6 2Z"/></svg></a>
     </div>
-    <span class="foot-fine">Not affiliated with WhatsApp or Meta. © 2026 Kavedi · Photos from Unsplash</span>
+    <span class="foot-fine">Not affiliated with WhatsApp or Meta. © 2026 Kavedi · Photos from Unsplash (Thanks!)</span>
   </footer>
 </div>
 
