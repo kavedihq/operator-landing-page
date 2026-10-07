@@ -162,8 +162,8 @@ kbd, .d-kbd { font: 500 11.5px var(--mono); padding: 2px 6px; border: 1px solid 
 .d-cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin-top: 22px; }
 .d-card { display: block; padding: 16px 18px; border: 1px solid var(--line); border-radius: 14px; background: var(--panel); text-decoration: none !important; transition: border-color 0.15s, box-shadow 0.15s, transform 0.15s; }
 .d-card:hover { border-color: color-mix(in srgb, var(--accent) 45%, var(--line)); box-shadow: var(--shadow); transform: translateY(-1px); }
-.d-card-icon { width: 32px; height: 32px; display: grid; place-items: center; border-radius: 9px; background: var(--accent-soft); color: var(--accent-ink); }
-.d-card-icon svg { width: 17px; height: 17px; }
+.d-card .d-card-icon { margin-top: 0; width: 32px; height: 32px; display: grid; place-items: center; border-radius: 9px; background: var(--accent-soft); color: var(--accent-ink); }
+.d-card .d-card-icon svg { width: 17px; height: 17px; }
 .d-card b { display: block; margin-top: 12px; color: var(--ink); font-size: 15px; font-weight: 600; }
 .d-card span { display: block; margin-top: 4px; color: var(--muted); font-size: 14px; line-height: 1.5; }
 
