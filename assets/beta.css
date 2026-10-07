@@ -178,11 +178,11 @@ textarea.field { min-height: 120px; resize: vertical; }
 .hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
 .spinner { width: 14px; height: 14px; border-radius: 50%; border: 2px solid currentColor; border-right-color: transparent; animation: spin .7s linear infinite; }
 @keyframes spin { to { transform: rotate(1turn); } }
-.done { text-align: center; padding: 20px 0 8px; outline: none; animation: msg-in .6s var(--spring); }
-.done-mark { width: 56px; height: 56px; margin: 0 auto 18px; border-radius: 50%; display: grid; place-items: center; background: var(--teal-soft); color: var(--teal-ink); }
-.done-mark svg { width: 26px; height: 26px; }
-.done h3 { font-size: 24px; letter-spacing: -0.02em; font-weight: 600; }
-.done p { max-width: 26em; margin: 10px auto 0; color: var(--body); }
+.form-done { text-align: center; padding: 20px 0 8px; outline: none; animation: msg-in .6s var(--spring); }
+.form-done-mark { width: 56px; height: 56px; margin: 0 auto 18px; border-radius: 50%; display: grid; place-items: center; background: var(--teal-soft); color: var(--teal-ink); }
+.form-done-mark svg { width: 26px; height: 26px; }
+.form-done h3 { font-size: 24px; letter-spacing: -0.02em; font-weight: 600; }
+.form-done p { max-width: 26em; margin: 10px auto 0; color: var(--body); }
 
 .faq a { color: var(--teal-ink); }
 .faq-more { margin-top: 22px; }
@@ -209,7 +209,7 @@ textarea.field { min-height: 120px; resize: vertical; }
   .wa-msg { font-size: 15px; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .up, .wa-msg.is-new, .trg-item, .wait-row, .form-step, .done, .live-dot, .wa-send { animation: none !important; transition: none !important; opacity: 1; transform: none; }
+  .up, .wa-msg.is-new, .trg-item, .wait-row, .form-step, .form-done, .live-dot, .wa-send { animation: none !important; transition: none !important; opacity: 1; transform: none; }
 }
 
 /* Handwritten notes on the beta (7 Oct): "Apply here" on the black, pointing down into the photo box; "You can't resist"

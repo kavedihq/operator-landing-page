@@ -467,9 +467,9 @@
 
   var done = function (email) {
     var card = document.querySelector('[data-form-card]');
-    var box = el('div', 'done');
+    var box = el('div', 'form-done');
     box.setAttribute('tabindex', '-1');
-    var mark = el('div', 'done-mark');
+    var mark = el('div', 'form-done-mark');
     mark.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>';
     box.appendChild(mark);
     box.appendChild(el('h3', null, 'You’re on the list.'));

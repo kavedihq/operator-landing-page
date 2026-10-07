@@ -28,7 +28,8 @@
   color-scheme: dark;
 }
 
-* { box-sizing: border-box; }
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+@media (hover: none) and (pointer: coarse) { :is(a, button, summary, [tabindex]):focus { outline: none !important; } :is(a, button, summary) { -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; } }
 html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
 body { margin: 0; background: var(--bg); color: var(--ink); font: 16px/1.55 var(--sans); -webkit-font-smoothing: antialiased; overflow-x: clip; }
 img, video, svg { max-width: 100%; }
@@ -498,6 +499,22 @@ p { margin: 0; }
   .win-top .app-search { display: none; }
   .grid3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .end .photo-frame { padding: 80px 20px; border-radius: 22px; }
+}
+/* Phones fold too (Kelvin, 7 Oct): the photo becomes a desk with the inbox's window on it, WhatsApp's logo peeking out
+   behind its top right corner, and the conversation coming in under it, its older messages fading under the window. */
+@media (max-width: 900px) {
+  html:not(.is-static) .scene { height: 220svh; }
+  html:not(.is-static) .scene-stick { height: 100svh; }
+  html:not(.is-static) .desk { --frame-x: 10px; top: calc(var(--p, 0) * 74px); bottom: calc(var(--p, 0) * 12px); border-radius: calc(var(--p, 0) * 22px); }
+  html:not(.is-static) .wa-logo { right: 3%; top: 2%; width: 44%; max-width: 230px; z-index: 1; --turn: 6deg; --rise: 90px; }
+  html:not(.is-static) .w-demo { left: 5%; top: 15%; width: 82%; height: 53%; --rise: 60px; }
+  html:not(.is-static) .hero-chat { left: 5%; right: 5%; width: auto; top: 69%; bottom: 2%; --rise: 110px; -webkit-mask-image: linear-gradient(transparent 0, rgba(0, 0, 0, .3) 16%, #000 38%); mask-image: linear-gradient(transparent 0, rgba(0, 0, 0, .3) 16%, #000 38%); }
+  html:not(.is-static) .hero-chat .wa { max-width: 82%; }
+  html:not(.is-static) .app-talk { padding: 14px; gap: 7px; }
+  /* Connected apps: one per row, the whole name, the switch on the right. */
+  .apps { grid-template-columns: minmax(0, 1fr); gap: 7px; }
+  .app-tile { padding: 9px 12px; }
+  .app-tile strong { white-space: normal; overflow: visible; text-overflow: clip; }
 }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }

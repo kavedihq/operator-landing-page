@@ -4,13 +4,13 @@
 (function () {
   'use strict';
   var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var narrow = matchMedia('(max-width: 900px)');
+  var narrow = matchMedia('(max-height: 520px)'); // a phone on its side has no room to fold
   var $ = function (s, r) { return (r || document).querySelector(s); };
   var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
   var clamp = function (v, a, b) { return Math.min(b, Math.max(a, v)); };
   var root = document.documentElement;
 
-  // Phones, narrow windows and anyone who asks for less motion get the hero as a photo, with the desk under it.
+  // Anyone who asks for less motion, and very short windows, get the hero as a photo with the desk under it. Phones fold.
   var isStatic = false;
   function setStatic() {
     isStatic = reduce || narrow.matches;
@@ -833,6 +833,7 @@
         if (!placed) { var a0 = app.getBoundingClientRect(); setAt(a0.width * 0.7, a0.height * 0.65); placed = true; }
         var roll = Math.random();
         var pool = roll < 0.4 ? $$('.app-row', app) : roll < 0.6 ? $$('.app-talk .msg', app) : roll < 0.8 ? $$('.app-bar span', app) : roll < 0.92 ? $$('.app-nav', app) : null;
+        if (pool) pool = pool.filter(function (n) { return n.getClientRects().length; }); // on a phone the window shows only the conversation
         var target = pool && pool[Math.floor(Math.random() * pool.length)];
         if (hovered) hovered.classList.remove('is-hover');
         if (target) {
