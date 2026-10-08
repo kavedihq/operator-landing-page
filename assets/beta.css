@@ -153,6 +153,8 @@ textarea.field { min-height: 120px; resize: vertical; }
 .apply-side ul { list-style: none; margin: 26px 0 0; padding: 0; display: grid; gap: 12px; color: rgba(255, 255, 255, .92); }
 .apply-side li { display: grid; grid-template-columns: 20px minmax(0, 1fr); gap: 12px; }
 .apply-side .ic { margin-top: 4px; }
+.apply-team { margin-top: 22px; padding-top: 18px; border-top: 1px solid rgba(255, 255, 255, .22); font-size: 15px; color: rgba(255, 255, 255, .88); }
+.apply-team a { color: #fff; font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
 .form-card { padding: 32px; border-radius: 24px; background: var(--card); box-shadow: 0 30px 70px -20px rgba(0, 0, 0, .5); }
 .form-step { margin: 0; padding: 0; border: 0; min-width: 0; }
 .form-step[hidden] { display: none; }

@@ -97,3 +97,21 @@ main { padding-top: 130px; }
 .doc th { color: var(--ink); font-weight: 600; font-size: 13.5px; }
 .doc td { color: var(--body); }
 .doc code { font: 500 0.88em var(--mono); padding: 1px 6px; border-radius: 6px; background: var(--chip); color: var(--ink); }
+
+/* ---------- The team (8 Oct) ---------- */
+.team { list-style: none; margin: 56px auto 0; padding: 0; max-width: 980px; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
+.person { padding: 28px 22px 26px; border-radius: 26px; background: var(--card); box-shadow: 0 0 0 1px var(--line); text-align: center; }
+.person-face { display: grid; place-items: center; width: 96px; height: 96px; margin: 0 auto 18px; border-radius: 50%; overflow: hidden; font: 600 30px var(--sans); letter-spacing: -0.02em; }
+.person-face img { width: 100%; height: 100%; object-fit: cover; }
+.tone-teal { background: var(--teal-soft); color: var(--teal-ink); }
+.tone-blue { background: #15253F; color: #8DB4F5; }
+.tone-plum { background: #2A1C3B; color: #C3A6F2; }
+.tone-green { background: #16301F; color: #8FDCA5; }
+.person h2 { font-size: 20px; font-weight: 600; letter-spacing: -0.02em; }
+.person-role { margin-top: 4px; color: var(--muted); font-size: 14.5px; }
+.person-line { margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--line); color: var(--body); font-size: 15px; }
+.team-note { margin: 28px auto 0; padding-inline: 8px; display: flex; align-items: flex-start; justify-content: center; gap: 10px; color: var(--body); font-size: 15px; text-align: center; }
+.team-note .ic { margin-top: 2px; color: var(--teal); font-size: 18px; flex-shrink: 0; }
+.team-note a { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
+@media (max-width: 860px) { .team { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 420px) { .person { padding: 22px 14px; } .person-face { width: 80px; height: 80px; font-size: 26px; } }
