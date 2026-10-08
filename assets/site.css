@@ -115,3 +115,7 @@ main { padding-top: 130px; }
 .team-note a { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
 @media (max-width: 860px) { .team { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 420px) { .person { padding: 22px 14px; } .person-face { width: 80px; height: 80px; font-size: 26px; } }
+.person-socials { margin-top: 14px; display: flex; justify-content: center; gap: 8px; }
+.person-socials a { display: grid; place-items: center; width: 36px; height: 36px; border-radius: 50%; background: var(--chip); color: var(--body); transition: color .18s, background .18s; }
+.person-socials a:hover { color: var(--ink); background: var(--line); }
+.person-socials svg { width: 16px; height: 16px; }
