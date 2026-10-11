@@ -226,3 +226,4 @@ textarea.field { min-height: 120px; resize: vertical; }
   .apply-hand { margin-right: 8%; font-size: 30px; }
   .deal .card-big:first-child { margin-bottom: 70px; }
 }
+.form-done .btn { margin-top: 20px; display: inline-flex; }

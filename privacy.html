@@ -57,7 +57,7 @@
 
     <div class="doc-head">
       <h1>Privacy Policy</h1>
-      <div class="doc-updated">Last updated October 5, 2026</div>
+      <div class="doc-updated">Last updated October 11, 2026</div>
     </div>
 
     <div class="doc-plain">
@@ -105,7 +105,7 @@
         <li><strong>Counts, not content:</strong> one row per reply or hand-over (the kind and who it involved), and how much AI each account used per day (tokens and calls, never the words). That is where &ldquo;9 replies today&rdquo; and &ldquo;AI this month&rdquo; come from.</li>
         <li><strong>Notifications:</strong> if you switch them on, the address your browser gives us for push notifications, and your email for email ones.</li>
         <li><strong>Your account:</strong> the email you sign in with, and your name and picture if you use Google.</li>
-        <li><strong>Beta applications:</strong> your email, and whatever you chose to tell us (your name, what you do, where you are, how you use WhatsApp), plus whether we let you in.</li>
+        <li><strong>Beta applications:</strong> your email, and whatever you chose to tell us (your name, what you do, where you are, how you use WhatsApp), and when you joined.</li>
       </ul>
     </section>
 
@@ -120,7 +120,7 @@
 
     <section>
       <h2>Who else sees it</h2>
-      <p>To answer a message, its text is sent to an AI provider along with the answers you taught Kavedi, the agent&rsquo;s instructions and your profile. To find the right answer, the message is also turned into an embedding. Voice notes you ask to transcribe, and what you dictate, go to a speech-to-text provider. None of them receive your contact list, your account or your other conversations. Today that means <strong>Groq</strong> (replies, agents, the assistant, transcription) and <strong>Google Gemini</strong> (embeddings, and reading uploaded documents). Providers can change, and this page will say so.</p>
+      <p>To answer a message, its text is sent to an AI provider along with the last few messages of that same chat (from the last six hours, so a reply follows the conversation), the answers you taught Kavedi, the agent&rsquo;s instructions and your profile. To find the right answer, the message is also turned into an embedding. Voice notes you ask to transcribe, and what you dictate, go to a speech-to-text provider. None of them receive your contact list, your account or your other conversations. Today that means <strong>Groq</strong> (replies, agents, the assistant, transcription), <strong>OpenRouter</strong> when Groq is busy or down (with providers that don&rsquo;t keep or train on what&rsquo;s sent), and <strong>Google Gemini</strong> (embeddings, and reading uploaded documents). Providers can change, and this page will say so.</p>
       <p>Kavedi runs on <strong>Render</strong>, with data stored by <strong>Supabase</strong> (Postgres, in Frankfurt, Germany). Email goes through <strong>Resend</strong>. Beta applications are stored with Kavedi&rsquo;s own data, or go through <strong>Web3Forms</strong> if that is briefly unavailable. This site is served through <strong>Cloudflare</strong>. Apps you connect (Google, Stripe, Paystack) get only what is described above. We do not sell anything to anyone, and there is no advertising.</p>
       <p>An agent step that gets something from the internet fetches the web address you typed, from Kavedi&rsquo;s server. If you put someone&rsquo;s words in that address, those words go to that site, and nothing else about you or them does.</p>
       <p>Worth knowing while Kavedi is free: we use free tiers of those AI providers, and some providers reserve the right to review content sent on a free tier to improve their services. If that matters for what people send you, ask us where we are before connecting a number.</p>

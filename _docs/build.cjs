@@ -51,7 +51,7 @@ const PAGES = [
       h2('How it works'),
       p('You connect your number, teach Kavedi your answers once in your own words, and switch on <strong>agents</strong>. Each agent is a worker with one job: a Receptionist for questions, a Booker for bookings, a Reminder before appointments, a Follow-up for people who went quiet. You can build your own for anything else.'),
       p('Anything an agent doesn’t know comes to your <strong>Inbox</strong>. Kavedi never makes up an answer.'),
-      note('Kavedi is in beta. It’s free while we test it with the first people. <a href="/beta">Apply for the beta</a>.'),
+      note('Kavedi is in beta. It’s free while we test it with the first people. <a href="/beta">Join the beta</a>.'),
       h2('Start here'),
       cards([
         [d('quickstart'), 'rocket', 'Quickstart', 'From sign-in to your first automatic answer in about ten minutes.'],
@@ -68,11 +68,11 @@ const PAGES = [
     lead: 'Set up Kavedi and get your first automatic answer. It takes about ten minutes.',
     body: [
       steps([
-        ['Sign in', 'Go to <a href="/sign-in">kavedi.com/sign-in</a> and continue with Google or your email. During the beta your email has to be let in first.'],
+        ['Sign in', 'Go to <a href="/sign-in">kavedi.com/sign-in</a> and continue with Google or your email. Anyone can sign up during the beta.'],
         ['Answer the welcome', 'Kavedi asks your name or your business’s, what you do, and the questions people ask you most. Each step can be skipped, and everything can be changed later.'],
         ['Connect WhatsApp', 'Enter your number and type the pairing code into WhatsApp on your phone. See <a href="' + d('connect-whatsapp') + '">Connect WhatsApp</a>.'],
         ['Teach your answers', 'In <strong>Knowledge</strong>, type the things you tell people every day: prices, opening hours, how to pay, where you are.'],
-        ['Switch on an agent', 'On <strong>Agents</strong>, switch on the Receptionist to answer questions, or build your own agent for just one job.'],
+        ['Check your agents', 'AI replies switch on once you connect, so the Receptionist starts answering from what you taught it. See them on <strong>Agents</strong>, or build your own for one job.'],
         ['Test it', 'From another phone, message your number with a question you taught. The answer arrives in seconds.'],
       ]),
       tip('The <strong>Setup</strong> button at the top (or the card on Today on a phone) shows what’s left to do.'),
@@ -211,7 +211,7 @@ const PAGES = [
     lead: 'Steps are what an agent does, in order. There are eight kinds.',
     body: [
       table(['Step', 'What it does'], [
-        ['<strong>Instructions</strong>', 'Plain words for the AI to carry out. See below.'],
+        ['<strong>Let AI handle it</strong>', 'Tell the AI what to do, in plain words. See below.'],
         ['<strong>Say</strong>', 'Exactly your words, with a picture, file, sticker or reaction if you like.'],
         ['<strong>Ask</strong>', 'Asks a question, waits for their reply and keeps it. Can offer a numbered list to pick from.'],
         ['<strong>If</strong>', 'Does one thing or another, depending on what they said, a label, or chance.'],
@@ -220,10 +220,10 @@ const PAGES = [
         ['<strong>Hand over</strong>', 'To you (it lands in your Inbox) or to another agent.'],
         ['<strong>End</strong>', 'Stops, with last words or none.'],
       ]),
-      h2('Instructions'),
+      h2('Let AI handle it'),
       p('Write what you want in plain words: “Answer their question from what you know.” With nothing else, it answers once from your Knowledge.'),
       p('Type <strong>@</strong> to add tools: free times, book, move or cancel, send later, label. Name something to find out, like their email, and it asks for it. With tools or something to find out, it holds a conversation until the job is done.'),
-      p('<strong>When it can’t</strong> says what happens if it gets stuck: hand over to you, carry on to the next step, or run steps you choose.'),
+      p('<strong>If it gets stuck</strong> says what happens then: hand over to you, carry on to the next step, or run steps you choose.'),
       h2('Limits'),
       ul(['Up to 20 steps, counting the ones inside an If.', 'Up to 3 Ask steps.', 'An If can’t have another If inside it.']),
     ],
@@ -259,7 +259,7 @@ const PAGES = [
       p('By default an agent stays quiet for messages that ask nothing: “good morning”, “thanks”, “ok”, an emoji. They aren’t answered and don’t come to your Inbox. A greeting with a question in it still gets an answer.'),
       p('Choose <strong>Reply</strong> if you want it to say hello back and answer chit-chat.'),
       h2('What they’re told'),
-      p('When a chat comes to you, Kavedi sends your holding message, or nothing if it’s blank. Change it in Settings, AI replies, When a chat comes to you.'),
+      p('When a chat comes to you, Kavedi sends your holding message (“Thanks, I’ve passed this on. Someone will get back to you soon.” unless you change it), or nothing if you clear it. Change it in Settings, AI replies, When a chat comes to you.'),
     ],
   },
   {

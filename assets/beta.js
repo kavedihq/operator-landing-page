@@ -465,15 +465,23 @@
       .then(function (body) { if (!body || !body.success) throw new Error('web3forms'); });
   };
 
-  var done = function (email) {
+  // `open`: the server let them straight in (11 Oct, no approval any more), so the email with their link is on its way.
+  var done = function (email, open) {
     var card = document.querySelector('[data-form-card]');
     var box = el('div', 'form-done');
     box.setAttribute('tabindex', '-1');
     var mark = el('div', 'form-done-mark');
     mark.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>';
     box.appendChild(mark);
-    box.appendChild(el('h3', null, 'You’re on the list.'));
-    box.appendChild(el('p', null, 'We’ll email ' + email + ' when it’s your turn. The link in that email opens Kavedi and signs you straight in.'));
+    box.appendChild(el('h3', null, open ? 'You’re in.' : 'Got it.'));
+    box.appendChild(el('p', null, open
+      ? 'Check ' + email + ' for a link that signs you straight in. It can take a minute, and sometimes lands in spam.'
+      : 'We’ll email ' + email + ' a link that signs you straight in.'));
+    if (open) {
+      var go = el('a', 'btn dark', 'Or sign up now');
+      go.href = '/sign-up';
+      box.appendChild(go);
+    }
     card.innerHTML = '';
     card.appendChild(box);
     box.focus({ preventScroll: true });
@@ -488,10 +496,10 @@
     var label = form.querySelector('[data-submit-label]');
     btn.disabled = true;
     label.innerHTML = '<span class="spinner" aria-hidden="true"></span> Sending';
-    var reset = function (message) { btn.disabled = false; label.textContent = 'Send application'; showError(message); };
+    var reset = function (message) { btn.disabled = false; label.textContent = 'Join the beta'; showError(message); };
 
     viaKavedi(data).then(function (result) {
-      if (result.status === 200 && result.body && result.body.ok) return done(data.email);
+      if (result.status === 200 && result.body && result.body.ok) return done(data.email, result.body.open !== false);
       if (result.status === 400) { go(1); return reset((result.body && result.body.error) || 'Check your email address.'); }
       if (result.status === 429) return reset((result.body && result.body.error) || 'That’s a lot of tries. Wait a little and try again.');
       // Anything else (a 5xx, the server not reached): don't lose them.

@@ -5,6 +5,7 @@
   'use strict';
   var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   var narrow = matchMedia('(max-height: 520px)'); // a phone on its side has no room to fold
+  var touchy = matchMedia('(pointer: coarse), (max-width: 767px)').matches;
   var $ = function (s, r) { return (r || document).querySelector(s); };
   var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
   var clamp = function (v, a, b) { return Math.min(b, Math.max(a, v)); };
@@ -384,7 +385,9 @@
     var x = pinX();
     playBtn.hidden = !(x > -0.6 && x < count + 0.2);
     if (x < -0.6 || x > count + 0.2) heldBack = false;
-    if (playing) return;
+    // Phones and touch screens never scroll by themselves (11 Oct, from the audit: it fought people's thumbs). The
+    // round button still plays it.
+    if (playing || touchy) return;
     clearTimeout(idleTimer);
     var y = scrollY;
     idleTimer = setTimeout(function () {
