@@ -178,7 +178,7 @@ textarea.field { min-height: 120px; resize: vertical; }
 .form-actions .btn.dark { min-width: 130px; justify-content: center; }
 .form-actions .btn[disabled] { opacity: .6; cursor: default; }
 .hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
-.spinner { width: 14px; height: 14px; border-radius: 50%; border: 2px solid currentColor; border-right-color: transparent; animation: spin .7s linear infinite; }
+.spinner { display: inline-block; flex: none; vertical-align: -2px; width: 14px; height: 14px; border-radius: 50%; border: 2px solid currentColor; border-right-color: transparent; animation: spin .7s linear infinite; }
 @keyframes spin { to { transform: rotate(1turn); } }
 .form-done { text-align: center; padding: 20px 0 8px; outline: none; animation: msg-in .6s var(--spring); }
 .form-done-mark { width: 56px; height: 56px; margin: 0 auto 18px; border-radius: 50%; display: grid; place-items: center; background: var(--teal-soft); color: var(--teal-ink); }
