@@ -69,7 +69,7 @@ const PAGES = [
     body: [
       steps([
         ['Sign in', 'Go to <a href="/sign-in">kavedi.com/sign-in</a> and continue with Google or your email. Anyone can sign up during the beta.'],
-        ['Answer the welcome', 'Kavedi asks your name or your business’s, what you do, and the questions people ask you most. Each step can be skipped, and everything can be changed later.'],
+        ['Answer the welcome', 'Kavedi asks the name people know you by, what you do, and the questions people ask you most. Each step can be skipped, and everything can be changed later.'],
         ['Connect WhatsApp', 'Enter your number and type the pairing code into WhatsApp on your phone. See <a href="' + d('connect-whatsapp') + '">Connect WhatsApp</a>.'],
         ['Teach your answers', 'In <strong>Knowledge</strong>, type the things you tell people every day: prices, opening hours, how to pay, where you are.'],
         ['Check your agents', 'AI replies switch on once you connect, so the Receptionist starts answering from what you taught it. See them on <strong>Agents</strong>, or build your own for one job.'],
@@ -273,9 +273,9 @@ const PAGES = [
       note('Try it and Tests show what an agent does once it has a message. They don’t show whether the agent would be picked for that message. Only a real message tests that.'),
       h2('Test with a real message'),
       steps([
-        ['Use a second phone', 'Message your Kavedi number from another phone. Messages you send from your own number count as you, not a customer.'],
+        ['Use a second phone', 'Message your Kavedi number from another phone. Messages you send from your own number count as you, not as someone messaging you.'],
         ['Wait half a minute after saving', 'Changes reach WhatsApp within 30 seconds.'],
-        ['Send what a customer would', 'Check the right agent answered, and that hellos get no reply.'],
+        ['Send what people would send', 'Check the right agent answered, and that hellos get no reply.'],
       ]),
     ],
   },
@@ -466,9 +466,9 @@ const PAGES = [
       h3('Does it work with WhatsApp Business?'),
       p('Usually, yes: the regular WhatsApp app and the WhatsApp Business app both work. A number already connected to Meta’s official Business API can’t be linked.'),
       h3('Will it make up prices?'),
-      p('No. It only answers from what you taught it. If it doesn’t know, it says so and offers to pass it on.'),
+      p('It’s built not to. It answers from what you taught it, and when it doesn’t know, it says so and offers to pass it on.'),
       h3('Does it understand Pidgin and other languages?'),
-      p('Yes. It replies in the language people write in.'),
+      p('It understands Pidgin and mixed messages. It answers in the language people write in, and in plain English when a message mixes languages.'),
       h3('Can I still use WhatsApp myself?'),
       p('Yes. Your phone works as normal, and agents step back when you reply.'),
       h3('Does it read photos and voice notes?'),

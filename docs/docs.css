@@ -220,6 +220,8 @@ kbd, .d-kbd { font: 500 11.5px var(--mono); padding: 2px 6px; border: 1px solid 
   .d-top-right { margin-left: 0; }
   .d-hide-sm { display: none; }
   .d-top { gap: 8px; padding: 0 12px; }
+  /* The beta button doesn't fit beside search and the menu on a narrow phone (it scrolled sideways). */
+  .d-top-right .d-btn { display: none; }
   .d-page h1 { font-size: 28px; }
   .d-lead { font-size: 16.5px; }
   .d-cards, .d-pager { grid-template-columns: 1fr; }

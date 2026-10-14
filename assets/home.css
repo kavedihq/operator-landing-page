@@ -94,10 +94,10 @@ p { margin: 0; }
 .caret { display: inline-block; width: .06em; min-width: 3px; height: .9em; margin-left: .03em; vertical-align: -.08em; background: currentColor; border-radius: 2px; animation: caret 1.05s steps(2) infinite; }
 /* One word in green that turns to white at its end. Split into letters to be typed, each letter carries its own slice
    of the word's gradient (home.js, paintGrads), so the colour runs across the word as it's written. */
-.grad { background: linear-gradient(100deg, #12B76A 0%, #3EDB98 38%, #A8F2CF 70%, #FFFFFF 100%); -webkit-background-clip: text; background-clip: text; color: transparent; text-shadow: none; filter: drop-shadow(0 2px 14px rgba(5, 25, 30, .28)); }
+.grad { background: linear-gradient(100deg, #0FA968 0%, #2FD18C 45%, #7FE8B9 100%); -webkit-background-clip: text; background-clip: text; color: transparent; text-shadow: none; filter: drop-shadow(0 2px 14px rgba(5, 25, 30, .28)); }
 .grad .caret { background: #fff; }
 .typing-on .grad { background: none; }
-.typing-on .grad .ch { background: linear-gradient(100deg, #12B76A 0%, #3EDB98 38%, #A8F2CF 70%, #FFFFFF 100%); background-size: var(--gw, 3em) 100%; background-position: calc(var(--gx, 0px) * -1) 0; background-repeat: no-repeat; -webkit-background-clip: text; background-clip: text; color: transparent; }
+.typing-on .grad .ch { background: linear-gradient(100deg, #0FA968 0%, #2FD18C 45%, #7FE8B9 100%); background-size: var(--gw, 3em) 100%; background-position: calc(var(--gx, 0px) * -1) 0; background-repeat: no-repeat; -webkit-background-clip: text; background-clip: text; color: transparent; }
 .typing-on .w { white-space: nowrap; }
 .typing-on .ch { opacity: 0; }
 .typing-on .ch.on, .typing-on.done .ch { opacity: 1; }

@@ -445,7 +445,7 @@
       when: 'They want to book, move or cancel',
       steps: [['Find <span class="tag">free times</span>', 'Saturdays, 11:00 to 16:00'], ['<span class="tag">Book</span> the one they pick', 'and confirm it'], ['Remind them', 'the day before']],
       reply: 'Done. It offers your free times and books them.',
-      chat: [['them', 'can I come in on Saturday?', '12:40'], ['us', 'Saturday I have 11:30 or 14:00. Which works?', '12:40'], ['them', '14:00 pls', '12:41'], ['us', 'Booked ✓ Saturday 4 Oct, 14:00. See you then, Ben!', '12:41']],
+      chat: [['them', 'can I come in on Saturday?', '12:40'], ['us', 'Saturday I have 11:30 or 14:00. Which works?', '12:40'], ['them', '14:00 pls', '12:41'], ['us', 'Booked ✓ Saturday 3 Oct, 14:00. See you then, Ben!', '12:41']],
     },
     {
       tab: 'Reminders', name: 'Reminder', look: ['#7A5AF8', 'i-bell'],
