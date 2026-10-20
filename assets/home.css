@@ -522,3 +522,10 @@ p { margin: 0; }
   .js .rise, .scr, .pin-more, .toast, .cursor, .build { transition: none !important; }
   .cursor { display: none; }
 }
+
+/* Phones keep Pricing in the menu (20 Oct): the other links hide, Pricing sits beside Sign in where there's room. */
+@media (max-width: 900px) and (min-width: 400px) {
+  .nav-links { display: flex; gap: 0; margin: 0 0 0 auto; }
+  .nav-links a:not([href="/pricing"]) { display: none; }
+  .nav-sign { margin-left: 0; }
+}

@@ -3,11 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Pricing · Kavedi | Flat monthly plans for WhatsApp</title>
-<meta name="description" content="Kavedi pricing: a free plan to try it, Pro at $9 a month and Business at $24. One flat price a month, no per-message charges.">
-<meta name="robots" content="noindex">
+<title>Pricing · Kavedi | Plans for WhatsApp automation</title>
+<meta name="description" content="Kavedi pricing: Free to start, Pro from $6 a month and Business from $16, billed yearly. Up to 14 days free, cancel anytime, full refund within 14 days.">
 <meta property="og:title" content="Pricing · Kavedi">
-<meta property="og:description" content="A free plan to try it, Pro at $9 a month and Business at $24. One flat price a month, no per-message charges.">
+<meta property="og:description" content="Free to start, Pro from $6 a month and Business from $16. Up to 14 days free, cancel anytime.">
 <meta property="og:image" content="https://kavedi.com/assets/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -16,9 +15,10 @@
 <meta property="og:site_name" content="Kavedi">
 <meta property="og:locale" content="en_US">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Pricing — Kavedi">
-<meta name="twitter:description" content="A free plan to try it, Pro at $9 a month and Business at $24. One flat price a month, no per-message charges.">
+<meta name="twitter:title" content="Pricing · Kavedi">
+<meta name="twitter:description" content="Free to start, Pro from $6 a month and Business from $16. Up to 14 days free, cancel anytime.">
 <meta name="twitter:image" content="https://kavedi.com/assets/og.png">
+<link rel="canonical" href="https://kavedi.com/pricing">
 <link rel="icon" href="/assets/favicon.ico" sizes="48x48">
 <link rel="icon" href="/assets/favicon-96.png" sizes="96x96" type="image/png">
 <link rel="icon" href="/assets/favicon-192.png" sizes="192x192" type="image/png">
@@ -39,13 +39,19 @@
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></symbol>
   <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+  <symbol id="i-minus" viewBox="0 0 24 24"><path d="M5 12h14"/></symbol>
+  <symbol id="i-circle-check" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></symbol>
+  <symbol id="i-calendar" viewBox="0 0 24 24"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/></symbol>
+  <symbol id="i-refund" viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></symbol>
+  <symbol id="i-lock" viewBox="0 0 24 24"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></symbol>
+  <symbol id="i-spark" viewBox="0 0 24 24"><path d="M12 0C12.6 6.5 17.5 11.4 24 12 17.5 12.6 12.6 17.5 12 24 11.4 17.5 6.5 12.6 0 12 6.5 11.4 11.4 6.5 12 0Z" fill="currentColor" stroke="none"/></symbol>
 </svg>
 
 <header class="nav is-small" id="nav" data-solid>
   <div class="nav-in">
     <a class="logo" href="/" aria-label="Kavedi, home"><img src="/assets/mark.webp" alt="" width="24" height="24">Kavedi</a>
     <nav class="nav-links" aria-label="Main">
-      <a href="/#agents">Agents</a><a href="/#pieces">The pieces</a><a href="/pricing">Pricing</a>
+      <a href="/#agents">Agents</a><a href="/#pieces">The pieces</a><a href="/pricing" aria-current="page">Pricing</a>
     </nav>
     <a class="nav-sign" href="/sign-in">Sign in</a>
     <a class="btn" href="/beta">Join the beta</a>
@@ -54,70 +60,156 @@
 
 <main id="main">
   <section class="page-head wrap">
-    <h1>Simple, flat pricing.</h1>
-    <p class="lede">One price a month, in your currency. Nothing per message, and no surprise bills.</p>
-    <div class="pricing-bar">
-      <p class="notice"><span class="live-dot" aria-hidden="true"></span>In beta, it’s free to use. These are the prices we expect after launch, and they can still change.</p>
-      <label class="currency">Prices in
-        <select data-currency>
-          <option value="USD">$ USD</option>
-          <option value="EUR">€ EUR</option>
-          <option value="GBP">£ GBP</option>
-          <option value="NGN">₦ NGN</option>
-        </select>
-      </label>
+    <h1>Pick the time you want back.</h1>
+    <p class="lede">Start free. Try Pro or Business free for up to 14 days. No commitment, cancel anytime.</p>
+
+    <div class="price-controls">
+      <div class="seg" role="radiogroup" aria-label="Billing">
+        <button type="button" role="radio" aria-checked="true" data-interval="year">Yearly <em>Save 33%</em></button>
+        <button type="button" role="radio" aria-checked="false" data-interval="month">Monthly</button>
+      </div>
+      <div class="seg seg-small" role="radiogroup" aria-label="Currency">
+        <button type="button" role="radio" aria-checked="true" data-cur="USD">$ USD</button>
+        <button type="button" role="radio" aria-checked="false" data-cur="NGN">₦ NGN</button>
+      </div>
     </div>
+    <p class="notice"><span class="live-dot" aria-hidden="true"></span>Every plan is free while Kavedi is in beta. These are the prices when pricing starts.</p>
   </section>
 
-  <section class="wrap plans">
-    <div class="plan">
+  <section class="wrap tiers" aria-label="Plans">
+    <article class="tier t-free">
       <h2>Free</h2>
-      <p class="price"><b data-price="free">$0</b> <span>/ month</span></p>
-      <p class="for">Enough to connect your number and see it work on your real messages.</p>
+      <p class="pitch">See it work on your own messages.</p>
+      <p class="amt"><b>$0</b></p>
+      <p class="billed">Free for as long as you like</p>
       <ul>
-        <li><svg class="ic"><use href="#i-check"/></svg>1 WhatsApp number</li>
-        <li><svg class="ic"><use href="#i-check"/></svg><span><strong>Agents</strong> in your chats: price lists, welcomes, away messages</span></li>
-        <li><svg class="ic"><use href="#i-check"/></svg><span><strong>100 AI replies</strong> a month</span></li>
-        <li><svg class="ic"><use href="#i-check"/></svg>Teach it by typing, or upload a price list</li>
-        <li><svg class="ic"><use href="#i-check"/></svg>An inbox for anything handed to you</li>
-        <li><svg class="ic"><use href="#i-check"/></svg>Scheduled messages, 30 a month</li>
+        <li><svg class="ic"><use href="#i-check"/></svg>1 agent</li>
+        <li><svg class="ic"><use href="#i-check"/></svg>100 AI replies a month</li>
+        <li><svg class="ic"><use href="#i-check"/></svg>30 scheduled messages a month</li>
+        <li><svg class="ic"><use href="#i-check"/></svg>An inbox for chats handed to you</li>
+        <li><svg class="ic"><use href="#i-check"/></svg>Teach it by typing or with a price list</li>
       </ul>
-      <a class="btn light" href="/beta">Join the beta</a>
-    </div>
-    <div class="plan is-featured photo-frame" style="--img:url(/assets/photos/agent.webp)">
-      <h2>Pro <span class="badge">Most people</span></h2>
-      <p class="price"><b data-price="pro">$9</b> <span>/ month</span></p>
-      <p class="for">For when Kavedi is doing real work every day.</p>
+      <a class="tier-btn" href="/sign-up">Start free</a>
+    </article>
+
+    <article class="tier t-pro" data-plan="pro">
+      <span class="tag">Most popular</span>
+      <h2>Pro</h2>
+      <p class="pitch">Your agents answer, book and follow up while you live your life.</p>
+      <p class="amt"><b data-amt>$6</b><span>/month</span></p>
+      <p class="billed" data-billed>$72 billed yearly · 14 days free</p>
+      <p class="lead">Everything in Free, plus</p>
       <ul>
-        <li><svg class="ic"><use href="#i-check"/></svg>Everything in Free</li>
-        <li><svg class="ic"><use href="#i-check"/></svg><span><strong>Agents in up to 3 groups</strong> you pick</span></li>
-        <li><svg class="ic"><use href="#i-check"/></svg><span><strong>1,500 AI replies</strong> a month</span></li>
-        <li><svg class="ic"><use href="#i-check"/></svg>Bookings in the chat, with reminders</li>
-        <li><svg class="ic"><use href="#i-check"/></svg>Follow-ups for people who went quiet</li>
-        <li><svg class="ic"><use href="#i-check"/></svg>Scheduled messages, no limit</li>
+        <li><svg class="ic"><use href="#i-check"/></svg>3 agents</li>
+        <li><svg class="ic"><use href="#i-check"/></svg>1,500 AI replies a month</li>
+        <li><svg class="ic"><use href="#i-check"/></svg>Bookings with reminders</li>
+        <li><svg class="ic"><use href="#i-check"/></svg>Follow-ups when people go quiet</li>
         <li><svg class="ic"><use href="#i-check"/></svg>Broadcasts to people and groups</li>
-        <li><svg class="ic"><use href="#i-check"/></svg>Word-for-word answers</li>
+        <li><svg class="ic"><use href="#i-check"/></svg>Payment links in the chat</li>
+        <li><svg class="ic"><use href="#i-check"/></svg>Voice notes turned into text</li>
       </ul>
-      <a class="btn white" href="/beta">Join the beta <svg class="ic"><use href="#i-arrow"/></svg></a>
-    </div>
-    <div class="plan">
+      <a class="tier-btn" href="/sign-up" data-trial>Start my 14-day free trial</a>
+    </article>
+
+    <article class="tier t-biz" data-plan="business">
+      <span class="tag">For teams</span>
+      <svg class="spark" style="right: 34px; top: 96px; width: 12px; height: 12px; animation-delay: -1s" aria-hidden="true"><use href="#i-spark"/></svg>
+      <svg class="spark" style="right: 62px; top: 120px; width: 8px; height: 8px; animation-delay: -2s" aria-hidden="true"><use href="#i-spark"/></svg>
       <h2>Business</h2>
-      <p class="price"><b data-price="business">$24</b> <span>/ month</span></p>
-      <p class="for">Busy numbers, and help getting it right from day one.</p>
+      <p class="pitch">Your whole team on one number. Nothing slips through.</p>
+      <p class="amt"><b data-amt>$16</b><span>/month</span></p>
+      <p class="billed" data-billed>$192 billed yearly · 14 days free</p>
+      <p class="lead">Everything in Pro, plus</p>
       <ul>
-        <li><svg class="ic"><use href="#i-check"/></svg>Everything in Pro</li>
-        <li><svg class="ic"><use href="#i-check"/></svg>Agents and answers set up with you</li>
-        <li><svg class="ic"><use href="#i-check"/></svg><span><strong>5,000 AI replies</strong> a month</span></li>
-        <li><svg class="ic"><use href="#i-check"/></svg>Voice notes transcribed on request</li>
-        <li><svg class="ic"><use href="#i-check"/></svg>Answers written from your documents</li>
-        <li><svg class="ic"><use href="#i-check"/></svg>Priority support</li>
+        <li><svg class="ic"><use href="#i-check"/></svg>Up to 5 people on one account</li>
+        <li><svg class="ic"><use href="#i-check"/></svg>10 agents</li>
+        <li><svg class="ic"><use href="#i-check"/></svg>5,000 AI replies a month</li>
+        <li><svg class="ic"><use href="#i-check"/></svg>A shared inbox for your team</li>
+        <li><svg class="ic"><use href="#i-check"/></svg>Agents in up to 10 groups</li>
+        <li><svg class="ic"><use href="#i-check"/></svg>Set up with you, priority support</li>
       </ul>
-      <a class="btn light" href="/beta">Join the beta</a>
+      <a class="tier-btn" href="/sign-up" data-trial>Start my 14-day free trial</a>
+    </article>
+
+    <article class="tier t-ent">
+      <span class="tag">Custom</span>
+      <svg class="spark" style="right: 22px; top: 92px; width: 14px; height: 14px" aria-hidden="true"><use href="#i-spark"/></svg>
+      <svg class="spark" style="right: 60px; top: 116px; width: 8px; height: 8px; animation-delay: -.7s" aria-hidden="true"><use href="#i-spark"/></svg>
+      <svg class="spark" style="right: 96px; top: 86px; width: 10px; height: 10px; animation-delay: -1.4s" aria-hidden="true"><use href="#i-spark"/></svg>
+      <svg class="spark" style="right: 140px; top: 110px; width: 7px; height: 7px; animation-delay: -2.1s" aria-hidden="true"><use href="#i-spark"/></svg>
+      <svg class="spark" style="right: 30px; top: 150px; width: 9px; height: 9px; animation-delay: -2.6s" aria-hidden="true"><use href="#i-spark"/></svg>
+      <svg class="spark" style="right: 112px; top: 140px; width: 12px; height: 12px; animation-delay: -.4s" aria-hidden="true"><use href="#i-spark"/></svg>
+      <h2>Enterprise</h2>
+      <p class="pitch">Built around how you work, at any size.</p>
+      <p class="amt"><b class="talk">Let’s talk</b></p>
+      <p class="billed">A plan and price made for you</p>
+      <p class="lead">Everything in Business, plus</p>
+      <ul>
+        <li><svg class="ic"><use href="#i-check"/></svg>More numbers and more people</li>
+        <li><svg class="ic"><use href="#i-check"/></svg>Unlimited agents</li>
+        <li><svg class="ic"><use href="#i-check"/></svg>AI replies to fit your volume</li>
+        <li><svg class="ic"><use href="#i-check"/></svg>A dedicated person on our team</li>
+        <li><svg class="ic"><use href="#i-check"/></svg>Custom connections to your tools</li>
+      </ul>
+      <a class="tier-btn" href="mailto:support@kavedi.com?subject=Kavedi%20Enterprise">Talk to us</a>
+    </article>
+  </section>
+
+  <section class="wrap promises" aria-label="What you can count on">
+    <div><svg class="ic"><use href="#i-circle-check"/></svg><b>No commitment</b><span>Cancel anytime, in two taps.</span></div>
+    <div><svg class="ic"><use href="#i-calendar"/></svg><b>Nothing to pay during the trial</b><span>We remind you before it ends.</span></div>
+    <div><svg class="ic"><use href="#i-refund"/></svg><b>Full refund within 14 days</b><span>Of any payment, no questions.</span></div>
+    <div><svg class="ic"><use href="#i-lock"/></svg><b>Secure checkout</b><span>Kavedi never sees your card.</span></div>
+  </section>
+
+  <section class="sec compare-sec" id="compare">
+    <div class="wrap sec-head">
+      <h2>Compare plans</h2>
+      <div class="compare-wrap">
+        <table class="compare">
+          <thead>
+            <tr><th scope="col"><span class="sr">Feature</span></th><th scope="col">Free</th><th scope="col" class="is-pro">Pro</th><th scope="col">Business</th><th scope="col">Enterprise</th></tr>
+          </thead>
+          <tbody>
+            <tr class="group"><th scope="rowgroup" colspan="5">Agents and replies</th></tr>
+            <tr><th scope="row">Agents</th><td>1</td><td class="is-pro">3</td><td>10</td><td>Unlimited</td></tr>
+            <tr><th scope="row">AI replies a month</th><td>100</td><td class="is-pro">1,500</td><td>5,000</td><td>To fit you</td></tr>
+            <tr><th scope="row">Teach it by typing or with a price list</th><td><svg class="ic yes"><use href="#i-check"/></svg></td><td class="is-pro"><svg class="ic yes"><use href="#i-check"/></svg></td><td><svg class="ic yes"><use href="#i-check"/></svg></td><td><svg class="ic yes"><use href="#i-check"/></svg></td></tr>
+            <tr><th scope="row">Voice notes turned into text</th><td><svg class="ic no"><use href="#i-minus"/></svg></td><td class="is-pro"><svg class="ic yes"><use href="#i-check"/></svg></td><td><svg class="ic yes"><use href="#i-check"/></svg></td><td><svg class="ic yes"><use href="#i-check"/></svg></td></tr>
+            <tr><th scope="row">Agents in groups</th><td><svg class="ic no"><use href="#i-minus"/></svg></td><td class="is-pro">3 groups</td><td>10 groups</td><td>Custom</td></tr>
+            <tr class="group"><th scope="rowgroup" colspan="5">Bookings and messages</th></tr>
+            <tr><th scope="row">Bookings with reminders</th><td><svg class="ic no"><use href="#i-minus"/></svg></td><td class="is-pro"><svg class="ic yes"><use href="#i-check"/></svg></td><td><svg class="ic yes"><use href="#i-check"/></svg></td><td><svg class="ic yes"><use href="#i-check"/></svg></td></tr>
+            <tr><th scope="row">Follow-ups when people go quiet</th><td><svg class="ic no"><use href="#i-minus"/></svg></td><td class="is-pro"><svg class="ic yes"><use href="#i-check"/></svg></td><td><svg class="ic yes"><use href="#i-check"/></svg></td><td><svg class="ic yes"><use href="#i-check"/></svg></td></tr>
+            <tr><th scope="row">Scheduled messages</th><td>30 a month</td><td class="is-pro">No limit</td><td>No limit</td><td>No limit</td></tr>
+            <tr><th scope="row">Broadcasts to people and groups</th><td><svg class="ic no"><use href="#i-minus"/></svg></td><td class="is-pro"><svg class="ic yes"><use href="#i-check"/></svg></td><td><svg class="ic yes"><use href="#i-check"/></svg></td><td><svg class="ic yes"><use href="#i-check"/></svg></td></tr>
+            <tr><th scope="row">Payment links in the chat</th><td><svg class="ic no"><use href="#i-minus"/></svg></td><td class="is-pro"><svg class="ic yes"><use href="#i-check"/></svg></td><td><svg class="ic yes"><use href="#i-check"/></svg></td><td><svg class="ic yes"><use href="#i-check"/></svg></td></tr>
+            <tr class="group"><th scope="rowgroup" colspan="5">Team and help</th></tr>
+            <tr><th scope="row">People on one account</th><td>1</td><td class="is-pro">1</td><td>Up to 5</td><td>As many as you need</td></tr>
+            <tr><th scope="row">Inbox for chats handed to you</th><td>Just you</td><td class="is-pro">Just you</td><td>Shared</td><td>Shared</td></tr>
+            <tr><th scope="row">Set up with you</th><td><svg class="ic no"><use href="#i-minus"/></svg></td><td class="is-pro"><svg class="ic no"><use href="#i-minus"/></svg></td><td><svg class="ic yes"><use href="#i-check"/></svg></td><td><svg class="ic yes"><use href="#i-check"/></svg></td></tr>
+            <tr><th scope="row">Support</th><td>Email</td><td class="is-pro">Email</td><td>Priority</td><td>A dedicated person</td></tr>
+            <tr><th scope="row">Free trial</th><td><svg class="ic no"><use href="#i-minus"/></svg></td><td class="is-pro">14 days yearly, 7 monthly</td><td>14 days yearly, 7 monthly</td><td><svg class="ic no"><use href="#i-minus"/></svg></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="pricing-note">An <strong>AI reply</strong> is one message Kavedi reads and answers from what you taught it. Words you wrote yourself, scheduled messages, reminders and broadcasts use none. Run out and Kavedi doesn’t stop: it passes messages to your inbox instead, and never bills you for more.</p>
     </div>
   </section>
 
-  <section class="wrap">
-    <p class="pricing-note">An <strong>AI reply</strong> is one message Kavedi reads and answers from what you taught it. Words you wrote yourself, scheduled messages, reminders and broadcasts use none. Run out and Kavedi doesn’t stop: it passes messages to you instead of answering, and never bills you for more.</p>
+  <section class="sec" id="questions">
+    <div class="wrap sec-head">
+      <h2>Questions about paying</h2>
+      <div class="faq">
+        <details><summary>Can I cancel anytime?<i></i></summary><div class="ans"><p>Yes. Cancel in Settings, Plan &amp; billing. You keep your plan until the end of what you paid for, then move to Free. Your agents and answers stay.</p></div></details>
+        <details><summary>Do I pay anything during the free trial?<i></i></summary><div class="ans"><p>No. You add a card to start the trial and the first payment is taken when it ends: after 14 days on yearly, 7 on monthly. We remind you before then, and if you cancel first you pay nothing.</p></div></details>
+        <details><summary>Can I get a refund?<i></i></summary><div class="ans"><p>Yes. Ask within 14 days of any payment and we refund all of it. Email <a href="mailto:support@kavedi.com">support@kavedi.com</a> from the address you signed up with.</p></div></details>
+        <details><summary>What currency will I pay in?<i></i></summary><div class="ans"><p>Naira if you’re in Nigeria, US dollars everywhere else. Your bank shows what left your account in your own currency.</p></div></details>
+        <details><summary>What if I run out of AI replies?<i></i></summary><div class="ans"><p>Nothing stops. Messages it would have answered come to your inbox instead, and you’re never charged extra. Move up a plan whenever you like, or wait for next month.</p></div></details>
+        <details><summary>Can I change plans later?<i></i></summary><div class="ans"><p>Yes, up or down at any time. Moving up starts straight away. Moving down starts when the time you paid for ends.</p></div></details>
+        <details><summary>Is it free right now?<i></i></summary><div class="ans"><p>Yes. Every plan is free while Kavedi is in beta, and we’ll tell you before anything costs money. The first 10 testers get two months of Pro free when pricing starts.</p></div></details>
+        <details><summary>Is my card safe?<i></i></summary><div class="ans"><p>Payments go through Paystack in Nigeria and Lemon Squeezy everywhere else. Kavedi never sees or keeps your card details.</p></div></details>
+      </div>
+    </div>
   </section>
 
   <section class="wrap closing">

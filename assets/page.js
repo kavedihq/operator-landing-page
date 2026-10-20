@@ -98,41 +98,68 @@
     });
   });
 
-  // ---------- Prices follow the currency last picked. Set per currency, not converted ----------
+  // ---------- Pricing: yearly or monthly, naira or dollars ----------
+  // Kavedi charges naira in Nigeria and dollars everywhere else, so those are the only two currencies shown. Prices are
+  // set per currency, not converted. Yearly is a third off monthly. Both choices stick on this device.
   var PRICES = {
-    USD: { symbol: '$', free: '0', pro: '9', business: '24' },
-    NGN: { symbol: '₦', free: '0', pro: '7,500', business: '19,500' },
-    GBP: { symbol: '£', free: '0', pro: '7', business: '19' },
-    EUR: { symbol: '€', free: '0', pro: '8', business: '22' }
+    USD: { sym: '$', pro: { month: '9', year: '6', yearTotal: '72' }, business: { month: '24', year: '16', yearTotal: '192' } },
+    NGN: { sym: '₦', pro: { month: '7,500', year: '5,000', yearTotal: '60,000' }, business: { month: '19,500', year: '13,000', yearTotal: '156,000' } }
   };
-  // Until someone picks, the currency follows the device's time zone: naira in Nigeria, pounds in the UK, euros in the
-  // eurozone, dollars everywhere else. A choice made on the pricing page sticks.
-  function guessCurrency() {
+  var tiers = $('.tiers');
+  if (tiers) {
+    var store = function (key, value) { try { if (value === undefined) return localStorage.getItem(key); localStorage.setItem(key, value); } catch (e) {} return null; };
     var zone = '';
     try { zone = Intl.DateTimeFormat().resolvedOptions().timeZone || ''; } catch (e) {}
-    if (zone === 'Africa/Lagos') return 'NGN';
-    if (zone === 'Europe/London' || zone === 'Europe/Belfast') return 'GBP';
-    var euro = ['Amsterdam', 'Athens', 'Berlin', 'Bratislava', 'Brussels', 'Dublin', 'Helsinki', 'Lisbon', 'Ljubljana',
-      'Luxembourg', 'Madrid', 'Malta', 'Monaco', 'Paris', 'Riga', 'Rome', 'Tallinn', 'Vienna', 'Vilnius', 'Zagreb'];
-    if (zone.indexOf('Europe/') === 0 && euro.indexOf(zone.slice(7)) !== -1) return 'EUR';
-    return 'USD';
-  }
-  if ($('[data-price]')) {
-    var code = guessCurrency();
-    try { if (PRICES[localStorage.getItem('kv-currency')]) code = localStorage.getItem('kv-currency'); } catch (e) {}
-    var drawPrices = function () {
-      $$('[data-price]').forEach(function (el) { el.textContent = PRICES[code].symbol + PRICES[code][el.getAttribute('data-price')]; });
-    };
-    var picker = $('[data-currency]');
-    if (picker) {
-      picker.value = code;
-      picker.addEventListener('change', function () {
-        code = PRICES[picker.value] ? picker.value : 'USD';
-        try { localStorage.setItem('kv-currency', code); } catch (e) {}
-        drawPrices();
+    var cur = PRICES[store('kv-currency')] ? store('kv-currency') : (zone === 'Africa/Lagos' ? 'NGN' : 'USD');
+    var interval = store('kv-interval') === 'month' ? 'month' : 'year';
+    var draw = function () {
+      var p = PRICES[cur];
+      $$('[data-plan]', tiers).forEach(function (card) {
+        var plan = p[card.getAttribute('data-plan')];
+        var days = interval === 'year' ? 14 : 7;
+        $('[data-amt]', card).textContent = p.sym + plan[interval];
+        $('[data-billed]', card).textContent = (interval === 'year' ? p.sym + plan.yearTotal + ' billed yearly' : 'Billed monthly') + ' · ' + days + ' days free';
+        $('[data-trial]', card).textContent = 'Start my ' + days + '-day free trial';
       });
-    }
-    drawPrices();
+      var free = $('.t-free .amt b', tiers);
+      if (free) free.textContent = p.sym + '0';
+      $$('[data-interval]').forEach(function (b) { b.setAttribute('aria-checked', String(b.getAttribute('data-interval') === interval)); });
+      $$('[data-cur]').forEach(function (b) { b.setAttribute('aria-checked', String(b.getAttribute('data-cur') === cur)); });
+    };
+    // The numbers fade out, change and fade back, so a switch reads as a change rather than a jump.
+    var swap = function () {
+      if (reduce) { draw(); return; }
+      tiers.classList.add('is-swapping');
+      setTimeout(function () { draw(); tiers.classList.remove('is-swapping'); }, 180);
+    };
+    $$('[data-interval]').forEach(function (b) {
+      b.addEventListener('click', function () {
+        if (interval === b.getAttribute('data-interval')) return;
+        interval = b.getAttribute('data-interval');
+        store('kv-interval', interval);
+        swap();
+      });
+    });
+    $$('[data-cur]').forEach(function (b) {
+      b.addEventListener('click', function () {
+        if (cur === b.getAttribute('data-cur')) return;
+        cur = b.getAttribute('data-cur');
+        store('kv-currency', cur);
+        swap();
+      });
+    });
+    // Arrow keys move between the two choices, like any radio group.
+    $$('.seg').forEach(function (group) {
+      group.addEventListener('keydown', function (e) {
+        if (['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown'].indexOf(e.key) === -1) return;
+        var buttons = $$('button', group);
+        var next = buttons[(buttons.indexOf(document.activeElement) + 1) % buttons.length];
+        e.preventDefault();
+        next.focus();
+        next.click();
+      });
+    });
+    draw();
   }
 
   // ---------- Sections rise in as they come into view ----------
