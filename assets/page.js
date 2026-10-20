@@ -98,19 +98,16 @@
     });
   });
 
-  // ---------- Pricing: yearly or monthly, naira or dollars ----------
-  // Kavedi charges naira in Nigeria and dollars everywhere else, so those are the only two currencies shown. Prices are
-  // set per currency, not converted. Yearly is a third off monthly. Both choices stick on this device.
+  // ---------- Pricing: yearly or monthly ----------
+  // Prices are in dollars for everyone (21 Oct, Kelvin dropped the naira toggle). Yearly is a third off monthly, and the
+  // choice sticks on this device. PRICES is keyed by currency so another can be added back without rewriting this.
   var PRICES = {
-    USD: { sym: '$', pro: { month: '9', year: '6', yearTotal: '72' }, business: { month: '24', year: '16', yearTotal: '192' } },
-    NGN: { sym: '₦', pro: { month: '7,500', year: '5,000', yearTotal: '60,000' }, business: { month: '19,500', year: '13,000', yearTotal: '156,000' } }
+    USD: { sym: '$', pro: { month: '9', year: '6', yearTotal: '72' }, business: { month: '24', year: '16', yearTotal: '192' } }
   };
   var tiers = $('.tiers');
   if (tiers) {
     var store = function (key, value) { try { if (value === undefined) return localStorage.getItem(key); localStorage.setItem(key, value); } catch (e) {} return null; };
-    var zone = '';
-    try { zone = Intl.DateTimeFormat().resolvedOptions().timeZone || ''; } catch (e) {}
-    var cur = PRICES[store('kv-currency')] ? store('kv-currency') : (zone === 'Africa/Lagos' ? 'NGN' : 'USD');
+    var cur = 'USD';
     var interval = store('kv-interval') === 'month' ? 'month' : 'year';
     var draw = function () {
       var p = PRICES[cur];

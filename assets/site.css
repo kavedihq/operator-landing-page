@@ -37,7 +37,7 @@ main { padding-top: 130px; }
 .tier-btn:active { transform: scale(.96); transition-duration: .1s; }
 .tag { position: absolute; right: 16px; top: 18px; height: 24px; padding: 0 10px; border-radius: 12px; display: flex; align-items: center; font: 650 11px var(--sans); text-transform: uppercase; letter-spacing: .07em; }
 
-.t-pro { background: linear-gradient(180deg, #14322F 0%, var(--card) 70%); box-shadow: 0 0 0 1.5px var(--teal), 0 0 0 6px rgba(53, 189, 180, .14), 0 30px 60px -24px rgba(0, 0, 0, .8); }
+.t-pro { background: linear-gradient(180deg, #14322F 0%, var(--card) 70%); box-shadow: 0 0 0 1.5px var(--teal), 0 30px 60px -24px rgba(0, 0, 0, .8); }
 .t-pro .tag { background: var(--teal); color: #062321; }
 .t-pro .tier-btn { background: var(--teal); color: #062321; box-shadow: none; }
 
@@ -47,12 +47,11 @@ main { padding-top: 130px; }
 .t-biz .tag { background: #fff; color: #0F3B38; }
 .t-biz .tier-btn { background: #fff; color: #0F3B38; box-shadow: none; }
 
-.t-ent { color: #fff; border: 2px solid transparent; background: linear-gradient(#050506, #050506) padding-box, linear-gradient(120deg, #0A7F7A, #7FD8CF, #8EC5FF, #C9B8FF, #0A7F7A) border-box; background-size: 100% 100%, 300% 100%; animation: tierEdge 6s linear infinite; box-shadow: 0 30px 60px -24px rgba(0, 0, 0, .85); }
+.t-ent { color: #fff; background: #050506; box-shadow: 0 0 0 1.5px rgba(201, 184, 255, .45), 0 30px 60px -24px rgba(0, 0, 0, .85); }
 .t-ent .pitch, .t-ent .billed, .t-ent .lead { color: rgba(255, 255, 255, .68); }
 .t-ent .amt b { background: linear-gradient(120deg, #7FD8CF, #8EC5FF 50%, #C9B8FF); -webkit-background-clip: text; background-clip: text; color: transparent; }
 .t-ent .tag { background: linear-gradient(120deg, #7FD8CF, #8EC5FF); color: #0B0B0D; }
 .t-ent .tier-btn { background: linear-gradient(120deg, #7FD8CF, #8EC5FF 60%, #C9B8FF); color: #0B0B0D; box-shadow: none; }
-@keyframes tierEdge { to { background-position: 0 0, 300% 0; } }
 .spark { position: absolute; z-index: -1; color: #fff; animation: twinkle 3.2s ease-in-out infinite; }
 @keyframes twinkle { 0%, 100% { opacity: .15; transform: scale(.6) rotate(0); } 50% { opacity: .9; transform: scale(1) rotate(45deg); } }
 .tier [data-amt], .tier [data-billed], .tier [data-trial] { transition: opacity .18s; }
@@ -81,7 +80,7 @@ main { padding-top: 130px; }
 .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 .pricing-note { max-width: 720px; margin: 28px auto 0; text-align: center; color: var(--muted); font-size: 14.5px; }
 .pricing-note strong { color: var(--ink); font-weight: 600; }
-@media (prefers-reduced-motion: reduce) { .t-ent, .spark { animation: none; } .spark { opacity: .6; } }
+@media (prefers-reduced-motion: reduce) { .spark { animation: none; opacity: .6; } }
 @media (max-width: 1100px) {
   .tiers, .promises { grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: 760px; }
 }
